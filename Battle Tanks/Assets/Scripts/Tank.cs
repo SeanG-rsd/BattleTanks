@@ -2,46 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using System;
+using Photon.Realtime;
 
-public class Tank : MonoBehaviour
+public class Tank : MonoBehaviourPunCallbacks
 {
+    public string[] teamNames;
     PhotonView view;
 
-    public float speed;
+    TankHealth tankHealth;
 
-    public float bodyRotateSpeed;
-    public GameObject PlayerCamera;
+    string teamName;
 
-    public Rigidbody rb;
-
-
+    ExitGames.Client.Photon.Hashtable playerPropeties = new ExitGames.Client.Photon.Hashtable();
+    Player player;
     // Start is called before the first frame update
     void Start()
     {
-        view = gameObject.GetComponent<PhotonView>();
-        if (view.IsMine)
-        {
-            PlayerCamera.SetActive(true);
-        }
-    }
-
-    private void Awake()
-    {
-        
+        tankHealth = gameObject.GetComponent<TankHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (view.IsMine)
+        
+    }
+
+    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
+    {
+        if (player == targetPlayer)
         {
-            Vector3 input = new Vector3(0, 0, Input.GetAxisRaw("Vertical"));
+            UpdateTankProperties(targetPlayer);
+        }
+    }
 
-            //transform.position += input.normalized * Time.deltaTime * speed;
+    void UpdateTankProperties(Player player)
+    {
 
-            transform.position += transform.forward * Input.GetAxisRaw("Vertical") * speed * Time.deltaTime;
-
-            transform.Rotate(0, bodyRotateSpeed * Time.deltaTime * Input.GetAxisRaw("Horizontal"), 0, Space.World);
+        if (player.CustomProperties.ContainsKey("currentHealth"))
+        {
+            tankHealth.currentHealth = (int)player.CustomProperties["currentHealth"];
         }
     }
 }

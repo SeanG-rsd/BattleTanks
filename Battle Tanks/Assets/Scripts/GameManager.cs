@@ -12,7 +12,7 @@ public class GameManager
     public GameObject SceneCam;
 
     public GameObject disconnectMenu;
-    private bool Off = false;
+    
 
     public bool start;
 
