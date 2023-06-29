@@ -11,7 +11,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     public TMP_Text playerName;
 
     public Image teamBackgroundImage;
-    public Color[] teamColors;
+    
     public Image backgroundImage;
     public Color highlightColor;
     public GameObject leftAvatarArrowButton;
@@ -25,15 +25,19 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     public string[] avatars;
 
     public TMP_Text playerTeam;
-    public string[] teamNames;
+    
 
     Player player;
     CreateAndJoinRooms manager;
+
+    public TeamInfo teamInfo;
 
     // Start is called before the first frame update
     void Start()
     {
         manager = FindObjectOfType<CreateAndJoinRooms>();
+        teamInfo = FindObjectOfType<TeamInfo>();
+
     }
 
     // Update is called once per frame
@@ -89,7 +93,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     {
         if ((int)playerPropeties["playerTeam"] == 0)
         {
-            playerPropeties["playerTeam"] = teamNames.Length - 1;
+            playerPropeties["playerTeam"] = teamInfo.teamNames.Length - 1;
         }
         else
         {
@@ -100,7 +104,7 @@ public class PlayerItem : MonoBehaviourPunCallbacks
 
     public void OnClickRightTeamArrow()
     {
-        if ((int)playerPropeties["playerTeam"] == teamNames.Length - 1)
+        if ((int)playerPropeties["playerTeam"] == teamInfo.teamNames.Length - 1)
         {
             playerPropeties["playerTeam"] = 0;
         }
@@ -138,9 +142,9 @@ public class PlayerItem : MonoBehaviourPunCallbacks
 
         if (player.CustomProperties.ContainsKey("playerTeam"))
         {
-            playerTeam.text = teamNames[(int)player.CustomProperties["playerTeam"]];
+            playerTeam.text = teamInfo.teamNames[(int)player.CustomProperties["playerTeam"]];
             playerPropeties["playerTeam"] = (int)player.CustomProperties["playerTeam"];
-            teamBackgroundImage.color = teamColors[(int)player.CustomProperties["playerTeam"]];
+            teamBackgroundImage.color = teamInfo.teamColors[(int)player.CustomProperties["playerTeam"]];
         }
         else
         {

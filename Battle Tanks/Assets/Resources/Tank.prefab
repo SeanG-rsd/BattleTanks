@@ -248,9 +248,13 @@ MonoBehaviour:
   barrelIndex: 0
   bulletSpeed: 400
   bulletSize: 1
-  shootDelay: 0
-  reloadSpeed: 0
-  maxAmmo: 0
+  shootDelay: 0.5
+  reloadTime: 2
+  maxAmmo: 15
+  ammoDisplayText: {fileID: 5070666432339198071}
+  maxAmmoDisplayText: {fileID: 5997527963274019164}
+  ammoDisplay: {fileID: 6609803500230536460}
+  bulletDamage: 10
 --- !u!114 &-1736724950154503586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -263,9 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b787c13225a74e64597caa49ffb78053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamNames:
-  - Blue
-  - Red
+  teamIndex: -1
 --- !u!114 &-1471611842503101433
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1289,7 +1291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 565.99994, y: 368.49997}
+  m_AnchoredPosition: {x: 565.99994, y: 859}
   m_SizeDelta: {x: 250.1874, y: 108.6884}
   m_Pivot: {x: 0, y: 0}
 --- !u!222 &1801491620414789300

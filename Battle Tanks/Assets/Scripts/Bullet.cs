@@ -7,6 +7,9 @@ public class Bullet : MonoBehaviour
     float bulletSpeed;
 
     Rigidbody rb;
+
+    public int teamIndex = -1;
+    public int damage = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +22,11 @@ public class Bullet : MonoBehaviour
         
     }
 
-    public void Shoot(float speed, float size, Transform origin)
+    public void Shoot(float speed, float size, Transform origin, int dam)
     {
         rb = GetComponent<Rigidbody>();
         transform.localScale = size * transform.localScale;
         rb.AddForce(origin.forward * speed);
+        damage = dam;
     }
 }

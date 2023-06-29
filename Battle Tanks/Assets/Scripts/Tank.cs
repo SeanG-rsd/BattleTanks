@@ -7,12 +7,16 @@ using Photon.Realtime;
 
 public class Tank : MonoBehaviourPunCallbacks
 {
-    public string[] teamNames;
+    TeamInfo teamInfo;
     PhotonView view;
 
     TankHealth tankHealth;
 
+    public int teamIndex = -1;
+
     string teamName;
+
+    
 
     ExitGames.Client.Photon.Hashtable playerPropeties = new ExitGames.Client.Photon.Hashtable();
     Player player;
@@ -20,6 +24,8 @@ public class Tank : MonoBehaviourPunCallbacks
     void Start()
     {
         tankHealth = gameObject.GetComponent<TankHealth>();
+        
+        teamInfo = FindObjectOfType<TeamInfo>();
     }
 
     // Update is called once per frame
@@ -42,6 +48,17 @@ public class Tank : MonoBehaviourPunCallbacks
         if (player.CustomProperties.ContainsKey("currentHealth"))
         {
             tankHealth.currentHealth = (int)player.CustomProperties["currentHealth"];
+        }
+    }
+
+    public void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            if (collision.gameObject.GetComponent<Bullet>().teamIndex != teamIndex)
+            {
+                tankHealth.ChangeHealth(-collision.gameObject.GetComponent<Bullet>().damage);
+            }
         }
     }
 }

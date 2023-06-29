@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
+using Photon.Pun.UtilityScripts;
 
 public class TankShoot : MonoBehaviour
 {
@@ -13,26 +15,92 @@ public class TankShoot : MonoBehaviour
     public float bulletSpeed;
     public float bulletSize;
 
+    bool ableToShoot;
     public float shootDelay;
-    public float reloadSpeed;
+    float shooting;
 
-    public int maxAmmo;
+    bool reload;
+    public float reloadTime;
+    float reloading;
+
+    public int maxAmmo = 15;
     int currentAmmo;
+    public TMP_Text ammoDisplayText;
+    public TMP_Text maxAmmoDisplayText;
+    public GameObject ammoDisplay;
+
+    public int bulletDamage;
+
+    Tank tank;
+    TeamInfo teamInfo;
 
     PhotonView view;
 
     // Start is called before the first frame update
     void Start()
     {
+        teamInfo = FindObjectOfType<TeamInfo>();
         view = GetComponent<PhotonView>();
+        tank = GetComponent<Tank>();
+        if (view.IsMine)
+        {
+            currentAmmo = maxAmmo;
+            maxAmmoDisplayText.text = maxAmmo.ToString();
+            ammoDisplayText.text = currentAmmo.ToString();
+            ammoDisplay.SetActive(true);
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && view.IsMine)
+        if (view.IsMine)
         {
-            Shoot();
+
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (currentAmmo > 0 && ableToShoot && !reload)
+                {
+                    Shoot();
+                    currentAmmo--;
+                    ableToShoot = false;
+                    shooting = shootDelay;
+                    ammoDisplayText.text = currentAmmo.ToString();
+                }
+                else if (reload)
+                {
+                    Debug.Log("reloading");
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                reload = true;
+                reloading = reloadTime;
+            }
+
+            if (reload)
+            {
+                reloading -= Time.deltaTime;
+
+                if (reloading < 0)
+                {
+                    reload = false;
+                    currentAmmo = maxAmmo;
+                    ammoDisplayText.text = currentAmmo.ToString();
+                }
+            }
+
+            if (!ableToShoot)
+            {
+                shooting -= Time.deltaTime;
+
+                if (shooting < 0)
+                {
+                    ableToShoot = true;
+                }
+            }
         }
     }
 
@@ -40,6 +108,9 @@ public class TankShoot : MonoBehaviour
     {
         GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, shootPoints[barrelIndex].transform.position, Quaternion.identity);
 
-        bullet.GetComponent<Bullet>().Shoot(bulletSpeed, bulletSize, shootPoints[barrelIndex].transform);
+        
+        bullet.GetComponent<Bullet>().Shoot(bulletSpeed, bulletSize, shootPoints[barrelIndex].transform, bulletDamage);
+        bullet.GetComponent<MeshRenderer>().material.color = teamInfo.teamColors[tank.teamIndex];
+        bullet.GetComponent<Bullet>().teamIndex = tank.teamIndex;
     }
 }
