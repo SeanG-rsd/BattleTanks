@@ -28,14 +28,14 @@ public class PlayerItem : MonoBehaviourPunCallbacks
     
 
     Player player;
-    CreateAndJoinRooms manager;
+    RoomController manager;
 
     public TeamInfo teamInfo;
 
     // Start is called before the first frame update
     void Start()
     {
-        manager = FindObjectOfType<CreateAndJoinRooms>();
+        manager = FindObjectOfType<RoomController>();
         teamInfo = FindObjectOfType<TeamInfo>();
 
     }

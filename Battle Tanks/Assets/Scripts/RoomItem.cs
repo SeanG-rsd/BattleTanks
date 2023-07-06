@@ -7,12 +7,12 @@ using UnityEngine.UI;
 public class RoomItem : MonoBehaviour
 {
     public TMP_Text roomName;
-    CreateAndJoinRooms manager;
+    RoomController manager;
 
     // Start is called before the first frame update
     void Start()
     {
-        manager = FindObjectOfType<CreateAndJoinRooms>();
+        manager = FindObjectOfType<RoomController>();
     }
 
     public void SetRoomName(string _roomName)
@@ -28,6 +28,6 @@ public class RoomItem : MonoBehaviour
 
     public void OnClickItem()
     {
-        manager.JoinRoom(roomName.text);
+        manager.JoinPhotonRoom(roomName.text);
     }
 }

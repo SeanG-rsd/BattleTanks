@@ -58,33 +58,35 @@
   <ItemGroup>
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\SocketWebTcp.cs" />
-    <Compile Include="Assets\Scripts\Tank.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\Tank.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatAppIdCheckerUI.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\AppSettingsExtensions.cs" />
     <Compile Include="Assets\Scripts\RoomItem.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChannelSelector.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
-    <Compile Include="Assets\Scripts\TankMovement.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\TankMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerItem.cs" />
+    <Compile Include="Assets\Scripts\GameMode.cs" />
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
-    <Compile Include="Assets\Scripts\TankHealth.cs" />
-    <Compile Include="Assets\Scripts\CreateAndJoinRooms.cs" />
-    <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\TankHealth.cs" />
+    <Compile Include="Assets\Scripts\RoomController.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\GameManager.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
     <Compile Include="Assets\Scripts\TeamInfo.cs" />
-    <Compile Include="Assets\Scripts\TankShoot.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\TankShoot.cs" />
     <Compile Include="Assets\Scripts\SelectScreen.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
-    <Compile Include="Assets\Scripts\Bullet.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\Bullet.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\FriendItem.cs" />
-    <Compile Include="Assets\Scripts\ConnectToServer.cs" />
+    <Compile Include="Assets\Scripts\PhotonConnector.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\ChatGui.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextToggleIsOnTransition.cs" />
     <Compile Include="Assets\Scripts\SpawnPlayers.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
-    <Compile Include="Assets\Scripts\CameraMovement.cs" />
-    <Compile Include="Assets\Scripts\GameMode.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\UIDisplayRoom.cs" />
+    <Compile Include="Assets\Scripts\PlayfabLogin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -745,6 +747,10 @@
     <ProjectReference Include="PhotonUnityNetworking.Demos.Player.csproj">
       <Project>{1E0060BA-7852-21F6-C85C-69EADEDBE91F}</Project>
       <Name>PhotonUnityNetworking.Demos.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayFab.Player.csproj">
+      <Project>{EE106401-A1F1-83B4-3F72-C7F8E2E53AF4}</Project>
+      <Name>PlayFab.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
