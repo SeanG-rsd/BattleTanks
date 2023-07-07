@@ -7,16 +7,13 @@ using TMPro;
 using System;
 using Photon.Realtime;
 
-public class ConnectToServer : MonoBehaviourPunCallbacks
+public class PhotonConnector : MonoBehaviourPunCallbacks
 {
-
-    public TMP_InputField userNameInput;
-    public TMP_Text buttonText;
-    // Start is called before the first frame update
     private void Start()
     {
-        string randomName = $"Tester{Guid.NewGuid().ToString()}";
-        ConnectToPhoton(randomName);
+        Debug.Log("dalfkfj");
+        string nickname = PlayerPrefs.GetString("USERNAME");
+        ConnectToPhoton(nickname);
     }
 
     private void ConnectToPhoton(string nickName)
@@ -26,17 +23,6 @@ public class ConnectToServer : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NickName = nickName;
         PhotonNetwork.ConnectUsingSettings();
-    }
-
-    public void OnClickConnect()
-    {
-        if (userNameInput.text.Length >= 1)
-        {
-            PhotonNetwork.NickName = userNameInput.text;
-            buttonText.text = "Connecting...";
-            PhotonNetwork.AutomaticallySyncScene = true;
-            PhotonNetwork.ConnectUsingSettings();
-        }
     }
 
     public override void OnConnectedToMaster()

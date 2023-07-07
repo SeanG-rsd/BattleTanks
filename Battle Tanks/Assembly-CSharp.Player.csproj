@@ -70,7 +70,9 @@
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
     <Compile Include="Assets\Scripts\GamePlay\TankHealth.cs" />
+    <Compile Include="Assets\Scripts\UIDisplayRoom.cs" />
     <Compile Include="Assets\Scripts\RoomController.cs" />
+    <Compile Include="Assets\Scripts\PlayfabLogin.cs" />
     <Compile Include="Assets\Scripts\GamePlay\GameManager.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
     <Compile Include="Assets\Scripts\TeamInfo.cs" />
@@ -85,8 +87,7 @@
     <Compile Include="Assets\Scripts\SpawnPlayers.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Scripts\GamePlay\CameraMovement.cs" />
-    <Compile Include="Assets\Scripts\UIDisplayRoom.cs" />
-    <Compile Include="Assets\Scripts\PlayfabLogin.cs" />
+    <Compile Include="Assets\Scripts\SceneController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -732,6 +733,10 @@
       <Project>{D9E4F2B7-02E5-1488-BD18-7FDA9ECF5E8B}</Project>
       <Name>PhotonChat.Player</Name>
     </ProjectReference>
+    <ProjectReference Include="PlayFab.Player.csproj">
+      <Project>{EE106401-A1F1-83B4-3F72-C7F8E2E53AF4}</Project>
+      <Name>PlayFab.Player</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonRealtime.Player.csproj">
       <Project>{B06F2A89-CAEA-1CFF-06E9-16C2D151C06A}</Project>
       <Name>PhotonRealtime.Player</Name>
@@ -747,10 +752,6 @@
     <ProjectReference Include="PhotonUnityNetworking.Demos.Player.csproj">
       <Project>{1E0060BA-7852-21F6-C85C-69EADEDBE91F}</Project>
       <Name>PhotonUnityNetworking.Demos.Player</Name>
-    </ProjectReference>
-    <ProjectReference Include="PlayFab.Player.csproj">
-      <Project>{EE106401-A1F1-83B4-3F72-C7F8E2E53AF4}</Project>
-      <Name>PlayFab.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

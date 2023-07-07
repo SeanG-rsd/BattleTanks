@@ -70,7 +70,9 @@
     <Compile Include="Assets\Photon\PhotonLibs\WebSocket\WebSocket.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\TextButtonTransition.cs" />
     <Compile Include="Assets\Scripts\GamePlay\TankHealth.cs" />
+    <Compile Include="Assets\Scripts\UIDisplayRoom.cs" />
     <Compile Include="Assets\Scripts\RoomController.cs" />
+    <Compile Include="Assets\Scripts\PlayfabLogin.cs" />
     <Compile Include="Assets\Scripts\GamePlay\GameManager.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\DemoChat\NamePickGui.cs" />
     <Compile Include="Assets\Scripts\TeamInfo.cs" />
@@ -85,8 +87,7 @@
     <Compile Include="Assets\Scripts\SpawnPlayers.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Scripts\GamePlay\CameraMovement.cs" />
-    <Compile Include="Assets\Scripts\UIDisplayRoom.cs" />
-    <Compile Include="Assets\Scripts\PlayfabLogin.cs" />
+    <Compile Include="Assets\Scripts\SceneController.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -841,6 +842,18 @@
       <Project>{19CD561A-B2D1-1A2F-7385-3FB62EAF45CB}</Project>
       <Name>PhotonUnityNetworking.Utilities.Culling.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="PlayFabSDKEditor.csproj">
+      <Project>{9E9FAA5E-74EE-E159-B905-18E6AFE16A9F}</Project>
+      <Name>PlayFabSDKEditor</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayFabEditorExtensions.csproj">
+      <Project>{C808E9C5-E447-4399-241B-5C12BD627B39}</Project>
+      <Name>PlayFabEditorExtensions</Name>
+    </ProjectReference>
+    <ProjectReference Include="PlayFab.csproj">
+      <Project>{84285DF3-7620-50C2-D5E6-AEFC206206B2}</Project>
+      <Name>PlayFab</Name>
+    </ProjectReference>
     <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
       <Project>{280013F1-2BEA-3F2D-B457-A07EBAC8E652}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
@@ -872,18 +885,6 @@
     <ProjectReference Include="PunDemos.DemoSlotcarEditor.csproj">
       <Project>{A7B7C9B6-368D-6DFE-6AC2-E3703773A67A}</Project>
       <Name>PunDemos.DemoSlotcarEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="PlayFabEditorExtensions.csproj">
-      <Project>{C808E9C5-E447-4399-241B-5C12BD627B39}</Project>
-      <Name>PlayFabEditorExtensions</Name>
-    </ProjectReference>
-    <ProjectReference Include="PlayFabSDKEditor.csproj">
-      <Project>{9E9FAA5E-74EE-E159-B905-18E6AFE16A9F}</Project>
-      <Name>PlayFabSDKEditor</Name>
-    </ProjectReference>
-    <ProjectReference Include="PlayFab.csproj">
-      <Project>{84285DF3-7620-50C2-D5E6-AEFC206206B2}</Project>
-      <Name>PlayFab</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
