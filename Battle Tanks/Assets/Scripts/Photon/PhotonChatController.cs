@@ -88,7 +88,7 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
             if (!sender.Equals(senderName, StringComparison.OrdinalIgnoreCase))
             {
                 Debug.Log($"{sender}: {message}");
-                OnRoomInvite?.Invoke(sender, message);
+                OnRoomInvite?.Invoke(sender, message.ToString());
             }
         }
     }

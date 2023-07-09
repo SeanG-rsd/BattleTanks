@@ -17,6 +17,48 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
         ConnectToPhoton(nickname);
     }
 
+    private void Awake()
+    {
+        UIInvite.OnRoomInviteAccept += HandleRoomInviteAccept;
+    }
+
+    private void OnDestroy()
+    {
+        UIInvite.OnRoomInviteAccept -= HandleRoomInviteAccept;
+    }
+
+    private void CreatePhotonRoom(string roomName)
+    {
+        RoomOptions ro = new RoomOptions();
+        ro.IsOpen = true;
+        ro.IsVisible = true;
+        ro.MaxPlayers = 4;
+        PhotonNetwork.JoinOrCreateRoom(roomName, ro, TypedLobby.Default);
+    }
+
+    private void HandleRoomInviteAccept(string roomName)
+    {
+        PlayerPrefs.SetString("PHOTONROOM", roomName);
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+        else
+        {
+            if (PhotonNetwork.InLobby)
+            {
+                JoinPlayerRoom();
+            }
+        }
+    }
+
+    private void JoinPlayerRoom()
+    {
+        string roomName = PlayerPrefs.GetString("PHOTONROOM");
+        PhotonNetwork.JoinRoom(roomName);
+        PlayerPrefs.SetString("PHOTONROOM", "");
+    }
+
     private void ConnectToPhoton(string nickName)
     {
 
@@ -40,5 +82,15 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
     {
         Debug.Log($"You have connected to a Photon Lobby");
         GetPhotonFriends?.Invoke();
+        string roomName = PlayerPrefs.GetString("PHOTONROOM");
+        if (!string.IsNullOrEmpty(roomName))
+        {
+            JoinPlayerRoom();
+        }
+    }
+
+    public void OnCreateRoomClicked(string roomName)
+    {
+        CreatePhotonRoom(roomName);
     }
 }

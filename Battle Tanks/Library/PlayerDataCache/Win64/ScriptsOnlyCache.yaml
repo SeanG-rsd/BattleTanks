@@ -20,7 +20,10 @@ ScriptsOnlyBuild:
     - TeamInfo
     - UIAddFriend
     - UIDisplayFriends
+    - UIDisplayInvites
     - UIFriend
+    - UIInvite
+    - UIToggleButton
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
     - Photon.Pun.Demo.Asteroids.Bullet
@@ -132,6 +135,12 @@ ScriptsOnlyBuild:
     fullTypeName: PlayfabLogin
     methodName: SetUsername
   - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickItem
   - assembly: Assembly-CSharp
@@ -147,11 +156,29 @@ ScriptsOnlyBuild:
     fullTypeName: PlayerItem
     methodName: OnClickLeftArrow
   - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
+  - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: RemoveFriend
   - assembly: Assembly-CSharp
     fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
     methodName: RemoveFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
   - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickItem
@@ -168,14 +195,23 @@ ScriptsOnlyBuild:
     fullTypeName: PlayerItem
     methodName: OnClickLeftArrow
   - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
   - assembly: Assembly-CSharp
     fullTypeName: RoomController
     methodName: OnClickLeaveRoom
   - assembly: Assembly-CSharp
-    fullTypeName: RoomController
-    methodName: OnClickCreate
+    fullTypeName: UIToggleButton
+    methodName: ToggleObject
+  - assembly: Assembly-CSharp
+    fullTypeName: UIToggleButton
+    methodName: ToggleObject
+  - assembly: Assembly-CSharp
+    fullTypeName: PhotonConnector
+    methodName: OnCreateRoomClicked
   - assembly: Assembly-CSharp
     fullTypeName: UIAddFriend
     methodName: SetAddFriendName
@@ -231,33 +267,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2804}
     - Class: 114
-      Script: {instanceID: 3286}
+      Script: {instanceID: 3288}
     - Class: 114
-      Script: {instanceID: 4032}
+      Script: {instanceID: 4036}
     - Class: 114
-      Script: {instanceID: 4292}
+      Script: {instanceID: 4296}
     - Class: 114
-      Script: {instanceID: 5630}
+      Script: {instanceID: 5634}
     - Class: 114
-      Script: {instanceID: 5708}
+      Script: {instanceID: 5712}
     - Class: 114
-      Script: {instanceID: 6382}
+      Script: {instanceID: 6386}
     - Class: 114
-      Script: {instanceID: 6540}
+      Script: {instanceID: 6544}
     - Class: 114
-      Script: {instanceID: 6632}
+      Script: {instanceID: 6636}
     - Class: 114
-      Script: {instanceID: 6778}
+      Script: {instanceID: 6782}
     - Class: 114
-      Script: {instanceID: 6916}
+      Script: {instanceID: 6920}
     - Class: 114
-      Script: {instanceID: 7676}
+      Script: {instanceID: 7680}
     - Class: 114
-      Script: {instanceID: 8562}
+      Script: {instanceID: 8566}
     - Class: 114
-      Script: {instanceID: 8614}
+      Script: {instanceID: 8618}
     - Class: 114
-      Script: {instanceID: 8930}
+      Script: {instanceID: 8934}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -336,79 +372,81 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2804}
     - Class: 114
-      Script: {instanceID: 3208}
+      Script: {instanceID: 3210}
     - Class: 114
-      Script: {instanceID: 3286}
+      Script: {instanceID: 3288}
     - Class: 114
-      Script: {instanceID: 3388}
+      Script: {instanceID: 3390}
     - Class: 114
-      Script: {instanceID: 4032}
+      Script: {instanceID: 4036}
     - Class: 114
-      Script: {instanceID: 4106}
+      Script: {instanceID: 4110}
     - Class: 114
-      Script: {instanceID: 4230}
+      Script: {instanceID: 4234}
     - Class: 114
-      Script: {instanceID: 4232}
+      Script: {instanceID: 4236}
     - Class: 114
-      Script: {instanceID: 4292}
+      Script: {instanceID: 4296}
     - Class: 114
-      Script: {instanceID: 4420}
+      Script: {instanceID: 4424}
     - Class: 114
-      Script: {instanceID: 4474}
+      Script: {instanceID: 4478}
     - Class: 114
-      Script: {instanceID: 4556}
+      Script: {instanceID: 4560}
     - Class: 114
-      Script: {instanceID: 4572}
+      Script: {instanceID: 4576}
     - Class: 114
-      Script: {instanceID: 4866}
+      Script: {instanceID: 4870}
     - Class: 114
-      Script: {instanceID: 5466}
+      Script: {instanceID: 5470}
     - Class: 114
-      Script: {instanceID: 5610}
+      Script: {instanceID: 5614}
     - Class: 114
-      Script: {instanceID: 5620}
+      Script: {instanceID: 5624}
     - Class: 114
-      Script: {instanceID: 5630}
+      Script: {instanceID: 5634}
     - Class: 114
-      Script: {instanceID: 5638}
+      Script: {instanceID: 5642}
     - Class: 114
-      Script: {instanceID: 5708}
+      Script: {instanceID: 5712}
     - Class: 114
-      Script: {instanceID: 6112}
+      Script: {instanceID: 6116}
     - Class: 114
-      Script: {instanceID: 6118}
+      Script: {instanceID: 6122}
     - Class: 114
-      Script: {instanceID: 6168}
+      Script: {instanceID: 6172}
     - Class: 114
-      Script: {instanceID: 6382}
+      Script: {instanceID: 6386}
     - Class: 114
-      Script: {instanceID: 6540}
+      Script: {instanceID: 6544}
     - Class: 114
-      Script: {instanceID: 6632}
+      Script: {instanceID: 6636}
     - Class: 114
-      Script: {instanceID: 6778}
+      Script: {instanceID: 6782}
     - Class: 114
-      Script: {instanceID: 6916}
+      Script: {instanceID: 6920}
     - Class: 114
-      Script: {instanceID: 6930}
+      Script: {instanceID: 6934}
     - Class: 114
-      Script: {instanceID: 7408}
+      Script: {instanceID: 7412}
     - Class: 114
-      Script: {instanceID: 7596}
+      Script: {instanceID: 7600}
     - Class: 114
-      Script: {instanceID: 7676}
+      Script: {instanceID: 7680}
     - Class: 114
-      Script: {instanceID: 8166}
+      Script: {instanceID: 8170}
     - Class: 114
-      Script: {instanceID: 8562}
+      Script: {instanceID: 8566}
     - Class: 114
-      Script: {instanceID: 8698}
+      Script: {instanceID: 8702}
     - Class: 114
-      Script: {instanceID: 8930}
+      Script: {instanceID: 8934}
     - Class: 114
-      Script: {instanceID: 8974}
+      Script: {instanceID: 8978}
     - Class: 114
-      Script: {instanceID: 9054}
+      Script: {instanceID: 9058}
+    - Class: 114
+      Script: {instanceID: 25132}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -471,49 +509,55 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2804}
     - Class: 114
-      Script: {instanceID: 3208}
+      Script: {instanceID: 2976}
     - Class: 114
-      Script: {instanceID: 3388}
+      Script: {instanceID: 3210}
     - Class: 114
-      Script: {instanceID: 3508}
+      Script: {instanceID: 3390}
     - Class: 114
-      Script: {instanceID: 3646}
+      Script: {instanceID: 3510}
     - Class: 114
-      Script: {instanceID: 4292}
+      Script: {instanceID: 3648}
     - Class: 114
-      Script: {instanceID: 4474}
+      Script: {instanceID: 4018}
     - Class: 114
-      Script: {instanceID: 4556}
+      Script: {instanceID: 4296}
     - Class: 114
-      Script: {instanceID: 5466}
+      Script: {instanceID: 4478}
     - Class: 114
-      Script: {instanceID: 5620}
+      Script: {instanceID: 4560}
     - Class: 114
-      Script: {instanceID: 5708}
+      Script: {instanceID: 5470}
     - Class: 114
-      Script: {instanceID: 6036}
+      Script: {instanceID: 5624}
     - Class: 114
-      Script: {instanceID: 6382}
+      Script: {instanceID: 5712}
     - Class: 114
-      Script: {instanceID: 6540}
+      Script: {instanceID: 6040}
     - Class: 114
-      Script: {instanceID: 6632}
+      Script: {instanceID: 6386}
     - Class: 114
-      Script: {instanceID: 6916}
+      Script: {instanceID: 6544}
     - Class: 114
-      Script: {instanceID: 6928}
+      Script: {instanceID: 6636}
     - Class: 114
-      Script: {instanceID: 7408}
+      Script: {instanceID: 6920}
     - Class: 114
-      Script: {instanceID: 7444}
+      Script: {instanceID: 6932}
     - Class: 114
-      Script: {instanceID: 8110}
+      Script: {instanceID: 7412}
     - Class: 114
-      Script: {instanceID: 8170}
+      Script: {instanceID: 7448}
     - Class: 114
-      Script: {instanceID: 8192}
+      Script: {instanceID: 8114}
     - Class: 114
-      Script: {instanceID: 25144}
+      Script: {instanceID: 8174}
+    - Class: 114
+      Script: {instanceID: 8196}
+    - Class: 114
+      Script: {instanceID: 25132}
+    - Class: 114
+      Script: {instanceID: 26956}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -863,6 +907,12 @@ ScriptsOnlyBuild:
     className: OnEscapeQuit
   - hash:
       serializedVersion: 2
+      Hash: 71611a9275d80cf87f88d0b779018e2b
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIDisplayInvites
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -1113,6 +1163,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit.Forms
     className: SetRoomCustomPropertyUIForm
+  - hash:
+      serializedVersion: 2
+      Hash: 648e06e8104207f8f7ce98ff39ef6e74
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PhotonChatController
   - hash:
       serializedVersion: 2
       Hash: 3b2d655b63a4112da58448923fd32e89
@@ -1883,7 +1939,7 @@ ScriptsOnlyBuild:
     className: SendRateOnSerializeField
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 46cb9e338184a309fcd6b739aa0e30fa
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PhotonFriendController
@@ -2327,10 +2383,16 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 648e06e8104207f8f7ce98ff39ef6e74
+      Hash: e2263dbd09908f127cbbc6658c618dc5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: PhotonChatController
+    className: UIInvite
+  - hash:
+      serializedVersion: 2
+      Hash: 50c6da1131f3368b55bdd8a6d7da15eb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIToggleButton
   platform: 19
   scenePathNames:
   - Assets/Scenes/Login.unity

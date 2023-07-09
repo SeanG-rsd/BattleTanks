@@ -10,9 +10,14 @@ using System.Linq;
 
 public class PhotonFriendController : MonoBehaviourPunCallbacks
 {
+    [SerializeField] private float refreshCooldown;
+    [SerializeField] private float refreshCountdown;
+    [SerializeField] private List<PlayFabFriendInfo> friendList;
+
     public static Action<List<PhotonFriendInfo>> OnDisplayFriends = delegate { };
     private void Awake()
     {
+        friendList = new List<PlayFabFriendInfo>();
         PlayfabFriendController.OnFriendListUpdated += HandleFriendsUpdated;
     }
 
@@ -22,6 +27,12 @@ public class PhotonFriendController : MonoBehaviourPunCallbacks
     }
 
     private void HandleFriendsUpdated(List<PlayFabFriendInfo> friends)
+    {
+        friendList = friends;
+        FindPhotonFriends(friends);
+    }
+
+    private static void FindPhotonFriends(List<PlayFabFriendInfo> friends)
     {
         if (friends.Count != 0)
         {
@@ -35,9 +46,9 @@ public class PhotonFriendController : MonoBehaviourPunCallbacks
         }
     }
 
-    public override void OnFriendListUpdate(List<PhotonFriendInfo> friendList)
+    public override void OnFriendListUpdate(List<PhotonFriendInfo> friends)
     {
-        OnDisplayFriends?.Invoke(friendList);
+        OnDisplayFriends?.Invoke(friends);
     }
 
     // Start is called before the first frame update
@@ -47,8 +58,20 @@ public class PhotonFriendController : MonoBehaviourPunCallbacks
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (refreshCountdown > 0)
+        {
+            refreshCountdown -= Time.deltaTime;
+        }
+        else
+        {
+            refreshCountdown = refreshCooldown;
+            if (PhotonNetwork.InRoom)
+            {
+                return;
+            }
+            FindPhotonFriends(friendList);
+        }
     }
 }
