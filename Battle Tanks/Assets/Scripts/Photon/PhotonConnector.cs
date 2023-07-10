@@ -10,24 +10,26 @@ using Photon.Realtime;
 public class PhotonConnector : MonoBehaviourPunCallbacks
 {
 
+    [SerializeField] private string nickName;
     public static Action GetPhotonFriends = delegate { };
+    public static Action OnLobbyJoined = delegate { };
     private void Start()
-    {
-        string nickname = PlayerPrefs.GetString("USERNAME");
-        ConnectToPhoton(nickname);
+    {    
+        ConnectToPhoton(nickName);
     }
 
     private void Awake()
     {
-        UIInvite.OnRoomInviteAccept += HandleRoomInviteAccept;
+        nickName = PlayerPrefs.GetString("USERNAME");
+        //UIInvite.OnRoomInviteAccept += HandleRoomInviteAccept;
     }
 
     private void OnDestroy()
     {
-        UIInvite.OnRoomInviteAccept -= HandleRoomInviteAccept;
+        //UIInvite.OnRoomInviteAccept -= HandleRoomInviteAccept;
     }
 
-    private void CreatePhotonRoom(string roomName)
+    /*private void CreatePhotonRoom(string roomName)
     {
         RoomOptions ro = new RoomOptions();
         ro.IsOpen = true;
@@ -50,7 +52,7 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
                 JoinPlayerRoom();
             }
         }
-    }
+    }*/
 
     private void JoinPlayerRoom()
     {
@@ -61,7 +63,6 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
 
     private void ConnectToPhoton(string nickName)
     {
-
         Debug.Log($"Connect to Photon as {nickName}");
         PhotonNetwork.AuthValues = new AuthenticationValues(nickName);
         PhotonNetwork.AutomaticallySyncScene = true;
@@ -82,15 +83,6 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
     {
         Debug.Log($"You have connected to a Photon Lobby");
         GetPhotonFriends?.Invoke();
-        string roomName = PlayerPrefs.GetString("PHOTONROOM");
-        if (!string.IsNullOrEmpty(roomName))
-        {
-            JoinPlayerRoom();
-        }
-    }
-
-    public void OnCreateRoomClicked(string roomName)
-    {
-        CreatePhotonRoom(roomName);
+        OnLobbyJoined?.Invoke();
     }
 }

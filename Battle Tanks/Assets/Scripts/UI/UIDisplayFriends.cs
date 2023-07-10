@@ -9,22 +9,23 @@ public class UIDisplayFriends : MonoBehaviour
     [SerializeField] private UIFriend uiFriendPrefab;
     private void Awake()
     {
-        PhotonFriendController.OnDisplayFriends += HandleDisplayFriends;
+        PhotonChatFriendController.OnDisplayFriends += HandleDisplayFriends;
     }
 
     private void OnDestroy()
     {
-        PhotonFriendController.OnDisplayFriends -= HandleDisplayFriends;
+        PhotonChatFriendController.OnDisplayFriends -= HandleDisplayFriends;
     }
 
-    private void HandleDisplayFriends(List<FriendInfo> friends)
+    private void HandleDisplayFriends(List<string> friends)
     {
+        //Debug.LogWarning(friends.Count);
         foreach(Transform child in friendContainer)
         {
             Destroy(child.gameObject);
         }
 
-        foreach (FriendInfo friend in friends)
+        foreach (string friend in friends)
         {
             UIFriend uiFriend = Instantiate(uiFriendPrefab, friendContainer);
             uiFriend.Initialize(friend);

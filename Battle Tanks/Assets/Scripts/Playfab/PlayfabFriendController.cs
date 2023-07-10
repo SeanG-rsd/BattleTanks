@@ -44,9 +44,7 @@ public class PlayfabFriendController : MonoBehaviour
 
     private void HandleRemoveFriend(string name)
     {
-        Debug.Log(name);
         string id = friends.FirstOrDefault(f => f.TitleDisplayName == name).FriendPlayFabId;
-        Debug.Log(friends[0].FriendPlayFabId);
         var request = new RemoveFriendRequest { FriendPlayFabId = id };
         PlayFabClientAPI.RemoveFriend(request, OnFriendRemoveSuccess, OnFailure);
     }

@@ -11,6 +11,8 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
     private ChatClient chatClient;
 
     public static Action<string, string> OnRoomInvite = delegate { };
+    public static Action<ChatClient> OnChatConnected = delegate { };
+    public static Action<PhotonStatus> OnStatusUpdated = delegate { };
 
     // Start is called before the first frame update
     private void Awake()
@@ -61,11 +63,14 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
     public void OnDisconnected()
     {
         Debug.Log("You have disconnected to the Photon Chat");
+        chatClient.SetOnlineStatus(ChatUserStatus.Offline);
     }
 
     public void OnConnected()
     {
         Debug.Log("You have connected to the Photon Chat");
+        OnChatConnected?.Invoke(chatClient);
+        chatClient.SetOnlineStatus(ChatUserStatus.Online);
     }
 
     public void OnChatStateChange(ChatState state)
@@ -105,7 +110,11 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
 
     public void OnStatusUpdate(string user, int status, bool gotMessage, object message)
     {
-        
+        Debug.Log($"Photon Cchat OnStatusUpdate: {user} changed to {status}: {message}");
+        PhotonStatus newStatus = new PhotonStatus(user, status, (string)message);
+        Debug.Log($"Status Update for {user} and its not {status}.");
+        Debug.Log(ChatUserStatus.Online);
+        OnStatusUpdated?.Invoke(newStatus);
     }
 
     public void OnUserSubscribed(string channel, string user)
