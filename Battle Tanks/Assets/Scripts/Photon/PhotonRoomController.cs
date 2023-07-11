@@ -4,21 +4,27 @@ using Photon.Pun;
 using Photon.Realtime;
 using ExitGames.Client.Photon;
 using System.Collections.Generic;
+using TMPro;
 
 public class PhotonRoomController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameMode selectedGameMode;
     [SerializeField] private GameMode[] availableGameModes;
+    [SerializeField] TMP_InputField createInput;
+    
+
     private const string GAME_MODE = "GAMEMODE";
 
     public static Action<bool> OnRoomStatusChange = delegate { };
     public static Action<GameMode> OnJoinRoom = delegate { };
     public static Action OnRoomLeft = delegate { };
     public static Action<Player> OnOtherPlayerLeftRoom = delegate { };
+    public static Action<GameMode> OnGameModeSelected = delegate { };
+    public static Action OnStartGame = delegate { };
 
     private void Awake()
     {
-        //UIGameMode.OnGameModeSelected += HandleGameModeSelected;
+        PhotonRoomController.OnGameModeSelected += HandleGameModeSelected;
         UIInvite.OnRoomInviteAccept += HandleRoomInviteAccept;
         PhotonConnector.OnLobbyJoined += HandleLobbyJoined;
         UIDisplayRoom.OnLeaveRoom += HandleLeaveRoom;
@@ -27,7 +33,7 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
 
     private void OnDestroy()
     {
-        //UIGameMode.OnGameModeSelected -= HandleGameModeSelected;
+        PhotonRoomController.OnGameModeSelected -= HandleGameModeSelected;
         UIInvite.OnRoomInviteAccept -= HandleRoomInviteAccept;
         PhotonConnector.OnLobbyJoined -= HandleLobbyJoined;
         UIDisplayRoom.OnLeaveRoom -= HandleLeaveRoom;
@@ -37,10 +43,9 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
     private void HandleGameModeSelected(GameMode gameMode)
     {
         if (!PhotonNetwork.IsConnectedAndReady) return;
-        if (PhotonNetwork.InRoom) return;
+        if (!PhotonNetwork.InRoom) return;
 
         selectedGameMode = gameMode;
-        JoinPhotonRoom();
     }
 
     private void HandleRoomInviteAccept(string roomName)
@@ -85,26 +90,32 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
         OnRoomStatusChange?.Invoke(PhotonNetwork.InRoom);
     }
 
-    private void JoinPhotonRoom()
+    public void JoinPhotonRoom(string roomName)
     {
-        Hashtable expectedCustomProperties = new Hashtable()
-        { { GAME_MODE, selectedGameMode.name} };
-
-        PhotonNetwork.JoinRandomRoom(expectedCustomProperties, 0);
+        PhotonNetwork.JoinRoom(roomName);
     }
 
-    public void CreateRoom(GameMode gameMode)
+    public void OnClickCreate(GameMode gameMode)
     {
-        selectedGameMode = gameMode;
-        CreatePhotonRoom();
+        if (createInput.text.Length >= 1)
+        {
+            selectedGameMode = gameMode;
+            CreatePhotonRoom(createInput.text);
+        }
     }
 
-    private void CreatePhotonRoom()
+    public void StartGame()
     {
-        string roomName = Guid.NewGuid().ToString();
+        OnStartGame?.Invoke();
+    }
+
+    private void CreatePhotonRoom(string name)
+    {
+        
         RoomOptions ro = new RoomOptions();
+        ro = GetRoomOptions();
 
-        PhotonNetwork.JoinOrCreateRoom(roomName, ro, TypedLobby.Default);
+        PhotonNetwork.JoinOrCreateRoom(name, ro, TypedLobby.Default);
     }
 
     private RoomOptions GetRoomOptions()
@@ -156,7 +167,7 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
 
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        CreatePhotonRoom();
+        CreatePhotonRoom(Guid.NewGuid().ToString());
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -169,5 +180,22 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
         OnOtherPlayerLeftRoom?.Invoke(otherPlayer);
     }
 
+
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    {
+        Debug.Log(propertiesThatChanged["GAMEMODE"]);
+        Debug.Log("Updated Room Properties");
+
+        for (int i = 0; i < availableGameModes.Length; i++)
+        {
+            if (availableGameModes[i].Name == propertiesThatChanged["GAMEMODE"].ToString())
+            {
+                selectedGameMode = availableGameModes[i];
+                OnGameModeSelected?.Invoke(selectedGameMode);
+
+                break;
+            }
+        }
+    }
     #endregion
 }

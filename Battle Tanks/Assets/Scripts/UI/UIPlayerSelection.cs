@@ -1,11 +1,15 @@
 using TMPro;
 using Photon.Realtime;
 using UnityEngine;
+using Photon.Pun;
+using UnityEngine.UI;
+using ExitGames.Client.Photon;
 
-public class UIPlayerSelection : MonoBehaviour
+public class UIPlayerSelection : MonoBehaviourPunCallbacks
 {
     [SerializeField] private TMP_Text userNameText;
     [SerializeField] private Player owner;
+    
 
     public Player Owner
     {
@@ -17,6 +21,7 @@ public class UIPlayerSelection : MonoBehaviour
     {
         Owner = player;
         SetupPlayerSelection();
+
     }
 
     private void SetupPlayerSelection()

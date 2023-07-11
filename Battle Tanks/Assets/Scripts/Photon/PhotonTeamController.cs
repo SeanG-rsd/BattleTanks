@@ -6,7 +6,6 @@ using Photon.Realtime;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.Profiling.Memory.Experimental;
 
 public class PhotonTeamController : MonoBehaviourPunCallbacks
 {
@@ -22,7 +21,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         UITeam.OnSwitchToTeam += HandleSwitchTeam;
-        PhotonRoomController.OnJoinRoom += HandleCreateTeams;
+        PhotonRoomController.OnGameModeSelected += HandleCreateTeams;
         PhotonRoomController.OnRoomLeft += HandleLeaveRoom;
         PhotonRoomController.OnOtherPlayerLeftRoom += HandleOtherPlayerLeftRoom;
 
@@ -32,7 +31,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
     private void OnDestroy()
     {
         UITeam.OnSwitchToTeam -= HandleSwitchTeam;
-        PhotonRoomController.OnJoinRoom -= HandleCreateTeams;
+        PhotonRoomController.OnGameModeSelected -= HandleCreateTeams;
         PhotonRoomController.OnRoomLeft -= HandleLeaveRoom;
         PhotonRoomController.OnOtherPlayerLeftRoom -= HandleOtherPlayerLeftRoom;
     }
