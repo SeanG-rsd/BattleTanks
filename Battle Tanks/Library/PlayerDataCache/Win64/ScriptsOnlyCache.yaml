@@ -150,14 +150,14 @@ ScriptsOnlyBuild:
     fullTypeName: UIFriend
     methodName: InviteFriend
   - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
   - assembly: Assembly-CSharp
     fullTypeName: UITeam
     methodName: SwitchToTeam
@@ -180,14 +180,14 @@ ScriptsOnlyBuild:
     fullTypeName: UIFriend
     methodName: InviteFriend
   - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
   - assembly: Assembly-CSharp
     fullTypeName: UITeam
     methodName: SwitchToTeam
@@ -209,6 +209,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: UIAddFriend
     methodName: SetAddFriendName
+  - assembly: Assembly-CSharp
+    fullTypeName: PhotonRoomController
+    methodName: StartGame
   - assembly: Assembly-CSharp
     fullTypeName: UIGameMode
     methodName: OnClickChooseGameMode
@@ -276,27 +279,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4310}
     - Class: 114
-      Script: {instanceID: 5652}
+      Script: {instanceID: 5650}
     - Class: 114
-      Script: {instanceID: 5730}
+      Script: {instanceID: 5728}
     - Class: 114
-      Script: {instanceID: 6406}
+      Script: {instanceID: 6402}
     - Class: 114
-      Script: {instanceID: 6564}
+      Script: {instanceID: 6560}
     - Class: 114
-      Script: {instanceID: 6656}
+      Script: {instanceID: 6652}
     - Class: 114
-      Script: {instanceID: 6802}
+      Script: {instanceID: 6798}
     - Class: 114
-      Script: {instanceID: 6940}
+      Script: {instanceID: 6936}
     - Class: 114
-      Script: {instanceID: 7702}
+      Script: {instanceID: 7696}
     - Class: 114
-      Script: {instanceID: 8588}
+      Script: {instanceID: 8584}
     - Class: 114
-      Script: {instanceID: 8642}
+      Script: {instanceID: 8638}
     - Class: 114
-      Script: {instanceID: 8958}
+      Script: {instanceID: 8954}
+    - Class: 114
+      Script: {instanceID: 9064}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -399,59 +404,59 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4442}
     - Class: 114
-      Script: {instanceID: 4578}
+      Script: {instanceID: 4576}
     - Class: 114
-      Script: {instanceID: 4594}
+      Script: {instanceID: 4592}
     - Class: 114
-      Script: {instanceID: 4888}
+      Script: {instanceID: 4886}
     - Class: 114
-      Script: {instanceID: 5488}
+      Script: {instanceID: 5486}
     - Class: 114
-      Script: {instanceID: 5632}
+      Script: {instanceID: 5630}
     - Class: 114
-      Script: {instanceID: 5642}
+      Script: {instanceID: 5640}
     - Class: 114
-      Script: {instanceID: 5652}
+      Script: {instanceID: 5650}
     - Class: 114
-      Script: {instanceID: 5660}
+      Script: {instanceID: 5658}
     - Class: 114
-      Script: {instanceID: 5730}
+      Script: {instanceID: 5728}
     - Class: 114
-      Script: {instanceID: 6136}
+      Script: {instanceID: 6132}
     - Class: 114
-      Script: {instanceID: 6142}
+      Script: {instanceID: 6138}
     - Class: 114
-      Script: {instanceID: 6192}
+      Script: {instanceID: 6188}
     - Class: 114
-      Script: {instanceID: 6406}
+      Script: {instanceID: 6402}
     - Class: 114
-      Script: {instanceID: 6564}
+      Script: {instanceID: 6560}
     - Class: 114
-      Script: {instanceID: 6656}
+      Script: {instanceID: 6652}
     - Class: 114
-      Script: {instanceID: 6802}
+      Script: {instanceID: 6798}
     - Class: 114
-      Script: {instanceID: 6940}
+      Script: {instanceID: 6936}
     - Class: 114
-      Script: {instanceID: 6954}
+      Script: {instanceID: 6950}
     - Class: 114
-      Script: {instanceID: 7434}
+      Script: {instanceID: 7428}
     - Class: 114
-      Script: {instanceID: 7622}
+      Script: {instanceID: 7616}
     - Class: 114
-      Script: {instanceID: 7702}
+      Script: {instanceID: 7696}
     - Class: 114
-      Script: {instanceID: 8192}
+      Script: {instanceID: 8186}
     - Class: 114
-      Script: {instanceID: 8588}
+      Script: {instanceID: 8584}
     - Class: 114
-      Script: {instanceID: 8726}
+      Script: {instanceID: 8722}
     - Class: 114
-      Script: {instanceID: 8958}
+      Script: {instanceID: 8954}
     - Class: 114
-      Script: {instanceID: 9002}
+      Script: {instanceID: 8998}
     - Class: 114
-      Script: {instanceID: 9082}
+      Script: {instanceID: 9078}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -542,43 +547,45 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4422}
     - Class: 114
-      Script: {instanceID: 4578}
+      Script: {instanceID: 4576}
     - Class: 114
-      Script: {instanceID: 5480}
+      Script: {instanceID: 5478}
     - Class: 114
-      Script: {instanceID: 5488}
+      Script: {instanceID: 5486}
     - Class: 114
-      Script: {instanceID: 5642}
+      Script: {instanceID: 5640}
     - Class: 114
-      Script: {instanceID: 5730}
+      Script: {instanceID: 5728}
     - Class: 114
-      Script: {instanceID: 5824}
+      Script: {instanceID: 5822}
     - Class: 114
-      Script: {instanceID: 5932}
+      Script: {instanceID: 5930}
     - Class: 114
-      Script: {instanceID: 6406}
+      Script: {instanceID: 6402}
     - Class: 114
-      Script: {instanceID: 6564}
+      Script: {instanceID: 6560}
     - Class: 114
-      Script: {instanceID: 6656}
+      Script: {instanceID: 6652}
     - Class: 114
-      Script: {instanceID: 6940}
+      Script: {instanceID: 6936}
     - Class: 114
-      Script: {instanceID: 6952}
+      Script: {instanceID: 6948}
     - Class: 114
-      Script: {instanceID: 7434}
+      Script: {instanceID: 7428}
     - Class: 114
-      Script: {instanceID: 8136}
+      Script: {instanceID: 8130}
     - Class: 114
-      Script: {instanceID: 8196}
+      Script: {instanceID: 8190}
     - Class: 114
-      Script: {instanceID: 8218}
+      Script: {instanceID: 8212}
     - Class: 114
-      Script: {instanceID: 8584}
+      Script: {instanceID: 8238}
     - Class: 114
-      Script: {instanceID: 9068}
+      Script: {instanceID: 8580}
     - Class: 114
-      Script: {instanceID: 76650}
+      Script: {instanceID: 8998}
+    - Class: 114
+      Script: {instanceID: 9064}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1858,7 +1865,7 @@ ScriptsOnlyBuild:
     className: SupportLogger
   - hash:
       serializedVersion: 2
-      Hash: bf9b15e27d8028ab5fbdc0f71962d262
+      Hash: 75128c09f5037b8238f8894349c29eb9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: TankShoot
@@ -2236,6 +2243,12 @@ ScriptsOnlyBuild:
     className: UIDisplayFriends
   - hash:
       serializedVersion: 2
+      Hash: dd0067a952a9888cfec084586da0f5f9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UITankSelection
+  - hash:
+      serializedVersion: 2
       Hash: 8ae3331b163cc121825eeed3975d6c4d
     assemblyName: Assembly-CSharp.dll
     namespaceName: Photon.Chat.Demo
@@ -2456,12 +2469,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: dd0067a952a9888cfec084586da0f5f9
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: UITankSelection
   platform: 19
   scenePathNames:
   - Assets/Scenes/Login.unity

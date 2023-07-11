@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using Photon.Realtime;
+using Photon.Pun;
 
 public class Bullet : MonoBehaviour
 {
@@ -10,6 +13,8 @@ public class Bullet : MonoBehaviour
 
     public int teamIndex = -1;
     public int damage = 0;
+
+    public Player parentPlayer;
     // Start is called before the first frame update
     void Start()
     {

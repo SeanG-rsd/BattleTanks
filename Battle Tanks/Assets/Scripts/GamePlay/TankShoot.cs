@@ -7,7 +7,6 @@ using Photon.Pun.UtilityScripts;
 
 public class TankShoot : MonoBehaviour
 {
-    public GameObject bulletPrefab;
 
     public GameObject[] shootPoints;
     public int barrelIndex;
@@ -35,6 +34,8 @@ public class TankShoot : MonoBehaviour
     TeamInfo teamInfo;
 
     PhotonView view;
+
+    [SerializeField] GameObject[] bulletPrefabs;
 
     // Start is called before the first frame update
     void Start()
@@ -106,11 +107,10 @@ public class TankShoot : MonoBehaviour
 
     void Shoot()
     {
-        GameObject bullet = PhotonNetwork.Instantiate(bulletPrefab.name, shootPoints[barrelIndex].transform.position, Quaternion.identity);
 
-        
+        GameObject bullet = PhotonNetwork.Instantiate(bulletPrefabs[tank.teamIndex - 1].name, shootPoints[barrelIndex].transform.position, Quaternion.identity);
+
         bullet.GetComponent<Bullet>().Shoot(bulletSpeed, bulletSize, shootPoints[barrelIndex].transform, bulletDamage);
-        bullet.GetComponent<MeshRenderer>().material.color = teamInfo.teamColors[tank.teamIndex];
-        bullet.GetComponent<Bullet>().teamIndex = tank.teamIndex;
+        
     }
 }

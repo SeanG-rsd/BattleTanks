@@ -106,7 +106,9 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        OnStartGame?.Invoke();
+        //Hashtable setTeams = new Hashtable() { { "GAMEMODE", currentSelectedGameMode.Name } };
+        PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "TEAMS", "0" } });
+        Debug.Log("startGame");
     }
 
     private void CreatePhotonRoom(string name)
@@ -183,19 +185,28 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
 
     public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
     {
-        Debug.Log(propertiesThatChanged["GAMEMODE"]);
-        Debug.Log("Updated Room Properties");
 
-        for (int i = 0; i < availableGameModes.Length; i++)
+        Debug.Log("some room property changed");
+
+        if (propertiesThatChanged.ContainsKey("GAMEMODE"))
         {
-            if (availableGameModes[i].Name == propertiesThatChanged["GAMEMODE"].ToString())
+            for (int i = 0; i < availableGameModes.Length; i++)
             {
-                selectedGameMode = availableGameModes[i];
-                OnGameModeSelected?.Invoke(selectedGameMode);
+                if (availableGameModes[i].Name == propertiesThatChanged["GAMEMODE"].ToString())
+                {
+                    selectedGameMode = availableGameModes[i];
+                    OnGameModeSelected?.Invoke(selectedGameMode);
 
-                break;
+                    break;
+                }
             }
         }
+        else if (propertiesThatChanged.ContainsKey("TEAMS"))
+        {
+            OnStartGame?.Invoke();
+        }
+
+
     }
     #endregion
 }

@@ -24,6 +24,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
         PhotonRoomController.OnGameModeSelected += HandleCreateTeams;
         PhotonRoomController.OnRoomLeft += HandleLeaveRoom;
         PhotonRoomController.OnOtherPlayerLeftRoom += HandleOtherPlayerLeftRoom;
+        PhotonRoomController.OnStartGame += HandleStartGame;
 
         roomTeams = new List<PhotonTeam>();
     }
@@ -34,6 +35,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
         PhotonRoomController.OnGameModeSelected -= HandleCreateTeams;
         PhotonRoomController.OnRoomLeft -= HandleLeaveRoom;
         PhotonRoomController.OnOtherPlayerLeftRoom -= HandleOtherPlayerLeftRoom;
+        PhotonRoomController.OnStartGame -= HandleStartGame;
     }
 
     private void HandleSwitchTeam(PhotonTeam newTeam)
@@ -70,6 +72,12 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
     private void HandleOtherPlayerLeftRoom(Player otherPlayer)
     {
         OnRemovePlayer?.Invoke(otherPlayer);
+    }
+
+    private void HandleStartGame()
+    {
+        PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"] = (int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code;
+        Debug.Log("set player team");
     }
 
     private void CreateTeams(GameMode gameMode)

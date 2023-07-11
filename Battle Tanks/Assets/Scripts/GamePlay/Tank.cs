@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using System;
 using Photon.Realtime;
+using Photon.Pun.UtilityScripts;
 
 public class Tank : MonoBehaviourPunCallbacks
 {

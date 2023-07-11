@@ -37,7 +37,8 @@ public class SpawnPlayers : MonoBehaviour
         {
             playerToSpawn = redPlayerPrefabs[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
         }
-        
+
+        playerToSpawn.GetComponent<Tank>().teamIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"];
         PhotonNetwork.Instantiate(playerToSpawn.name, randomPosition, Quaternion.identity);
 
         
