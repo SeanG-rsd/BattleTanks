@@ -12,6 +12,8 @@ public class SpawnPlayers : MonoBehaviour
     public GameObject[] redPlayerPrefabs;
     GameObject playerToSpawn;
 
+    public TankRespawnPoint[] spawnPoints;
+
     TeamInfo teamInfo;
 
     public float minX;
@@ -39,6 +41,7 @@ public class SpawnPlayers : MonoBehaviour
         }
 
         playerToSpawn.GetComponent<Tank>().teamIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"];
+        playerToSpawn.GetComponent<Tank>().respawnPoint = spawnPoints[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"] - 1];
         PhotonNetwork.Instantiate(playerToSpawn.name, randomPosition, Quaternion.identity);
 
         

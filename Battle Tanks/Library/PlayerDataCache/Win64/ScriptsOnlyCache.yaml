@@ -18,6 +18,7 @@ ScriptsOnlyBuild:
     - Tank
     - TankHealth
     - TankMovement
+    - TankRespawnPoint
     - TankShoot
     - TeamInfo
     - UIAddFriend
@@ -147,24 +148,24 @@ ScriptsOnlyBuild:
     fullTypeName: PlayfabLogin
     methodName: SetUsername
   - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UITeam
-    methodName: SwitchToTeam
-  - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickItem
   - assembly: Assembly-CSharp
+    fullTypeName: UITeam
+    methodName: SwitchToTeam
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
+  - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: RemoveFriend
   - assembly: Assembly-CSharp
@@ -176,21 +177,21 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
   - assembly: Assembly-CSharp
     fullTypeName: UITeam
     methodName: SwitchToTeam
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
   - assembly: Assembly-CSharp
     fullTypeName: UIGameMode
     methodName: OnClickChooseGameMode
@@ -302,6 +303,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 8954}
     - Class: 114
       Script: {instanceID: 9064}
+    - Class: 114
+      Script: {instanceID: 26696}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -821,7 +824,7 @@ ScriptsOnlyBuild:
     className: ScoreHelper
   - hash:
       serializedVersion: 2
-      Hash: 7bcbd3bd94ef721ad2e619fa537db0d7
+      Hash: 8b81cfa38531597ae9f6089c78d00128
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Tank
@@ -2345,7 +2348,7 @@ ScriptsOnlyBuild:
     className: UnityOnMouseUpMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 6401b439ca36e82521c2fa4da2a72d74
+      Hash: ecd1046f94d95047ad26dde2c2f1495e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnPlayers
@@ -2469,6 +2472,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: cbd17e7811773fd2921924ab3e40e5bb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TankRespawnPoint
   platform: 19
   scenePathNames:
   - Assets/Scenes/Login.unity

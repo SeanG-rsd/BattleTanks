@@ -8,31 +8,48 @@ using Photon.Pun.UtilityScripts;
 
 public class Tank : MonoBehaviourPunCallbacks
 {
-    TeamInfo teamInfo;
     PhotonView view;
 
     TankHealth tankHealth;
 
     public int teamIndex = -1;
 
-    string teamName;
-
-    
+    public TankRespawnPoint respawnPoint;
 
     ExitGames.Client.Photon.Hashtable playerPropeties = new ExitGames.Client.Photon.Hashtable();
     Player player;
-    // Start is called before the first frame update
+
+    public static Action<Tank> OnRespawn = delegate { };
+
+
+    private void Awake()
+    {
+        TankHealth.OnDeath += HandleTankDeath;
+    }
+
+    private void OnDestroy()
+    {
+        TankHealth.OnDeath -= HandleTankDeath;
+    }
+
     void Start()
     {
         tankHealth = gameObject.GetComponent<TankHealth>();
-        
-        teamInfo = FindObjectOfType<TeamInfo>();
+       
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    private void HandleTankDeath(Tank tank)
+    {
+        if (tank == this)
+        {
+            OnRespawn?.Invoke(this);
+        }
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
