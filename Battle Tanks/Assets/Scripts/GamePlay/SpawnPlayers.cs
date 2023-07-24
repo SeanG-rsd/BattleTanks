@@ -14,20 +14,13 @@ public class SpawnPlayers : MonoBehaviour
 
     public TankRespawnPoint[] spawnPoints;
 
-    TeamInfo teamInfo;
-
     public float minX;
     public float maxX;
     public float minZ;
     public float maxZ;
     public float Y;
-
-    PhotonTeam team;
-    // Start is called before the first frame update
     void Start()
     {
-        
-        teamInfo = FindObjectOfType<TeamInfo>();
         Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), Y, Random.Range(minZ, maxZ));
         
         if ((int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 1)
@@ -43,13 +36,5 @@ public class SpawnPlayers : MonoBehaviour
         playerToSpawn.GetComponent<Tank>().teamIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"];
         playerToSpawn.GetComponent<Tank>().respawnPoint = spawnPoints[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"] - 1];
         PhotonNetwork.Instantiate(playerToSpawn.name, randomPosition, Quaternion.identity);
-
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

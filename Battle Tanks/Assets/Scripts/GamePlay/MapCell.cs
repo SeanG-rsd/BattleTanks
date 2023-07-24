@@ -1,0 +1,35 @@
+using Photon.Pun;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class MapCell : MonoBehaviour
+{
+    [SerializeField] private GameObject[] thisWalls; 
+    private void Awake()
+    {
+        MapGeneator.OnMapGenerated += HandleMapGenerated;
+    }
+
+    private void OnDestroy()
+    {
+        MapGeneator.OnMapGenerated -= HandleMapGenerated;
+    }
+
+    private void HandleMapGenerated()
+    {
+        int second = Random.Range(0, 100);
+
+        if (second > 75)
+        {
+            PhotonNetwork.Destroy(thisWalls[0]);
+            PhotonNetwork.Destroy(thisWalls[1]);
+
+            return;
+        }
+
+        int choice = Random.Range(0, thisWalls.Length);
+
+        PhotonNetwork.Destroy(thisWalls[choice]);
+    }
+}

@@ -4,36 +4,56 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Photon.Pun;
+using System;
 
-public class GameManager
+public class GameManager : MonoBehaviour
 {
-    public GameObject PlayerPrefab;
-    public GameObject GameCanvas;
-    public GameObject SceneCam;
-
-    public GameObject disconnectMenu;
     
+    public static Action<Vector2, GameMode> OnGenerateMap = delegate { };
 
-    public bool start;
+    [SerializeField] private GameMode[] possibleGameModes;
+    private GameMode selectedGameMode;
 
-    // Start is called before the first frame update
-    void Start()
+    private Vector2 mapSize;
+
+    [SerializeField] private Vector2[] possibleMapSizes;
+    private void Start()
     {
-        GameObject player = PhotonNetwork.Instantiate(PlayerPrefab.name, new Vector3(0, 0.75f, 0), Quaternion.identity, 0);
+        SetMapSize();
+        GetGameMode();
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            OnGenerateMap?.Invoke(mapSize, selectedGameMode);
+        }
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void SetMapSize()
     {
-        if (!start)
+        if (PhotonNetwork.CurrentRoom.PlayerCount <= 4)
         {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
+            mapSize = possibleMapSizes[2];
         }
-        else
+        else if (PhotonNetwork.CurrentRoom.PlayerCount > 4 && PhotonNetwork.CurrentRoom.PlayerCount <= 6)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            mapSize = possibleMapSizes[1];
+        }
+        else if (PhotonNetwork.CurrentRoom.PlayerCount > 6)
+        {
+            mapSize = possibleMapSizes[2];
+        }
+    }
+
+    private void GetGameMode()
+    {
+        for (int i = 0; i < possibleGameModes.Length; i++)
+        {
+            if ((string)PhotonNetwork.CurrentRoom.CustomProperties["GAMEMODE"] == possibleGameModes[i].Name)
+            {
+                selectedGameMode = possibleGameModes[i];
+                return;
+            }
         }
     }
 }
