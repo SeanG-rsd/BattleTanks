@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount <= 4)
         {
-            mapSize = possibleMapSizes[2];
+            mapSize = possibleMapSizes[0];
         }
         else if (PhotonNetwork.CurrentRoom.PlayerCount > 4 && PhotonNetwork.CurrentRoom.PlayerCount <= 6)
         {

@@ -25,6 +25,8 @@ public class Tank : MonoBehaviourPunCallbacks
     private void Awake()
     {
         TankHealth.OnDeath += HandleTankDeath;
+
+        
     }
 
     private void OnDestroy()
@@ -35,13 +37,8 @@ public class Tank : MonoBehaviourPunCallbacks
     void Start()
     {
         tankHealth = gameObject.GetComponent<TankHealth>();
-       
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        OnRespawn?.Invoke(this);
     }
 
     private void HandleTankDeath(Tank tank)

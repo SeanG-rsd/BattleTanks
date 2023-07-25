@@ -19,14 +19,30 @@ public class SpawnPlayers : MonoBehaviour
     public float minZ;
     public float maxZ;
     public float Y;
-    void Start()
+
+    private void Awake()
+    {
+        MapGeneator.OnMapGenerated += HandleSpawnPlayers;
+    }
+
+    private void OnDestroy()
+    {
+        MapGeneator.OnMapGenerated -= HandleSpawnPlayers;
+    }
+
+    private void HandleSpawnPlayers()
+    {
+
+    }
+
+    private void Start()
     {
         Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), Y, Random.Range(minZ, maxZ));
-        
+
         if ((int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 1)
         {
             playerToSpawn = bluePlayerPrefabs[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
-            
+
         }
         else if ((int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 2)
         {

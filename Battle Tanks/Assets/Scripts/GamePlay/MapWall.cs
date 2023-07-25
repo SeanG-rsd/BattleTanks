@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
 public class MapWall : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Destroy()
     {
-        
+        this.GetComponent<PhotonView>().RPC("DestroyObject", RpcTarget.AllViaServer);
     }
 
-    // Update is called once per frame
-    void Update()
+    [PunRPC]
+    public void DestroyObject()
     {
-        
+        Destroy(this.gameObject);
     }
 }
