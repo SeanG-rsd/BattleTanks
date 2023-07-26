@@ -32,11 +32,6 @@ public class SpawnPlayers : MonoBehaviour
 
     private void HandleSpawnPlayers()
     {
-
-    }
-
-    private void Start()
-    {
         Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), Y, Random.Range(minZ, maxZ));
 
         if ((int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 1)
@@ -51,6 +46,17 @@ public class SpawnPlayers : MonoBehaviour
 
         playerToSpawn.GetComponent<Tank>().teamIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"];
         playerToSpawn.GetComponent<Tank>().respawnPoint = spawnPoints[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"] - 1];
+
+        PhotonNetwork.LocalPlayer.CustomProperties["aliveState"] = 1;
+
         PhotonNetwork.Instantiate(playerToSpawn.name, randomPosition, Quaternion.identity);
+    }
+
+    private void Start()
+    {
+        if (!PhotonNetwork.IsMasterClient)
+        {
+            HandleSpawnPlayers();
+        }
     }
 }

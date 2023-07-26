@@ -16,10 +16,20 @@ public class TankHealth : MonoBehaviour
     public TMP_Text healthbarText;
     public GameObject healthbar;
 
+    [SerializeField] private RectTransform healthBarContainer;
+    [SerializeField] private GameObject heartPrefab;
+
+    [SerializeField] private int maxHearts;
+    [SerializeField] private int currentHearts;
+
+    public bool hasRespawned = true;
+    
+
     PhotonView view;
     ExitGames.Client.Photon.Hashtable playerPropeties = new ExitGames.Client.Photon.Hashtable();
 
     public static Action<Tank> OnDeath = delegate { };
+    public static Action<Tank> OnOutOfHearts = delegate { };
 
 
     private void Awake()
@@ -38,7 +48,10 @@ public class TankHealth : MonoBehaviour
         if (view.IsMine)
         {
             healthbar.SetActive(true);
+            healthBarContainer.parent.gameObject.SetActive(true);
+            ResetHeartBar();
             currentHealth = maxHealth;
+            currentHearts = maxHearts;
             playerPropeties["currentHealth"] = currentHealth;
             PhotonNetwork.SetPlayerCustomProperties(playerPropeties);
             healthbarText.text = currentHealth.ToString();
@@ -53,20 +66,50 @@ public class TankHealth : MonoBehaviour
             currentHealth = (int)playerPropeties["currentHealth"];
             healthbarText.text = currentHealth.ToString();
 
-            if (!Alive())
+            if (!Alive() && hasRespawned)
             {
                 OnDeath?.Invoke(gameObject.GetComponent<Tank>());
+                RemoveHeart();
+                hasRespawned = false;
             }
-
-        }
-
-        
+        }        
     }
 
     public void ResetHealth()
     {
         currentHealth = maxHealth;
         playerPropeties["currentHealth"] = currentHealth;
+    }
+
+    private void RemoveHeart()
+    {
+        if (currentHearts > 0)
+        {
+            Destroy(healthBarContainer.GetChild(0).gameObject);
+            currentHearts--;
+        }
+
+        if (currentHearts <= 0)
+        {
+            OnOutOfHearts?.Invoke(gameObject.GetComponent<Tank>());
+        }
+    }
+
+    private void ResetHeartBar()
+    {
+        for (int i = 0; i < healthBarContainer.transform.childCount; i++)
+        {
+            Destroy(healthBarContainer.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < maxHearts; ++i)
+        {
+            GameObject heart = Instantiate(heartPrefab, healthBarContainer.position, Quaternion.identity);
+
+            heart.transform.SetParent(healthBarContainer);
+        }
+
+        currentHearts = maxHearts;
     }
 
     public void ChangeHealth(int value)
@@ -89,5 +132,6 @@ public class TankHealth : MonoBehaviour
     {
         ResetHealth();
         Debug.LogWarning("reset health");
+        hasRespawned = true;
     }
 }
