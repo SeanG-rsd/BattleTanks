@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public static Action<GameMode> OnSetTeams = delegate { };
 
     public static Action OnStartGame = delegate { };
+    public static Action<PhotonTeam> OnRoundWon = delegate { };
 
     [SerializeField] private GameMode[] possibleGameModes;
     private GameMode selectedGameMode;
@@ -139,13 +140,12 @@ public class GameManager : MonoBehaviourPunCallbacks
                 if (!localTeamState)
                 {
                     Debug.Log($"Team {player.GetPhotonTeam().Code} has no more alive tanks on it.");
-                    if (player.GetPhotonTeam().Code != PhotonNetwork.LocalPlayer.GetPhotonTeam().Code)
+                    for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
                     {
-                        winScreen.SetActive(true);
-                    }
-                    else
-                    {
-                        loseScreen.SetActive(true);
+                        if (PhotonNetwork.PlayerList[i].GetPhotonTeam().Code != player.GetPhotonTeam().Code)
+                        {
+                            OnRoundWon?.Invoke(PhotonNetwork.PlayerList[i].GetPhotonTeam());
+                        }
                     }
                 }
             }
@@ -158,12 +158,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
+        /*if (Input.GetKeyDown(KeyCode.T))
         {
             Hashtable hashtable = new Hashtable() { { "aliveState", 0} };
             Debug.Log("set custom prop");
 
             PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
-        }
+        }*/
     }
 }

@@ -3,9 +3,65 @@ using System.Collections.Generic;
 using PlayFab.ClientModels;
 using PlayFab;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
+using Newtonsoft.Json;
 
 public class PlayfabLogin : MonoBehaviour
 {
+    [Header("UI")]
+    public TMP_Text messageText;
+    public InputField emailInput;
+    public InputField passwordInput;
+
+    public void RegisterButton()
+    {
+        if (passwordInput.text.Length < 6)
+        {
+            messageText.text = "Your password is too short!";
+            return;
+        }
+
+        var request = new RegisterPlayFabUserRequest { Email = emailInput.text, Password = passwordInput.text, RequireBothUsernameAndEmail = false };
+
+        PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);
+    }
+
+    void OnRegisterSuccess(RegisterPlayFabUserResult result)
+    {
+        messageText.text = "Registered and logged in!";
+    }
+
+    void OnError(PlayFabError error)
+    {
+        messageText.text = "Error!";
+        Debug.Log(error.ErrorMessage);
+    }
+
+    public void LoginButton()
+    {
+        var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
+
+        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnError);
+    }
+
+    void OnLoginSuccess(LoginResult result)
+    {
+        messageText.text = "Logged In!";
+    }
+
+    public void ResetPasswordButton()
+    {
+        var request = new SendAccountRecoveryEmailRequest { Email = emailInput.text, TitleId = "9F430" };
+
+        PlayFabClientAPI.SendAccountRecoveryEmail(request, OnPasswordReset, OnError);
+    }
+
+    void OnPasswordReset(SendAccountRecoveryEmailResult result)
+    {
+        messageText.text = "Password reset mail sent!";
+    }
+
     [SerializeField] private string username;
     void Start()
     {

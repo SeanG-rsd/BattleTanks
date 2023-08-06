@@ -22,15 +22,15 @@ public class SpawnPlayers : MonoBehaviour
 
     private void Awake()
     {
-        GameManager.OnGenerateMap += HandleSpawnPlayers;
+        MapGeneator.OnMapGenerated += HandleSpawnPlayers;
     }
 
     private void OnDestroy()
     {
-        GameManager.OnGenerateMap -= HandleSpawnPlayers;
+        MapGeneator.OnMapGenerated -= HandleSpawnPlayers;
     }
 
-    private void HandleSpawnPlayers(Vector2 size, GameMode gm)
+    private void HandleSpawnPlayers()
     {
         Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), Y, Random.Range(minZ, maxZ));
 

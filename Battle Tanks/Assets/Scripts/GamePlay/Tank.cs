@@ -31,19 +31,24 @@ public class Tank : MonoBehaviourPunCallbacks
     private float nonHitTimer;
     private bool nonHit;
 
-    private bool canMove;
 
     [SerializeField] private GameObject respawnTimerObject;
     [SerializeField] private TMP_Text respawnTimerText;
 
+    [SerializeField] private GameObject tankCanvas;
+
     public static Action<Tank> OnRespawn = delegate { };
     public static Action<Tank> OnAlive = delegate { };
+
+    public static Action<Tank> OnStart = delegate { };
+    public static Action<Tank> OnStarted = delegate { };
 
 
     private void Awake()
     {
         TankHealth.OnDeath += HandleTankDeath;
-        RoundManager.OnGameStarted += Respawn;
+        GameManager.OnStartGame += Respawn;
+        RoundManager.OnGameStarted += HandleGameStarted;
 
         view = GetComponent<PhotonView>();
 
@@ -52,7 +57,8 @@ public class Tank : MonoBehaviourPunCallbacks
     private void OnDestroy()
     {
         TankHealth.OnDeath -= HandleTankDeath;
-        RoundManager.OnGameStarted -= Respawn;
+        GameManager.OnStartGame -= Respawn;
+        RoundManager.OnGameStarted -= HandleGameStarted;
     }
 
     void Start()
@@ -109,11 +115,10 @@ public class Tank : MonoBehaviourPunCallbacks
             Debug.Log("tank has died");
             respawnTimerObject.SetActive(true);
             respawnTimerText.text = Mathf.RoundToInt(respawnTimer).ToString();
-            canMove = false;
         }
     }
 
-    public void Respawn()
+    private void Respawn()
     {
         Debug.Log("tank respawned");
         OnRespawn?.Invoke(this);
@@ -121,6 +126,15 @@ public class Tank : MonoBehaviourPunCallbacks
         invicible = false;
         respawning = false;
         nonHit = false;
+        tankCanvas.SetActive(false);
+
+        OnStart?.Invoke(this);
+    }
+
+    private void HandleGameStarted()
+    {
+        OnStarted?.Invoke(this);
+        tankCanvas.SetActive(true);
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)

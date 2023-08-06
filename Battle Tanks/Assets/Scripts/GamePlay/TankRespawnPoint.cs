@@ -13,16 +13,16 @@ public class TankRespawnPoint : MonoBehaviour
     {
         Tank.OnRespawn += HandleRespawnTank;
         Tank.OnAlive += HandleTankAlive;
-        GameManager.OnStartGame += HandleStartGame;
-        RoundManager.OnGameStarted += HandleGameStarted;
+        Tank.OnStart += HandleStartGame;
+        Tank.OnStarted += HandleGameStarted;
     }
 
     private void OnDestroy()
     {
         Tank.OnRespawn -= HandleRespawnTank;
         Tank.OnAlive -= HandleTankAlive;
-        GameManager.OnStartGame -= HandleStartGame;
-        RoundManager.OnGameStarted -= HandleGameStarted;
+        Tank.OnStart -= HandleStartGame;
+        Tank.OnStarted -= HandleGameStarted;
     }
 
     private void HandleRespawnTank(Tank tank)
@@ -53,13 +53,20 @@ public class TankRespawnPoint : MonoBehaviour
         }
     }
 
-    private void HandleStartGame()
+    private void HandleStartGame(Tank tank)
     {
-        respawnCam.SetActive(true);
+        if (tank.teamIndex == teamIndex)
+        {
+            respawnCam.SetActive(true);
+        }
     }
 
-    private void HandleGameStarted()
+    private void HandleGameStarted(Tank tank)
     {
-
+        Debug.Log("cam turned off");
+        if (tank.teamIndex == teamIndex)
+        {
+            respawnCam.SetActive(false);
+        }
     }
 }

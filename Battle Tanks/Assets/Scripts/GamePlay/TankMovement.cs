@@ -28,12 +28,16 @@ public class TankMovement : MonoBehaviour
 
         Tank.OnRespawn += HandleTankDeath;
         Tank.OnAlive += HandleTankAlive;
+        Tank.OnStart += HandleStart;
+        Tank.OnStarted += HandleRoundStarted;
     }
 
     private void OnDestroy()
     {
         Tank.OnRespawn -= HandleTankDeath;
         Tank.OnAlive -= HandleTankAlive;
+        Tank.OnStart += HandleStart;
+        Tank.OnStarted += HandleRoundStarted;
     }
 
     // Update is called once per frame
@@ -42,8 +46,6 @@ public class TankMovement : MonoBehaviour
         if (view.IsMine && canMove)
         {
             Vector3 input = new Vector3(0, 0, Input.GetAxisRaw("Vertical"));
-
-            //transform.position += input.normalized * Time.deltaTime * speed;
 
             transform.position += transform.forward * Input.GetAxisRaw("Vertical") * speed * Time.deltaTime;
 
@@ -62,6 +64,27 @@ public class TankMovement : MonoBehaviour
 
     private void HandleTankAlive(Tank tank)
     {
+        if (view.IsMine)
+        {
+            canMove = true;
+            PlayerCamera.SetActive(true);
+        }
+    }
+
+    private void HandleStart(Tank tank)
+    {
+        Debug.Log("handle start");
+        if (view.IsMine)
+        {
+            canMove = false;
+            PlayerCamera.SetActive(false);
+        }
+        Debug.Log($"Can move is {canMove}");
+    }
+
+    private void HandleRoundStarted(Tank tank)
+    {
+        Debug.Log("round has started?");
         if (view.IsMine)
         {
             canMove = true;
