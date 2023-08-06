@@ -31,22 +31,28 @@ public class Tank : MonoBehaviourPunCallbacks
     private float nonHitTimer;
     private bool nonHit;
 
+    private bool canMove;
+
     [SerializeField] private GameObject respawnTimerObject;
     [SerializeField] private TMP_Text respawnTimerText;
 
     public static Action<Tank> OnRespawn = delegate { };
+    public static Action<Tank> OnAlive = delegate { };
 
 
     private void Awake()
     {
         TankHealth.OnDeath += HandleTankDeath;
+        RoundManager.OnGameStarted += Respawn;
 
-        OnRespawn?.Invoke(this);
+        view = GetComponent<PhotonView>();
+
     }
 
     private void OnDestroy()
     {
         TankHealth.OnDeath -= HandleTankDeath;
+        RoundManager.OnGameStarted -= Respawn;
     }
 
     void Start()
@@ -60,11 +66,12 @@ public class Tank : MonoBehaviourPunCallbacks
         {
             if (respawnTimer < 0)
             {
-                OnRespawn?.Invoke(this);
+                OnAlive?.Invoke(this);
                 respawning = false;
                 invicible = true;
                 invincibleTimer = invincibleTime;
                 respawnTimerObject.SetActive(false);
+                nonHit = false;
             }
 
             respawnTimer -= Time.deltaTime;
@@ -96,13 +103,24 @@ public class Tank : MonoBehaviourPunCallbacks
     {
         if (tank == this)
         {
+            OnRespawn?.Invoke(this);
             respawning = true;
             respawnTimer = respawnTime;
             Debug.Log("tank has died");
             respawnTimerObject.SetActive(true);
             respawnTimerText.text = Mathf.RoundToInt(respawnTimer).ToString();
-            
+            canMove = false;
         }
+    }
+
+    public void Respawn()
+    {
+        Debug.Log("tank respawned");
+        OnRespawn?.Invoke(this);
+        OnAlive?.Invoke(this);
+        invicible = false;
+        respawning = false;
+        nonHit = false;
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)

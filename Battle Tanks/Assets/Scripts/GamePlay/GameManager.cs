@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviourPunCallbacks
     public static Action<Vector2, GameMode> OnGenerateMap = delegate { };
     public static Action<GameMode> OnSetTeams = delegate { };
 
+    public static Action OnStartGame = delegate { };
+
     [SerializeField] private GameMode[] possibleGameModes;
     private GameMode selectedGameMode;
 
@@ -26,15 +28,19 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] private Camera deadCam;
     [SerializeField] private GameObject winScreen;
     [SerializeField] private GameObject loseScreen;
+    [SerializeField] private GameObject topDownCam;
 
     private void Awake()
     {
         TankHealth.OnOutOfHearts += HandleDeadTank;
+        MapGeneator.OnMapGenerated += HandleStartGame;
+        
     }
 
     private void OnDestroy()
     {
         TankHealth.OnOutOfHearts -= HandleDeadTank;
+        MapGeneator.OnMapGenerated -= HandleStartGame;
     }
 
     private void Start()
@@ -78,13 +84,18 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    private void HandleStartGame()
+    {
+        OnStartGame?.Invoke();
+    }
+
     private void HandleDeadTank(Tank tank)
     {
         if (tank.GetComponent<PhotonView>().IsMine)
         {
             tank.gameObject.GetComponent<TankMovement>().PlayerCamera.SetActive(false);
             tank.Destroy();
-            //Display.displays[1].Activate();
+            topDownCam.SetActive(true);
         }
     }
 

@@ -22,15 +22,15 @@ public class SpawnPlayers : MonoBehaviour
 
     private void Awake()
     {
-        MapGeneator.OnMapGenerated += HandleSpawnPlayers;
+        GameManager.OnGenerateMap += HandleSpawnPlayers;
     }
 
     private void OnDestroy()
     {
-        MapGeneator.OnMapGenerated -= HandleSpawnPlayers;
+        GameManager.OnGenerateMap -= HandleSpawnPlayers;
     }
 
-    private void HandleSpawnPlayers()
+    private void HandleSpawnPlayers(Vector2 size, GameMode gm)
     {
         Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), Y, Random.Range(minZ, maxZ));
 
@@ -50,13 +50,6 @@ public class SpawnPlayers : MonoBehaviour
         PhotonNetwork.LocalPlayer.CustomProperties["aliveState"] = 1;
 
         PhotonNetwork.Instantiate(playerToSpawn.name, randomPosition, Quaternion.identity);
-    }
 
-    private void Start()
-    {
-        if (!PhotonNetwork.IsMasterClient)
-        {
-            HandleSpawnPlayers();
-        }
     }
 }

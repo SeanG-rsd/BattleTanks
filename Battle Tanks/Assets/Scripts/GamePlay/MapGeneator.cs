@@ -1,9 +1,10 @@
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapGeneator : MonoBehaviour
+public class MapGeneator : MonoBehaviourPunCallbacks
 {
     [SerializeField] private GameObject cellPrefab;
     [SerializeField] private GameObject wallPrefab;
@@ -40,7 +41,8 @@ public class MapGeneator : MonoBehaviour
         //this.selectedGameMode = selectedGameMode;
         HandleGameMode(selectedGameMode);
 
-        OnMapGenerated?.Invoke();
+        Hashtable mapGenerated = new Hashtable() { { "mapGeneration", 0 } };
+        PhotonNetwork.CurrentRoom.SetCustomProperties(mapGenerated);
     }
 
     private void HandleWalls()
@@ -164,5 +166,14 @@ public class MapGeneator : MonoBehaviour
     private void GuaranteePlayability()
     {
 
+    }
+
+    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+    {
+        if (propertiesThatChanged.ContainsKey("mapGeneration"))
+        {
+            Debug.Log("map has been generated");
+            OnMapGenerated?.Invoke();
+        }
     }
 }

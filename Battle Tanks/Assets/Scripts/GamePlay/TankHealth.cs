@@ -34,12 +34,12 @@ public class TankHealth : MonoBehaviour
 
     private void Awake()
     {
-        Tank.OnRespawn += HandleTankRespawn;
+        Tank.OnAlive += HandleTankAlive;
     }
 
     private void OnDestroy()
     {
-        Tank.OnRespawn -= HandleTankRespawn;
+        Tank.OnAlive -= HandleTankAlive;
     }
 
     void Start()
@@ -128,10 +128,9 @@ public class TankHealth : MonoBehaviour
         return true;
     }
 
-    private void HandleTankRespawn(Tank tank)
+    private void HandleTankAlive(Tank tank)
     {
-        ResetHealth();
-        Debug.LogWarning("reset health");
         hasRespawned = true;
+        ResetHealth();
     }
 }
