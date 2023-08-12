@@ -95,7 +95,11 @@ public class GameManager : MonoBehaviourPunCallbacks
         if (tank.GetComponent<PhotonView>().IsMine)
         {
             tank.gameObject.GetComponent<TankMovement>().PlayerCamera.SetActive(false);
-            tank.Destroy();
+           
+            Hashtable hashtable = new Hashtable() { { "aliveState", 0 } };
+            Debug.Log("set custom prop");
+
+            PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
             topDownCam.SetActive(true);
         }
     }
@@ -142,7 +146,7 @@ public class GameManager : MonoBehaviourPunCallbacks
                     Debug.Log($"Team {player.GetPhotonTeam().Code} has no more alive tanks on it.");
                     for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
                     {
-                        if (PhotonNetwork.PlayerList[i].GetPhotonTeam().Code != player.GetPhotonTeam().Code)
+                        if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != player.GetPhotonTeam())
                         {
                             OnRoundWon?.Invoke(PhotonNetwork.PlayerList[i].GetPhotonTeam());
                         }

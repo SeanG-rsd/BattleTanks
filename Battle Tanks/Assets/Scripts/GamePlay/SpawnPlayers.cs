@@ -21,6 +21,8 @@ public class SpawnPlayers : MonoBehaviour
     public float maxZ;
     public float Y;
 
+    PhotonView view;
+
     public static Action OnTankSpawned = delegate { };
 
     private void Awake()

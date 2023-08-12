@@ -75,7 +75,12 @@ public class PlayfabLogin : MonoBehaviour
         {
             SetUsername(usernameInput.text);
 
-            LoginWithCustomId();
+            if (wantsToRemember)
+            {
+                RememberMe();
+            }
+
+            UpdateDisplayName(username);
         }
         else
         {
@@ -85,7 +90,7 @@ public class PlayfabLogin : MonoBehaviour
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
-        messageText.text = "Registered and logged in!";
+        messageText.text = "Registered!";
     }
 
     void OnError(PlayFabError error)
@@ -101,12 +106,13 @@ public class PlayfabLogin : MonoBehaviour
 
         PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnError);
         SetUsername(PlayerPrefs.GetString("USERNAME"));
-        LoginWithCustomId();
     }
 
     void OnLoginSuccess(LoginResult result)
     {
         messageText.text = "Logged In!";
+        RememberMe();
+        UpdateDisplayName(username);
     }
 
     public void ResetPasswordButton()
@@ -129,14 +135,19 @@ public class PlayfabLogin : MonoBehaviour
         PlayerPrefs.SetString("USERNAME", username);
     }
 
+    private void RememberMe()
+    {
+        PlayerPrefs.SetString("EMAIL", emailInput.text);
+        PlayerPrefs.SetString("PASSWORD", passwordInput.text);
+        PlayerPrefs.SetInt("REMEMBERME", 1);
+    }
+
     private void LoginWithCustomId()
     {
         Debug.Log($"Login to Playfab as {username}");
         if (wantsToRemember)
         {
-            PlayerPrefs.SetString("EMAIL", emailInput.text);
-            PlayerPrefs.SetString("PASSWORD", passwordInput.text);
-            PlayerPrefs.SetInt("REMEMBERME", 1);
+            RememberMe();
         }
         var request = new LoginWithCustomIDRequest { CustomId = username };
         PlayFabClientAPI.LoginWithCustomID(request, OnLoginCustomIdSuccess, OnFailure);

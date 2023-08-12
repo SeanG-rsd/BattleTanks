@@ -15,6 +15,7 @@ public class TankRespawnPoint : MonoBehaviour
         Tank.OnAlive += HandleTankAlive;
         Tank.OnStart += HandleStartGame;
         Tank.OnStarted += HandleGameStarted;
+        Tank.OnNewRound += HandleRespawnTank;
     }
 
     private void OnDestroy()
@@ -23,6 +24,7 @@ public class TankRespawnPoint : MonoBehaviour
         Tank.OnAlive -= HandleTankAlive;
         Tank.OnStart -= HandleStartGame;
         Tank.OnStarted -= HandleGameStarted;
+        Tank.OnNewRound -= HandleRespawnTank;
     }
 
     private void HandleRespawnTank(Tank tank)

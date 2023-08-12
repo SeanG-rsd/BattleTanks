@@ -93,6 +93,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Shadow
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
+    - UnityEngine.UI.Toggle
     - UnityEngine.UI.VerticalLayoutGroup
   serializedClasses:
     PhotonRealtime:
@@ -149,6 +150,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Scrollbar/ScrollEvent
     - UnityEngine.UI.Slider/SliderEvent
     - UnityEngine.UI.SpriteState
+    - UnityEngine.UI.Toggle/ToggleEvent
   methodsToPreserve:
   - assembly: Assembly-CSharp
     fullTypeName: PlayfabLogin
@@ -158,26 +160,32 @@ ScriptsOnlyBuild:
     methodName: RegisterButton
   - assembly: Assembly-CSharp
     fullTypeName: PlayfabLogin
+    methodName: FinishRegistering
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayfabLogin
+    methodName: RememberMe
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayfabLogin
     methodName: LoginButton
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UITeam
-    methodName: SwitchToTeam
   - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickItem
   - assembly: Assembly-CSharp
+    fullTypeName: UITeam
+    methodName: SwitchToTeam
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
+  - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: RemoveFriend
   - assembly: Assembly-CSharp
@@ -189,21 +197,21 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
   - assembly: Assembly-CSharp
     fullTypeName: UITeam
     methodName: SwitchToTeam
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIGameMode
     methodName: OnClickChooseGameMode
@@ -392,6 +400,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 1572}
     - Class: 114
       Script: {instanceID: 1574}
+    - Class: 114
+      Script: {instanceID: 1576}
     - Class: 114
       Script: {instanceID: 1578}
     - Class: 114
@@ -1638,7 +1648,7 @@ ScriptsOnlyBuild:
     className: SmoothSyncMovement
   - hash:
       serializedVersion: 2
-      Hash: b2f345972806e59fbbeb35c9afaabc5c
+      Hash: e2aa12acaf625dc68a11c310bb77abe0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoundManager
@@ -1800,7 +1810,7 @@ ScriptsOnlyBuild:
     className: PunPlayerScores
   - hash:
       serializedVersion: 2
-      Hash: 20353a9be934baa20c9aafaf84c9f109
+      Hash: c284b7b97110dbe1c5f54b4238ba05c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayfabLogin

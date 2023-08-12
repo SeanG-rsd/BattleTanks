@@ -43,12 +43,16 @@ public class Tank : MonoBehaviourPunCallbacks
     public static Action<Tank> OnStart = delegate { };
     public static Action<Tank> OnStarted = delegate { };
 
+    public static Action<Tank> OnNewRound = delegate { };
+
 
     private void Awake()
     {
         TankHealth.OnDeath += HandleTankDeath;
-        SpawnPlayers.OnTankSpawned += HandleStartGame;
+        GameManager.OnStartGame += HandleStartGame;
         RoundManager.OnGameStarted += HandleGameStarted;
+        RoundManager.OnRoundStarted += HandleNewRound;
+        GameManager.OnRoundWon += HandleRoundWon;
 
         view = GetComponent<PhotonView>();
 
@@ -57,8 +61,10 @@ public class Tank : MonoBehaviourPunCallbacks
     private void OnDestroy()
     {
         TankHealth.OnDeath -= HandleTankDeath;
-        SpawnPlayers.OnTankSpawned -= HandleStartGame;
+        GameManager.OnStartGame -= HandleStartGame;
         RoundManager.OnGameStarted -= HandleGameStarted;
+        RoundManager.OnRoundStarted -= HandleNewRound;
+        GameManager.OnRoundWon -= HandleRoundWon;
     }
 
     void Start()
@@ -122,27 +128,48 @@ public class Tank : MonoBehaviourPunCallbacks
 
     private void Respawn()
     {
-        Debug.Log("tank respawned");
-        OnRespawn?.Invoke(this);
-        OnAlive?.Invoke(this);
-        invicible = false;
-        respawning = false;
-        nonHit = false;
-        tankCanvas.SetActive(false);
+        if (view.IsMine)
+        {
+            Debug.Log("tank respawned");
+            OnRespawn?.Invoke(this);
+            OnAlive?.Invoke(this);
+            invicible = false;
+            respawning = false;
+            nonHit = false;
+            tankCanvas.SetActive(false);
 
-        OnStart?.Invoke(this);
+            OnStart?.Invoke(this);
+        }
     }
 
     private void HandleStartGame()
     {
-        Debug.Log("respawn");
+        Debug.Log($"begin game for {PhotonNetwork.LocalPlayer.NickName}");
         Respawn();
     }
 
     private void HandleGameStarted()
     {
+        Respawn();
         OnStarted?.Invoke(this);
         tankCanvas.SetActive(true);
+        respawnTimerObject.SetActive(false);
+    }
+
+    private void HandleRoundWon(PhotonTeam team)
+    {
+        respawning = false;
+        Debug.Log("handle round won for tank");
+        tankCanvas.SetActive(false);
+        OnNewRound?.Invoke(this);
+        respawnTimerObject.SetActive(false);
+    }
+
+    private void HandleNewRound()
+    {
+        Respawn();
+        tankCanvas.SetActive(false);
+        respawnTimerObject.SetActive(false);
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)

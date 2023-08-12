@@ -35,11 +35,13 @@ public class TankHealth : MonoBehaviour
     private void Awake()
     {
         Tank.OnAlive += HandleTankAlive;
+        Tank.OnNewRound += HandleReset;
     }
 
     private void OnDestroy()
     {
         Tank.OnAlive -= HandleTankAlive;
+        Tank.OnNewRound -= HandleReset;
     }
 
     void Start()
@@ -115,6 +117,13 @@ public class TankHealth : MonoBehaviour
         }
 
         currentHearts = maxHearts;
+    }
+
+    private void HandleReset(Tank tank)
+    {
+        Debug.Log("health reset handled");
+        ResetHeartBar();
+        ResetHealth();
     }
 
     public void ChangeHealth(int value)
