@@ -84,6 +84,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
+    - UnityEngine.UI.InputField
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Mask
     - UnityEngine.UI.RectMask2D
@@ -139,6 +140,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Button/ButtonClickedEvent
     - UnityEngine.UI.ColorBlock
     - UnityEngine.UI.FontData
+    - UnityEngine.UI.InputField/EndEditEvent
+    - UnityEngine.UI.InputField/OnChangeEvent
+    - UnityEngine.UI.InputField/SubmitEvent
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.ScrollRect/ScrollRectEvent
@@ -148,10 +152,13 @@ ScriptsOnlyBuild:
   methodsToPreserve:
   - assembly: Assembly-CSharp
     fullTypeName: PlayfabLogin
-    methodName: LogIn
+    methodName: ResetPasswordButton
   - assembly: Assembly-CSharp
     fullTypeName: PlayfabLogin
-    methodName: SetUsername
+    methodName: RegisterButton
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayfabLogin
+    methodName: LoginButton
   - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: InviteFriend
@@ -406,6 +413,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2812}
     - Class: 114
+      Script: {instanceID: 3112}
+    - Class: 114
       Script: {instanceID: 3198}
     - Class: 114
       Script: {instanceID: 3220}
@@ -428,15 +437,11 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 4444}
     - Class: 114
-      Script: {instanceID: 4578}
-    - Class: 114
       Script: {instanceID: 4594}
     - Class: 114
       Script: {instanceID: 4888}
     - Class: 114
       Script: {instanceID: 5448}
-    - Class: 114
-      Script: {instanceID: 5492}
     - Class: 114
       Script: {instanceID: 5636}
     - Class: 114
@@ -1795,7 +1800,7 @@ ScriptsOnlyBuild:
     className: PunPlayerScores
   - hash:
       serializedVersion: 2
-      Hash: d65c2b1dd78ce6ad2e846a1e95bbde0e
+      Hash: 20353a9be934baa20c9aafaf84c9f109
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayfabLogin

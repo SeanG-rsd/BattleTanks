@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using System;
 
 public class SpawnPlayers : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class SpawnPlayers : MonoBehaviour
     public float maxZ;
     public float Y;
 
+    public static Action OnTankSpawned = delegate { };
+
     private void Awake()
     {
         MapGeneator.OnMapGenerated += HandleSpawnPlayers;
@@ -32,7 +35,7 @@ public class SpawnPlayers : MonoBehaviour
 
     private void HandleSpawnPlayers()
     {
-        Vector3 randomPosition = new Vector3(Random.Range(minX, maxX), Y, Random.Range(minZ, maxZ));
+        Vector3 randomPosition = new Vector3(UnityEngine.Random.Range(minX, maxX), Y, UnityEngine.Random.Range(minZ, maxZ));
 
         if ((int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 1)
         {
@@ -51,5 +54,6 @@ public class SpawnPlayers : MonoBehaviour
 
         PhotonNetwork.Instantiate(playerToSpawn.name, randomPosition, Quaternion.identity);
 
+        OnTankSpawned?.Invoke();
     }
 }

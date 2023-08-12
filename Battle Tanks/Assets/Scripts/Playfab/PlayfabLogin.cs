@@ -13,7 +13,41 @@ public class PlayfabLogin : MonoBehaviour
     public TMP_Text messageText;
     public InputField emailInput;
     public InputField passwordInput;
+    public InputField usernameInput;
 
+    private string rememberedEmail;
+    private string rememberedPassword;
+    private string rememberedUsername;
+
+    private bool didRemember;
+    private bool wantsToRemember;
+
+    [SerializeField] private GameObject LoginScreen;
+    [SerializeField] private GameObject UserNameScreen;
+    [SerializeField] private Toggle rememberToggle;
+
+    private void Start()
+    {
+        if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
+        {
+            PlayFabSettings.TitleId = "9F430";
+        }
+
+        if (PlayerPrefs.HasKey("REMEMBERME"))
+        {
+            if ((int)PlayerPrefs.GetInt("REMEMBERME") == 1)
+            {
+                emailInput.text = PlayerPrefs.GetString("EMAIL");
+                passwordInput.text = PlayerPrefs.GetString("PASSWORD");
+                wantsToRemember = true;
+                rememberToggle.isOn = true;
+            }
+        }
+    }
+    public void RememberMe(Toggle toggle)
+    {
+        wantsToRemember = toggle.isOn;
+    }
     public void RegisterButton()
     {
         if (passwordInput.text.Length < 6)
@@ -25,6 +59,28 @@ public class PlayfabLogin : MonoBehaviour
         var request = new RegisterPlayFabUserRequest { Email = emailInput.text, Password = passwordInput.text, RequireBothUsernameAndEmail = false };
 
         PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);
+
+        CreateUsername();
+    }
+
+    private void CreateUsername()
+    {
+        LoginScreen.SetActive(!LoginScreen.activeSelf);
+        UserNameScreen.SetActive(!UserNameScreen.activeSelf);
+    }
+
+    public void FinishRegistering()
+    {
+        if (usernameInput.text.Length >= 3 && usernameInput.text.Length <= 24)
+        {
+            SetUsername(usernameInput.text);
+
+            LoginWithCustomId();
+        }
+        else
+        {
+            messageText.text = "Enter a valid username between 3 and 24 characters";
+        }
     }
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
@@ -36,6 +92,7 @@ public class PlayfabLogin : MonoBehaviour
     {
         messageText.text = "Error!";
         Debug.Log(error.ErrorMessage);
+        CreateUsername();
     }
 
     public void LoginButton()
@@ -43,6 +100,8 @@ public class PlayfabLogin : MonoBehaviour
         var request = new LoginWithEmailAddressRequest { Email = emailInput.text, Password = passwordInput.text };
 
         PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess, OnError);
+        SetUsername(PlayerPrefs.GetString("USERNAME"));
+        LoginWithCustomId();
     }
 
     void OnLoginSuccess(LoginResult result)
@@ -63,13 +122,6 @@ public class PlayfabLogin : MonoBehaviour
     }
 
     [SerializeField] private string username;
-    void Start()
-    {
-        if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
-        {
-            PlayFabSettings.TitleId = "9F430";
-        }
-    }
 
     public void SetUsername(string name)
     {
@@ -77,32 +129,16 @@ public class PlayfabLogin : MonoBehaviour
         PlayerPrefs.SetString("USERNAME", username);
     }
 
-    public void LogIn()
-    {
-        if (!IsValidUsername())
-        {
-            return;
-        }
-
-        LoginWithCustomId();
-    }
-
-    private bool IsValidUsername()
-    {
-        bool valid = false;
-
-        if (username.Length >= 3 && username.Length <= 24)
-        {
-            valid = true;
-        }
-
-        return valid;
-    }
-
     private void LoginWithCustomId()
     {
         Debug.Log($"Login to Playfab as {username}");
-        var request = new LoginWithCustomIDRequest { CustomId = username, CreateAccount = true };
+        if (wantsToRemember)
+        {
+            PlayerPrefs.SetString("EMAIL", emailInput.text);
+            PlayerPrefs.SetString("PASSWORD", passwordInput.text);
+            PlayerPrefs.SetInt("REMEMBERME", 1);
+        }
+        var request = new LoginWithCustomIDRequest { CustomId = username };
         PlayFabClientAPI.LoginWithCustomID(request, OnLoginCustomIdSuccess, OnFailure);
     }
 

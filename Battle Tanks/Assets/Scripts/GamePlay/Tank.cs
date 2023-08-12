@@ -47,7 +47,7 @@ public class Tank : MonoBehaviourPunCallbacks
     private void Awake()
     {
         TankHealth.OnDeath += HandleTankDeath;
-        GameManager.OnStartGame += Respawn;
+        SpawnPlayers.OnTankSpawned += HandleStartGame;
         RoundManager.OnGameStarted += HandleGameStarted;
 
         view = GetComponent<PhotonView>();
@@ -57,7 +57,7 @@ public class Tank : MonoBehaviourPunCallbacks
     private void OnDestroy()
     {
         TankHealth.OnDeath -= HandleTankDeath;
-        GameManager.OnStartGame -= Respawn;
+        SpawnPlayers.OnTankSpawned -= HandleStartGame;
         RoundManager.OnGameStarted -= HandleGameStarted;
     }
 
@@ -78,6 +78,7 @@ public class Tank : MonoBehaviourPunCallbacks
                 invincibleTimer = invincibleTime;
                 respawnTimerObject.SetActive(false);
                 nonHit = false;
+                tankCanvas.SetActive(true);
             }
 
             respawnTimer -= Time.deltaTime;
@@ -115,6 +116,7 @@ public class Tank : MonoBehaviourPunCallbacks
             Debug.Log("tank has died");
             respawnTimerObject.SetActive(true);
             respawnTimerText.text = Mathf.RoundToInt(respawnTimer).ToString();
+            tankCanvas.SetActive(false);
         }
     }
 
@@ -129,6 +131,12 @@ public class Tank : MonoBehaviourPunCallbacks
         tankCanvas.SetActive(false);
 
         OnStart?.Invoke(this);
+    }
+
+    private void HandleStartGame()
+    {
+        Debug.Log("respawn");
+        Respawn();
     }
 
     private void HandleGameStarted()

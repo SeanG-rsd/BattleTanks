@@ -72,6 +72,11 @@ public class TankHealth : MonoBehaviour
                 RemoveHeart();
                 hasRespawned = false;
             }
+
+            if (Input.GetKeyUp(KeyCode.K))
+            {
+                playerPropeties["currentHealth"] = 0;
+            }
         }        
     }
 
