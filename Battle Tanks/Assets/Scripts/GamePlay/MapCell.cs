@@ -9,11 +9,13 @@ public class MapCell : MonoBehaviour
     private void Awake()
     {
         MapGeneator.OnMapGenerated += HandleMapGenerated;
+        MapGenTest.OnTestMapGen += HandleTestMap;
     }
 
     private void OnDestroy()
     {
         MapGeneator.OnMapGenerated -= HandleMapGenerated;
+        MapGenTest.OnTestMapGen -= HandleTestMap;
     }
 
     private void HandleMapGenerated()
@@ -38,5 +40,21 @@ public class MapCell : MonoBehaviour
             //PhotonNetwork.Destroy(thisWalls[choice]);
             thisWalls[choice].GetComponent<MapWall>().Destroy();
         }
+    }
+
+    private void HandleTestMap()
+    {
+        int second = Random.Range(0, 100);
+
+        if (second > 75)
+        {
+            Destroy(thisWalls[0]);
+            Destroy(thisWalls[1]);
+            return;
+        }
+
+        int choice = Random.Range(0, thisWalls.Length);
+
+        Destroy(thisWalls[choice]);
     }
 }

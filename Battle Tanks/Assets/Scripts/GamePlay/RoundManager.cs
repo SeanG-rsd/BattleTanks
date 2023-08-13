@@ -109,12 +109,10 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
     {
-        if (targetPlayer == PhotonNetwork.LocalPlayer)
+        if (changedProps.ContainsKey("teamRoundScore"))
         {
-            if (changedProps.ContainsKey("teamRoundScore"))
-            {
-                UpdateWinScreen(currentlyWon);
-            }
+
+            UpdateWinScreen(currentlyWon);
         }
     }
 
@@ -125,16 +123,21 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
     private void UpdateWinScreen(PhotonTeam winningTeam)
     {
-        if (view.IsMine)
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
         {
-            for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
+            if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
             {
-                if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
+                Debug.Log($"{PhotonNetwork.PlayerList[i].NickName} is not on the same team");
+                opposingTeamImage.color = teamInfo.teamColors[PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1];
+                if (PhotonNetwork.PlayerList[i].CustomProperties.ContainsKey("teamRoundScore"))
                 {
-                    opposingTeamImage.color = teamInfo.teamColors[PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1];
                     opposingTeamScoreText.text = PhotonNetwork.PlayerList[i].CustomProperties["teamRoundScore"].ToString();
-                    break;
                 }
+                else
+                {
+                    opposingTeamScoreText.text = "0";
+                }
+                break;
             }
         }
 
