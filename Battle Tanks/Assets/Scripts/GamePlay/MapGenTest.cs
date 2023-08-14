@@ -1,9 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
+using System.Runtime.ExceptionServices;
 using UnityEngine;
 
 public class MapGenTest : MonoBehaviour
 {
+
+    struct WallInfo
+    {
+        public Vector2 position;
+        public WallType.WallOrientation orientation;
+    }
+
     [SerializeField] private GameObject cellPrefab;
     [SerializeField] private GameObject wallPrefab;
 
@@ -23,9 +32,17 @@ public class MapGenTest : MonoBehaviour
 
     public static Action OnTestMapGen = delegate { };
 
+    private Dictionary<WallInfo, GameObject> walls;
+
+    private List<GameObject> cellObjects;
+
     private void Start()
     {
         towerPositions = new List<Vector3>();
+
+        walls = new Dictionary<WallInfo, GameObject>();
+
+        cellObjects = new List<GameObject>();
     }
     private void Update()
     {
@@ -59,6 +76,7 @@ public class MapGenTest : MonoBehaviour
         HandleGameMode(selectedGameMode);
 
         OnTestMapGen?.Invoke();
+        GuaranteePlayability();
     }
 
     private void HandleWalls()
@@ -160,6 +178,12 @@ public class MapGenTest : MonoBehaviour
                 }
 
                 newCell.transform.SetParent(cellContainer);
+
+                for (int i = 0; i < newCell.transform.childCount; i++)
+                {
+                    newCell.transform.GetChild(i).gameObject.GetComponent<MapWall>().position = new Vector2(x, z);
+
+                }
             }
         }
     }
@@ -180,9 +204,84 @@ public class MapGenTest : MonoBehaviour
         }
     }
 
+    private List<WallInfo> GetPossibleInfo(WallInfo original)
+    {
+        List<WallInfo> possibleWalls = new List<WallInfo>();
+        if (original.orientation == WallType.WallOrientation.Horizontal)
+        {
+            WallInfo left = new WallInfo { position = new Vector2(original.position.x - 1, original.position.y), orientation = original.orientation };
+            WallInfo leftUp = new WallInfo { position = new Vector2(original.position.x - 1, original.position.y), orientation = WallType.WallOrientation.Vertical };
+            WallInfo leftDown = new WallInfo { position = new Vector2(original.position.x - 1, original.position.y + 1), orientation = WallType.WallOrientation.Vertical };
+            WallInfo right = new WallInfo { position = new Vector2(original.position.x + 1, original.position.y), orientation = original.orientation };
+            WallInfo rightUp = new WallInfo { position = new Vector2(original.position.x, original.position.y), orientation = WallType.WallOrientation.Vertical };
+            WallInfo rightDown = new WallInfo { position = new Vector2(original.position.x, original.position.y + 1), orientation = WallType.WallOrientation.Vertical };
+
+            possibleWalls.Add(left);
+            possibleWalls.Add(leftUp);
+            possibleWalls.Add(leftDown);
+            possibleWalls.Add(right);
+            possibleWalls.Add(rightUp);
+            possibleWalls.Add(rightDown);
+        }
+        else if (original.orientation == WallType.WallOrientation.Vertical)
+        {
+            WallInfo up = new WallInfo { position = new Vector2(original.position.x, original.position.y - 1), orientation = original.orientation };
+            WallInfo upLeft = new WallInfo { position = new Vector2(original.position.x, original.position.y - 1), orientation = WallType.WallOrientation.Horizontal };
+            WallInfo upRight = new WallInfo { position = new Vector2(original.position.x + 1, original.position.y - 1), orientation = WallType.WallOrientation.Horizontal };
+            WallInfo down = new WallInfo { position = new Vector2(original.position.x, original.position.y + 1), orientation = original.orientation };
+            WallInfo downLeft = new WallInfo { position = new Vector2(original.position.x, original.position.y), orientation = WallType.WallOrientation.Horizontal };
+            WallInfo downRight = new WallInfo { position = new Vector2(original.position.x + 1, original.position.y), orientation = WallType.WallOrientation.Horizontal };
+
+            possibleWalls.Add(up);
+            possibleWalls.Add(upLeft);
+            possibleWalls.Add(upRight);
+            possibleWalls.Add(down);
+            possibleWalls.Add(downLeft);
+            possibleWalls.Add(downRight);
+        }
+
+        return possibleWalls;
+    }
+
     private void GuaranteePlayability()
     {
+        walls.Clear();
+        
+        for (int i = 0; i < cellContainer.childCount; ++i)
+        {
+            for (int ii = 0; ii < cellContainer.GetChild(i).childCount; ++ii)
+            {
+                WallInfo newWallInfo = new();
+                newWallInfo.position = cellContainer.GetChild(i).GetChild(ii).gameObject.GetComponent<MapWall>().position;
+                newWallInfo.orientation = cellContainer.GetChild(i).GetChild(ii).gameObject.GetComponent<MapWall>().type;
 
+                walls.Add(newWallInfo, cellContainer.GetChild(i).GetChild(ii).gameObject);
+            }
+        }
+
+        Debug.Log(walls.Count);
+
+        for (int i = 0; i < cellContainer.childCount; i++)
+        { 
+            for (int wallCount = 0; wallCount < cellContainer.GetChild(i).childCount; wallCount++)
+            {
+
+                WallInfo newWallInfo = new();
+                newWallInfo.position = cellContainer.GetChild(i).GetChild(wallCount).gameObject.GetComponent<MapWall>().position;
+                newWallInfo.orientation = cellContainer.GetChild(i).GetChild(wallCount).gameObject.GetComponent<MapWall>().type;
+
+                List<WallInfo> wallOptions = GetPossibleInfo(newWallInfo);
+
+                GameObject value;
+                for (int ii = 0; ii < wallOptions.Count; ii++)
+                {
+                    if (walls.TryGetValue(wallOptions[ii], out value))
+                    {
+                        Debug.Log($"there is a corner at {newWallInfo.position}");
+                    }
+                }
+            }
+        }
     }
 }
 

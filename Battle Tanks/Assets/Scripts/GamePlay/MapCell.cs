@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class MapCell : MonoBehaviour
 {
-    public GameObject[] thisWalls; 
+    public GameObject[] thisWalls;
     private void Awake()
     {
         MapGeneator.OnMapGenerated += HandleMapGenerated;
@@ -42,7 +42,7 @@ public class MapCell : MonoBehaviour
         }
     }
 
-    private void HandleTestMap()
+    public void HandleTestMap()
     {
         int second = Random.Range(0, 100);
 
@@ -56,5 +56,6 @@ public class MapCell : MonoBehaviour
         int choice = Random.Range(0, thisWalls.Length);
 
         Destroy(thisWalls[choice]);
+        Debug.Log("handle test map");
     }
 }
