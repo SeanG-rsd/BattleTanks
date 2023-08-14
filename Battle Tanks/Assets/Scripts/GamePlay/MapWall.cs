@@ -9,6 +9,8 @@ public class MapWall : MonoBehaviour
     public Vector2 position;
 
     public WallType.WallOrientation type;
+
+    public bool isTouchingBorder;
     public void Destroy()
     {
         this.GetComponent<PhotonView>().RPC("DestroyObject", RpcTarget.AllViaServer);
