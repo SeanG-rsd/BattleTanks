@@ -56,6 +56,5 @@ public class MapCell : MonoBehaviour
         int choice = Random.Range(0, thisWalls.Length);
 
         Destroy(thisWalls[choice]);
-        Debug.Log("handle test map");
     }
 }
