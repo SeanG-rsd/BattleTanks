@@ -18,12 +18,6 @@ public class UIGameMode : MonoBehaviour
         gameModeText.SetText(gameMode.Name);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void OnClickChooseGameMode()
     {
         OnGameModeChanged?.Invoke(gameMode, GetComponent<Button>());

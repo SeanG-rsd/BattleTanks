@@ -21,7 +21,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
     private void Awake()
     {
         UITeam.OnSwitchToTeam += HandleSwitchTeam;
-        PhotonRoomController.OnGameModeSelected += HandleCreateTeams;
+        PhotonRoomController.OnGameSettingsSelected += HandleCreateTeams;
         PhotonRoomController.OnRoomLeft += HandleLeaveRoom;
         PhotonRoomController.OnOtherPlayerLeftRoom += HandleOtherPlayerLeftRoom;
         PhotonRoomController.OnStartGame += HandleStartGame;
@@ -32,7 +32,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
     private void OnDestroy()
     {
         UITeam.OnSwitchToTeam -= HandleSwitchTeam;
-        PhotonRoomController.OnGameModeSelected -= HandleCreateTeams;
+        PhotonRoomController.OnGameSettingsSelected -= HandleCreateTeams;
         PhotonRoomController.OnRoomLeft -= HandleLeaveRoom;
         PhotonRoomController.OnOtherPlayerLeftRoom -= HandleOtherPlayerLeftRoom;
         PhotonRoomController.OnStartGame -= HandleStartGame;
@@ -52,7 +52,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
         }
     }
 
-    private void HandleCreateTeams(GameMode gameMode)
+    private void HandleCreateTeams(GameMode gameMode, int numRounds)
     {
         CreateTeams(gameMode);
 

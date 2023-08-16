@@ -9,6 +9,7 @@ public class UIDisplayRoom : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private TMP_Text roomGameModeText;
+    [SerializeField] private TMP_Text roomRoundNumText;
     [SerializeField] private GameObject exitButton;
     [SerializeField] private GameObject roomContainer;
     [SerializeField] private GameObject[] hideObjects;
@@ -16,7 +17,7 @@ public class UIDisplayRoom : MonoBehaviour
 
     [SerializeField] GameObject lobbyPanel;
     [SerializeField] GameObject roomPanel;
-    [SerializeField] GameObject gameModePanel;
+    [SerializeField] GameObject masterPanel;
     [SerializeField] GameObject waitForPanel;
 
     [SerializeField] TMP_Text roomName;
@@ -33,14 +34,14 @@ public class UIDisplayRoom : MonoBehaviour
     private void Awake()
     {
         tankSelectScreen.SetActive(false);
-        PhotonRoomController.OnGameModeSelected += HandleGameModeSelected;
+        PhotonRoomController.OnGameSettingsSelected += HandleGameModeSelected;
         PhotonRoomController.OnJoinRoom += HandleJoinRoom;
         PhotonRoomController.OnRoomLeft += HandleRoomLeft;
     }
 
     private void OnDestroy()
     {
-        PhotonRoomController.OnGameModeSelected += HandleGameModeSelected;
+        PhotonRoomController.OnGameSettingsSelected += HandleGameModeSelected;
         PhotonRoomController.OnJoinRoom -= HandleJoinRoom;
         PhotonRoomController.OnRoomLeft -= HandleRoomLeft;
     }
@@ -57,7 +58,7 @@ public class UIDisplayRoom : MonoBehaviour
 
         if (PhotonNetwork.IsMasterClient)
         {
-            gameModePanel.SetActive(true);
+            masterPanel.SetActive(true);
         }
         else
         {
@@ -80,7 +81,7 @@ public class UIDisplayRoom : MonoBehaviour
         tankSelectScreen.SetActive(false);
         playButton.SetActive(false);
 
-        gameModePanel.SetActive(false);
+        masterPanel.SetActive(false);
         waitForPanel.SetActive(false);
 
         foreach (GameObject obj in showObjects)
@@ -89,12 +90,13 @@ public class UIDisplayRoom : MonoBehaviour
         }
     }
 
-    private void HandleGameModeSelected(GameMode gameMode)
+    private void HandleGameModeSelected(GameMode gameMode, int numRounds)
     {
         tankSelectScreen.SetActive(true);
-        gameModePanel.SetActive(false);
+        masterPanel.SetActive(false);
         waitForPanel.SetActive(false);
         roomGameModeText.SetText(PhotonNetwork.CurrentRoom.CustomProperties["GAMEMODE"].ToString());
+        roomRoundNumText.SetText(PhotonNetwork.CurrentRoom.CustomProperties["NUMBEROFROUNDS"].ToString());
         chooseGameButton.SetActive(false);
         if (PhotonNetwork.IsMasterClient)
         {

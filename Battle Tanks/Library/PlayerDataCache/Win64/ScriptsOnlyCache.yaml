@@ -11,7 +11,7 @@ ScriptsOnlyBuild:
     - PhotonChatController
     - PhotonChatFriendController
     - PhotonConnector
-    - PhotonGameModeController
+    - PhotonGameSettingsController
     - PhotonRoomController
     - PhotonTeamController
     - PlayfabFriendController
@@ -35,6 +35,7 @@ ScriptsOnlyBuild:
     - UIGameMode
     - UIInvite
     - UIPlayerSelection
+    - UIRoundController
     - UITankSelection
     - UITeam
     - UIToggleButton
@@ -168,11 +169,35 @@ ScriptsOnlyBuild:
     fullTypeName: PlayfabLogin
     methodName: LoginButton
   - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UITeam
+    methodName: SwitchToTeam
+  - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickItem
   - assembly: Assembly-CSharp
-    fullTypeName: UITeam
-    methodName: SwitchToTeam
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: InviteFriend
@@ -185,33 +210,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: DeclineInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UITeam
     methodName: SwitchToTeam
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIGameMode
     methodName: OnClickChooseGameMode
@@ -221,6 +222,9 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: UIToggleButton
     methodName: ToggleObject
+  - assembly: Assembly-CSharp
+    fullTypeName: UIRoundController
+    methodName: OnClickRoundCount
   - assembly: Assembly-CSharp
     fullTypeName: PhotonRoomController
     methodName: OnClickCreate
@@ -240,11 +244,17 @@ ScriptsOnlyBuild:
     fullTypeName: UIAddFriend
     methodName: AddFriend
   - assembly: Assembly-CSharp
-    fullTypeName: PhotonGameModeController
+    fullTypeName: UIRoundController
+    methodName: OnClickRoundCount
+  - assembly: Assembly-CSharp
+    fullTypeName: PhotonGameSettingsController
     methodName: ChooseGameMode
   - assembly: Assembly-CSharp
     fullTypeName: UIGameMode
     methodName: OnClickChooseGameMode
+  - assembly: Assembly-CSharp
+    fullTypeName: UIRoundController
+    methodName: OnClickRoundCount
   - assembly: Assembly-CSharp
     fullTypeName: UITankSelection
     methodName: OnClickLeftArrow
@@ -276,8 +286,6 @@ ScriptsOnlyBuild:
     - Class: 65
       Script: {instanceID: 0}
     - Class: 81
-      Script: {instanceID: 0}
-    - Class: 89
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -381,8 +389,6 @@ ScriptsOnlyBuild:
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
-      Script: {instanceID: 0}
-    - Class: 89
       Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
@@ -543,8 +549,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -627,6 +631,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 9012}
     - Class: 114
       Script: {instanceID: 9078}
+    - Class: 114
+      Script: {instanceID: 28848}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1348,10 +1354,10 @@ ScriptsOnlyBuild:
     className: PlayerAnimatorManager
   - hash:
       serializedVersion: 2
-      Hash: 05f6729d3a7ade34b3606a2b90648cef
+      Hash: 4675dc9bd12d30098aa2d877b8539ef9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: PhotonGameModeController
+    className: PhotonGameSettingsController
   - hash:
       serializedVersion: 2
       Hash: 74c875e0f15c48e0a55f06093aa93e15
@@ -1792,7 +1798,7 @@ ScriptsOnlyBuild:
     className: IngameControlPanel
   - hash:
       serializedVersion: 2
-      Hash: 04155db4464c1da7366d092386250291
+      Hash: 08916869aefc4d9deadaa65ca4595431
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIDisplayRoom
@@ -2558,6 +2564,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: a97d5c09326b9db95724dea1956b7afc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIRoundController
   platform: 19
   scenePathNames:
   - Assets/Scenes/Login.unity

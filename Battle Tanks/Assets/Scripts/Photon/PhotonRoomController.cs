@@ -11,6 +11,8 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
     [SerializeField] private GameMode selectedGameMode;
     [SerializeField] private GameMode[] availableGameModes;
     [SerializeField] TMP_InputField createInput;
+
+    int numberOfRounds;
     
 
     private const string GAME_MODE = "GAMEMODE";
@@ -19,12 +21,11 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
     public static Action<GameMode> OnJoinRoom = delegate { };
     public static Action OnRoomLeft = delegate { };
     public static Action<Player> OnOtherPlayerLeftRoom = delegate { };
-    public static Action<GameMode> OnGameModeSelected = delegate { };
+    public static Action<GameMode, int> OnGameSettingsSelected = delegate { };
     public static Action OnStartGame = delegate { };
 
     private void Awake()
     {
-        PhotonRoomController.OnGameModeSelected += HandleGameModeSelected;
         UIInvite.OnRoomInviteAccept += HandleRoomInviteAccept;
         PhotonConnector.OnLobbyJoined += HandleLobbyJoined;
         UIDisplayRoom.OnLeaveRoom += HandleLeaveRoom;
@@ -33,19 +34,10 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
 
     private void OnDestroy()
     {
-        PhotonRoomController.OnGameModeSelected -= HandleGameModeSelected;
         UIInvite.OnRoomInviteAccept -= HandleRoomInviteAccept;
         PhotonConnector.OnLobbyJoined -= HandleLobbyJoined;
         UIDisplayRoom.OnLeaveRoom -= HandleLeaveRoom;
         UIFriend.OnGetRoomStatus -= HandleGetRoomStatus;
-    }
-
-    private void HandleGameModeSelected(GameMode gameMode)
-    {
-        if (!PhotonNetwork.IsConnectedAndReady) return;
-        if (!PhotonNetwork.InRoom) return;
-
-        selectedGameMode = gameMode;
     }
 
     private void HandleRoomInviteAccept(string roomName)
@@ -188,18 +180,20 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
 
         Debug.Log("some room property changed");
 
-        if (propertiesThatChanged.ContainsKey("GAMEMODE"))
+        if (propertiesThatChanged.ContainsKey("GAMEMODE") && propertiesThatChanged.ContainsKey("NUMBEROFROUNDS"))
         {
             for (int i = 0; i < availableGameModes.Length; i++)
             {
                 if (availableGameModes[i].Name == propertiesThatChanged["GAMEMODE"].ToString())
                 {
                     selectedGameMode = availableGameModes[i];
-                    OnGameModeSelected?.Invoke(selectedGameMode);
-
                     break;
                 }
             }
+
+            numberOfRounds = (int)propertiesThatChanged["NUMBEROFROUNDS"];
+
+            OnGameSettingsSelected?.Invoke(selectedGameMode, numberOfRounds);
         }
         else if (propertiesThatChanged.ContainsKey("TEAMS"))
         {
