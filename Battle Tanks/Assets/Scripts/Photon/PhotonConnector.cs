@@ -14,45 +14,29 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
     public static Action GetPhotonFriends = delegate { };
     public static Action OnLobbyJoined = delegate { };
     private void Start()
-    {    
-        ConnectToPhoton(nickName);
+    {
+        if (!PhotonNetwork.InRoom && !PhotonNetwork.InLobby)
+        {
+            ConnectToPhoton(nickName);
+        }
+        else if (!PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
+        Debug.Log(PhotonNetwork.InRoom);
+        Debug.Log(PhotonNetwork.InLobby);
+        Debug.Log(PhotonNetwork.IsConnectedAndReady);
     }
 
     private void Awake()
     {
         nickName = PlayerPrefs.GetString("USERNAME");
-        //UIInvite.OnRoomInviteAccept += HandleRoomInviteAccept;
     }
 
     private void OnDestroy()
     {
         //UIInvite.OnRoomInviteAccept -= HandleRoomInviteAccept;
     }
-
-    /*private void CreatePhotonRoom(string roomName)
-    {
-        RoomOptions ro = new RoomOptions();
-        ro.IsOpen = true;
-        ro.IsVisible = true;
-        ro.MaxPlayers = 4;
-        PhotonNetwork.JoinOrCreateRoom(roomName, ro, TypedLobby.Default);
-    }
-
-    private void HandleRoomInviteAccept(string roomName)
-    {
-        PlayerPrefs.SetString("PHOTONROOM", roomName);
-        if (PhotonNetwork.InRoom)
-        {
-            PhotonNetwork.LeaveRoom();
-        }
-        else
-        {
-            if (PhotonNetwork.InLobby)
-            {
-                JoinPlayerRoom();
-            }
-        }
-    }*/
 
     private void JoinPlayerRoom()
     {
@@ -84,5 +68,10 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
         Debug.Log($"You have connected to a Photon Lobby");
         GetPhotonFriends?.Invoke();
         OnLobbyJoined?.Invoke();
+    }
+
+    public override void OnLeftRoom()
+    {
+        PhotonNetwork.ConnectUsingSettings();
     }
 }

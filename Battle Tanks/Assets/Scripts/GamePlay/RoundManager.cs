@@ -7,6 +7,7 @@ using System;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using UnityEngine.UI;
+using Photon.Pun.Demo.Cockpit;
 
 public class RoundManager : MonoBehaviourPunCallbacks
 {
@@ -20,7 +21,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
     private float roundTimer;
 
-    private int roundNumber;
+    private int currentRoundNumber;
     private int numberOfRounds;
 
     [Header("---Round Win Screen---")]
@@ -39,23 +40,28 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
     private PhotonTeam currentlyWon;
 
+    private bool waitingForPlayerToLeave;
+    private bool gameOver;
+
+    public static Action OnGameOver = delegate { };
+
     private void Awake()
     {
+        numberOfRounds = (int)PhotonNetwork.CurrentRoom.CustomProperties["NUMBEROFROUNDS"];
+
         GameManager.OnStartGame += HandleStartGame;
-        GameManager.OnGenerateMap += HandleGenerateMap;
         GameManager.OnRoundWon += HandleRoundWon;
     }
 
     private void OnDestroy()
     {
         GameManager.OnStartGame -= HandleStartGame;
-        GameManager.OnGenerateMap -= HandleGenerateMap;
         GameManager.OnRoundWon -= HandleRoundWon;
     }
 
     private void Update()
     {
-        if (roundScreen.activeSelf)
+        if (roundScreen.activeSelf && !gameOver)
         {
             roundTimer -= Time.deltaTime;
             roundTimeText.text = Mathf.RoundToInt(roundTimer).ToString();
@@ -78,11 +84,18 @@ public class RoundManager : MonoBehaviourPunCallbacks
                 HandleNewRound();
             }
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            OnGameOver?.Invoke();
+        }
     }
 
     private void HandleStartGame()
     {
         PhotonNetwork.LocalPlayer.CustomProperties["teamRoundScore"] = 0;
+        currentRoundNumber = 1;
+        UpdateRoundNumber(currentRoundNumber);
         HandleNewRound();
     }
 
@@ -94,17 +107,9 @@ public class RoundManager : MonoBehaviourPunCallbacks
         OnRoundStarted?.Invoke();
     }
 
-    private void HandleGenerateMap(Vector2 size, GameMode gm)
-    {
-        PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "roundNumber", 1 } });
-    }
-
     public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
     {
-        if (propertiesThatChanged.ContainsKey("roundNumber"))
-        {
-            UpdateRoundNumber((int)propertiesThatChanged["roundNumber"]);
-        }
+        
     }
 
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
@@ -122,6 +127,14 @@ public class RoundManager : MonoBehaviourPunCallbacks
     }
 
     private void UpdateWinScreen(PhotonTeam winningTeam)
+    {
+        UpdateScoreLine();
+
+        winningTeamImage.color = teamInfo.teamColors[winningTeam.Code - 1];
+        winTeamText.text = $"{teamInfo.teamNames[winningTeam.Code - 1]} Team Won the Round!";
+    }
+
+    private void UpdateScoreLine()
     {
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
         {
@@ -141,15 +154,43 @@ public class RoundManager : MonoBehaviourPunCallbacks
             }
         }
 
-        winningTeamImage.color = teamInfo.teamColors[winningTeam.Code - 1];
-        winTeamText.text = $"{teamInfo.teamNames[winningTeam.Code - 1]} Team Won the Round!";
-
         yourTeamImage.color = teamInfo.teamColors[PhotonNetwork.LocalPlayer.GetPhotonTeam().Code - 1];
         yourTeamScoreText.text = PhotonNetwork.LocalPlayer.CustomProperties["teamRoundScore"].ToString();
     }
 
+    private PhotonTeam GetLeadingTeam()
+    {
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
+        {
+            if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
+            {
+                if ((int)PhotonNetwork.PlayerList[i].CustomProperties["teamRoundScore"] > (int)PhotonNetwork.LocalPlayer.CustomProperties["teamRoundScore"])
+                {
+                    return PhotonNetwork.PlayerList[i].GetPhotonTeam();
+                }
+            }
+        }
+
+        return PhotonNetwork.LocalPlayer.GetPhotonTeam();
+    }
+
+    private void GameOverScreen()
+    {
+        UpdateScoreLine();
+        RoundWinScreen.SetActive(true);
+        waitingForPlayerToLeave = true;
+        gameOver = true;
+
+        PhotonTeam winningTeam = GetLeadingTeam();
+
+        winningTeamImage.color = teamInfo.teamColors[winningTeam.Code - 1];
+        winTeamText.text = $"{teamInfo.teamNames[winningTeam.Code - 1]} Team Won the Game!";
+    }
+
     private void HandleRoundWon(PhotonTeam team)
     {
+        currentRoundNumber++;
+
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
         {
             if (PhotonNetwork.PlayerList[i].GetPhotonTeam() == team)
@@ -167,9 +208,13 @@ public class RoundManager : MonoBehaviourPunCallbacks
             }
         }
 
-        int roundNumber = (int)PhotonNetwork.CurrentRoom.CustomProperties["roundNumber"] + 1;
+        if (currentRoundNumber > numberOfRounds)
+        {
+            GameOverScreen();
+            return;
+        }
 
-        PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "roundNumber", roundNumber } });
+        UpdateRoundNumber(currentRoundNumber);
         RoundWinScreen.SetActive(true);
         winTimer = winScreenTime;
         UpdateWinScreen(team);

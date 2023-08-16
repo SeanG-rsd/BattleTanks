@@ -169,35 +169,11 @@ ScriptsOnlyBuild:
     fullTypeName: PlayfabLogin
     methodName: LoginButton
   - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UITeam
-    methodName: SwitchToTeam
-  - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickItem
   - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
+    fullTypeName: UITeam
+    methodName: SwitchToTeam
   - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: InviteFriend
@@ -210,9 +186,33 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UITeam
     methodName: SwitchToTeam
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIGameMode
     methodName: OnClickChooseGameMode
@@ -287,6 +287,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 89
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -336,17 +338,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7706}
     - Class: 114
-      Script: {instanceID: 8502}
+      Script: {instanceID: 8504}
     - Class: 114
-      Script: {instanceID: 8596}
+      Script: {instanceID: 8598}
     - Class: 114
-      Script: {instanceID: 8650}
+      Script: {instanceID: 8652}
     - Class: 114
-      Script: {instanceID: 8662}
+      Script: {instanceID: 8664}
     - Class: 114
-      Script: {instanceID: 8968}
+      Script: {instanceID: 8970}
     - Class: 114
-      Script: {instanceID: 9078}
+      Script: {instanceID: 9080}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -389,6 +391,8 @@ ScriptsOnlyBuild:
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
       Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
@@ -495,15 +499,15 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 8196}
     - Class: 114
-      Script: {instanceID: 8596}
+      Script: {instanceID: 8598}
     - Class: 114
-      Script: {instanceID: 8736}
+      Script: {instanceID: 8738}
     - Class: 114
-      Script: {instanceID: 8968}
+      Script: {instanceID: 8970}
     - Class: 114
-      Script: {instanceID: 9012}
+      Script: {instanceID: 9014}
     - Class: 114
-      Script: {instanceID: 9092}
+      Script: {instanceID: 9094}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -548,6 +552,8 @@ ScriptsOnlyBuild:
     - Class: 48
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 89
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -626,13 +632,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 8248}
     - Class: 114
-      Script: {instanceID: 8592}
+      Script: {instanceID: 8376}
     - Class: 114
-      Script: {instanceID: 9012}
+      Script: {instanceID: 8594}
     - Class: 114
-      Script: {instanceID: 9078}
+      Script: {instanceID: 9014}
     - Class: 114
-      Script: {instanceID: 28848}
+      Script: {instanceID: 9080}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2356,6 +2362,12 @@ ScriptsOnlyBuild:
     className: ConnectionHandler
   - hash:
       serializedVersion: 2
+      Hash: a97d5c09326b9db95724dea1956b7afc
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIRoundController
+  - hash:
+      serializedVersion: 2
       Hash: 3ba023cd67d72cace33969ab863e0fd4
     assemblyName: PhotonUnityNetworking.Utilities.dll
     namespaceName: Photon.Pun.UtilityScripts
@@ -2564,12 +2576,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: a97d5c09326b9db95724dea1956b7afc
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: UIRoundController
   platform: 19
   scenePathNames:
   - Assets/Scenes/Login.unity

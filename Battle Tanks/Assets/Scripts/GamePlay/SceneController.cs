@@ -1,6 +1,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using System;
+using Photon.Pun;
 
 public class SceneController : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class SceneController : MonoBehaviour
     private void Awake()
     {
         PhotonRoomController.OnStartGame += HandleStartGame;
+        RoundManager.OnGameOver += ReturnToLobby;
     }
 
     private void OnDestroy()
     {
         PhotonRoomController.OnStartGame -= HandleStartGame;
+        RoundManager.OnGameOver -= ReturnToLobby;
     }
 
     private void HandleStartGame()
@@ -23,5 +26,11 @@ public class SceneController : MonoBehaviour
     public static void LoadScene(string name)
     {
         SceneManager.LoadScene(name);
+    }
+
+    private void ReturnToLobby()
+    {    
+
+        LoadScene("MainMenu");
     }
 }

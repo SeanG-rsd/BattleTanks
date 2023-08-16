@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class UIDisplayRoom : MonoBehaviour
 {
-    // Start is called before the first frame update
     [SerializeField] private TMP_Text roomGameModeText;
     [SerializeField] private TMP_Text roomRoundNumText;
     [SerializeField] private GameObject exitButton;
