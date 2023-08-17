@@ -29,8 +29,10 @@ public class SceneController : MonoBehaviour
     }
 
     private void ReturnToLobby()
-    {    
+    {
+        //PhotonNetwork.LeaveRoom();
+        //PhotonNetwork.LeaveLobby();
 
-        LoadScene("MainMenu");
+        PhotonNetwork.LoadLevel("MainMenu");
     }
 }

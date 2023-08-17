@@ -43,6 +43,8 @@ public class RoundManager : MonoBehaviourPunCallbacks
     private bool waitingForPlayerToLeave;
     private bool gameOver;
 
+    [SerializeField] private GameObject returnToLobbyObject;
+
     public static Action OnGameOver = delegate { };
 
     private void Awake()
@@ -85,7 +87,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
             }
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && waitingForPlayerToLeave)
         {
             OnGameOver?.Invoke();
         }
@@ -177,6 +179,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
     private void GameOverScreen()
     {
         UpdateScoreLine();
+        returnToLobbyObject.SetActive(true);
         RoundWinScreen.SetActive(true);
         waitingForPlayerToLeave = true;
         gameOver = true;

@@ -13,36 +13,29 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
     [SerializeField] private string nickName;
     public static Action GetPhotonFriends = delegate { };
     public static Action OnLobbyJoined = delegate { };
+    public static Action OnRejoinLobby = delegate { };
+
+    [SerializeField] private UIDisplayRoom uiRoom;
     private void Start()
     {
-        if (!PhotonNetwork.InRoom && !PhotonNetwork.InLobby)
+        Debug.Log("start");
+
+        if (PhotonNetwork.InRoom)
         {
+            Debug.Log("is in room");
+            uiRoom.LeaveRoom();
+        }
+        if (!PhotonNetwork.InRoom)
+        {
+
             ConnectToPhoton(nickName);
         }
-        else if (!PhotonNetwork.InLobby)
-        {
-            PhotonNetwork.LeaveRoom();
-        }
-        Debug.Log(PhotonNetwork.InRoom);
-        Debug.Log(PhotonNetwork.InLobby);
-        Debug.Log(PhotonNetwork.IsConnectedAndReady);
+       
     }
 
     private void Awake()
     {
         nickName = PlayerPrefs.GetString("USERNAME");
-    }
-
-    private void OnDestroy()
-    {
-        //UIInvite.OnRoomInviteAccept -= HandleRoomInviteAccept;
-    }
-
-    private void JoinPlayerRoom()
-    {
-        string roomName = PlayerPrefs.GetString("PHOTONROOM");
-        PhotonNetwork.JoinRoom(roomName);
-        PlayerPrefs.SetString("PHOTONROOM", "");
     }
 
     private void ConnectToPhoton(string nickName)
@@ -51,13 +44,21 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
         PhotonNetwork.AuthValues = new AuthenticationValues(nickName);
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NickName = nickName;
-        PhotonNetwork.ConnectUsingSettings();
+        if (!PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+            
+        }
+        else
+        {
+            Debug.Log("player is already connected");
+        }
     }
 
     public override void OnConnectedToMaster()
     {
         Debug.Log($"You have connected to the Photon Master Server");
-        if (!PhotonNetwork.InLobby)
+        if (!PhotonNetwork.InLobby && !PhotonNetwork.InRoom)
         {
             PhotonNetwork.JoinLobby();
         }
@@ -72,6 +73,8 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
 
     public override void OnLeftRoom()
     {
+        Debug.LogWarning("leftRoom");
         PhotonNetwork.ConnectUsingSettings();
+        Debug.Log("connecting to master");
     }
 }

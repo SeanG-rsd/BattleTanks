@@ -5,7 +5,6 @@ ScriptsOnlyBuild:
     - CameraMovement
     - GameManager
     - GameMode
-    - MapCell
     - MapGeneator
     - MapWall
     - PhotonChatController
@@ -214,6 +213,9 @@ ScriptsOnlyBuild:
     fullTypeName: UIInvite
     methodName: DeclineInvite
   - assembly: Assembly-CSharp
+    fullTypeName: UIDisplayRoom
+    methodName: LeaveRoom
+  - assembly: Assembly-CSharp
     fullTypeName: UIGameMode
     methodName: OnClickChooseGameMode
   - assembly: Assembly-CSharp
@@ -287,8 +289,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -299,8 +299,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 1574}
     - Class: 114
       Script: {instanceID: 1964}
-    - Class: 114
-      Script: {instanceID: 2154}
     - Class: 114
       Script: {instanceID: 2408}
     - Class: 114
@@ -348,6 +346,8 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 8970}
     - Class: 114
+      Script: {instanceID: 9014}
+    - Class: 114
       Script: {instanceID: 9080}
     - Class: 115
       Script: {instanceID: 0}
@@ -392,8 +392,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -422,8 +420,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 1878}
     - Class: 114
       Script: {instanceID: 1964}
-    - Class: 114
-      Script: {instanceID: 2154}
     - Class: 114
       Script: {instanceID: 2238}
     - Class: 114
@@ -552,8 +548,6 @@ ScriptsOnlyBuild:
     - Class: 48
       Script: {instanceID: 0}
     - Class: 81
-      Script: {instanceID: 0}
-    - Class: 89
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
@@ -826,12 +820,6 @@ ScriptsOnlyBuild:
     className: DemoHubManager
   - hash:
       serializedVersion: 2
-      Hash: 61c46783f79d72ec02a77d103bc6c9d1
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MapCell
-  - hash:
-      serializedVersion: 2
       Hash: ba160f8fe96116c81151a9a24d7d9f4f
     assemblyName: PhotonUnityNetworking.Demos.dll
     namespaceName: Photon.Pun.Demo.Cockpit
@@ -916,7 +904,7 @@ ScriptsOnlyBuild:
     className: CurrentRoomIsOpenToggle
   - hash:
       serializedVersion: 2
-      Hash: 888bfecefc610c4abbf1ef2bf31e9276
+      Hash: ef8985ef17c3c7597086d858aba47a4a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MapGenTest
@@ -1672,7 +1660,7 @@ ScriptsOnlyBuild:
     className: SmoothSyncMovement
   - hash:
       serializedVersion: 2
-      Hash: e2aa12acaf625dc68a11c310bb77abe0
+      Hash: 5fbed3f3a79facd4e2b58c8b8891f517
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoundManager
@@ -2290,7 +2278,7 @@ ScriptsOnlyBuild:
     className: CurrentRoomExpectedUsersProperty
   - hash:
       serializedVersion: 2
-      Hash: 648e06e8104207f8f7ce98ff39ef6e74
+      Hash: b7b42234d497025963ab37dd5b889d6e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PhotonConnector
@@ -2392,7 +2380,7 @@ ScriptsOnlyBuild:
     className: UnityOnMouseOverMessageListener
   - hash:
       serializedVersion: 2
-      Hash: b6ace2aeee25abc28b7807ca063c1b67
+      Hash: 5ca0b1c003caf94cc1f974e9474e8f35
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MapGeneator

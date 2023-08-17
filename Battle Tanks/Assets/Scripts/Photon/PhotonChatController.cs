@@ -17,6 +17,9 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
     // Start is called before the first frame update
     private void Awake()
     {
+        chatClient = new ChatClient(this);
+        ConnectToPhotonChat();
+
         nickName = PlayerPrefs.GetString("USERNAME");
         UIFriend.OnInviteFriend += HandleFriendInvite;
     }
@@ -27,8 +30,7 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
     }
     private void Start()
     {
-        chatClient = new ChatClient(this);
-        ConnectToPhotonChat();
+        
     }
 
     // Update is called once per frame
@@ -110,7 +112,7 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
 
     public void OnStatusUpdate(string user, int status, bool gotMessage, object message)
     {
-        Debug.Log($"Photon Cchat OnStatusUpdate: {user} changed to {status}: {message}");
+        Debug.Log($"Photon Chat OnStatusUpdate: {user} changed to {status}: {message}");
         PhotonStatus newStatus = new PhotonStatus(user, status, (string)message);
         Debug.Log($"Status Update for {user} and its not {status}.");
         Debug.Log(ChatUserStatus.Online);

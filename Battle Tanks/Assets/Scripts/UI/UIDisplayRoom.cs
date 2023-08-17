@@ -36,6 +36,7 @@ public class UIDisplayRoom : MonoBehaviour
         PhotonRoomController.OnGameSettingsSelected += HandleGameModeSelected;
         PhotonRoomController.OnJoinRoom += HandleJoinRoom;
         PhotonRoomController.OnRoomLeft += HandleRoomLeft;
+        
     }
 
     private void OnDestroy()

@@ -35,7 +35,9 @@ public class MapGenTest : MonoBehaviour
 
     public static Action OnTestMapGen = delegate { };
 
-    private Dictionary<WallInfo, GameObject> walls;
+    private List<WallInfo> walls;
+
+    private List<List<WallInfo>> cells;
 
     private List<Direction> directions = new List<Direction>() { Direction.left, Direction.right, Direction.up, Direction.down };
 
@@ -51,26 +53,26 @@ public class MapGenTest : MonoBehaviour
     {
         towerPositions = new List<Vector3>();
 
-        walls = new Dictionary<WallInfo, GameObject>();
+        walls = new List<WallInfo>();
+
+        cells = new List<List<WallInfo>>();
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DestroyCurrentMap();
-            towerPositions.Clear();
-            walls.Clear();
             HandleMapGeneration(possibleMapSizes[0], availableGameModes[0]);
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            GuaranteePlayability();
+            
         }
     }
 
     private void DestroyCurrentMap()
     {
+        towerPositions.Clear();
+        walls.Clear();
+        cells.Clear();
+
         for (int i = 0; i < cellContainer.childCount; ++i)
         {
             Destroy(cellContainer.GetChild(i).gameObject);
@@ -87,13 +89,12 @@ public class MapGenTest : MonoBehaviour
         this.gridSize = gridSize;
         HandleWalls();
         HandleCells();
-        //this.selectedGameMode = selectedGameMode;
-        HandleGameMode(selectedGameMode);
-        DeleteWalls();
 
-        //OnTestMapGen?.Invoke();
-        Debug.Log("playability");
+        HandleGameMode(selectedGameMode);
+
+        DeleteWalls();
         GuaranteePlayability();
+        DoPhysicalMap();
     }
 
     private void HandleWalls()
@@ -165,6 +166,7 @@ public class MapGenTest : MonoBehaviour
             {
 
                 GameObject newCell = Instantiate(cellPrefab, cellContainer.position, Quaternion.identity);
+                List<WallInfo> cellInfo = new List<WallInfo>();
 
                 Vector3 newCellPos = Vector3.zero;
 
@@ -199,33 +201,98 @@ public class MapGenTest : MonoBehaviour
                 for (int i = 0; i < newCell.transform.childCount; i++)
                 {
                     newCell.transform.GetChild(i).gameObject.GetComponent<MapWall>().position = new Vector2(x - 1, z - 1);
+                    WallInfo newWall = new WallInfo() { position = new Vector2(x - 1, z - 1), orientation = wallOrientationsForCell[i] };
+                    newWall.isTouchingBorder = GetWallBool(newWall);
+                    Debug.Log($"Added {newWall.position} with {newWall.orientation} and {newWall.isTouchingBorder}");
 
+                    cellInfo.Add(newWall);
                 }
+
+                cells.Add(cellInfo);
             }
         }
     }
 
+    public List<WallType.WallOrientation> wallOrientationsForCell = new List<WallType.WallOrientation>() { WallType.WallOrientation.Horizontal, WallType.WallOrientation.Vertical };
+
+    /*private void HandleCells()
+    {
+        int max = (int)(originalWallScale * gridSize.x / 2);
+
+        int xIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+        int zIndex = (int)UnityEngine.Random.Range(1, gridSize.y);
+
+        for (int z = 1; z <= gridSize.y; ++z)
+        {
+            for (int x = 1; x <= gridSize.x; ++x)
+            {
+                List<WallInfo> cellInfo = new List<WallInfo>();
+
+                Vector3 newCellPos = Vector3.zero;
+
+                newCellPos.y = 1.5f;
+
+                newCellPos.x = -max + (originalWallScale * x);
+                newCellPos.z = max - (originalWallScale * z);
+
+                if (z == 1 && x == xIndex)
+                {
+                    Vector3 towerPos = newCellPos;
+                    towerPos.x -= originalWallScale / 2;
+                    towerPos.z += originalWallScale / 2;
+                    towerPos.y = 1.6657f;
+
+                    towerPositions.Add(towerPos);
+                }
+                else if (z == gridSize.y && x == zIndex)
+                {
+                    Vector3 towerPos = newCellPos;
+                    towerPos.x -= originalWallScale / 2;
+                    towerPos.z += originalWallScale / 2;
+                    towerPos.y = 1.6657f;
+
+                    towerPositions.Add(towerPos);
+                }
+
+                for (int i = 0; i < 2; i++)
+                {
+                    WallInfo newWall = new WallInfo() { position = new Vector2(x - 1, z - 1), orientation = cellPrefab.GetComponent<MapCell>().wallOrientations[i] };
+                    newWall.isTouchingBorder = GetWallBool(newWall);
+                    Debug.Log($"Added {newWall.position} with {newWall.orientation} and {newWall.isTouchingBorder}");
+
+                    cellInfo.Add(newWall);
+                }
+
+                cells.Add(cellInfo);
+            }
+        }
+    }*/
+
     private void DeleteWalls()
     {
         Debug.Log("deleteWalls");
+        SetDictionary();
+        Debug.Log(cells.Count);
 
-        for (int i = 0; i < cellContainer.childCount; i++)
+        for (int i = 0; i < cells.Count; i++)
         {
-            GameObject mapCell = cellContainer.GetChild(i).gameObject;
+            
             int second = UnityEngine.Random.Range(0, 100);
 
             if (second > 75)
             {
-                Destroy(mapCell.transform.GetChild(0).gameObject);
-                Destroy(mapCell.transform.GetChild(1).gameObject);
-                return;
+                cells[i].RemoveAt(1);
+                cells[i].RemoveAt(0);
+
+                continue;
             }
 
-            int choice = UnityEngine.Random.Range(0, mapCell.transform.childCount);
+            int choice = UnityEngine.Random.Range(0, cells[i].Count);
 
-            Destroy(mapCell.transform.GetChild(choice).gameObject);
+            cells[i].RemoveAt(choice);
         }
 
+        SetDictionary();
     }
 
     private void HandleGameMode(GameMode gameMode)
@@ -325,13 +392,11 @@ public class MapGenTest : MonoBehaviour
     {
         walls.Clear();
 
-        for (int i = 0; i < cellContainer.childCount; ++i)
+        for (int i = 0; i < cells.Count; ++i)
         {
-            for (int ii = 0; ii < cellContainer.GetChild(i).childCount; ++ii)
+            for (int ii = 0; ii < cells[i].Count; ++ii)
             {
-                WallInfo newWallInfo = GetInfo(cellContainer.GetChild(i).GetChild(ii).gameObject);
-
-                walls.Add(newWallInfo, cellContainer.GetChild(i).GetChild(ii).gameObject);
+                walls.Add(cells[i][ii]);
             }
         }
 
@@ -437,19 +502,11 @@ public class MapGenTest : MonoBehaviour
         {
             if (!visited.Contains(positionsToVisit[0]))
             {
-                //Debug.LogWarning($"Advancing to {positionsToVisit[0]}");
-
                 Dictionary<Direction, WallInfo> surroundingWalls = GetSurroundingWallInfo(positionsToVisit[0]);
 
                 for (int i = 0; i < surroundingWalls.Count; i++)
                 {
-                    GameObject value;
-
-                    if (walls.TryGetValue(surroundingWalls[directions[i]], out value))
-                    {
-                        //Debug.Log($"{surroundingWalls[directions[i]].position} in the {directions[i]} direction for {positionsToVisit[0]}");
-                    } 
-                    else
+                    if (!walls.Contains(surroundingWalls[directions[i]]))
                     {
                         Vector2 newLocation = GetPositionInDirection(positionsToVisit[0], directions[i]);
                         if (newLocation != positionsToVisit[0] && !positionsToVisit.Contains(newLocation))
@@ -457,7 +514,8 @@ public class MapGenTest : MonoBehaviour
                             //Debug.Log($"{directions[i]} has no wall... adding {GetPositionInDirection(positionsToVisit[0], directions[i])}");
                             positionsToVisit.Add(GetPositionInDirection(positionsToVisit[0], directions[i]));
                         }
-                    }
+                    } 
+                    
                 }
             }
 
@@ -492,102 +550,102 @@ public class MapGenTest : MonoBehaviour
     private void GuaranteePlayability()
     {
         List<List<WallInfo>> listsOfInfo = new List<List<WallInfo>>();
-        List<List<GameObject>> allSegements = new List<List<GameObject>>();
+        List<List<WallInfo>> allSegements = new List<List<WallInfo>>();
 
-        List<GameObject> checkedWalls = new List<GameObject>();
+        List<WallInfo> checkedWalls = new List<WallInfo>();
         SetDictionary();
 
-        for (int i = 0; i < cellContainer.childCount; i++)
-        { 
-            for (int wallCount = 0; wallCount < cellContainer.GetChild(i).childCount; wallCount++)
+        for (int wallCount = 0; wallCount < walls.Count; wallCount++)
+        {
+            WallInfo newWallInfo = walls[wallCount];
+
+            listsOfInfo.Add(GetPossibleInfo(newWallInfo));
+
+            List<WallInfo> segment = new List<WallInfo>() { walls[wallCount] };
+        
+
+
+            while (listsOfInfo.Count > 0)
             {
-                WallInfo newWallInfo = GetInfo(cellContainer.GetChild(i).GetChild(wallCount).gameObject);
-                
-
-                GameObject value;
-
-                listsOfInfo.Add(GetPossibleInfo(newWallInfo));
-
-                List<GameObject> segment = new()
-                    {
-                        cellContainer.GetChild(i).GetChild(wallCount).gameObject
-                    };
-
-                while (listsOfInfo.Count > 0)
+                for (int ii = 0; ii < listsOfInfo[0].Count; ii++)
                 {
-                    for (int ii = 0; ii < listsOfInfo[0].Count; ii++)
+                    if (walls.Contains(listsOfInfo[0][ii]))
                     {
-                        if (walls.TryGetValue(listsOfInfo[0][ii], out value))
+                        if (!segment.Contains(walls[wallCount]) && IsWithinGrid(listsOfInfo[0][ii].position))
                         {
-                            if (!segment.Contains(value) && IsWithinGrid(listsOfInfo[0][ii].position))
-                            {
-                                newWallInfo = GetInfo(value);
-                                segment.Add(value);
+                            segment.Add(listsOfInfo[0][ii]);
 
-                                listsOfInfo.Add(GetPossibleInfo(newWallInfo));
-                            }
+                            listsOfInfo.Add(GetPossibleInfo(newWallInfo));
                         }
                     }
-
-                    listsOfInfo.RemoveAt(0);
                 }
 
-                if (segment.Count > 1)
+                listsOfInfo.RemoveAt(0);
+            }
+
+            if (segment.Count > 1)
+            {
+                bool hasSeenBefore = true;
+
+                for (int h = 0; h < segment.Count; h++)
                 {
-                    bool hasSeenBefore = true;
-
-                    for (int h = 0; h < segment.Count; h++)
+                    if (checkedWalls.Contains(segment[h]))
                     {
-                        if (checkedWalls.Contains(segment[h]))
-                        {
-                            hasSeenBefore = true;
-                            break;
-                        }
+                        hasSeenBefore = true;
+                        break;
+                    }
 
-                        hasSeenBefore = false;
-                    }
-                    if (!hasSeenBefore)
-                    {
-                        allSegements.Add(segment);
-                    }
+                    hasSeenBefore = false;
                 }
-
-                foreach (GameObject list in segment)
+                if (!hasSeenBefore)
                 {
-                    checkedWalls.Add(list);
+                    allSegements.Add(segment);
                 }
+            }
+
+            foreach (WallInfo list in segment)
+            {
+                checkedWalls.Add(list);
             }
         }
 
-        while(FloodFillCheck().Count > 0)
+        while (FloodFillCheck().Count > 0)
         {
             List<Vector2> boxedPositions = FloodFillCheck();
 
-            RemoveBoxes(boxedPositions[UnityEngine.Random.Range(0, boxedPositions.Count)], allSegements);
+            RemoveBoxes(boxedPositions[UnityEngine.Random.Range(0, boxedPositions.Count)]);
         }
 
         Debug.LogWarning("flood fill check complete");
+        
     }
 
-    private void RemoveBoxes(Vector2 boxedPosition, List<List<GameObject>> allSegments)
+    private void RemoveBoxes(Vector2 boxedPosition)
     {
         Dictionary<Direction, WallInfo> surroundingWalls = GetSurroundingWallInfo(boxedPosition);
 
         for (int dir = 0; dir < surroundingWalls.Count; dir++)
         {
-            for (int i = 0; i < allSegments.Count; i++)
+            if (walls.Contains(surroundingWalls[directions[dir]]))
             {
-                GameObject value;
-                if (walls.TryGetValue(surroundingWalls[directions[dir]], out value))
+                walls.Remove(surroundingWalls[directions[dir]]);
+            }
+        }
+    }
+
+    private void DoPhysicalMap()
+    {
+        for (int i = 0; i < cellContainer.transform.childCount; i++)
+        {
+            for (int ii = 0; ii < cellContainer.transform.GetChild(i).childCount; ii++)
+            {
+                WallInfo check = new WallInfo() { orientation = cellContainer.transform.GetChild(i).GetChild(ii).gameObject.GetComponent<MapWall>().type, position = cellContainer.transform.GetChild(i).GetChild(ii).gameObject.GetComponent<MapWall>().position };
+                check.isTouchingBorder = GetWallBool(check);
+
+                if (!walls.Contains(check))
                 {
-                    if (allSegments[i].Contains(walls[surroundingWalls[directions[dir]]]))
-                    {
-                        walls.Remove(surroundingWalls[directions[dir]]);
-                        Destroy(value);
-                        return;
-                    }
+                    Destroy(cellContainer.transform.GetChild(i).GetChild(ii).gameObject);
                 }
-                
             }
         }
     }
