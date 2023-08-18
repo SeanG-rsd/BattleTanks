@@ -13,7 +13,7 @@ public class SpawnPlayers : MonoBehaviour
     public GameObject[] redPlayerPrefabs;
     GameObject playerToSpawn;
 
-    public TankRespawnPoint[] spawnPoints;
+    public List<TankRespawnPoint> spawnPoints;
 
     public float minX;
     public float maxX;
@@ -28,11 +28,30 @@ public class SpawnPlayers : MonoBehaviour
     private void Awake()
     {
         MapGeneator.OnMapGenerated += HandleSpawnPlayers;
+        MapGeneator.OnSoloTowersGen += HandleSoloGen;
     }
 
     private void OnDestroy()
     {
         MapGeneator.OnMapGenerated -= HandleSpawnPlayers;
+        MapGeneator.OnSoloTowersGen -= HandleSoloGen;
+    }
+
+    private void HandleSoloGen(List<GameObject> towers)
+    {
+        Debug.Log("handle solo gen");
+
+        for (int i = 0; i < spawnPoints.Count; ++i)
+        {
+            spawnPoints[i].gameObject.SetActive(false);
+        }
+
+        spawnPoints.Clear();
+
+        for (int i = 0; i < towers.Count; i++)
+        {
+            spawnPoints.Add(towers[i].GetComponent<TankRespawnPoint>());
+        }
     }
 
     private void HandleSpawnPlayers()
@@ -44,13 +63,23 @@ public class SpawnPlayers : MonoBehaviour
             playerToSpawn = bluePlayerPrefabs[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
 
         }
-        else if ((int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 2)
+        else if ((int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 2 || (int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 3)
         {
             playerToSpawn = redPlayerPrefabs[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
         }
 
         playerToSpawn.GetComponent<Tank>().teamIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"];
-        playerToSpawn.GetComponent<Tank>().respawnPoint = spawnPoints[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"] - 1];
+
+        for (int i = 0; i < spawnPoints.Count; i++)
+        {
+            if (spawnPoints[i].teamIndex == (int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code)
+            {
+                playerToSpawn.GetComponent<Tank>().respawnPoint = spawnPoints[i];
+                break;
+            }
+        }
+
+        //playerToSpawn.GetComponent<Tank>().respawnPoint = spawnPoints[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"] - 1];
 
         PhotonNetwork.LocalPlayer.CustomProperties["aliveState"] = 1;
 

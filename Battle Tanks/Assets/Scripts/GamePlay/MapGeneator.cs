@@ -1,5 +1,6 @@
 using ExitGames.Client.Photon;
 using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -45,12 +46,14 @@ public class MapGeneator : MonoBehaviourPunCallbacks
     [SerializeField] private int controlZoneScale;
 
     [SerializeField] private Vector2[] possibleMapSizes;
+    [SerializeField] private GameMode[] availableGameModes;
 
-    [SerializeField] private GameObject spawnTowerPrefab;
+    [SerializeField] private List<GameObject> soloSpawnTowerPrefabs;
     [SerializeField] private List<Vector3> soloSpawnTowerPositions;
     private List<int> soloTowerOrder = new List<int>() { 0, 2, 5, 7, 1, 6, 3, 4 };
 
     public static Action OnMapGenerated = delegate { };
+    public static Action<List<GameObject>> OnSoloTowersGen = delegate { };
 
     private List<WallInfo> walls;
 
@@ -322,38 +325,18 @@ public class MapGeneator : MonoBehaviourPunCallbacks
 
     private void HandleGameMode()
     {
-        if (selectedGameMode != null)
+        int index = 0;
+
+        for (int i = 0; i < availableGameModes.Length; i++)
         {
-            for (int i = 0; i < spawnTowers.Count; i++)
+            if (availableGameModes[i] == selectedGameMode)
             {
-                //spawnTowers[i].SetActive(selectedGameMode.HasTeams);
-                //this.GetComponent<PhotonView>().RPC("GameModeObjectOff", RpcTarget.AllBuffered, "tower", i, selectedGameMode.HasTeams);
-
-                spawnTowers[i].transform.localPosition = towerPositions[i];
+                index = i;
+                break;
             }
-
-            for (int i = 0; i < teamFlags.Count; i++)
-            {
-                //teamFlags[i].SetActive(selectedGameMode.HasFlag);
-                //this.GetComponent<PhotonView>().RPC("GameModeObjectOff", RpcTarget.AllBuffered, "flag", i, selectedGameMode.HasFlag);
-                //safeZoneObjects[i].SetActive(selectedGameMode.HasFlag);
-                //this.GetComponent<PhotonView>().RPC("GameModeObjectOff", RpcTarget.AllBuffered, "flag", i, selectedGameMode.HasFlag);
-
-                teamFlags[i].transform.localPosition = flagPositions[i];
-            }
-
-            //controlZoneObject.SetActive(selectedGameMode.HasZones);
-            //this.GetComponent<PhotonView>().RPC("GameModeObjectOff", RpcTarget.AllBuffered, "zone", 0, selectedGameMode.HasZones);
-
-            if (!selectedGameMode.HasTeams)
-            {
-                for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; i++)
-                {
-                    //GameObject newTower = Instantiate(spawnTowerPrefab, soloSpawnTowerPositions[soloTowerOrder[i]], Quaternion.identity); // fix for photon
-                }
-            }
-
         }
+
+        this.GetComponent<PhotonView>().RPC("GameModeObjectOff", RpcTarget.AllBuffered, index);
     }
 
     private List<WallInfo> GetPossibleInfo(WallInfo original)
@@ -699,24 +682,53 @@ public class MapGeneator : MonoBehaviourPunCallbacks
 
     [PunRPC]
     
-    void GameModeObjectOff(string list, int index, bool isActive)
+    void GameModeObjectOff(int gameModeIndex)     
     {
-        if (list == "tower")
+        Debug.LogError("punRPC");
+        selectedGameMode = availableGameModes[gameModeIndex];
+
+        if (selectedGameMode != null)
         {
-            spawnTowers[index].SetActive(isActive);
+            for (int i = 0; i < spawnTowers.Count; i++)
+            {
+                spawnTowers[i].SetActive(selectedGameMode.HasTeams);
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    spawnTowers[i].transform.localPosition = towerPositions[i];
+                }
+            }
+
+            for (int i = 0; i < teamFlags.Count; i++)
+            {
+                teamFlags[i].SetActive(selectedGameMode.HasFlag);
+                safeZoneObjects[i].SetActive(selectedGameMode.HasFlag);
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    teamFlags[i].transform.localPosition = flagPositions[i];
+                }
+            }
+
+            controlZoneObject.SetActive(selectedGameMode.HasZones);
+            Debug.Log($"{selectedGameMode.Name} has zones: {selectedGameMode.HasZones}");
+
+            if (!selectedGameMode.HasTeams && PhotonNetwork.IsMasterClient)
+            {
+                List<GameObject> soloTowers = new List<GameObject>();
+
+                for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+                {
+                    GameObject newTower = PhotonNetwork.Instantiate(soloSpawnTowerPrefabs[(int)PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1].name, soloSpawnTowerPositions[soloTowerOrder[i]], Quaternion.identity);
+
+                    soloTowers.Add(newTower);
+                }
+
+                OnSoloTowersGen?.Invoke(soloTowers);
+            }
+
         }
-        if (list == "zone")
+        else
         {
-            controlZoneObject.SetActive(isActive);
-        }
-        if (list == "flag")
-        {
-            teamFlags[index].SetActive(isActive);
-            safeZoneObjects[index].SetActive(isActive);
-        }
-        if (list == "solo")
-        {
-            
+            Debug.Log("no game mode");
         }
     }
 }

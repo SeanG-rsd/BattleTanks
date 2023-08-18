@@ -6,7 +6,7 @@ public class TankRespawnPoint : MonoBehaviour
 {
 
     [SerializeField] private float spawnRadius;
-    [SerializeField] private int teamIndex;
+    public int teamIndex;
 
     [SerializeField] private GameObject respawnCam;
     private void Awake()
