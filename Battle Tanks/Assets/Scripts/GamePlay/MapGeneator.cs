@@ -34,20 +34,43 @@ public class MapGeneator : MonoBehaviourPunCallbacks
     [SerializeField] private List<GameObject> spawnTowers;
     private List<Vector3> towerPositions;
 
+    [SerializeField] private List<GameObject> teamFlags;
+    private List<Vector3> flagPositions;
+
+    public GameMode selectedGameMode;
+
+    [SerializeField] private List<GameObject> safeZoneObjects;
+
+    [SerializeField] private GameObject controlZoneObject;
+    [SerializeField] private int controlZoneScale;
+
+    [SerializeField] private Vector2[] possibleMapSizes;
+
+    [SerializeField] private GameObject spawnTowerPrefab;
+    [SerializeField] private List<Vector3> soloSpawnTowerPositions;
+    private List<int> soloTowerOrder = new List<int>() { 0, 2, 5, 7, 1, 6, 3, 4 };
+
     public static Action OnMapGenerated = delegate { };
 
     private List<WallInfo> walls;
 
     private List<List<WallInfo>> cells;
 
-    public List<WallType.WallOrientation> wallOrientationsForCell = new List<WallType.WallOrientation>() { WallType.WallOrientation.Horizontal, WallType.WallOrientation.Vertical };
+    private List<WallType.WallOrientation> wallOrientationsForCell = new List<WallType.WallOrientation>() { WallType.WallOrientation.Horizontal, WallType.WallOrientation.Vertical };
 
     private List<Direction> directions = new List<Direction>() { Direction.left, Direction.right, Direction.up, Direction.down };
+
+    private int blueSpawnIndex;
+    private int redSpawnIndex;
+
+    private int blueFlagIndex;
+    private int redFlagIndex;
     private void Awake() // in the future make sure that the map is good or not
     {
         towerPositions = new List<Vector3>();
         walls = new List<WallInfo>();
         cells = new List<List<WallInfo>>();
+        flagPositions = new List<Vector3>();
 
         GameManager.OnGenerateMap += HandleMapGeneration;
     }
@@ -64,12 +87,14 @@ public class MapGeneator : MonoBehaviourPunCallbacks
         HandleCells();
 
 
-        //this.selectedGameMode = selectedGameMode;
-        HandleGameMode(selectedGameMode);
+        this.selectedGameMode = selectedGameMode;
+        
 
         DeleteWalls();
         GuaranteePlayability();
         DoPhysicalMap();
+
+        HandleGameMode();
 
         Hashtable mapGenerated = new Hashtable() { { "mapGeneration", 0 } };
         PhotonNetwork.CurrentRoom.SetCustomProperties(mapGenerated);
@@ -136,8 +161,21 @@ public class MapGeneator : MonoBehaviourPunCallbacks
     {
         int max = (int)(originalWallScale * gridSize.x / 2);
 
-        int xIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
-        int zIndex = (int)UnityEngine.Random.Range(1, gridSize.y);
+        blueSpawnIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+        redSpawnIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+
+        blueFlagIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+        redFlagIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+
+        while (blueFlagIndex == blueSpawnIndex)
+        {
+            blueFlagIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+        }
+
+        while (redSpawnIndex == redFlagIndex)
+        {
+            redFlagIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+        }
 
         for (int z = 1; z <= gridSize.y; ++z)
         {
@@ -154,26 +192,9 @@ public class MapGeneator : MonoBehaviourPunCallbacks
                 newCellPos.x = -max + (originalWallScale * x);
                 newCellPos.z = max - (originalWallScale * z);
 
-                newCell.transform.localPosition = newCellPos;
+                newCell.transform.position = newCellPos;
 
-                if (z == 1 && x == xIndex)
-                {
-                    Vector3 towerPos = newCellPos;
-                    towerPos.x -= originalWallScale / 2;
-                    towerPos.z += originalWallScale / 2;
-                    towerPos.y = 1.6657f;
-
-                    towerPositions.Add(towerPos);
-                }
-                else if (z == gridSize.y && x == zIndex)
-                {
-                    Vector3 towerPos = newCellPos;
-                    towerPos.x -= originalWallScale / 2;
-                    towerPos.z += originalWallScale / 2;
-                    towerPos.y = 1.6657f;
-
-                    towerPositions.Add(towerPos);
-                }
+                SetGameModeObjects(newCellPos, z, x);
 
                 newCell.transform.SetParent(cellContainer);
 
@@ -189,6 +210,86 @@ public class MapGeneator : MonoBehaviourPunCallbacks
 
                 cells.Add(cellInfo);
             }
+        }
+    }
+
+    private void SetGameModeObjects(Vector3 newCellPos, int row, int column)
+    {
+        Vector3 towerPos = newCellPos;
+        towerPos.x -= originalWallScale / 2 + 0.5f;
+        towerPos.z += originalWallScale / 2 + 0.5f;
+        towerPos.y = 1.6657f;
+
+        Vector3 flagPos = newCellPos;
+        flagPos.x -= originalWallScale / 2 + 0.5f;
+        flagPos.z += originalWallScale / 2 + 0.5f;
+        flagPos.y = 1.058912f;
+
+        if (row == 1 && column == blueSpawnIndex)
+        {
+            towerPositions.Add(towerPos);
+        }
+        else if (row == 1 && column == blueFlagIndex)
+        {
+            flagPositions.Add(flagPos);
+        }
+        else if (row == gridSize.y && column == redSpawnIndex)
+        {
+            towerPositions.Add(towerPos);
+        }
+        else if (row == gridSize.y && column == redFlagIndex)
+        {
+            flagPositions.Add(flagPos);
+        }
+
+        if (gridSize == possibleMapSizes[2] || gridSize == possibleMapSizes[1])
+        {
+            Vector3 newScale = controlZoneObject.transform.localScale;
+            newScale.x = 2 * controlZoneScale;
+            newScale.z = 2 * controlZoneScale;
+
+            controlZoneObject.transform.localScale = newScale;
+        }
+        else if (controlZoneObject.transform.localScale.x == (2 * controlZoneScale))
+        {
+            Vector3 newScale = controlZoneObject.transform.localScale;
+            newScale.x = controlZoneScale;
+            newScale.z = controlZoneScale;
+
+            controlZoneObject.transform.localScale = newScale;
+        }
+
+        if (row == 1 && column == 1)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == 1 && column == (int)(gridSize.x / 2))
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == 1 && column == gridSize.x)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == (int)(gridSize.y / 2) && column == 1)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == (int)(gridSize.y / 2) && column == gridSize.x)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == gridSize.y && column == 1)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == gridSize.y && column == (int)(gridSize.x / 2))
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == gridSize.y && column == gridSize.x)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
         }
     }
 
@@ -219,19 +320,39 @@ public class MapGeneator : MonoBehaviourPunCallbacks
         SetDictionary();
     }
 
-    private void HandleGameMode(GameMode gameMode)
+    private void HandleGameMode()
     {
-        for (int i = 0; i < spawnTowers.Count; i++)
+        if (selectedGameMode != null)
         {
-            if (gameMode != null)
+            for (int i = 0; i < spawnTowers.Count; i++)
             {
-                spawnTowers[i].SetActive(gameMode.HasTeams);
+                //spawnTowers[i].SetActive(selectedGameMode.HasTeams);
+                //this.GetComponent<PhotonView>().RPC("GameModeObjectOff", RpcTarget.AllBuffered, "tower", i, selectedGameMode.HasTeams);
+
+                spawnTowers[i].transform.localPosition = towerPositions[i];
             }
-            else
+
+            for (int i = 0; i < teamFlags.Count; i++)
             {
-                Debug.Log("No selected game mode detected when generating map");
+                //teamFlags[i].SetActive(selectedGameMode.HasFlag);
+                //this.GetComponent<PhotonView>().RPC("GameModeObjectOff", RpcTarget.AllBuffered, "flag", i, selectedGameMode.HasFlag);
+                //safeZoneObjects[i].SetActive(selectedGameMode.HasFlag);
+                //this.GetComponent<PhotonView>().RPC("GameModeObjectOff", RpcTarget.AllBuffered, "flag", i, selectedGameMode.HasFlag);
+
+                teamFlags[i].transform.localPosition = flagPositions[i];
             }
-            spawnTowers[i].transform.localPosition = towerPositions[i];
+
+            //controlZoneObject.SetActive(selectedGameMode.HasZones);
+            //this.GetComponent<PhotonView>().RPC("GameModeObjectOff", RpcTarget.AllBuffered, "zone", 0, selectedGameMode.HasZones);
+
+            if (!selectedGameMode.HasTeams)
+            {
+                for (int i = 0; i < PhotonNetwork.CurrentRoom.PlayerCount; i++)
+                {
+                    //GameObject newTower = Instantiate(spawnTowerPrefab, soloSpawnTowerPositions[soloTowerOrder[i]], Quaternion.identity); // fix for photon
+                }
+            }
+
         }
     }
 
@@ -560,6 +681,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
 
                 if (!walls.Contains(check))
                 {
+                    
                     cellContainer.transform.GetChild(i).GetChild(ii).gameObject.GetComponent<MapWall>().Destroy();
                 }
             }
@@ -572,6 +694,29 @@ public class MapGeneator : MonoBehaviourPunCallbacks
         {
             Debug.Log("map has been generated");
             OnMapGenerated?.Invoke();
+        }
+    }
+
+    [PunRPC]
+    
+    void GameModeObjectOff(string list, int index, bool isActive)
+    {
+        if (list == "tower")
+        {
+            spawnTowers[index].SetActive(isActive);
+        }
+        if (list == "zone")
+        {
+            controlZoneObject.SetActive(isActive);
+        }
+        if (list == "flag")
+        {
+            teamFlags[index].SetActive(isActive);
+            safeZoneObjects[index].SetActive(isActive);
+        }
+        if (list == "solo")
+        {
+            
         }
     }
 }

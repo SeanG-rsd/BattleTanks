@@ -25,13 +25,27 @@ public class MapGenTest : MonoBehaviour
     private Vector2 gridSize;
     [SerializeField] int originalWallScale;
 
-    private GameMode selectedGameMode;
+    public GameMode selectedGameMode;
+    public Vector2 selectedMapSize;
 
     [SerializeField] private List<GameObject> spawnTowers;
     private List<Vector3> towerPositions;
 
+    [SerializeField] private List<GameObject> teamFlags;
+    private List<Vector3> flagPositions;
+
+    [SerializeField] private List<GameObject> safeZoneObjects;
+
+    [SerializeField] private GameObject controlZoneObject;
+    [SerializeField] private int controlZoneScale;
+
     [SerializeField] private GameMode[] availableGameModes;
     [SerializeField] private Vector2[] possibleMapSizes;
+
+    [SerializeField] private GameObject spawnTowerPrefab;
+    [SerializeField] private List<Vector3> soloSpawnTowerPositions;
+    private List<int> soloTowerOrder = new List<int>() { 0, 2, 5, 7, 1, 6, 3, 4 };
+    public int numberOfPlayers;
 
     public static Action OnTestMapGen = delegate { };
 
@@ -40,6 +54,13 @@ public class MapGenTest : MonoBehaviour
     private List<List<WallInfo>> cells;
 
     private List<Direction> directions = new List<Direction>() { Direction.left, Direction.right, Direction.up, Direction.down };
+    public List<WallType.WallOrientation> wallOrientationsForCell = new List<WallType.WallOrientation>() { WallType.WallOrientation.Horizontal, WallType.WallOrientation.Vertical };
+
+    [SerializeField] private int blueSpawnIndex;
+    [SerializeField] private int redSpawnIndex;
+
+    [SerializeField] private int blueFlagIndex;
+    [SerializeField] private int redFlagIndex;
 
     private enum Direction
     {
@@ -56,19 +77,52 @@ public class MapGenTest : MonoBehaviour
         walls = new List<WallInfo>();
 
         cells = new List<List<WallInfo>>();
+
+        flagPositions = new List<Vector3>();
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DestroyCurrentMap();
-            HandleMapGeneration(possibleMapSizes[0], availableGameModes[0]);
+            HandleMapGeneration(selectedMapSize, selectedGameMode);
             
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            selectedGameMode = availableGameModes[2];
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            selectedGameMode = availableGameModes[1];
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            selectedGameMode = availableGameModes[0];
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            selectedGameMode = availableGameModes[3];
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            selectedMapSize = possibleMapSizes[0];
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            selectedMapSize = possibleMapSizes[1];
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            selectedMapSize = possibleMapSizes[2];
         }
     }
 
     private void DestroyCurrentMap()
     {
+        flagPositions.Clear();
         towerPositions.Clear();
         walls.Clear();
         cells.Clear();
@@ -89,8 +143,8 @@ public class MapGenTest : MonoBehaviour
         this.gridSize = gridSize;
         HandleWalls();
         HandleCells();
-
-        HandleGameMode(selectedGameMode);
+        this.selectedGameMode = selectedGameMode;
+        HandleGameMode();
 
         DeleteWalls();
         GuaranteePlayability();
@@ -157,10 +211,23 @@ public class MapGenTest : MonoBehaviour
     {
         int max = (int)(originalWallScale * gridSize.x / 2);
 
-        int xIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
-        int zIndex = (int)UnityEngine.Random.Range(1, gridSize.y);
+        blueSpawnIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+        redSpawnIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
 
-        for (int z = 1; z <= gridSize.y; ++z)
+        blueFlagIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+        redFlagIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+
+        while (blueFlagIndex == blueSpawnIndex)
+        {
+            blueFlagIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+        }
+
+        while (redSpawnIndex == redFlagIndex)
+        {
+            redFlagIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
+        }
+
+        for (int z = 1; z <= gridSize.y; ++z) // z is rows
         {
             for (int x = 1; x <= gridSize.x; ++x)
             {
@@ -177,24 +244,7 @@ public class MapGenTest : MonoBehaviour
 
                 newCell.transform.localPosition = newCellPos;
 
-                if (z == 1 && x == xIndex)
-                {
-                    Vector3 towerPos = newCellPos;
-                    towerPos.x -= originalWallScale / 2;
-                    towerPos.z += originalWallScale / 2;
-                    towerPos.y = 1.6657f;
-
-                    towerPositions.Add(towerPos);
-                }
-                else if (z == gridSize.y && x == zIndex)
-                {
-                    Vector3 towerPos = newCellPos;
-                    towerPos.x -= originalWallScale / 2;
-                    towerPos.z += originalWallScale / 2;
-                    towerPos.y = 1.6657f;
-
-                    towerPositions.Add(towerPos);
-                }
+                SetGameModeObjects(newCellPos, z, x);
 
                 newCell.transform.SetParent(cellContainer);
 
@@ -213,60 +263,85 @@ public class MapGenTest : MonoBehaviour
         }
     }
 
-    public List<WallType.WallOrientation> wallOrientationsForCell = new List<WallType.WallOrientation>() { WallType.WallOrientation.Horizontal, WallType.WallOrientation.Vertical };
-
-    /*private void HandleCells()
+    private void SetGameModeObjects(Vector3 newCellPos, int row, int column)
     {
-        int max = (int)(originalWallScale * gridSize.x / 2);
+        Vector3 towerPos = newCellPos;
+        towerPos.x -= originalWallScale / 2 + 0.5f;
+        towerPos.z += originalWallScale / 2 + 0.5f;
+        towerPos.y = 1.6657f;
 
-        int xIndex = (int)UnityEngine.Random.Range(1, gridSize.x);
-        int zIndex = (int)UnityEngine.Random.Range(1, gridSize.y);
+        Vector3 flagPos = newCellPos;
+        flagPos.x -= originalWallScale / 2 + 0.5f;
+        flagPos.z += originalWallScale / 2 + 0.5f;
+        flagPos.y = 1.058912f;
 
-        for (int z = 1; z <= gridSize.y; ++z)
+        if (row == 1 && column == blueSpawnIndex)
         {
-            for (int x = 1; x <= gridSize.x; ++x)
-            {
-                List<WallInfo> cellInfo = new List<WallInfo>();
-
-                Vector3 newCellPos = Vector3.zero;
-
-                newCellPos.y = 1.5f;
-
-                newCellPos.x = -max + (originalWallScale * x);
-                newCellPos.z = max - (originalWallScale * z);
-
-                if (z == 1 && x == xIndex)
-                {
-                    Vector3 towerPos = newCellPos;
-                    towerPos.x -= originalWallScale / 2;
-                    towerPos.z += originalWallScale / 2;
-                    towerPos.y = 1.6657f;
-
-                    towerPositions.Add(towerPos);
-                }
-                else if (z == gridSize.y && x == zIndex)
-                {
-                    Vector3 towerPos = newCellPos;
-                    towerPos.x -= originalWallScale / 2;
-                    towerPos.z += originalWallScale / 2;
-                    towerPos.y = 1.6657f;
-
-                    towerPositions.Add(towerPos);
-                }
-
-                for (int i = 0; i < 2; i++)
-                {
-                    WallInfo newWall = new WallInfo() { position = new Vector2(x - 1, z - 1), orientation = cellPrefab.GetComponent<MapCell>().wallOrientations[i] };
-                    newWall.isTouchingBorder = GetWallBool(newWall);
-                    Debug.Log($"Added {newWall.position} with {newWall.orientation} and {newWall.isTouchingBorder}");
-
-                    cellInfo.Add(newWall);
-                }
-
-                cells.Add(cellInfo);
-            }
+            towerPositions.Add(towerPos);
         }
-    }*/
+        else if (row == 1 && column == blueFlagIndex)
+        {
+            flagPositions.Add(flagPos);
+        }
+        else if (row == gridSize.y && column == redSpawnIndex)
+        {
+            towerPositions.Add(towerPos);
+        }
+        else if (row == gridSize.y && column == redFlagIndex)
+        {
+            flagPositions.Add(flagPos);
+        }
+
+        if (gridSize == possibleMapSizes[2] || gridSize == possibleMapSizes[1])
+        {
+            Vector3 newScale = controlZoneObject.transform.localScale;
+            newScale.x = 2 * controlZoneScale;
+            newScale.z = 2 * controlZoneScale;
+
+            controlZoneObject.transform.localScale = newScale;
+        }
+        else if (controlZoneObject.transform.localScale.x == (2 * controlZoneScale))
+        {
+            Vector3 newScale = controlZoneObject.transform.localScale;
+            newScale.x = controlZoneScale;
+            newScale.z = controlZoneScale;
+
+            controlZoneObject.transform.localScale = newScale;
+        }
+
+        if (row == 1 && column == 1)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == 1 && column == (int)(gridSize.x / 2))
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == 1 && column == gridSize.x)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == (int)(gridSize.y / 2) && column == 1)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == (int)(gridSize.y / 2) && column == gridSize.x)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == gridSize.y && column == 1)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == gridSize.y && column == (int)(gridSize.x / 2))
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+        else if (row == gridSize.y && column == gridSize.x)
+        {
+            soloSpawnTowerPositions.Add(towerPos);
+        }
+    }
 
     private void DeleteWalls()
     {
@@ -295,19 +370,35 @@ public class MapGenTest : MonoBehaviour
         SetDictionary();
     }
 
-    private void HandleGameMode(GameMode gameMode)
+    private void HandleGameMode()
     {
-        for (int i = 0; i < spawnTowers.Count; i++)
+        if (selectedGameMode != null)
         {
-            if (gameMode != null)
+            for (int i = 0; i < spawnTowers.Count; i++)
             {
-                spawnTowers[i].SetActive(gameMode.HasTeams);
+                spawnTowers[i].SetActive(selectedGameMode.HasTeams);
+
+                spawnTowers[i].transform.localPosition = towerPositions[i];
             }
-            else
+
+            for (int i = 0; i < teamFlags.Count; i++)
             {
-                Debug.Log("No selected game mode detected when generating map");
+                teamFlags[i].SetActive(selectedGameMode.HasFlag);
+                safeZoneObjects[i].SetActive(selectedGameMode.HasFlag);
+
+                teamFlags[i].transform.localPosition = flagPositions[i];
             }
-            spawnTowers[i].transform.localPosition = towerPositions[i];
+
+            controlZoneObject.SetActive(selectedGameMode.HasZones);
+
+            if (!selectedGameMode.HasTeams)
+            {
+                for (int i = 0; i < numberOfPlayers; i++)
+                {
+                    GameObject newTower = Instantiate(spawnTowerPrefab, soloSpawnTowerPositions[soloTowerOrder[i]], Quaternion.identity);
+                }
+            }
+            
         }
     }
 

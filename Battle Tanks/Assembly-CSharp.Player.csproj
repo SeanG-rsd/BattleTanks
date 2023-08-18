@@ -112,6 +112,7 @@
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\OnStartDelete.cs" />
     <Compile Include="Assets\Scripts\GamePlay\CameraMovement.cs" />
     <Compile Include="Assets\Scripts\GamePlay\SceneController.cs" />
+    <Compile Include="Assets\Scripts\GamePlay\FlagHolder.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -776,6 +777,10 @@
     <ProjectReference Include="PhotonUnityNetworking.Demos.Player.csproj">
       <Project>{1E0060BA-7852-21F6-C85C-69EADEDBE91F}</Project>
       <Name>PhotonUnityNetworking.Demos.Player</Name>
+    </ProjectReference>
+    <ProjectReference Include="Nobi.UiRoundedCorners.Player.csproj">
+      <Project>{5D4F08F5-4F98-8958-FF7A-B38C3AC3C43C}</Project>
+      <Name>Nobi.UiRoundedCorners.Player</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
