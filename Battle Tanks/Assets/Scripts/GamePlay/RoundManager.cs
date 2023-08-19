@@ -43,6 +43,8 @@ public class RoundManager : MonoBehaviourPunCallbacks
     private bool waitingForPlayerToLeave;
     private bool gameOver;
 
+    [SerializeField] private Flag[] flagObjects;
+
     [SerializeField] private GameObject returnToLobbyObject;
 
     public static Action OnGameOver = delegate { };
@@ -107,6 +109,14 @@ public class RoundManager : MonoBehaviourPunCallbacks
         roundScreen.SetActive(true);
         roundTimer = inBetweenTime;
         OnRoundStarted?.Invoke();
+    }
+
+    private void ResetFlags()
+    {
+        foreach (Flag flag in flagObjects)
+        {
+            flag.GoHome();
+        }
     }
 
     public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)

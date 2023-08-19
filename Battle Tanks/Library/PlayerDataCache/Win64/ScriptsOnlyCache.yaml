@@ -3,6 +3,7 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - Bullet
     - CameraMovement
+    - Flag
     - FlagHolder
     - GameManager
     - GameMode
@@ -169,17 +170,17 @@ ScriptsOnlyBuild:
     fullTypeName: PlayfabLogin
     methodName: LoginButton
   - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
   - assembly: Assembly-CSharp
     fullTypeName: UITeam
     methodName: SwitchToTeam
@@ -199,17 +200,17 @@ ScriptsOnlyBuild:
     fullTypeName: UIInvite
     methodName: AcceptInvite
   - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
   - assembly: Assembly-CSharp
     fullTypeName: UITeam
     methodName: SwitchToTeam
@@ -354,6 +355,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 9028}
     - Class: 114
       Script: {instanceID: 9094}
+    - Class: 114
+      Script: {instanceID: 30816}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -891,7 +894,7 @@ ScriptsOnlyBuild:
     className: ScoreHelper
   - hash:
       serializedVersion: 2
-      Hash: a8fb822774dfd9ed218def8d1a42aebf
+      Hash: 6a3a8483fce134f9ce098c558864e140
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Tank
@@ -2247,7 +2250,7 @@ ScriptsOnlyBuild:
     className: Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 7bcbd3bd94ef721ad2e619fa537db0d7
+      Hash: 836215a91876f9e423e5162ad9befb27
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: FlagHolder
@@ -2593,6 +2596,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 527e77dc5903b60c9870751d0a547c54
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Flag
   platform: 19
   scenePathNames:
   - Assets/Scenes/Login.unity

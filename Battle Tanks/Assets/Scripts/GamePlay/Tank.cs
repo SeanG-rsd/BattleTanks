@@ -31,7 +31,8 @@ public class Tank : MonoBehaviourPunCallbacks
     private float nonHitTimer;
     private bool nonHit;
 
-
+    public Transform flagHolder;
+    public Flag myFlag;
 
 
     [SerializeField] private GameObject respawnTimerObject;
@@ -118,6 +119,14 @@ public class Tank : MonoBehaviourPunCallbacks
     {
         if (tank == this)
         {
+            if (myFlag != null)
+            {
+                if (myFlag.isHeld && myFlag.thisTank == this)
+                {
+                    myFlag.GoHome();
+                }
+            }
+
             OnRespawn?.Invoke(this);
             respawning = true;
             respawnTimer = respawnTime;
@@ -169,6 +178,11 @@ public class Tank : MonoBehaviourPunCallbacks
 
     private void HandleNewRound()
     {
+        Hashtable hashtable = new Hashtable() { { "aliveState", 1 } };
+        Debug.Log("set custom prop");
+
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
+
         Respawn();
         tankCanvas.SetActive(false);
         respawnTimerObject.SetActive(false);

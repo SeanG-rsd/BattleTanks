@@ -344,6 +344,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 196474495}
+  - component: {fileID: 196474496}
+  - component: {fileID: 196474498}
+  - component: {fileID: 196474497}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Untagged
@@ -368,6 +371,60 @@ Transform:
   m_Father: {fileID: 1242887050}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &196474496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196474494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 494e23ca98051144098099162b86fa9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  home: {fileID: 1242887044}
+  isHeld: 0
+  thisTank: {fileID: 0}
+--- !u!114 &196474497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196474494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 196474498}
+  sceneViewId: 8
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &196474498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 196474494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!1 &209606066
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,6 +730,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 231046067}
+  - component: {fileID: 231046068}
+  - component: {fileID: 231046070}
+  - component: {fileID: 231046069}
   m_Layer: 0
   m_Name: Flag
   m_TagString: Untagged
@@ -687,7 +747,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231046066}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -697,6 +757,60 @@ Transform:
   m_Father: {fileID: 1724941415}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &231046068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231046066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 494e23ca98051144098099162b86fa9c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  home: {fileID: 1724941409}
+  isHeld: 0
+  thisTank: {fileID: 0}
+--- !u!114 &231046069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231046066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
+--- !u!114 &231046070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 231046066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 231046069}
+  sceneViewId: 9
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &253582121
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,6 +1415,7 @@ GameObject:
   - component: {fileID: 526774432}
   - component: {fileID: 526774431}
   - component: {fileID: 526774430}
+  - component: {fileID: 526774435}
   m_Layer: 0
   m_Name: RedFlagSafeZone
   m_TagString: Untagged
@@ -1425,6 +1540,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526774428}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &526774435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526774428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebaa0ee7176a6dc4a93aa3397d95385b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamIndex: 2
 --- !u!1001 &657588463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1779,6 +1907,7 @@ GameObject:
   - component: {fileID: 799965356}
   - component: {fileID: 799965355}
   - component: {fileID: 799965354}
+  - component: {fileID: 799965360}
   m_Layer: 0
   m_Name: ControlArea
   m_TagString: Untagged
@@ -1903,6 +2032,19 @@ Transform:
   m_Father: {fileID: 2117328507}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &799965360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 799965353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4c70f705b9305c4db66e15c1ef7df82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeForEachPoint: 1
 --- !u!1 &829523856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2824,6 +2966,7 @@ GameObject:
   - component: {fileID: 1115963191}
   - component: {fileID: 1115963190}
   - component: {fileID: 1115963189}
+  - component: {fileID: 1115963194}
   m_Layer: 0
   m_Name: BlueFlagSafeZone
   m_TagString: Untagged
@@ -2948,6 +3091,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1115963187}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1115963194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115963187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebaa0ee7176a6dc4a93aa3397d95385b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  teamIndex: 1
 --- !u!1 &1151269755
 GameObject:
   m_ObjectHideFlags: 0
@@ -3179,7 +3335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d21a55a453ffa3e44b85ca4ea1599706, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  teamIndex: 1
+  teamIndex: 2
+  thisFlag: {fileID: 196474496}
 --- !u!114 &1242887045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3252,7 +3409,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e62f3a5d2dc55647a59204b2d8da74d, type: 2}
+  - {fileID: 2100000, guid: 6c6bb08265224c944b7b9f5d4473493b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3290,8 +3447,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1242887043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.104446, y: 1, z: -9.802386}
-  m_LocalScale: {x: 1, y: 1.058912, z: 1}
+  m_LocalPosition: {x: -9.104446, y: 0.875, z: -9.802386}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 196474495}
@@ -4062,6 +4219,9 @@ MonoBehaviour:
   opposingTeamImage: {fileID: 702764625}
   winningTeamImage: {fileID: 317165877}
   view: {fileID: 1580007253}
+  flagObjects:
+  - {fileID: 196474496}
+  - {fileID: 231046068}
   returnToLobbyObject: {fileID: 1527809490}
 --- !u!114 &1580007253
 MonoBehaviour:
@@ -4120,6 +4280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   teamIndex: 1
+  thisFlag: {fileID: 231046068}
 --- !u!114 &1724941410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4192,7 +4353,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5d655135a1656a74a892113f0c93901e, type: 2}
+  - {fileID: 2100000, guid: c77a7e1ca90b719498a39b07b59c20b4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4230,8 +4391,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724941408}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.104446, y: 1, z: -9.802386}
-  m_LocalScale: {x: 1, y: 1.058912, z: 1}
+  m_LocalPosition: {x: -11.104446, y: 0.875, z: -9.802386}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 231046067}
