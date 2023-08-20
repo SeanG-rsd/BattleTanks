@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviourPunCallbacks
     public static Action<GameMode> OnSetTeams = delegate { };
 
     public static Action OnStartGame = delegate { };
-    public static Action<PhotonTeam> OnRoundWon = delegate { };
 
     [SerializeField] private GameMode[] possibleGameModes;
     private GameMode selectedGameMode;
@@ -27,8 +26,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     [SerializeField] private Vector2[] possibleMapSizes;
 
     [SerializeField] private Camera deadCam;
-    [SerializeField] private GameObject winScreen;
-    [SerializeField] private GameObject loseScreen;
+
     [SerializeField] private GameObject topDownCam;
 
     private void Awake()
@@ -92,82 +90,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void HandleDeadTank(Tank tank)
     {
-        if (tank.GetComponent<PhotonView>().IsMine)
-        {
-            tank.gameObject.GetComponent<TankMovement>().PlayerCamera.SetActive(false);
-           
-            Hashtable hashtable = new Hashtable() { { "aliveState", 0 } };
-            Debug.Log("set custom prop");
-
-            PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
-            topDownCam.SetActive(true);
-        }
-    }
-
-    public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
-    {
-        Debug.Log(targetPlayer.NickName);
-        UpdateTankProperties(targetPlayer);
-        Debug.Log("playerPropertiesUpdate");
-    }
-
-    void UpdateTankProperties(Player player)
-    {
-        if (player.CustomProperties.ContainsKey("aliveState"))
-        {
-            if ((int)player.CustomProperties["aliveState"] == 0)
-            {
-                Debug.Log("a tank has died");
-                Player[] teamMates;
-                player.TryGetTeamMates(out teamMates);
-
-
-                bool localTeamState = false;
-
-                if (teamMates.Length > 0)
-                {
-                    for (int i = 0; i < teamMates.Length; i++)
-                    {
-                        if ((int)teamMates[i].CustomProperties["aliveState"] == 1)
-                        {
-                            localTeamState = true;
-                            break;
-                        }
-                    }
-                }
-
-                if ((int)player.CustomProperties["aliveState"] == 1)
-                {
-                    localTeamState = true;
-                }
-
-                if (!localTeamState)
-                {
-                    Debug.Log($"Team {player.GetPhotonTeam().Code} has no more alive tanks on it.");
-                    for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
-                    {
-                        if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != player.GetPhotonTeam())
-                        {
-                            OnRoundWon?.Invoke(PhotonNetwork.PlayerList[i].GetPhotonTeam());
-                        }
-                    }
-                }
-            }
-            else
-            {
-                Debug.Log($"{player.NickName} is still alive");
-            }
-        }
-    }
-
-    private void Update()
-    {
-        /*if (Input.GetKeyDown(KeyCode.T))
-        {
-            Hashtable hashtable = new Hashtable() { { "aliveState", 0} };
-            Debug.Log("set custom prop");
-
-            PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
-        }*/
+        topDownCam.SetActive(true);
     }
 }

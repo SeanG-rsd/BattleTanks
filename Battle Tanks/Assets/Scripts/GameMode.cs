@@ -12,6 +12,7 @@ public class GameMode : ScriptableObject
     [SerializeField] private int teamSize;
     [SerializeField] private bool hasFlags;
     [SerializeField] private bool hasZones;
+    [SerializeField] private bool hasHearts;
 
     public string Name
     {
@@ -47,5 +48,11 @@ public class GameMode : ScriptableObject
     {
         get { return hasZones; }
         private set { hasZones = value; }
+    }
+
+    public bool HasHearts
+    {
+        get { return hasHearts; }
+        private set { hasHearts = value; }
     }
 }

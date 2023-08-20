@@ -69,6 +69,7 @@ public class SpawnPlayers : MonoBehaviour
         }
 
         playerToSpawn.GetComponent<Tank>().teamIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"];
+        
 
         for (int i = 0; i < spawnPoints.Count; i++)
         {

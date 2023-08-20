@@ -54,13 +54,13 @@ public class RoundManager : MonoBehaviourPunCallbacks
         numberOfRounds = (int)PhotonNetwork.CurrentRoom.CustomProperties["NUMBEROFROUNDS"];
 
         GameManager.OnStartGame += HandleStartGame;
-        GameManager.OnRoundWon += HandleRoundWon;
+        WinCheck.OnRoundWon += HandleRoundWon;
     }
 
     private void OnDestroy()
     {
         GameManager.OnStartGame -= HandleStartGame;
-        GameManager.OnRoundWon -= HandleRoundWon;
+        WinCheck.OnRoundWon -= HandleRoundWon;
     }
 
     private void Update()
@@ -91,6 +91,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
         if (Input.GetMouseButtonDown(0) && waitingForPlayerToLeave)
         {
+            PhotonNetwork.AutomaticallySyncScene = false;
             OnGameOver?.Invoke();
         }
     }
@@ -107,8 +108,17 @@ public class RoundManager : MonoBehaviourPunCallbacks
     {
         currentlyWon = null;
         roundScreen.SetActive(true);
+        SetAliveStateForAll();
         roundTimer = inBetweenTime;
         OnRoundStarted?.Invoke();
+    }
+
+    private void SetAliveStateForAll()
+    {
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            PhotonNetwork.PlayerList[i].CustomProperties["aliveState"] = 1;
+        }
     }
 
     private void ResetFlags()

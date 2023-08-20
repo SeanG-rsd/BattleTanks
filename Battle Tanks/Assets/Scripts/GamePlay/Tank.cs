@@ -40,6 +40,9 @@ public class Tank : MonoBehaviourPunCallbacks
 
     [SerializeField] private GameObject tankCanvas;
 
+    GameObject mapGenerator;
+    public GameMode selectedGameMode;
+
     public static Action<Tank> OnRespawn = delegate { };
     public static Action<Tank> OnAlive = delegate { };
 
@@ -51,14 +54,16 @@ public class Tank : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        mapGenerator = FindObjectOfType<MapGeneator>().gameObject;
+        selectedGameMode = mapGenerator.GetComponent<MapGeneator>().selectedGameMode;
+
         TankHealth.OnDeath += HandleTankDeath;
         GameManager.OnStartGame += HandleStartGame;
         RoundManager.OnGameStarted += HandleGameStarted;
         RoundManager.OnRoundStarted += HandleNewRound;
-        GameManager.OnRoundWon += HandleRoundWon;
+        WinCheck.OnRoundWon += HandleRoundWon;
 
         view = GetComponent<PhotonView>();
-
     }
 
     private void OnDestroy()
@@ -67,7 +72,7 @@ public class Tank : MonoBehaviourPunCallbacks
         GameManager.OnStartGame -= HandleStartGame;
         RoundManager.OnGameStarted -= HandleGameStarted;
         RoundManager.OnRoundStarted -= HandleNewRound;
-        GameManager.OnRoundWon -= HandleRoundWon;
+        WinCheck.OnRoundWon -= HandleRoundWon;
     }
 
     void Start()

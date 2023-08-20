@@ -23,6 +23,10 @@ public class TankHealth : MonoBehaviour
     [SerializeField] private int currentHearts;
 
     public bool hasRespawned = true;
+
+    private bool gmDealsWithHearts = false;
+
+    Tank thisTank;
     
 
     PhotonView view;
@@ -34,6 +38,8 @@ public class TankHealth : MonoBehaviour
 
     private void Awake()
     {
+        thisTank = GetComponent<Tank>();
+
         Tank.OnAlive += HandleTankAlive;
         Tank.OnNewRound += HandleReset;
     }
@@ -49,14 +55,24 @@ public class TankHealth : MonoBehaviour
         view = GetComponent<PhotonView>();
         if (view.IsMine)
         {
+            gmDealsWithHearts = thisTank.selectedGameMode.HasHearts;
             healthbar.SetActive(true);
             healthBarContainer.parent.gameObject.SetActive(true);
-            ResetHeartBar();
+            
             currentHealth = maxHealth;
             currentHearts = maxHearts;
             playerPropeties["currentHealth"] = currentHealth;
             PhotonNetwork.SetPlayerCustomProperties(playerPropeties);
             healthbarText.text = currentHealth.ToString();
+
+            if (!gmDealsWithHearts)
+            {
+                healthBarContainer.parent.gameObject.SetActive(false);
+            }
+            else
+            {
+                ResetHeartBar();
+            }
         }
     }
 
@@ -71,8 +87,13 @@ public class TankHealth : MonoBehaviour
             if (!Alive() && hasRespawned)
             {
                 OnDeath?.Invoke(gameObject.GetComponent<Tank>());
-                RemoveHeart();
+                
                 hasRespawned = false;
+
+                if (gmDealsWithHearts)
+                {
+                    RemoveHeart();
+                }
             }
 
             if (Input.GetKeyUp(KeyCode.K))
