@@ -55,7 +55,7 @@ public class UIGameModeScore : MonoBehaviourPunCallbacks
 
         widthChange = baseWidthOfTeam / winCheck.zonePointsToWin;
 
-        zoneBackground.SetActive(selectedGameMode.HasTeams);
+        zoneBackground.SetActive(selectedGameMode.HasZones);
     }
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {

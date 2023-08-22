@@ -226,7 +226,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
         Vector3 flagPos = newCellPos;
         flagPos.x -= originalWallScale / 2 + 0.5f;
         flagPos.z += originalWallScale / 2 + 0.5f;
-        flagPos.y = 1.058912f;
+        flagPos.y = 0.875f;
 
         if (row == 1 && column == blueSpawnIndex)
         {

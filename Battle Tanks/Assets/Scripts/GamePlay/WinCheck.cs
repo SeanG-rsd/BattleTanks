@@ -115,39 +115,102 @@ public class WinCheck : MonoBehaviourPunCallbacks
         {
             if ((int)player.CustomProperties["aliveState"] == 0)
             {
-                Debug.Log("a tank has died");
-                Player[] teamMates;
-                player.TryGetTeamMates(out teamMates);
+                List<Player> playerFromEachTeam = new List<Player>();
 
-
-                bool localTeamState = false;
-
-                if (teamMates.Length > 0)
+                for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
                 {
-                    for (int i = 0; i < teamMates.Length; i++)
+                    if (playerFromEachTeam.Count == 0)
                     {
-                        if ((int)teamMates[i].CustomProperties["aliveState"] == 1)
+                        playerFromEachTeam.Add(PhotonNetwork.PlayerList[i]);
+                    }
+                    else
+                    {
+                        bool moveOn = false;
+
+                        for (int j = 0; j < playerFromEachTeam.Count; ++j)
                         {
-                            localTeamState = true;
-                            break;
+                            if (playerFromEachTeam[j].GetPhotonTeam() == PhotonNetwork.PlayerList[i].GetPhotonTeam())
+                            {
+                                moveOn = true;
+                                break;
+                            }
                         }
+
+                        if (!moveOn)
+                        {
+                            playerFromEachTeam.Add(PhotonNetwork.PlayerList[i]);
+                        }
+                    }
+
+
+                }
+
+                Debug.Log($"{playerFromEachTeam.Count} Teams were found");
+
+                Debug.Log("a tank has died");
+                List<bool> teamStates = new List<bool>();
+
+                for (int i = 0; i < playerFromEachTeam.Count; ++i)
+                {
+                    Player[] teamMates;
+                    playerFromEachTeam[i].TryGetTeamMates(out teamMates);
+
+
+                    bool localTeamState = false; // if false the player's team is dead
+
+                    if (teamMates.Length > 0)
+                    {
+                        for (int j = 0; j < teamMates.Length; j++)
+                        {
+                            if ((int)teamMates[j].CustomProperties["aliveState"] == 1)
+                            {
+                                localTeamState = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if ((int)playerFromEachTeam[i].CustomProperties["aliveState"] == 1)
+                    {
+                        localTeamState = true;
+                    }
+
+                    teamStates.Add(localTeamState);
+                }
+
+                bool hasOneAliveTeam = false;
+                bool noTeamsAlive = true;
+
+                int index = 0;
+
+                for (int i = 0; i < teamStates.Count; ++i)
+                {
+                    Debug.Log($"{playerFromEachTeam[i].NickName}'s Team is {teamStates[i]}");
+
+                    if (!hasOneAliveTeam && teamStates[i])
+                    {
+                        noTeamsAlive = false;
+                        hasOneAliveTeam = true;
+                        index = playerFromEachTeam[i].GetPhotonTeam().Code;
+                    }
+                    else if (hasOneAliveTeam && teamStates[i])
+                    {
+                        index = 0;
+                        break;
                     }
                 }
 
-                if ((int)player.CustomProperties["aliveState"] == 1)
-                {
-                    localTeamState = true;
-                }
+                Debug.Log(index);
 
-                if (!localTeamState)
+                if (index != 0 || noTeamsAlive)
                 {
-                    Debug.Log($"Team {player.GetPhotonTeam().Code} has no more alive tanks on it.");
-                    for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+                    Debug.Log("someone has won the round");
+
+                    for (int i = 0; i < playerFromEachTeam.Count; ++i)
                     {
-                        if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != player.GetPhotonTeam())
+                        if (playerFromEachTeam[i].GetPhotonTeam().Code == index)
                         {
-                            teamScores[player.GetPhotonTeam().Code - 1]++;
-                            OnRoundWon?.Invoke(PhotonNetwork.PlayerList[i].GetPhotonTeam());
+                            OnRoundWon?.Invoke(playerFromEachTeam[i].GetPhotonTeam());
                         }
                     }
                 }

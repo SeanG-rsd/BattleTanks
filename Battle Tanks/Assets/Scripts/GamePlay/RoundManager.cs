@@ -8,6 +8,8 @@ using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using UnityEngine.UI;
 using Photon.Pun.Demo.Cockpit;
+using System.Linq;
+using PlayFab.AuthenticationModels;
 
 public class RoundManager : MonoBehaviourPunCallbacks
 {
@@ -46,6 +48,15 @@ public class RoundManager : MonoBehaviourPunCallbacks
     [SerializeField] private Flag[] flagObjects;
 
     [SerializeField] private GameObject returnToLobbyObject;
+
+    [SerializeField] private GameObject teamScoreLine;
+    [SerializeField] private GameObject soloScoreLine;
+
+    [SerializeField] private WinCheck winCheck;
+
+    private List<KeyValuePair<Player, int>> scoresForSolo;
+    [SerializeField] private GameObject soloScoreGameObject;
+    [SerializeField] private Transform soloScoreBoard;
 
     public static Action OnGameOver = delegate { };
 
@@ -151,14 +162,109 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
     private void UpdateWinScreen(PhotonTeam winningTeam)
     {
-        UpdateScoreLine();
+        if (winCheck.selectedGameMode.HasTeams)
+        {
+            UpdateScoreLine();
+        }
+        else
+        {
+            UpdateSoloUI();
+        }
 
         winningTeamImage.color = teamInfo.teamColors[winningTeam.Code - 1];
         winTeamText.text = $"{teamInfo.teamNames[winningTeam.Code - 1]} Team Won the Round!";
     }
 
+    private void UpdateSoloScoreLine()
+    {
+        List<Player> playerFromEachTeam = new List<Player>();
+        Dictionary<Player, int> playerWithScore = new Dictionary<Player, int>();
+
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
+        {
+            if (playerFromEachTeam.Count == 0)
+            {
+                playerFromEachTeam.Add(PhotonNetwork.PlayerList[i]);
+                if (PhotonNetwork.PlayerList[i].CustomProperties.ContainsKey("teamRoundScore"))
+                {
+                    playerWithScore.Add(PhotonNetwork.PlayerList[i], (int)PhotonNetwork.PlayerList[i].CustomProperties["teamRoundScore"]);
+                }
+                else
+                {
+                    playerWithScore.Add(PhotonNetwork.PlayerList[i], 0);
+                }
+            }
+            else
+            {
+                bool moveOn = false;
+
+                for (int j = 0; j < playerFromEachTeam.Count; ++j)
+                {
+                    if (playerFromEachTeam[j].GetPhotonTeam() == PhotonNetwork.PlayerList[i].GetPhotonTeam())
+                    {
+                        moveOn = true;
+                        break;
+                    }
+                }
+
+                if (!moveOn)
+                {
+                    playerFromEachTeam.Add(PhotonNetwork.PlayerList[i]);
+                    playerWithScore.Add(PhotonNetwork.PlayerList[i], (int)PhotonNetwork.PlayerList[i].CustomProperties["teamRoundScore"]);
+                }
+            }
+        }
+
+        scoresForSolo = playerWithScore.ToList(); // list of keyvalue pairs <Player, int>
+
+        scoresForSolo.Sort((pair1, pair2) => pair1.Value.CompareTo(pair2.Value));       
+    }
+
+    private void UpdateSoloUI()
+    {
+        Debug.Log("solo ui");
+
+        soloScoreLine.SetActive(true);
+        teamScoreLine.SetActive(false);
+
+        int index = 0;
+
+        if (scoresForSolo.Count > 3)
+        {
+            index = 3;
+        }
+        else
+        {
+            index = scoresForSolo.Count;
+        }
+
+        for (int i = 0; i < soloScoreBoard.childCount; ++i)
+        {
+            Destroy(soloScoreBoard.GetChild(i).gameObject);
+        }
+
+        Debug.Log($"index is {index}");
+
+        for (int i = index - 1; i >= 0; --i)
+        {
+            GameObject score = Instantiate(soloScoreGameObject, new Vector3(0, 0, 0), Quaternion.identity);
+            score.transform.SetParent(soloScoreBoard);
+
+            score.transform.localScale = Vector3.one;
+
+            SoloScore soloScore = score.GetComponent<SoloScore>();
+
+            soloScore.score.text = scoresForSolo[i].Value.ToString();
+            soloScore.position.text = $"{index - i}.";
+            soloScore.image.color = teamInfo.teamColors[scoresForSolo[i].Key.GetPhotonTeam().Code - 1];
+        }
+    }
+
     private void UpdateScoreLine()
     {
+        soloScoreLine.SetActive(false);
+        teamScoreLine.SetActive(true);
+
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
         {
             if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
@@ -205,7 +311,16 @@ public class RoundManager : MonoBehaviourPunCallbacks
         waitingForPlayerToLeave = true;
         gameOver = true;
 
-        PhotonTeam winningTeam = GetLeadingTeam();
+        PhotonTeam winningTeam;
+
+        if (winCheck.selectedGameMode.HasTeams)
+        {
+            winningTeam = GetLeadingTeam();
+        }
+        else
+        {
+            winningTeam = scoresForSolo[scoresForSolo.Count - 1].Key.GetPhotonTeam();
+        }
 
         winningTeamImage.color = teamInfo.teamColors[winningTeam.Code - 1];
         winTeamText.text = $"{teamInfo.teamNames[winningTeam.Code - 1]} Team Won the Game!";
@@ -232,10 +347,20 @@ public class RoundManager : MonoBehaviourPunCallbacks
             }
         }
 
-        if (currentRoundNumber > numberOfRounds)
+        if (currentRoundNumber > numberOfRounds && winCheck.selectedGameMode.HasTeams)
         {
             GameOverScreen();
             return;
+        }
+        else if (!winCheck.selectedGameMode.HasTeams)
+        {
+            UpdateSoloScoreLine();
+
+            if (scoresForSolo[scoresForSolo.Count - 1].Value >= 3)
+            {
+                GameOverScreen();
+                return;
+            }
         }
 
         UpdateRoundNumber(currentRoundNumber);

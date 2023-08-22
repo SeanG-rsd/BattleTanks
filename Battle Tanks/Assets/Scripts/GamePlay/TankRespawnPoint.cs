@@ -32,19 +32,26 @@ public class TankRespawnPoint : MonoBehaviour
         Debug.Log("a tank has been respawned");
         if (tank.teamIndex == teamIndex)
         {
-            
-            float minX = transform.position.x - spawnRadius;
-            float minZ = transform.position.z - spawnRadius;
 
-            float maxX = transform.position.x + spawnRadius;
-            float maxZ = transform.position.z + spawnRadius;
+            Vector2 pos = GetPoint();
 
-            Vector3 position = new Vector3(Random.Range(minX, maxX), tank.gameObject.transform.position.y, Random.Range(minZ, maxZ));
+            Vector3 position = new Vector3(pos.x, tank.gameObject.transform.position.y, pos.y);
 
             tank.transform.position = position;
 
             respawnCam.SetActive(true);
         }
+    }
+
+    public Vector2 GetPoint()
+    {
+        float minX = transform.position.x - spawnRadius;
+        float minZ = transform.position.z - spawnRadius;
+
+        float maxX = transform.position.x + spawnRadius;
+        float maxZ = transform.position.z + spawnRadius;
+
+        return new Vector2(Random.Range(minX, maxX), Random.Range(minZ, maxZ));
     }
 
     private void HandleTankAlive(Tank tank)

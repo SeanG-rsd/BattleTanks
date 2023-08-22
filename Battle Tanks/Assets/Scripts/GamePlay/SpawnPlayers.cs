@@ -25,6 +25,9 @@ public class SpawnPlayers : MonoBehaviour
 
     public static Action OnTankSpawned = delegate { };
 
+    [SerializeField] private Camera miniMapCam;
+    [SerializeField] private TeamInfo teamInfo;
+
     private void Awake()
     {
         MapGeneator.OnMapGenerated += HandleSpawnPlayers;
@@ -56,7 +59,11 @@ public class SpawnPlayers : MonoBehaviour
 
     private void HandleSpawnPlayers()
     {
-        Vector3 randomPosition = new Vector3(UnityEngine.Random.Range(minX, maxX), Y, UnityEngine.Random.Range(minZ, maxZ));
+        
+        if (!PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("playerAvatar"))
+        {
+            PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"] = 2;
+        }
 
         if ((int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 1)
         {
@@ -69,7 +76,8 @@ public class SpawnPlayers : MonoBehaviour
         }
 
         playerToSpawn.GetComponent<Tank>().teamIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"];
-        
+
+        SetMiniMap((int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"]);
 
         for (int i = 0; i < spawnPoints.Count; i++)
         {
@@ -80,12 +88,21 @@ public class SpawnPlayers : MonoBehaviour
             }
         }
 
-        //playerToSpawn.GetComponent<Tank>().respawnPoint = spawnPoints[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"] - 1];
+        Vector2 pos = spawnPoints[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"] - 1].GetPoint();
+
+        Vector3 position = new Vector3(pos.x, playerToSpawn.transform.position.y, pos.y);
 
         PhotonNetwork.LocalPlayer.CustomProperties["aliveState"] = 1;
 
-        PhotonNetwork.Instantiate(playerToSpawn.name, randomPosition, Quaternion.identity);
+        PhotonNetwork.Instantiate(playerToSpawn.name, position, Quaternion.identity);
 
         OnTankSpawned?.Invoke();
+    }
+
+    private void SetMiniMap(int team)
+    {
+        Debug.Log("set mini map");
+
+        miniMapCam.cullingMask = LayerMask.GetMask("UI", teamInfo.teamNames[team - 1], "See", "MiniMap", $"MiniMap{teamInfo.teamNames[team - 1]}");
     }
 }

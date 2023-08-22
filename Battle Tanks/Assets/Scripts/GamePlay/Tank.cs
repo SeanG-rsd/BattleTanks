@@ -6,6 +6,7 @@ using System;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 using TMPro;
+using System.Globalization;
 
 public class Tank : MonoBehaviourPunCallbacks
 {
@@ -39,6 +40,8 @@ public class Tank : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_Text respawnTimerText;
 
     [SerializeField] private GameObject tankCanvas;
+
+    
 
     GameObject mapGenerator;
     public GameMode selectedGameMode;
@@ -166,10 +169,12 @@ public class Tank : MonoBehaviourPunCallbacks
 
     private void HandleGameStarted()
     {
-        Respawn();
-        OnStarted?.Invoke(this);
-        tankCanvas.SetActive(true);
-        respawnTimerObject.SetActive(false);
+        if (view.IsMine)
+        {
+            OnStarted?.Invoke(this);
+            tankCanvas.SetActive(true);
+            respawnTimerObject.SetActive(false);
+        }
     }
 
     private void HandleRoundWon(PhotonTeam team)

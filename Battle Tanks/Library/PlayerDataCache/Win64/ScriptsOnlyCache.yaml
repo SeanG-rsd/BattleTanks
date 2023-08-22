@@ -22,6 +22,7 @@ ScriptsOnlyBuild:
     - RoomItem
     - RoundManager
     - SceneController
+    - SoloScore
     - SpawnPlayers
     - Tank
     - TankHealth
@@ -93,6 +94,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.InputField
     - UnityEngine.UI.LayoutElement
     - UnityEngine.UI.Mask
+    - UnityEngine.UI.RawImage
     - UnityEngine.UI.RectMask2D
     - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Scrollbar
@@ -174,24 +176,24 @@ ScriptsOnlyBuild:
     fullTypeName: PlayfabLogin
     methodName: LoginButton
   - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UITeam
-    methodName: SwitchToTeam
-  - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickItem
   - assembly: Assembly-CSharp
+    fullTypeName: UITeam
+    methodName: SwitchToTeam
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
+  - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: RemoveFriend
   - assembly: Assembly-CSharp
@@ -203,21 +205,21 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
   - assembly: Assembly-CSharp
     fullTypeName: UITeam
     methodName: SwitchToTeam
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIDisplayRoom
     methodName: LeaveRoom
@@ -295,6 +297,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 84
+      Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
     - Class: 104
@@ -313,6 +317,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 1970}
     - Class: 114
       Script: {instanceID: 2414}
+    - Class: 114
+      Script: {instanceID: 2472}
     - Class: 114
       Script: {instanceID: 2822}
     - Class: 114
@@ -350,27 +356,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6962}
     - Class: 114
-      Script: {instanceID: 7722}
+      Script: {instanceID: 7408}
     - Class: 114
-      Script: {instanceID: 7930}
+      Script: {instanceID: 7456}
     - Class: 114
-      Script: {instanceID: 8524}
+      Script: {instanceID: 7724}
     - Class: 114
-      Script: {instanceID: 8618}
+      Script: {instanceID: 7932}
     - Class: 114
-      Script: {instanceID: 8672}
+      Script: {instanceID: 8526}
     - Class: 114
-      Script: {instanceID: 8684}
+      Script: {instanceID: 8620}
     - Class: 114
-      Script: {instanceID: 8990}
+      Script: {instanceID: 8674}
     - Class: 114
-      Script: {instanceID: 9034}
+      Script: {instanceID: 8686}
     - Class: 114
-      Script: {instanceID: 9100}
+      Script: {instanceID: 8992}
     - Class: 114
-      Script: {instanceID: 9114}
+      Script: {instanceID: 9036}
     - Class: 114
-      Script: {instanceID: 38392}
+      Script: {instanceID: 9102}
+    - Class: 114
+      Script: {instanceID: 9116}
+    - Class: 114
+      Script: {instanceID: 33690}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -414,6 +424,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 84
+      Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
     - Class: 90
@@ -450,6 +462,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 2324}
     - Class: 114
       Script: {instanceID: 2414}
+    - Class: 114
+      Script: {instanceID: 2472}
     - Class: 114
       Script: {instanceID: 2822}
     - Class: 114
@@ -511,25 +525,27 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6976}
     - Class: 114
-      Script: {instanceID: 7454}
+      Script: {instanceID: 7456}
     - Class: 114
-      Script: {instanceID: 7642}
+      Script: {instanceID: 7644}
     - Class: 114
-      Script: {instanceID: 7722}
+      Script: {instanceID: 7724}
     - Class: 114
-      Script: {instanceID: 8216}
+      Script: {instanceID: 8218}
     - Class: 114
-      Script: {instanceID: 8618}
+      Script: {instanceID: 8620}
     - Class: 114
-      Script: {instanceID: 8684}
+      Script: {instanceID: 8686}
     - Class: 114
-      Script: {instanceID: 8758}
+      Script: {instanceID: 8760}
     - Class: 114
-      Script: {instanceID: 8990}
+      Script: {instanceID: 8992}
     - Class: 114
-      Script: {instanceID: 9034}
+      Script: {instanceID: 9036}
     - Class: 114
-      Script: {instanceID: 9124}
+      Script: {instanceID: 9126}
+    - Class: 114
+      Script: {instanceID: 33690}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -644,23 +660,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6974}
     - Class: 114
-      Script: {instanceID: 7454}
+      Script: {instanceID: 7456}
     - Class: 114
-      Script: {instanceID: 8158}
+      Script: {instanceID: 8160}
     - Class: 114
-      Script: {instanceID: 8220}
+      Script: {instanceID: 8222}
     - Class: 114
-      Script: {instanceID: 8242}
+      Script: {instanceID: 8244}
     - Class: 114
-      Script: {instanceID: 8268}
+      Script: {instanceID: 8270}
     - Class: 114
-      Script: {instanceID: 8396}
+      Script: {instanceID: 8398}
     - Class: 114
-      Script: {instanceID: 8614}
+      Script: {instanceID: 8616}
     - Class: 114
-      Script: {instanceID: 9034}
+      Script: {instanceID: 9036}
     - Class: 114
-      Script: {instanceID: 9100}
+      Script: {instanceID: 9102}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1718,7 +1734,7 @@ ScriptsOnlyBuild:
     className: SmoothSyncMovement
   - hash:
       serializedVersion: 2
-      Hash: ab74ea10550e2f182fac7d2bc6c5f6ab
+      Hash: 2e86419d7e91ee7bc939d8247da41ea6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: RoundManager
@@ -2126,6 +2142,12 @@ ScriptsOnlyBuild:
     className: OnClickDestroy
   - hash:
       serializedVersion: 2
+      Hash: d365ae1d421343fc33c9d4b60dc0bd15
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIGameModeScore
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -2498,7 +2520,7 @@ ScriptsOnlyBuild:
     className: UnityOnMouseUpMessageListener
   - hash:
       serializedVersion: 2
-      Hash: ecd1046f94d95047ad26dde2c2f1495e
+      Hash: 45b0d86eef34f179d22e107707362434
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SpawnPlayers
@@ -2636,10 +2658,10 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: d365ae1d421343fc33c9d4b60dc0bd15
+      Hash: c3dd975237ef8d3e6afb860d20c3d016
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: UIGameModeScore
+    className: SoloScore
   platform: 19
   scenePathNames:
   - Assets/Scenes/Login.unity
