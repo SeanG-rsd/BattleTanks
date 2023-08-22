@@ -118,6 +118,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             PhotonNetwork.PlayerList[i].CustomProperties["aliveState"] = 1;
+            PhotonNetwork.PlayerList[i].CustomProperties["zoneScore"] = 0;
         }
     }
 
