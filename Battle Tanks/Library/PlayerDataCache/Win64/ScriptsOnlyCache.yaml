@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - FlagSafeZone
     - GameManager
     - GameMode
+    - IndividualStatLine
     - MapGeneator
     - MapWall
     - PhotonChatController
@@ -28,6 +29,7 @@ ScriptsOnlyBuild:
     - TankHealth
     - TankMovement
     - TankRespawnPoint
+    - TankScoreboard
     - TankShoot
     - TeamInfo
     - UIAddFriend
@@ -176,24 +178,24 @@ ScriptsOnlyBuild:
     fullTypeName: PlayfabLogin
     methodName: LoginButton
   - assembly: Assembly-CSharp
+    fullTypeName: UITeam
+    methodName: SwitchToTeam
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
+  - assembly: Assembly-CSharp
     fullTypeName: RoomItem
     methodName: OnClickItem
   - assembly: Assembly-CSharp
-    fullTypeName: UITeam
-    methodName: SwitchToTeam
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
-  - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: RemoveFriend
   - assembly: Assembly-CSharp
@@ -209,17 +211,17 @@ ScriptsOnlyBuild:
     fullTypeName: UITeam
     methodName: SwitchToTeam
   - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
   - assembly: Assembly-CSharp
     fullTypeName: UIDisplayRoom
     methodName: LeaveRoom
@@ -358,29 +360,33 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 7408}
     - Class: 114
-      Script: {instanceID: 7456}
+      Script: {instanceID: 7418}
     - Class: 114
-      Script: {instanceID: 7724}
+      Script: {instanceID: 7458}
     - Class: 114
-      Script: {instanceID: 7932}
+      Script: {instanceID: 7726}
     - Class: 114
-      Script: {instanceID: 8526}
+      Script: {instanceID: 7934}
     - Class: 114
-      Script: {instanceID: 8620}
+      Script: {instanceID: 8528}
     - Class: 114
-      Script: {instanceID: 8674}
+      Script: {instanceID: 8622}
     - Class: 114
-      Script: {instanceID: 8686}
+      Script: {instanceID: 8676}
     - Class: 114
-      Script: {instanceID: 8992}
+      Script: {instanceID: 8688}
     - Class: 114
-      Script: {instanceID: 9036}
+      Script: {instanceID: 8994}
     - Class: 114
-      Script: {instanceID: 9102}
+      Script: {instanceID: 9038}
     - Class: 114
-      Script: {instanceID: 9116}
+      Script: {instanceID: 9104}
     - Class: 114
-      Script: {instanceID: 33690}
+      Script: {instanceID: 9118}
+    - Class: 114
+      Script: {instanceID: 31812}
+    - Class: 114
+      Script: {instanceID: 48784}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -525,27 +531,31 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6976}
     - Class: 114
-      Script: {instanceID: 7456}
+      Script: {instanceID: 7418}
     - Class: 114
-      Script: {instanceID: 7644}
+      Script: {instanceID: 7458}
     - Class: 114
-      Script: {instanceID: 7724}
+      Script: {instanceID: 7646}
     - Class: 114
-      Script: {instanceID: 8218}
+      Script: {instanceID: 7726}
     - Class: 114
-      Script: {instanceID: 8620}
+      Script: {instanceID: 8220}
     - Class: 114
-      Script: {instanceID: 8686}
+      Script: {instanceID: 8622}
     - Class: 114
-      Script: {instanceID: 8760}
+      Script: {instanceID: 8688}
     - Class: 114
-      Script: {instanceID: 8992}
+      Script: {instanceID: 8762}
     - Class: 114
-      Script: {instanceID: 9036}
+      Script: {instanceID: 8994}
     - Class: 114
-      Script: {instanceID: 9126}
+      Script: {instanceID: 9038}
     - Class: 114
-      Script: {instanceID: 33690}
+      Script: {instanceID: 9128}
+    - Class: 114
+      Script: {instanceID: 31812}
+    - Class: 114
+      Script: {instanceID: 48784}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -660,23 +670,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6974}
     - Class: 114
-      Script: {instanceID: 7456}
+      Script: {instanceID: 7458}
     - Class: 114
-      Script: {instanceID: 8160}
+      Script: {instanceID: 8162}
     - Class: 114
-      Script: {instanceID: 8222}
+      Script: {instanceID: 8224}
     - Class: 114
-      Script: {instanceID: 8244}
+      Script: {instanceID: 8246}
     - Class: 114
-      Script: {instanceID: 8270}
+      Script: {instanceID: 8272}
     - Class: 114
-      Script: {instanceID: 8398}
+      Script: {instanceID: 8400}
     - Class: 114
-      Script: {instanceID: 8616}
+      Script: {instanceID: 8618}
     - Class: 114
-      Script: {instanceID: 9036}
+      Script: {instanceID: 9038}
     - Class: 114
-      Script: {instanceID: 9102}
+      Script: {instanceID: 9104}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2148,6 +2158,12 @@ ScriptsOnlyBuild:
     className: UIGameModeScore
   - hash:
       serializedVersion: 2
+      Hash: c3dd975237ef8d3e6afb860d20c3d016
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SoloScore
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
@@ -2658,10 +2674,16 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: c3dd975237ef8d3e6afb860d20c3d016
+      Hash: 9a4ba7d8c672da542f385a1ab7984a3b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: SoloScore
+    className: TankScoreboard
+  - hash:
+      serializedVersion: 2
+      Hash: fddee31e30d4110c395026579c04c632
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: IndividualStatLine
   platform: 19
   scenePathNames:
   - Assets/Scenes/Login.unity

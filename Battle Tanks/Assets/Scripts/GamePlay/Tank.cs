@@ -41,7 +41,7 @@ public class Tank : MonoBehaviourPunCallbacks
 
     [SerializeField] private GameObject tankCanvas;
 
-    
+    private List<Player> damageDealersBeforeDeath;
 
     GameObject mapGenerator;
     public GameMode selectedGameMode;
@@ -59,6 +59,7 @@ public class Tank : MonoBehaviourPunCallbacks
     {
         mapGenerator = FindObjectOfType<MapGeneator>().gameObject;
         selectedGameMode = mapGenerator.GetComponent<MapGeneator>().selectedGameMode;
+        damageDealersBeforeDeath = new List<Player>();
 
         TankHealth.OnDeath += HandleTankDeath;
         GameManager.OnStartGame += HandleStartGame;
@@ -89,6 +90,7 @@ public class Tank : MonoBehaviourPunCallbacks
         {
             if (respawnTimer < 0)
             {
+                damageDealersBeforeDeath.Clear();
                 OnAlive?.Invoke(this);
                 respawning = false;
                 invicible = true;
@@ -125,7 +127,7 @@ public class Tank : MonoBehaviourPunCallbacks
 
     private void HandleTankDeath(Tank tank)
     {
-        if (tank == this)
+        if (tank == this && view.IsMine)
         {
             if (myFlag != null)
             {
@@ -142,7 +144,59 @@ public class Tank : MonoBehaviourPunCallbacks
             respawnTimerObject.SetActive(true);
             respawnTimerText.text = Mathf.RoundToInt(respawnTimer).ToString();
             tankCanvas.SetActive(false);
+
+            HandleDamageDealers();
+
+            int numDeaths = 0;
+
+            if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("DEATHS"))
+            {
+                numDeaths = (int)PhotonNetwork.LocalPlayer.CustomProperties["DEATHS"] + 1;
+            }
+            else
+            {
+                numDeaths = 1;
+            }
+
+            PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { "DEATHS", numDeaths } });
         }
+    }
+
+    private void HandleDamageDealers()
+    {
+        if (damageDealersBeforeDeath.Count == 0) return;
+
+        for (int i = 0; i < damageDealersBeforeDeath.Count - 1; ++i)
+        {
+            if (damageDealersBeforeDeath[i] != damageDealersBeforeDeath[damageDealersBeforeDeath.Count - 1])
+            {
+                int numAssists = 0;
+
+                if (damageDealersBeforeDeath[i].CustomProperties.ContainsKey("ASSISTS"))
+                {
+                    numAssists = (int)damageDealersBeforeDeath[i].CustomProperties["ASSISTS"] + 1;
+                }
+                else
+                {
+                    numAssists = 1;
+                }
+
+                damageDealersBeforeDeath[i].SetCustomProperties(new Hashtable() { { "ASSISTS", numAssists } });
+            }
+        }
+
+        int numKills = 0;
+
+        if (damageDealersBeforeDeath[damageDealersBeforeDeath.Count - 1].CustomProperties.ContainsKey("KILLS"))
+        {
+            numKills = (int)damageDealersBeforeDeath[damageDealersBeforeDeath.Count - 1].CustomProperties["KILLS"] + 1;
+        }
+        else
+        {
+            numKills = 1;
+        }
+
+        damageDealersBeforeDeath[damageDealersBeforeDeath.Count - 1].SetCustomProperties(new Hashtable() { { "KILLS", numKills } });
     }
 
     private void Respawn()
@@ -223,6 +277,12 @@ public class Tank : MonoBehaviourPunCallbacks
                 nonHit = true;
                 nonHitTimer = nonHitTime;
                 tankHealth.ChangeHealth(-collision.gameObject.GetComponent<Bullet>().damage);
+
+                if (collision.gameObject.GetComponent<PhotonView>() != null)
+                {
+                    Debug.Log($"{PhotonNetwork.LocalPlayer.NickName} was shot by {collision.gameObject.GetComponent<PhotonView>().Owner}");
+                    damageDealersBeforeDeath.Add(collision.gameObject.GetComponent<PhotonView>().Owner);
+                }
             }
         }
     }

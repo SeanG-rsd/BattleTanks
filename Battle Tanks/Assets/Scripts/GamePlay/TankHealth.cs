@@ -135,6 +135,8 @@ public class TankHealth : MonoBehaviour
             GameObject heart = Instantiate(heartPrefab, healthBarContainer.position, Quaternion.identity);
 
             heart.transform.SetParent(healthBarContainer);
+
+            heart.transform.localScale = Vector3.one;
         }
 
         currentHearts = maxHearts;
