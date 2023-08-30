@@ -51,13 +51,16 @@ public class PhotonChatFriendController : MonoBehaviour
 
     private void HandleStatusUpdated(PhotonStatus status)
     {
+        Debug.Log("handle status");
         if (friendStatuses.ContainsKey(status.PlayerName))
         {
             friendStatuses[status.PlayerName] = status;
+            Debug.Log("status update");
         }
         else
         {
             friendStatuses.Add(status.PlayerName, status);
+            Debug.Log("status update");
         }
     }
 

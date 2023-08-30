@@ -37,11 +37,13 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
     private void Update()
     {
         chatClient.Service();
+        chatClient.SetOnlineStatus(ChatUserStatus.Online);
     }
 
     public void HandleFriendInvite(string recipient)
     {
         chatClient.SendPrivateMessage(recipient, PhotonNetwork.CurrentRoom.Name);
+        Debug.Log(recipient);
     }
 
     public void SendDirectMessage(string recipient, string message)
@@ -89,9 +91,11 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
     {
         if (!string.IsNullOrEmpty(message.ToString()))
         {
+            
             // Channel Name format [Sender : Recipient]
             string[] splitNames = channelName.Split(':');
             string senderName = splitNames[0];
+            Debug.Log(splitNames[1]);
             if (!sender.Equals(senderName, StringComparison.OrdinalIgnoreCase))
             {
                 Debug.Log($"{sender}: {message}");

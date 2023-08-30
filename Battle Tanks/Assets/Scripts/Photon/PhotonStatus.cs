@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class PhotonStatus : MonoBehaviour
+public class PhotonStatus
 {
     public string PlayerName {  get; private set; }
     public int Status { get; private set; }
@@ -15,5 +15,10 @@ public class PhotonStatus : MonoBehaviour
         PlayerName = name;
         Status = status;
         Message = message;
+    }
+
+    public PhotonStatus()
+    {
+
     }
 }

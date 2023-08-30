@@ -10,12 +10,14 @@ public class SceneController : MonoBehaviour
     {
         PhotonRoomController.OnStartGame += HandleStartGame;
         RoundManager.OnGameOver += ReturnToLobby;
+        LeaveGame.OnLeaveGame += ReturnToLobby;
     }
 
     private void OnDestroy()
     {
         PhotonRoomController.OnStartGame -= HandleStartGame;
         RoundManager.OnGameOver -= ReturnToLobby;
+        LeaveGame.OnLeaveGame -= ReturnToLobby;
     }
 
     private void HandleStartGame()

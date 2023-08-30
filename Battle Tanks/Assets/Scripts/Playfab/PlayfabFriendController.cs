@@ -26,11 +26,6 @@ public class PlayfabFriendController : MonoBehaviour
         UIFriend.OnRemoveFriend -= HandleRemoveFriend;
     }
 
-    private void Start()
-    {
-        
-    }
-
     private void HandleGetFriends()
     {
         GetPlayfabFriends();

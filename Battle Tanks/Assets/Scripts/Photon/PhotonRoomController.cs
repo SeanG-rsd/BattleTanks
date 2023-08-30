@@ -5,6 +5,7 @@ using Photon.Realtime;
 using ExitGames.Client.Photon;
 using System.Collections.Generic;
 using TMPro;
+using Photon.Chat;
 
 public class PhotonRoomController : MonoBehaviourPunCallbacks
 {
@@ -12,7 +13,11 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
     [SerializeField] private GameMode[] availableGameModes;
     [SerializeField] TMP_InputField createInput;
 
-    int numberOfRounds;
+    private int numberOfRounds;
+
+    [SerializeField] private UIRoomItem roomItemPrefab;
+    private List<UIRoomItem> roomItemsList = new List<UIRoomItem>();
+    [SerializeField] private Transform publicRoomList;
     
 
     private const string GAME_MODE = "GAMEMODE";
@@ -87,11 +92,17 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinRoom(roomName);
     }
 
-    public void OnClickCreate(GameMode gameMode)
+    public void OnClickCreate()
     {
         if (createInput.text.Length >= 1)
         {
-            selectedGameMode = gameMode;
+            CreatePhotonRoom(createInput.text);
+        }
+    }
+    public void OnClickJoin()
+    {
+        if (createInput.text.Length >= 1)
+        {
             CreatePhotonRoom(createInput.text);
         }
     }
@@ -117,15 +128,11 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
         RoomOptions ro = new RoomOptions();
         ro.IsOpen = true;
         ro.IsVisible = true;
-        ro.MaxPlayers = selectedGameMode.MaxPlayers;
+        ro.MaxPlayers = 8;
 
         string[] roomProperties = { GAME_MODE };
 
-        Hashtable customRoomProperties = new Hashtable()
-        { {GAME_MODE, selectedGameMode.name} };
-
         ro.CustomRoomPropertiesForLobby = roomProperties;
-        ro.CustomRoomProperties = customRoomProperties;
 
         return ro;
     }
@@ -201,6 +208,28 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
         }
 
 
+    }
+
+    public override void OnRoomListUpdate(List<RoomInfo> roomList)
+    {
+        Debug.Log("list update");
+        UpdateRoomList(roomList);
+    }
+
+    private void UpdateRoomList(List<RoomInfo> list)
+    {
+        foreach (UIRoomItem item in roomItemsList)
+        {
+            Destroy(item.gameObject);
+        }
+        roomItemsList.Clear();
+
+        foreach (RoomInfo room in list)
+        {
+            UIRoomItem roomItem = Instantiate(roomItemPrefab, publicRoomList);
+            roomItem.SetRoomName(room.Name);
+            roomItemsList.Add(roomItem);
+        }
     }
     #endregion
 }
