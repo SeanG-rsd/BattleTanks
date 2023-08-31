@@ -16,6 +16,9 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
     public static Action OnRejoinLobby = delegate { };
 
     [SerializeField] private UIDisplayRoom uiRoom;
+
+    [SerializeField] private GameObject connectingToScreen;
+    [SerializeField] private TMP_Text connectingToText;
     private void Start()
     {
         Debug.Log("start");
@@ -46,12 +49,10 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = nickName;
         if (!PhotonNetwork.IsConnected)
         {
+            connectingToScreen.SetActive(true);
+            connectingToText.text = "Connecting To Master Server";
             PhotonNetwork.ConnectUsingSettings();
             
-        }
-        else
-        {
-            Debug.Log("player is already connected");
         }
     }
 
@@ -60,21 +61,25 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
         Debug.Log($"You have connected to the Photon Master Server");
         if (!PhotonNetwork.InLobby && !PhotonNetwork.InRoom)
         {
+            connectingToText.text = "Connecting To The Lobby";
             PhotonNetwork.JoinLobby();
+            Debug.Log(PhotonNetwork.IsConnectedAndReady);
         }
     }
 
     public override void OnJoinedLobby()
     {
         Debug.Log($"You have connected to a Photon Lobby");
+        connectingToScreen.SetActive(false);
         GetPhotonFriends?.Invoke();
         OnLobbyJoined?.Invoke();
     }
 
     public override void OnLeftRoom()
     {
-        Debug.LogWarning("leftRoom");
         PhotonNetwork.ConnectUsingSettings();
         Debug.Log("connecting to master");
+        connectingToScreen.SetActive(true);
+        connectingToText.text = "Connecting To Master Server";
     }
 }

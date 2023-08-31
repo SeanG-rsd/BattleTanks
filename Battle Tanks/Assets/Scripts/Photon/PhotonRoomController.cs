@@ -94,14 +94,14 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
 
     public void OnClickCreate()
     {
-        if (createInput.text.Length >= 1)
+        if (createInput.text.Length >= 1 && PhotonNetwork.IsConnectedAndReady && PhotonNetwork.InLobby)
         {
             CreatePhotonRoom(createInput.text);
         }
     }
     public void OnClickJoin()
     {
-        if (createInput.text.Length >= 1)
+        if (createInput.text.Length >= 1 && PhotonNetwork.IsConnectedAndReady && PhotonNetwork.InLobby)
         {
             CreatePhotonRoom(createInput.text);
         }
@@ -109,9 +109,7 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        //Hashtable setTeams = new Hashtable() { { "GAMEMODE", currentSelectedGameMode.Name } };
         PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "TEAMS", "0" } });
-        Debug.Log("startGame");
     }
 
     private void CreatePhotonRoom(string name)
@@ -152,12 +150,31 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
         return gameMode;
     }
 
+    private int GetRoomNumRound()
+    {
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("NUMBEROFROUNDS"))
+        {
+            return (int)PhotonNetwork.CurrentRoom.CustomProperties["NUMBEROFROUNDS"];
+        }
+        return 0;
+    }
+
     #region Photon Callbacks
     public override void OnJoinedRoom()
     {
         selectedGameMode = GetRoomGameMode();
+        numberOfRounds = GetRoomNumRound();
+        
         OnJoinRoom?.Invoke(selectedGameMode);
         OnRoomStatusChange?.Invoke(PhotonNetwork.InRoom);
+
+        if (PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("GAMEMODESELECTED"))
+        {
+            if ((bool)PhotonNetwork.CurrentRoom.CustomProperties["GAMEMODESELECTED"])
+            {
+                OnGameSettingsSelected?.Invoke(selectedGameMode, numberOfRounds);
+            }
+        }
     }
 
     public override void OnLeftRoom()
@@ -204,10 +221,9 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
         }
         else if (propertiesThatChanged.ContainsKey("TEAMS"))
         {
+            Debug.LogError("dflkajh");
             OnStartGame?.Invoke();
         }
-
-
     }
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)

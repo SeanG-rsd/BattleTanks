@@ -60,13 +60,19 @@ public class PlayfabLogin : MonoBehaviour
 
         PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);
 
-        CreateUsername();
+        
     }
 
     private void CreateUsername()
     {
         LoginScreen.SetActive(!LoginScreen.activeSelf);
         UserNameScreen.SetActive(!UserNameScreen.activeSelf);
+    }
+
+    private void LoginScreenOn()
+    {
+        LoginScreen.SetActive(true);
+        UserNameScreen.SetActive(false);
     }
 
     public void FinishRegistering()
@@ -91,13 +97,14 @@ public class PlayfabLogin : MonoBehaviour
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         messageText.text = "Registered!";
+        CreateUsername();
     }
 
     void OnError(PlayFabError error)
     {
-        messageText.text = "Error!";
+        messageText.text = error.ErrorMessage;
         Debug.Log(error.ErrorMessage);
-        CreateUsername();
+        LoginScreenOn();
     }
 
     public void LoginButton()
@@ -140,17 +147,6 @@ public class PlayfabLogin : MonoBehaviour
         PlayerPrefs.SetString("EMAIL", emailInput.text);
         PlayerPrefs.SetString("PASSWORD", passwordInput.text);
         PlayerPrefs.SetInt("REMEMBERME", 1);
-    }
-
-    private void LoginWithCustomId()
-    {
-        Debug.Log($"Login to Playfab as {username}");
-        if (wantsToRemember)
-        {
-            RememberMe();
-        }
-        var request = new LoginWithCustomIDRequest { CustomId = username };
-        PlayFabClientAPI.LoginWithCustomID(request, OnLoginCustomIdSuccess, OnFailure);
     }
 
     private void UpdateDisplayName(string displayName)

@@ -51,7 +51,7 @@ public class PhotonGameSettingsController : MonoBehaviourPunCallbacks
         if (currentSelectedGameMode != null && currentSelectedRoundNumber != 0)
         {
             Hashtable setGameMode = new Hashtable() { { "GAMEMODE", currentSelectedGameMode.Name }, { "NUMBEROFROUNDS", currentSelectedRoundNumber } };
-            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "GAMEMODE", currentSelectedGameMode.Name }, { "NUMBEROFROUNDS", currentSelectedRoundNumber } });
+            PhotonNetwork.CurrentRoom.SetCustomProperties(new Hashtable() { { "GAMEMODE", currentSelectedGameMode.Name }, { "NUMBEROFROUNDS", currentSelectedRoundNumber }, { "GAMEMODESELECTED", true } });
         }
     }
 }

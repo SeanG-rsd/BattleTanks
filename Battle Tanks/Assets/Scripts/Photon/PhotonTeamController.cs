@@ -13,6 +13,8 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
     [SerializeField] private int teamSize;
     [SerializeField] private PhotonTeam priorTeam;
 
+    [SerializeField] private TeamInfo teamInfo;
+
     public static Action<List<PhotonTeam>, GameMode> OnCreateTeams = delegate { };
     public static Action<Player, PhotonTeam> OnSwitchTeam = delegate { };
     public static Action<Player> OnRemovePlayer = delegate { };
@@ -94,7 +96,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
         {
             roomTeams.Add(new PhotonTeam
             {
-                Name = $"Team {i}",
+                Name = teamInfo.teamNames[i - 1],
                 Code = (byte)i
             });
         }
