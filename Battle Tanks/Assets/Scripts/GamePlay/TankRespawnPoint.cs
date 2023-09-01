@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Realtime;
+using Photon.Pun;
 
 public class TankRespawnPoint : MonoBehaviour
 {
@@ -13,7 +15,7 @@ public class TankRespawnPoint : MonoBehaviour
     {
         Tank.OnRespawn += HandleRespawnTank;
         Tank.OnAlive += HandleTankAlive;
-        Tank.OnStart += HandleStartGame;
+        Tank.OnBeginGame += HandleStartGame;
         Tank.OnStarted += HandleGameStarted;
         Tank.OnNewRound += HandleRespawnTank;
     }
@@ -22,7 +24,7 @@ public class TankRespawnPoint : MonoBehaviour
     {
         Tank.OnRespawn -= HandleRespawnTank;
         Tank.OnAlive -= HandleTankAlive;
-        Tank.OnStart -= HandleStartGame;
+        Tank.OnBeginGame -= HandleStartGame;
         Tank.OnStarted -= HandleGameStarted;
         Tank.OnNewRound -= HandleRespawnTank;
     }
@@ -62,7 +64,7 @@ public class TankRespawnPoint : MonoBehaviour
         }
     }
 
-    private void HandleStartGame(Tank tank)
+    private void HandleStartGame(Tank tank, Player player)
     {
         if (tank.teamIndex == teamIndex)
         {

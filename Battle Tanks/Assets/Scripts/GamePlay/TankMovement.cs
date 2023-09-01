@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class TankMovement : MonoBehaviour
 {
@@ -21,14 +22,10 @@ public class TankMovement : MonoBehaviour
     private void Awake()
     {
         view = gameObject.GetComponent<PhotonView>();
-        if (view.IsMine)
-        {
-            PlayerCamera.SetActive(true);
-        }
 
         Tank.OnRespawn += HandleTankDeath;
         Tank.OnAlive += HandleTankAlive;
-        Tank.OnStart += HandleStart;
+        Tank.OnBeginGame += HandleStart;
         Tank.OnStarted += HandleRoundStarted;
     }
 
@@ -36,7 +33,7 @@ public class TankMovement : MonoBehaviour
     {
         Tank.OnRespawn -= HandleTankDeath;
         Tank.OnAlive -= HandleTankAlive;
-        Tank.OnStart += HandleStart;
+        Tank.OnBeginGame += HandleStart;
         Tank.OnStarted += HandleRoundStarted;
     }
 
@@ -71,7 +68,7 @@ public class TankMovement : MonoBehaviour
         }
     }
 
-    private void HandleStart(Tank tank)
+    private void HandleStart(Tank tank, Player player)
     {
         Debug.Log("handle start");
         if (view.IsMine)

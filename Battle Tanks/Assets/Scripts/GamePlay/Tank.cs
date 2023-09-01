@@ -54,6 +54,10 @@ public class Tank : MonoBehaviourPunCallbacks
 
     public static Action<Tank> OnNewRound = delegate { };
 
+    public static Action<Tank, Player> OnBeginGame = delegate { };
+
+    private TankRespawnPoint myRespawn;
+    private bool goHome;
 
     private void Awake()
     {
@@ -68,6 +72,14 @@ public class Tank : MonoBehaviourPunCallbacks
         WinCheck.OnRoundWon += HandleRoundWon;
 
         view = GetComponent<PhotonView>();
+
+        if (view.IsMine)
+        {
+            OnBeginGame?.Invoke(this, PhotonNetwork.LocalPlayer);
+            myRespawn = FindMyRespawn();
+
+            goHome = true;
+        }
     }
 
     private void OnDestroy()
@@ -123,6 +135,37 @@ public class Tank : MonoBehaviourPunCallbacks
 
             nonHitTimer -= Time.deltaTime;
         }
+
+        if (view.IsMine && goHome)
+        {
+            transform.position = GoHome();
+            goHome = false;
+        }
+    }
+
+    private TankRespawnPoint FindMyRespawn()
+    {
+        TankRespawnPoint[] respawns = FindObjectsOfType<TankRespawnPoint>();
+
+        foreach (TankRespawnPoint p in respawns)
+        {
+            if (p.teamIndex == this.teamIndex)
+            {
+                return p;
+            }
+        }
+
+        return null;
+    }
+
+    private Vector3 GoHome()
+    {
+        Debug.Log("go home");
+
+        Vector2 pos = myRespawn.GetPoint();
+
+        Vector3 position = new Vector3(pos.x, transform.position.y, pos.y);
+        return position;
     }
 
     private void HandleTankDeath(Tank tank)

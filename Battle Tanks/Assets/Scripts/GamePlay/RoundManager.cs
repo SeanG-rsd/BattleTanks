@@ -121,6 +121,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
         roundScreen.SetActive(true);
         SetAliveStateForAll();
         roundTimer = inBetweenTime;
+        ResetFlags();
         OnRoundStarted?.Invoke();
     }
 

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using System;
+using Photon.Realtime;
 
 public class SpawnPlayers : MonoBehaviour
 {
@@ -90,11 +91,11 @@ public class SpawnPlayers : MonoBehaviour
 
         Vector2 pos = spawnPoints[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"] - 1].GetPoint();
 
-        Vector3 position = new Vector3(pos.x, playerToSpawn.transform.position.y, pos.y);
+        //Vector3 position = new Vector3(pos.x, playerToSpawn.transform.position.y, pos.y);
 
         PhotonNetwork.LocalPlayer.CustomProperties["aliveState"] = 1;
 
-        PhotonNetwork.Instantiate(playerToSpawn.name, position, Quaternion.identity);
+        PhotonNetwork.Instantiate(playerToSpawn.name, playerToSpawn.transform.position, Quaternion.identity);
 
         OnTankSpawned?.Invoke();
     }

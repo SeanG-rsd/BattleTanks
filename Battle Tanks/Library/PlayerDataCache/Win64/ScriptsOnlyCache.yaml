@@ -60,6 +60,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
     PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PhotonTransformViewClassicEditor
+    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.Utilities.dll:
     - Photon.Pun.UtilityScripts.PhotonTeamsManager
@@ -166,7 +168,7 @@ ScriptsOnlyBuild:
   methodsToPreserve:
   - assembly: Assembly-CSharp
     fullTypeName: PlayfabLogin
-    methodName: ResetPasswordButton
+    methodName: LoginButton
   - assembly: Assembly-CSharp
     fullTypeName: PlayfabLogin
     methodName: RegisterButton
@@ -178,19 +180,19 @@ ScriptsOnlyBuild:
     methodName: RememberMe
   - assembly: Assembly-CSharp
     fullTypeName: PlayfabLogin
-    methodName: LoginButton
-  - assembly: Assembly-CSharp
-    fullTypeName: UIRoomItem
-    methodName: OnClickItem
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
+    methodName: ResetPasswordButton
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIRoomItem
+    methodName: OnClickItem
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
   - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: RemoveFriend
@@ -210,17 +212,17 @@ ScriptsOnlyBuild:
     fullTypeName: UIInvite
     methodName: AcceptInvite
   - assembly: Assembly-CSharp
-    fullTypeName: UIRoomItem
-    methodName: OnClickItem
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIRoomItem
+    methodName: OnClickItem
+  - assembly: Assembly-CSharp
+    fullTypeName: UIFriend
+    methodName: InviteFriend
   - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: RemoveFriend
@@ -495,6 +497,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3122}
     - Class: 114
       Script: {instanceID: 3208}
+    - Class: 114
+      Script: {instanceID: 3224}
     - Class: 114
       Script: {instanceID: 3310}
     - Class: 114
@@ -2429,7 +2433,7 @@ ScriptsOnlyBuild:
     className: CurrentRoomExpectedUsersProperty
   - hash:
       serializedVersion: 2
-      Hash: b7b42234d497025963ab37dd5b889d6e
+      Hash: 4a4761fbd8a645def33df4e9170dde4a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PhotonConnector
