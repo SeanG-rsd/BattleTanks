@@ -6,6 +6,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using Newtonsoft.Json;
+using UnityEngine;
 
 public class PlayfabLogin : MonoBehaviour
 {
@@ -26,6 +27,11 @@ public class PlayfabLogin : MonoBehaviour
     [SerializeField] private GameObject UserNameScreen;
     [SerializeField] private Toggle rememberToggle;
 
+    [SerializeField] private Sprite toggleOnSprite;
+    [SerializeField] private Sprite toggleOffSprite;
+
+    [SerializeField] private Image toggleImage;
+
     private void Start()
     {
         if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
@@ -43,10 +49,14 @@ public class PlayfabLogin : MonoBehaviour
                 rememberToggle.isOn = true;
             }
         }
+
+        toggleImage.sprite = (rememberToggle.isOn) ? toggleOnSprite : toggleOffSprite;
     }
     public void RememberMe(Toggle toggle)
     {
         wantsToRemember = toggle.isOn;
+
+        toggleImage.sprite = (toggle.isOn) ? toggleOnSprite : toggleOffSprite;
     }
     public void RegisterButton()
     {
