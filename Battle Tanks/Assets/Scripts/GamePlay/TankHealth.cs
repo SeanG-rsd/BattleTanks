@@ -81,8 +81,11 @@ public class TankHealth : MonoBehaviour
     {
         if (view.IsMine)
         {
-            currentHealth = (int)playerPropeties["currentHealth"];
-            healthbarText.text = currentHealth.ToString();
+            if (playerPropeties.ContainsKey("currentHealth"))
+            {
+                currentHealth = (int)playerPropeties["currentHealth"];
+                healthbarText.text = currentHealth.ToString();
+            }
 
             if (!Alive() && hasRespawned)
             {

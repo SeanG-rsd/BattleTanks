@@ -127,6 +127,7 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
         ro.IsOpen = true;
         ro.IsVisible = true;
         ro.MaxPlayers = 8;
+        ro.CleanupCacheOnLeave = false;
 
         string[] roomProperties = { GAME_MODE };
 

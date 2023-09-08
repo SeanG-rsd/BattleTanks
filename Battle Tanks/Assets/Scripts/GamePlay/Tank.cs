@@ -7,10 +7,11 @@ using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 using TMPro;
 using System.Globalization;
+using System.Reflection;
 
 public class Tank : MonoBehaviourPunCallbacks
 {
-    PhotonView view;
+    public PhotonView view;
 
     TankHealth tankHealth;
 
@@ -89,6 +90,15 @@ public class Tank : MonoBehaviourPunCallbacks
         RoundManager.OnGameStarted -= HandleGameStarted;
         RoundManager.OnRoundStarted -= HandleNewRound;
         WinCheck.OnRoundWon -= HandleRoundWon;
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (view.IsMine)
+        {
+            Debug.Log("quit application");
+            Destroy();
+        }
     }
 
     void Start()
@@ -332,18 +342,13 @@ public class Tank : MonoBehaviourPunCallbacks
 
     public void Destroy()
     {
-        Hashtable hashtable = new Hashtable() { { "aliveState", 0 } };
-        Debug.Log("set custom prop");
-
-        PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
-
-        this.GetComponent<PhotonView>().RPC("DestroyObject", RpcTarget.AllViaServer);
+        this.GetComponent<PhotonView>().RPC("DestroyObject", RpcTarget.AllBuffered);
     }
 
     [PunRPC]
     public void DestroyObject()
     {
+        Debug.LogError("punRPC");
         Destroy(this.gameObject);
-
     }
 }
