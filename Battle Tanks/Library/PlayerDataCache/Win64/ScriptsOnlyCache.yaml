@@ -26,6 +26,7 @@ ScriptsOnlyBuild:
     - SceneController
     - SoloScore
     - SpawnPlayers
+    - StayOnLeave
     - Tank
     - TankHealth
     - TankMovement
@@ -60,6 +61,8 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
     PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PhotonTransformViewEditor
+    - Photon.Pun.PhotonViewInspector
     - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.Utilities.dll:
     - Photon.Pun.UtilityScripts.PhotonTeamsManager
@@ -402,6 +405,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 9186}
     - Class: 114
       Script: {instanceID: 9200}
+    - Class: 114
+      Script: {instanceID: 42232}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -577,6 +582,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 9120}
     - Class: 114
       Script: {instanceID: 9210}
+    - Class: 114
+      Script: {instanceID: 42232}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -2723,6 +2730,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StayOnLeave
   platform: 19
   scenePathNames:
   - Assets/Scenes/Login.unity

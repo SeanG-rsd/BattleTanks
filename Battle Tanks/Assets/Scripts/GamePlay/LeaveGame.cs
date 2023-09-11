@@ -4,8 +4,9 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using System;
+using Photon.Realtime;
 
-public class LeaveGame : MonoBehaviour
+public class LeaveGame : MonoBehaviourPunCallbacks
 {
     public static Action OnLeaveGame = delegate { };
 
@@ -13,7 +14,7 @@ public class LeaveGame : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && GetComponent<PhotonView>().IsMine)
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             quitScreen.SetActive(!quitScreen.activeSelf);
         }
@@ -27,7 +28,7 @@ public class LeaveGame : MonoBehaviour
     {
         if (PhotonNetwork.InRoom)
         {
-            OnLeaveGame();
+            OnLeaveGame?.Invoke();
             PhotonNetwork.AutomaticallySyncScene = false;
             PhotonNetwork.LocalPlayer.LeaveCurrentTeam();
             PhotonNetwork.LeaveRoom();

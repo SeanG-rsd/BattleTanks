@@ -7,6 +7,7 @@ using System;
 using Photon.Realtime;
 using Photon.Pun.UtilityScripts;
 using ExitGames.Client.Photon;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviourPunCallbacks
 {
@@ -31,6 +32,8 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        PhotonNetwork.AutomaticallySyncScene = false;
+
         TankHealth.OnOutOfHearts += HandleDeadTank;
         MapGeneator.OnMapGenerated += HandleStartGame;
         
@@ -92,4 +95,22 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         topDownCam.SetActive(true);
     }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+
+        Debug.Log("playerLeftRoom");
+        Tank[] tanks = FindObjectsOfType<Tank>();
+        Debug.Log(tanks.Length);
+
+        foreach (Tank tank in tanks)
+        {
+            if (tank.view.ViewID == (int)otherPlayer.CustomProperties["TankViewID"])
+            {
+                PhotonNetwork.Destroy(tank.gameObject);
+                Debug.Log(otherPlayer.CustomProperties["TankViewID"]);
+            }
+        }
+    }
 }
+

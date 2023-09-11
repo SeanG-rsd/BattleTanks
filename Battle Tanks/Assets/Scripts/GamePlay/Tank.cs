@@ -57,8 +57,12 @@ public class Tank : MonoBehaviourPunCallbacks
 
     public static Action<Tank, Player> OnBeginGame = delegate { };
 
+    public static Action<Player> OnMasterLeave = delegate { };
+
     private TankRespawnPoint myRespawn;
     private bool goHome;
+
+    LeaveGame leaveGame;
 
     private void Awake()
     {
@@ -71,8 +75,13 @@ public class Tank : MonoBehaviourPunCallbacks
         RoundManager.OnGameStarted += HandleGameStarted;
         RoundManager.OnRoundStarted += HandleNewRound;
         WinCheck.OnRoundWon += HandleRoundWon;
+        LeaveGame.OnLeaveGame += HandleLeaveGame;
 
         view = GetComponent<PhotonView>();
+
+        
+
+        leaveGame = FindObjectOfType<LeaveGame>();
 
         if (view.IsMine)
         {
@@ -80,6 +89,9 @@ public class Tank : MonoBehaviourPunCallbacks
             myRespawn = FindMyRespawn();
 
             goHome = true;
+
+            Hashtable hash = new Hashtable() { { "TankViewID", view.ViewID } };
+            PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
         }
     }
 
@@ -90,20 +102,18 @@ public class Tank : MonoBehaviourPunCallbacks
         RoundManager.OnGameStarted -= HandleGameStarted;
         RoundManager.OnRoundStarted -= HandleNewRound;
         WinCheck.OnRoundWon -= HandleRoundWon;
-    }
-
-    private void OnApplicationQuit()
-    {
-        if (view.IsMine)
-        {
-            Debug.Log("quit application");
-            Destroy();
-        }
+        LeaveGame.OnLeaveGame -= HandleLeaveGame;
     }
 
     void Start()
     {
         tankHealth = gameObject.GetComponent<TankHealth>();
+    }
+
+    private void HandleLeaveGame()
+    {
+        Debug.Log("quit application");
+        PhotonNetwork.Destroy(gameObject);
     }
 
     private void Update()
@@ -151,6 +161,8 @@ public class Tank : MonoBehaviourPunCallbacks
             transform.position = GoHome();
             goHome = false;
         }
+
+
     }
 
     private TankRespawnPoint FindMyRespawn()
@@ -338,17 +350,5 @@ public class Tank : MonoBehaviourPunCallbacks
                 }
             }
         }
-    }
-
-    public void Destroy()
-    {
-        this.GetComponent<PhotonView>().RPC("DestroyObject", RpcTarget.AllBuffered);
-    }
-
-    [PunRPC]
-    public void DestroyObject()
-    {
-        Debug.LogError("punRPC");
-        Destroy(this.gameObject);
     }
 }
