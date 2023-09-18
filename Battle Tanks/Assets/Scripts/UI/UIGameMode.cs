@@ -9,14 +9,9 @@ public class UIGameMode : MonoBehaviour
 {
 
     [SerializeField] GameMode gameMode;
-    [SerializeField] TMP_Text gameModeText;
 
     public static Action<GameMode, Button> OnGameModeChanged = delegate { };
-    // Start is called before the first frame update
-    void Start()
-    {
-        gameModeText.SetText(gameMode.Name);
-    }
+    // Start is called before the first frame updat
 
     public void OnClickChooseGameMode()
     {

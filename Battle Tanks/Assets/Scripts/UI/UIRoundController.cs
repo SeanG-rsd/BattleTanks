@@ -9,14 +9,8 @@ public class UIRoundController : MonoBehaviour
 {
 
     [SerializeField] int value;
-    [SerializeField] TMP_Text roundNumberText;
 
     public static Action<int, Button> OnNumberOFRoundsChanged = delegate { };
-    // Start is called before the first frame update
-    void Start()
-    {
-        roundNumberText.SetText(value.ToString());
-    }
 
     public void OnClickRoundCount()
     {
