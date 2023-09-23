@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.InputSystem;
 
 public class TankMovement : MonoBehaviour
 {
@@ -18,6 +19,8 @@ public class TankMovement : MonoBehaviour
     private bool canMove = true;
 
     private Tank tank;
+
+    [SerializeField] PlayerInput tankInput;
 
     private void Awake()
     {
@@ -40,13 +43,13 @@ public class TankMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (view.IsMine && canMove)
+        if (canMove && view.IsMine)
         {
-            Vector3 input = new Vector3(0, 0, Input.GetAxisRaw("Vertical"));
+            float input = tankInput.actions["Move"].ReadValue<Vector2>().y;
+            
+            transform.position += transform.forward * input * speed * Time.deltaTime;
 
-            transform.position += transform.forward * Input.GetAxisRaw("Vertical") * speed * Time.deltaTime;
-
-            transform.Rotate(0, bodyRotateSpeed * Time.deltaTime * Input.GetAxisRaw("Horizontal"), 0, Space.World);
+            transform.Rotate(0, tankInput.actions["Move"].ReadValue<Vector2>().x, 0, Space.World);
         }
     }
 

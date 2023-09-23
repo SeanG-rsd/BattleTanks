@@ -36,6 +36,8 @@ public class TankShoot : MonoBehaviour
 
     PhotonView view;
 
+    private bool shoot = false;
+
     [SerializeField] GameObject[] bulletPrefabs;
 
     // Start is called before the first frame update
@@ -54,25 +56,46 @@ public class TankShoot : MonoBehaviour
         
     }
 
+    private void Awake()
+    {
+        TapToShoot.TapShoot += HandleShoot;
+        TapToShoot.TapToReload += HandleReload;
+    }
+
+    private void OnDestroy()
+    {
+        TapToShoot.TapShoot -= HandleShoot;
+        TapToShoot.TapToReload -= HandleReload;
+    }
+
+    private void HandleShoot()
+    {
+        shoot = true;
+    }
+
+    private void HandleReload()
+    {
+        reload = true;
+        reloading = reloadTime;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (view.IsMine)
         {
 
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (shoot)
             {
+                shoot = false;
                 if (currentAmmo > 0 && ableToShoot && !reload)
                 {
+                    Debug.Log("shot");
                     Shoot();
                     currentAmmo--;
                     ableToShoot = false;
                     shooting = shootDelay;
                     ammoDisplayText.text = currentAmmo.ToString();
-                }
-                else if (reload)
-                {
-                    Debug.Log("reloading");
                 }
             }
 

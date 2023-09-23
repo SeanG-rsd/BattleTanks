@@ -89,6 +89,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     private void HandleStartGame()
     {
         OnStartGame?.Invoke();
+        
     }
 
     private void HandleDeadTank(Tank tank)

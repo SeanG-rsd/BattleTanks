@@ -58,6 +58,8 @@ public class RoundManager : MonoBehaviourPunCallbacks
     [SerializeField] private GameObject soloScoreGameObject;
     [SerializeField] private Transform soloScoreBoard;
 
+    [SerializeField] private GameObject joysticks;
+
     public static Action OnGameOver = delegate { };
 
     private void Awake()
@@ -85,6 +87,11 @@ public class RoundManager : MonoBehaviourPunCallbacks
             {
                 roundScreen.SetActive(false);
                 OnGameStarted?.Invoke();
+
+                if (view.IsMine)
+                {
+                    joysticks.SetActive(true);
+                }
             }
         }
 
@@ -329,6 +336,11 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
     private void HandleRoundWon(PhotonTeam team)
     {
+        if (view.IsMine)
+        {
+            joysticks.SetActive(false);
+        }
+
         currentRoundNumber++;
 
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)

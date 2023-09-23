@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 using Photon.Pun;
+using UnityEngine.InputSystem;
 
 
 public class CameraMovement : MonoBehaviour
@@ -11,7 +12,7 @@ public class CameraMovement : MonoBehaviour
 
     Camera cam;
 
-    float horizontal = 800.0f;
+    float horizontal = 200.0f;
 
     public float zoomSpeed = 4.0f;
 
@@ -25,7 +26,7 @@ public class CameraMovement : MonoBehaviour
     public bool cannotSee;
     public float lastWeight;
 
-
+    [SerializeField] PlayerInput tankInput;
 
     // Start is called before the first frame update
     void Start()
@@ -41,24 +42,10 @@ public class CameraMovement : MonoBehaviour
         //CheckCollisions();
 
         float s = Input.GetAxis("Mouse ScrollWheel");
-        float h = horizontal * Input.GetAxis("Mouse X");
+        float h = horizontal * tankInput.actions["Look"].ReadValue<Vector2>().x;
 
-        if (Input.GetAxis("Mouse X") != 0)
-        {
-            //transform.RotateAround(player.transform.position, Vector3.up, h * Time.deltaTime);
-            player.transform.Rotate(0, h * Time.deltaTime / 2, 0);
-        }
-        /*
-        if (Input.GetAxis("Mouse ScrollWheel") != 0)
-        {
-            //Debug.Log(s);
+        player.transform.Rotate(0, h * Time.deltaTime, 0);
 
-            weight = Mathf.Clamp(weight + (s * zoomSpeed), 0, 1);
-            lastWeight = weight;
-            //Debug.Log(weight);
-
-            UpdatePos(weight);
-        }*/
 
     }
 
