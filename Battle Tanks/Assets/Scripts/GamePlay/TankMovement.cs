@@ -49,7 +49,7 @@ public class TankMovement : MonoBehaviour
             
             transform.position += transform.forward * input * speed * Time.deltaTime;
 
-            transform.Rotate(0, tankInput.actions["Move"].ReadValue<Vector2>().x, 0, Space.World);
+            transform.Rotate(0, tankInput.actions["Move"].ReadValue<Vector2>().x * bodyRotateSpeed * Time.deltaTime, 0, Space.World);
         }
     }
 
