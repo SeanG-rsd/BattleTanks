@@ -48,45 +48,31 @@ public class UIDisplayRoom : MonoBehaviour
 
     private void HandleJoinRoom(GameMode gameMode)
     {
-        roomGameModeText.SetText("WAITING");
-
-        exitButton.SetActive(true);
-        roomContainer.SetActive(true);
-        lobbyPanel.SetActive(false);
         roomName.SetText(PhotonNetwork.CurrentRoom.Name);
         playerNameText.SetText(PhotonNetwork.LocalPlayer.NickName);
 
         if (PhotonNetwork.IsMasterClient)
         {
             masterPanel.SetActive(true);
+            waitForPanel.SetActive(false);
         }
         else
         {
             waitForPanel.SetActive(true);
+            masterPanel.SetActive(false);
         }
 
         foreach (GameObject obj in hideObjects)
         {
-            obj.SetActive(false);
+            obj.SetActive(!obj.activeSelf);
         }
     }
 
     private void HandleRoomLeft()
     {
-        roomGameModeText.SetText("JOINING ROOM");
-
-        exitButton.SetActive(false);
-        roomContainer.SetActive(false);
-        lobbyPanel.SetActive(true);
-        tankSelectScreen.SetActive(false);
-        playButton.SetActive(false);
-
-        masterPanel.SetActive(false);
-        waitForPanel.SetActive(false);
-
         foreach (GameObject obj in showObjects)
         {
-            obj.SetActive(true);
+            obj.SetActive(!obj.activeSelf);
         }
     }
 
@@ -95,6 +81,7 @@ public class UIDisplayRoom : MonoBehaviour
         tankSelectScreen.SetActive(true);
         masterPanel.SetActive(false);
         waitForPanel.SetActive(false);
+        hideObjects[0].SetActive(true);
         roomGameModeText.SetText(PhotonNetwork.CurrentRoom.CustomProperties["GAMEMODE"].ToString());
         roomRoundNumText.SetText(PhotonNetwork.CurrentRoom.CustomProperties["NUMBEROFROUNDS"].ToString());
         chooseGameButton.SetActive(false);

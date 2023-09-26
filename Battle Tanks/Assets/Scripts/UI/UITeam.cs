@@ -5,6 +5,7 @@ using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class UITeam : MonoBehaviour
 {
@@ -12,14 +13,18 @@ public class UITeam : MonoBehaviour
     [SerializeField] private int maxTeamSize;
     [SerializeField] private PhotonTeam team;
     [SerializeField] private TMP_Text teamNameText;
+    [SerializeField] private Image teamImage;
     [SerializeField] private Transform playerSelectionContainer;
     [SerializeField] private UIPlayerSelection playerSelectionPrefab;
     [SerializeField] private Dictionary<Player, UIPlayerSelection> playerSelections;
+
+    private TeamInfo teamInfo;
 
     public static Action<PhotonTeam> OnSwitchToTeam = delegate { };
 
     private void Awake()
     {
+
         UIDisplayTeam.OnAddPlayerToTeam += HandleAddPlayerToTeam;
         UIDisplayTeam.OnRemovePlayerFromTeam += HandleRemovePlayerFromTeam;
         PhotonRoomController.OnRoomLeft += HandleLeaveRoom;
@@ -34,6 +39,7 @@ public class UITeam : MonoBehaviour
 
     public void Initialize(PhotonTeam team, int teamSize)
     {
+        teamInfo = FindObjectOfType<TeamInfo>();
         this.team = team;
         maxTeamSize = teamSize;
         playerSelections = new Dictionary<Player, UIPlayerSelection>();
@@ -69,7 +75,9 @@ public class UITeam : MonoBehaviour
 
     private void UpdateTeamUI()
     {
-        teamNameText.SetText($"{team.Name} \n {playerSelections.Count} / {maxTeamSize}");
+        teamNameText.SetText($"{teamInfo.teamNames[team.Code - 1]} : {playerSelections.Count} / {maxTeamSize}");
+
+        teamImage.color = teamInfo.teamColors[team.Code - 1];
     }
 
     private void AddPlayerToTeam(Player player)
