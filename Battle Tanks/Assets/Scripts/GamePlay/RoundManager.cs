@@ -88,10 +88,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
                 roundScreen.SetActive(false);
                 OnGameStarted?.Invoke();
 
-                if (view.IsMine)
-                {
-                    joysticks.SetActive(true);
-                }
+                joysticks.SetActive(true);
             }
         }
 
@@ -336,10 +333,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
     private void HandleRoundWon(PhotonTeam team)
     {
-        if (view.IsMine)
-        {
-            joysticks.SetActive(false);
-        }
+        joysticks.SetActive(false);
 
         currentRoundNumber++;
 

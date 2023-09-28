@@ -45,7 +45,7 @@ public class Bullet : MonoBehaviour
         damage = dam;
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void Destroy()
     {
         if (!noDie)
         {

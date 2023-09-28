@@ -13,19 +13,13 @@ public class TapToShoot : MonoBehaviour
 
     public void Shoot()
     {
-        if (view.IsMine)
-        {
-            TapShoot?.Invoke();
-            Debug.Log("shoot");
-        }
+        TapShoot?.Invoke();
+        Debug.Log("shoot");
     }
 
     public void Reload()
     {
-        if (view.IsMine)
-        {
-            TapToReload?.Invoke();
-            Debug.Log("shoot");
-        }
+        TapToReload?.Invoke();
+        Debug.Log("shoot");
     }
 }

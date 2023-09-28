@@ -348,6 +348,8 @@ public class Tank : MonoBehaviourPunCallbacks
                     Debug.Log($"{PhotonNetwork.LocalPlayer.NickName} was shot by {collision.gameObject.GetComponent<PhotonView>().Owner}");
                     damageDealersBeforeDeath.Add(collision.gameObject.GetComponent<PhotonView>().Owner);
                 }
+
+                collision.gameObject.GetComponent<Bullet>().Destroy();
             }
         }
     }
