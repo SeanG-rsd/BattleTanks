@@ -21,6 +21,7 @@ public class TankMovement : MonoBehaviour
     private Tank tank;
 
     [SerializeField] PlayerInput tankInput;
+    
 
     private void Awake()
     {

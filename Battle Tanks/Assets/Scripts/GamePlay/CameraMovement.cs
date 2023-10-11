@@ -27,6 +27,7 @@ public class CameraMovement : MonoBehaviour
     public float lastWeight;
 
     [SerializeField] PlayerInput tankInput;
+    [SerializeField] private GameObject tankTop;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +45,7 @@ public class CameraMovement : MonoBehaviour
         float s = Input.GetAxis("Mouse ScrollWheel");
         float h = horizontal * tankInput.actions["Look"].ReadValue<Vector2>().x;
 
+        tankTop.transform.Rotate(0, h * Time.deltaTime, 0);
         player.transform.Rotate(0, h * Time.deltaTime, 0);
 
 
