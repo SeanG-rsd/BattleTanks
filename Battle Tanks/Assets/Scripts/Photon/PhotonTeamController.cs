@@ -15,6 +15,8 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
 
     [SerializeField] private TeamInfo teamInfo;
 
+    [SerializeField] private GameObject teamManager;
+
     public static Action<List<PhotonTeam>, GameMode> OnCreateTeams = delegate { };
     public static Action<Player, PhotonTeam> OnSwitchTeam = delegate { };
     public static Action<Player> OnRemovePlayer = delegate { };
@@ -22,6 +24,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+
         UITeam.OnSwitchToTeam += HandleSwitchTeam;
         PhotonRoomController.OnGameSettingsSelected += HandleCreateTeams;
         PhotonRoomController.OnRoomLeft += HandleLeaveRoom;

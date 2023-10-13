@@ -10,8 +10,17 @@ using Photon.Realtime;
 public class SpawnPlayers : MonoBehaviour
 {
 
-    public GameObject[] bluePlayerPrefabs;
-    public GameObject[] redPlayerPrefabs;
+    public List<GameObject> bluePlayerPrefabs;
+    public List<GameObject> redPlayerPrefabs;
+    public List<GameObject> greenPlayerPrefabs;
+    public List<GameObject> yellowPlayerPrefabs;
+    public List<GameObject> orangePlayerPrefabs;
+    public List<GameObject> purplePlayerPrefabs;
+    public List<GameObject> pinkPlayerPrefabs;
+    public List<GameObject> lightBluePlayerPrefabs;
+
+    private List<List<GameObject>> allTankPrefabs;
+
     GameObject playerToSpawn;
 
     public List<TankRespawnPoint> spawnPoints;
@@ -60,23 +69,26 @@ public class SpawnPlayers : MonoBehaviour
 
     private void HandleSpawnPlayers()
     {
-        
+        allTankPrefabs = new List<List<GameObject>>
+        {
+            bluePlayerPrefabs,
+            redPlayerPrefabs,
+            greenPlayerPrefabs,
+            yellowPlayerPrefabs,
+            orangePlayerPrefabs,
+            purplePlayerPrefabs,
+            pinkPlayerPrefabs,
+            lightBluePlayerPrefabs
+        };
+
+
         if (!PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("playerAvatar"))
         {
             PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"] = 2;
         }
 
-        if ((int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 1)
-        {
-            playerToSpawn = bluePlayerPrefabs[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
-
-        }
-        else if ((int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 2 || (int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code == 3)
-        {
-            playerToSpawn = redPlayerPrefabs[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
-        }
-
-        playerToSpawn.GetComponent<Tank>().teamIndex = (int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"];
+        playerToSpawn = allTankPrefabs[(int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code - 1][(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
+        //playerToSpawn = allTankPrefabs[0][0];
 
         SetMiniMap((int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"]);
 
@@ -89,9 +101,16 @@ public class SpawnPlayers : MonoBehaviour
             }
         }
 
-        Vector2 pos = spawnPoints[(int)PhotonNetwork.LocalPlayer.CustomProperties["playerTeam"] - 1].GetPoint();
+        Vector2 pos = new Vector2();
 
-        //Vector3 position = new Vector3(pos.x, playerToSpawn.transform.position.y, pos.y);
+        foreach (TankRespawnPoint tankRespawnPoint in spawnPoints)
+        {
+            if (tankRespawnPoint.teamIndex == (int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code - 1)
+            {
+                pos = tankRespawnPoint.GetPoint();
+            }
+        }
+         
 
         PhotonNetwork.LocalPlayer.CustomProperties["aliveState"] = 1;
 

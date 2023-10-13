@@ -714,12 +714,22 @@ public class MapGeneator : MonoBehaviourPunCallbacks
             if (!selectedGameMode.HasTeams && PhotonNetwork.IsMasterClient)
             {
                 List<GameObject> soloTowers = new List<GameObject>();
+                Debug.Log(soloSpawnTowerPositions.Count);
+                Debug.Log(soloSpawnTowerPrefabs.Count);
 
                 for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
                 {
-                    GameObject newTower = PhotonNetwork.Instantiate(soloSpawnTowerPrefabs[(int)PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1].name, soloSpawnTowerPositions[soloTowerOrder[i]], Quaternion.identity);
+                    if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != null)
+                    {
+                        Debug.Log((int)PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1);
+                        GameObject newTower = PhotonNetwork.Instantiate(soloSpawnTowerPrefabs[(int)PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1].name, soloSpawnTowerPositions[soloTowerOrder[i]], Quaternion.identity);
 
-                    soloTowers.Add(newTower);
+                        soloTowers.Add(newTower);
+                    }
+                    else
+                    {
+                        Debug.Log($"{PhotonNetwork.PlayerList[i].NickName} is not on a team");
+                    }
                 }
 
                 OnSoloTowersGen?.Invoke(soloTowers);
