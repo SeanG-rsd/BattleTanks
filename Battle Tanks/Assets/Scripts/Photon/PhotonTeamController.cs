@@ -159,6 +159,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
             if (PhotonTeamsManager.Instance.TryGetTeamByCode(teamCode, out newTeam))
             {
                 OnSwitchTeam?.Invoke(targetPlayer, newTeam);
+                Debug.Log(newTeam.ToString());
             }
         }
     }

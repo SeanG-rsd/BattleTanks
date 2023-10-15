@@ -684,7 +684,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
     
     void GameModeObjectOff(int gameModeIndex)     
     {
-        Debug.LogError("punRPC");
+        //Debug.LogError("punRPC");
         selectedGameMode = availableGameModes[gameModeIndex];
 
         if (selectedGameMode != null)
@@ -709,26 +709,31 @@ public class MapGeneator : MonoBehaviourPunCallbacks
             }
 
             controlZoneObject.SetActive(selectedGameMode.HasZones);
-            Debug.Log($"{selectedGameMode.Name} has zones: {selectedGameMode.HasZones}");
+            //Debug.Log($"{selectedGameMode.Name} has zones: {selectedGameMode.HasZones}");
 
             if (!selectedGameMode.HasTeams && PhotonNetwork.IsMasterClient)
             {
                 List<GameObject> soloTowers = new List<GameObject>();
-                Debug.Log(soloSpawnTowerPositions.Count);
-                Debug.Log(soloSpawnTowerPrefabs.Count);
+                //Debug.Log(soloSpawnTowerPositions.Count);
+                //Debug.Log(soloSpawnTowerPrefabs.Count);
 
                 for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
                 {
-                    if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != null)
+                    object teamCodeObject;
+                    if (PhotonNetwork.PlayerList[i].CustomProperties.TryGetValue(PhotonTeamsManager.TeamPlayerProp, out teamCodeObject))
                     {
-                        Debug.Log((int)PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1);
-                        GameObject newTower = PhotonNetwork.Instantiate(soloSpawnTowerPrefabs[(int)PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1].name, soloSpawnTowerPositions[soloTowerOrder[i]], Quaternion.identity);
+                        if (teamCodeObject == null) return;
 
-                        soloTowers.Add(newTower);
-                    }
-                    else
-                    {
-                        Debug.Log($"{PhotonNetwork.PlayerList[i].NickName} is not on a team");
+                        byte teamCode = (byte)teamCodeObject;
+
+                        PhotonTeam newTeam;
+                        if (PhotonTeamsManager.Instance.TryGetTeamByCode(teamCode, out newTeam))
+                        {
+                            //Debug.Log(newTeam.ToString());
+                            GameObject newTower = PhotonNetwork.Instantiate(soloSpawnTowerPrefabs[newTeam.Code - 1].name, soloSpawnTowerPositions[soloTowerOrder[i]], Quaternion.identity);
+
+                            soloTowers.Add(newTower);
+                        }
                     }
                 }
 
@@ -738,7 +743,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
         }
         else
         {
-            Debug.Log("no game mode");
+            Debug.Log("no game mode in pun rpc");
         }
     }
 }
