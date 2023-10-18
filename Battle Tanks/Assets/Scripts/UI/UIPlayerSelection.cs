@@ -9,7 +9,7 @@ public class UIPlayerSelection : MonoBehaviourPunCallbacks
 {
     [SerializeField] private TMP_Text userNameText;
     [SerializeField] private Player owner;
-    
+
 
     public Player Owner
     {

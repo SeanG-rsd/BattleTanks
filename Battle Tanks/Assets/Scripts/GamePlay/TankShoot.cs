@@ -10,7 +10,7 @@ public class TankShoot : MonoBehaviour
 {
 
     public GameObject[] shootPoints;
-    public int barrelIndex;
+    private int barrelIndex = 0;
 
     public float bulletSpeed;
     public float bulletSize;
@@ -96,6 +96,12 @@ public class TankShoot : MonoBehaviour
                     ableToShoot = false;
                     shooting = shootDelay;
                     ammoDisplayText.text = currentAmmo.ToString();
+
+                    barrelIndex++;
+                    if (barrelIndex > shootPoints.Length - 1)
+                    {
+                        barrelIndex = 0;
+                    }
                 }
             }
 

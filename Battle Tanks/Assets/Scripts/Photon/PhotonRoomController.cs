@@ -222,7 +222,7 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
         }
         else if (propertiesThatChanged.ContainsKey("TEAMS"))
         {
-            Debug.LogError("dflkajh");
+            //Debug.LogError("dflkajh");
             OnStartGame?.Invoke();
         }
     }

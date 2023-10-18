@@ -5,8 +5,6 @@ using PlayFab;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-using Newtonsoft.Json;
-using UnityEngine;
 
 public class PlayfabLogin : MonoBehaviour
 {

@@ -84,7 +84,7 @@ public class SpawnPlayers : MonoBehaviour
 
         if (!PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("playerAvatar"))
         {
-            PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"] = 2;
+            PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"] = 1;
         }
 
         playerToSpawn = allTankPrefabs[(int)PhotonNetwork.LocalPlayer.GetPhotonTeam().Code - 1][(int)PhotonNetwork.LocalPlayer.CustomProperties["playerAvatar"]];
