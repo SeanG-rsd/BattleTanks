@@ -30,6 +30,8 @@ public class PlayfabLogin : MonoBehaviour
 
     [SerializeField] private Image toggleImage;
 
+    [SerializeField] private string username;
+
     private void Start()
     {
         if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
@@ -106,6 +108,7 @@ public class PlayfabLogin : MonoBehaviour
     {
         messageText.text = "Registered!";
         CreateUsername();
+        
     }
 
     void OnError(PlayFabError error)
@@ -127,7 +130,9 @@ public class PlayfabLogin : MonoBehaviour
     {
         messageText.text = "Logged In!";
         RememberMe();
-        UpdateDisplayName(username);
+
+        var request = new GetAccountInfoRequest { Email = emailInput.text };
+        PlayFabClientAPI.GetAccountInfo(request, OnGetUsernameResult, OnFailure);
     }
 
     public void ResetPasswordButton()
@@ -141,8 +146,6 @@ public class PlayfabLogin : MonoBehaviour
     {
         messageText.text = "Password reset mail sent!";
     }
-
-    [SerializeField] private string username;
 
     public void SetUsername(string name)
     {
@@ -167,7 +170,12 @@ public class PlayfabLogin : MonoBehaviour
     private void OnLoginCustomIdSuccess(LoginResult result)
     {
         Debug.Log($"You have logged into PlayFab using custom id {username}");
-        UpdateDisplayName(username);
+    }
+
+    private void OnGetUsernameResult(GetAccountInfoResult result)
+    {
+        Debug.LogWarning("worked");
+        UpdateDisplayName(result.AccountInfo.TitleInfo.DisplayName);
     }
 
     private void OnDisplayNameSuccess(UpdateUserTitleDisplayNameResult result)

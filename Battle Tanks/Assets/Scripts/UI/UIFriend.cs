@@ -16,6 +16,9 @@ public class UIFriend : MonoBehaviour
     [SerializeField] private Color onlineColor;
     [SerializeField] private Color offlineColor;
 
+    [SerializeField] private Sprite inviteImage;
+    [SerializeField] private Sprite regularImage;
+
 
     public static Action<string> OnRemoveFriend = delegate { };
     public static Action<string> OnInviteFriend = delegate { };
@@ -52,7 +55,6 @@ public class UIFriend : MonoBehaviour
     public void Initialize(string friendName)
     {
         this.friendName = friendName;
-
         SetupUI();
         OnGetCurrentStatus?.Invoke(friendName);
         OnGetRoomStatus?.Invoke();
@@ -68,17 +70,22 @@ public class UIFriend : MonoBehaviour
 
     private void HandleInRoom(bool inRoom)
     {
+        Debug.Log("alkdjf");
         inviteButton.SetActive(inRoom && isOnline);
+        gameObject.GetComponent<Image>().sprite = (inRoom && isOnline) ? inviteImage : regularImage;
+        
     }
 
     private void SetupUI()
     {
         friendNameText.SetText(friendName);
         inviteButton.SetActive(false);
+        gameObject.GetComponent<Image>().sprite = regularImage;
     }
 
     private void SetStatus(int status)
     {
+        Debug.Log("Set Status");
         if (status ==ChatUserStatus.Online)
         {
             onlineImage.color = onlineColor;
@@ -90,6 +97,7 @@ public class UIFriend : MonoBehaviour
             onlineImage.color = offlineColor;
             isOnline = false;
             inviteButton.SetActive(false);
+            gameObject.GetComponent<Image>().sprite = regularImage;
         }
     }
        
@@ -103,16 +111,5 @@ public class UIFriend : MonoBehaviour
     {
         Debug.Log($"Clicked to invite friend {friendName}");
         OnInviteFriend?.Invoke(friendName);
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

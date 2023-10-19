@@ -91,7 +91,7 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
     {
         if (!string.IsNullOrEmpty(message.ToString()))
         {
-            
+            Debug.Log("recieved message");
             // Channel Name format [Sender : Recipient]
             string[] splitNames = channelName.Split(':');
             string senderName = splitNames[0];

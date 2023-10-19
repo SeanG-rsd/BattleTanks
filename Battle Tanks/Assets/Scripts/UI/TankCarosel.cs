@@ -16,6 +16,8 @@ public class TankCarosel : MonoBehaviour
 #elif UNITY_ANDROID || UNITY_IOS
 
         float x = -Input.touches[0].deltaPosition.x;
+#else
+         float x = -Input.GetAxis("Mouse X");
 #endif
         if (Input.GetMouseButton(0))
         {

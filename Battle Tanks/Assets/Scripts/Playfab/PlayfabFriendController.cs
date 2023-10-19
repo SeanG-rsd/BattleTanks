@@ -62,7 +62,7 @@ public class PlayfabFriendController : MonoBehaviour
     {
         friends = result.Friends;
         OnFriendListUpdated?.Invoke(result.Friends);
-        Debug.Log("Friends List Success");
+        Debug.Log($"Friends List Success, {result.Friends.Count} Friends found.");
     }
 
     private void GetPlayfabFriends()

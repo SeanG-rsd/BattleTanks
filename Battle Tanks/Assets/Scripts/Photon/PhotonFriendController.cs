@@ -36,7 +36,7 @@ public class PhotonFriendController : MonoBehaviourPunCallbacks
     {
         if (friends.Count != 0)
         {
-            string[] friendDisplayNames = friends.Select(f => f.TitleDisplayName).ToArray();
+            string[] friendDisplayNames = friends.Select(f => f.Username).ToArray();
             PhotonNetwork.FindFriends(friendDisplayNames);
         }
         else
@@ -48,16 +48,9 @@ public class PhotonFriendController : MonoBehaviourPunCallbacks
 
     public override void OnFriendListUpdate(List<PhotonFriendInfo> friends)
     {
+        Debug.Log("found friends");
         OnDisplayFriends?.Invoke(friends);
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     private void Update()
     {
         if (refreshCountdown > 0)
