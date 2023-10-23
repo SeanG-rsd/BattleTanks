@@ -11,9 +11,21 @@ public class MapWall : MonoBehaviour
     public WallType.WallOrientation type;
 
     public bool isTouchingBorder;
+
+    [SerializeField] private GameObject visualWall;
     public void Destroy()
     {
         this.GetComponent<PhotonView>().RPC("DestroyObject", RpcTarget.AllViaServer);
+    }
+
+    public void Hide()
+    {
+        visualWall.SetActive(false);
+    }
+
+    public void See()
+    {
+        visualWall.SetActive(true);
     }
 
     [PunRPC]

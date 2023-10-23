@@ -4,6 +4,7 @@ using TMPro;
 using Photon.Realtime;
 using UnityEngine.UI;
 using Photon.Chat;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 public class UIFriend : MonoBehaviour
 {
@@ -64,6 +65,7 @@ public class UIFriend : MonoBehaviour
     {
         if (string.Compare(friendName, status.PlayerName) == 0)
         {
+            Debug.Log(status.Status);
             SetStatus(status.Status);
         }
     }
@@ -88,13 +90,13 @@ public class UIFriend : MonoBehaviour
         Debug.Log("Set Status");
         if (status ==ChatUserStatus.Online)
         {
-            onlineImage.color = onlineColor;
+            gameObject.GetComponent<Image>().sprite = inviteImage;
+            inviteButton.SetActive(true);
             isOnline = true;
             OnGetRoomStatus?.Invoke();
         }
         else
         {
-            onlineImage.color = offlineColor;
             isOnline = false;
             inviteButton.SetActive(false);
             gameObject.GetComponent<Image>().sprite = regularImage;

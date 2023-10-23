@@ -18,9 +18,10 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
     private void Awake()
     {
         chatClient = new ChatClient(this);
+        nickName = PlayerPrefs.GetString("USERNAME");
         ConnectToPhotonChat();
 
-        nickName = PlayerPrefs.GetString("USERNAME");
+        
         UIFriend.OnInviteFriend += HandleFriendInvite;
     }
 
@@ -55,6 +56,7 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
     {
         Debug.Log("Connecting to Photon Chat");
         chatClient.AuthValues = new Photon.Chat.AuthenticationValues(nickName);
+        Debug.Log(PlayerPrefs.GetString("USERNAME"));
         ChatAppSettings chatSettings = PhotonNetwork.PhotonServerSettings.AppSettings.GetChatSettings();
         chatClient.ConnectUsingSettings(chatSettings);
     }
@@ -95,13 +97,15 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
             // Channel Name format [Sender : Recipient]
             string[] splitNames = channelName.Split(':');
             string senderName = splitNames[0];
-            Debug.Log(splitNames[1]);
+            //Debug.Log(splitNames[0]);
             if (!sender.Equals(senderName, StringComparison.OrdinalIgnoreCase))
             {
                 Debug.Log($"{sender}: {message}");
                 OnRoomInvite?.Invoke(sender, message.ToString());
             }
         }
+
+        Debug.LogError($"on private message from: {sender}");
     }
 
     public void OnSubscribed(string[] channels, bool[] results)

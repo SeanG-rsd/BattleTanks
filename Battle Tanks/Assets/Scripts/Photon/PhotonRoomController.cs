@@ -229,7 +229,7 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
 
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
-        Debug.Log("list update");
+        //Debug.Log("list update");
         UpdateRoomList(roomList);
     }
 

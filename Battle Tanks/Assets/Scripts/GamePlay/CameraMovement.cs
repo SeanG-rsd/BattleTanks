@@ -29,10 +29,12 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] PlayerInput tankInput;
     [SerializeField] private GameObject tankTop;
 
+    private List<MapWall> hiddenObjects;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        hiddenObjects = new List<MapWall>();
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = false;
     }
@@ -40,9 +42,8 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //CheckCollisions();
+        CheckCollisions();
 
-        float s = Input.GetAxis("Mouse ScrollWheel");
         float h = horizontal * tankInput.actions["Look"].ReadValue<Vector2>().x;
 
         tankTop.transform.Rotate(0, h * Time.deltaTime, 0);
@@ -56,34 +57,26 @@ public class CameraMovement : MonoBehaviour
         RaycastHit hit;
 
 
-        Ray ray = cam.ScreenPointToRay(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-        //Debug.Log(Input.mousePosition);
+        Ray ray = new Ray(transform.position, transform.forward);
 
 
 
         if (Physics.Raycast(ray, out hit))
-        {
-
-
-            Debug.Log(hit.transform.gameObject.tag);
+        {        
             if (hit.transform.gameObject.tag == "Player")
             {
-                cannotSee = false;
-                if (weight < lastWeight)
+                Debug.Log("hit player");
+                foreach (MapWall go in hiddenObjects)
                 {
-                    weight = Mathf.Clamp(weight += 0.05f, 0, 1);
-                    //UpdatePos(weight);
+                    go.See();
                 }
-                return;
+                hiddenObjects.Clear();
             }
-            if (hit.transform.gameObject.tag != "Player")
+            else if (hit.transform.gameObject.GetComponent<MapWall>() != null)
             {
-                if (!cannotSee) { //lastWeight = weight;
-								  }
-                cannotSee = true;
-                weight = Mathf.Clamp(weight -= 0.05f, 0, 1);
-                Debug.Log("Not player");
-                //UpdatePos(weight);
+                Debug.Log("hit wall");
+                hiddenObjects.Add(hit.transform.gameObject.GetComponent<MapWall>());
+                hit.transform.gameObject.GetComponent<MapWall>().Hide();
             }
         }
     }

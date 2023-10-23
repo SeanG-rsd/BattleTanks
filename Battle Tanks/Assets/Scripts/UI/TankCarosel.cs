@@ -8,6 +8,8 @@ public class TankCarosel : MonoBehaviour
 
     [SerializeField] private float[] snapSpots;
 
+    [SerializeField] private GameObject[] options;
+
     // Update is called once per frame
     void Update()
     {
@@ -21,13 +23,17 @@ public class TankCarosel : MonoBehaviour
 #endif
         if (Input.GetMouseButton(0))
         {
-            transform.rotation *= Quaternion.AngleAxis(x * speedRotation, Vector3.up);
+            //transform.rotation *= Quaternion.AngleAxis(x * speedRotation, Vector3.up);
+            foreach (GameObject go in options)
+            {
+                go.transform.RotateAround(transform.position, transform.up, x * speedRotation);
+            }
         }
 
 
         if (Input.GetMouseButtonUp(0))
         {
-            SnapToClosest();
+            //SnapToClosest();
         }
     }
 

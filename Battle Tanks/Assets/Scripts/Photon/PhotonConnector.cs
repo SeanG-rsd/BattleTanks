@@ -38,6 +38,7 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        //PlayerPrefs.SetString("USERNAME", "Schwojun");
         nickName = PlayerPrefs.GetString("USERNAME");
     }
 
@@ -63,13 +64,13 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
         {
             connectingToText.text = "Connecting To The Lobby";
             PhotonNetwork.JoinLobby();
-            Debug.Log(PhotonNetwork.IsConnectedAndReady);
+            //Debug.Log(PhotonNetwork.IsConnectedAndReady);
         }
     }
 
     public override void OnJoinedLobby()
     {
-        Debug.Log($"You have connected to a Photon Lobby");
+        //Debug.Log($"You have connected to a Photon Lobby");
         connectingToScreen.SetActive(false);
         GetPhotonFriends?.Invoke();
         OnLobbyJoined?.Invoke();

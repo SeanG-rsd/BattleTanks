@@ -7,6 +7,7 @@ using PlayFabFriendInfo = PlayFab.ClientModels.FriendInfo;
 using PhotonFriendInfo = Photon.Realtime.FriendInfo;
 using System;
 using System.Linq;
+using ExitGames.Client.Photon;
 
 public class PhotonFriendController : MonoBehaviourPunCallbacks
 {
@@ -37,7 +38,8 @@ public class PhotonFriendController : MonoBehaviourPunCallbacks
         if (friends.Count != 0)
         {
             string[] friendDisplayNames = friends.Select(f => f.Username).ToArray();
-            PhotonNetwork.FindFriends(friendDisplayNames);
+            //PhotonNetwork.FindFriends(friendDisplayNames);
+            
         }
         else
         {

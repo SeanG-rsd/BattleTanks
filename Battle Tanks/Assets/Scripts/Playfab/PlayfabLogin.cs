@@ -14,9 +14,10 @@ public class PlayfabLogin : MonoBehaviour
     public InputField passwordInput;
     public InputField usernameInput;
 
-    private string rememberedEmail;
-    private string rememberedPassword;
-    private string rememberedUsername;
+    public InputField emailInputUsername;
+    public InputField passwordInputUsername;
+    [SerializeField] private Toggle rememberToggleUsername;
+    [SerializeField] private Image toggleImageUsername;
 
     private bool didRemember;
     private bool wantsToRemember;
@@ -31,6 +32,8 @@ public class PlayfabLogin : MonoBehaviour
     [SerializeField] private Image toggleImage;
 
     [SerializeField] private string username;
+
+    private bool registered = false;
 
     private void Start()
     {
@@ -47,16 +50,21 @@ public class PlayfabLogin : MonoBehaviour
                 passwordInput.text = PlayerPrefs.GetString("PASSWORD");
                 wantsToRemember = true;
                 rememberToggle.isOn = true;
+                rememberToggleUsername.isOn = true;
             }
         }
 
         toggleImage.sprite = (rememberToggle.isOn) ? toggleOnSprite : toggleOffSprite;
+        toggleImageUsername.sprite = (rememberToggleUsername.isOn) ? toggleOnSprite : toggleOffSprite;
     }
     public void RememberMe(Toggle toggle)
     {
         wantsToRemember = toggle.isOn;
+        rememberToggleUsername.isOn = toggle.isOn;
+        rememberToggle.isOn = toggle.isOn;
 
         toggleImage.sprite = (toggle.isOn) ? toggleOnSprite : toggleOffSprite;
+        toggleImageUsername.sprite = (toggle.isOn) ? toggleOnSprite : toggleOffSprite;
     }
     public void RegisterButton()
     {
@@ -66,17 +74,19 @@ public class PlayfabLogin : MonoBehaviour
             return;
         }
 
-        var request = new RegisterPlayFabUserRequest { Email = emailInput.text, Password = passwordInput.text, RequireBothUsernameAndEmail = false };
+        var request = new RegisterPlayFabUserRequest { Email = emailInputUsername.text, Password = passwordInputUsername.text, RequireBothUsernameAndEmail = false };
 
-        PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);
-
-        
+        PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);   
     }
 
-    private void CreateUsername()
+    public void CreateUsername()
     {
         LoginScreen.SetActive(!LoginScreen.activeSelf);
         UserNameScreen.SetActive(!UserNameScreen.activeSelf);
+
+        emailInputUsername.text = emailInput.text;
+        passwordInputUsername.text = passwordInput.text;
+        
     }
 
     private void LoginScreenOn()
@@ -93,7 +103,9 @@ public class PlayfabLogin : MonoBehaviour
 
             if (wantsToRemember)
             {
-                RememberMe();
+                PlayerPrefs.SetString("EMAIL", emailInputUsername.text);
+                PlayerPrefs.SetString("PASSWORD", passwordInputUsername.text);
+                PlayerPrefs.SetInt("REMEMBERME", 1);
             }
 
             UpdateDisplayName(username);
@@ -106,8 +118,9 @@ public class PlayfabLogin : MonoBehaviour
 
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
+        registered = true;
         messageText.text = "Registered!";
-        CreateUsername();
+        FinishRegistering();
         
     }
 
@@ -163,6 +176,7 @@ public class PlayfabLogin : MonoBehaviour
     private void UpdateDisplayName(string displayName)
     {
         Debug.Log($"Updating Playfab account display name to {displayName}");
+        SetUsername(displayName);
         var request = new UpdateUserTitleDisplayNameRequest { DisplayName = displayName };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameSuccess, OnFailure);
     }
@@ -174,7 +188,7 @@ public class PlayfabLogin : MonoBehaviour
 
     private void OnGetUsernameResult(GetAccountInfoResult result)
     {
-        Debug.LogWarning("worked");
+        Debug.LogWarning($"worked: {result.AccountInfo.TitleInfo.DisplayName}");
         UpdateDisplayName(result.AccountInfo.TitleInfo.DisplayName);
     }
 
