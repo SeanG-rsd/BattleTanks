@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TankCarosel : MonoBehaviour
@@ -10,7 +11,21 @@ public class TankCarosel : MonoBehaviour
 
     [SerializeField] private GameObject[] options;
 
+    [SerializeField] private RectTransform clickBoundary;
+
+    Rect bounds;
+
+    bool rotate = false;
+
     // Update is called once per frame
+
+    private void Start()
+    {
+        Vector2 pos = new Vector2(clickBoundary.position.x, clickBoundary.position.y);
+        //Debug.Log(pos);
+        //bounds = new Rect(Screen.width + clickBoundary.transform.parent.position.x, Screen.height + clickBoundary.transform.position.y , clickBoundary.rect.width, clickBoundary.rect.height);
+        bounds = new Rect(pos.x, pos.y, 400, 400);
+    }
     void Update()
     {
 #if UNITY_EDITOR
@@ -21,9 +36,14 @@ public class TankCarosel : MonoBehaviour
 #else
          float x = -Input.GetAxis("Mouse X");
 #endif
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && bounds.Contains(Input.mousePosition))
         {
-            //transform.rotation *= Quaternion.AngleAxis(x * speedRotation, Vector3.up);
+            Debug.Log("rotate");
+            rotate = true;
+        }
+
+        if (rotate)
+        {
             foreach (GameObject go in options)
             {
                 go.transform.RotateAround(transform.position, transform.up, x * speedRotation);
@@ -33,7 +53,9 @@ public class TankCarosel : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
+            rotate = false;
             //SnapToClosest();
+
         }
     }
 
