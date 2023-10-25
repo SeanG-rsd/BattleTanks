@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,6 +10,9 @@ public class TankCarosel : MonoBehaviour
     [SerializeField] private float speedRotation;
 
     [SerializeField] private float[] snapSpots;
+    [SerializeField] private Vector3[] snapPositions;
+
+    [SerializeField] private List<int> lastRotations = new List<int>();
 
     [SerializeField] private GameObject[] options;
 
@@ -16,6 +21,13 @@ public class TankCarosel : MonoBehaviour
     Rect bounds;
 
     bool rotate = false;
+    bool snapToClosest = false;
+
+    Hashtable playerPropeties = new Hashtable();
+    [SerializeField] TMP_Text playerAvatar;
+    public string[] avatars;
+
+    private const string playAv = "playerAvatar";
 
     // Update is called once per frame
 
@@ -38,7 +50,7 @@ public class TankCarosel : MonoBehaviour
 #endif
         if (Input.GetMouseButton(0) && bounds.Contains(Input.mousePosition))
         {
-            Debug.Log("rotate");
+            //Debug.Log("rotate");
             rotate = true;
         }
 
@@ -54,26 +66,58 @@ public class TankCarosel : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             rotate = false;
+            snapToClosest = true;
             //SnapToClosest();
 
         }
+
+        if (snapToClosest)
+        {
+            SnapToClosest();
+            snapToClosest = false;
+        }
     }
 
-    private void SnapToClosest()
+    private void SnapToClosest() // snap spots is relative to the y rotation of each tank
     {
-        float current = transform.rotation.y;
-        if (current < 0) { current = -current; }
+        List<float> availableSpots = new List<float>(snapSpots);
 
-        float snap = 360.0f;
+        List<Vector3> takenPositions = new List<Vector3>();
 
-        foreach (float f in snapSpots)
+        int tankNum = 0;
+        foreach (GameObject go in options)
         {
-            if (current - f < snap)
-            {
-                snap = f;
-            }
-        }
+            int closest = 0;
 
-        transform.Rotate(0, current + snap, 0);
+            for (int i = 0; i < availableSpots.Count; i++)
+            {
+                Vector2 pos = new Vector2(go.transform.localPosition.x, go.transform.localPosition.z);
+                Vector2 snap = new Vector2(snapPositions[closest].x, snapPositions[closest].z);
+                Vector2 next = new Vector2(snapPositions[i].x, snapPositions[i].z);
+                if (Vector2.Distance(pos, next) < Vector2.Distance(pos, snap) && !takenPositions.Contains(snapPositions[i]))
+                {
+                    closest = i;
+                }
+            }
+
+            go.transform.localPosition = snapPositions[closest];
+            takenPositions.Add(snapPositions[closest]);
+
+            lastRotations[tankNum] = closest;
+            float rotate = snapSpots[closest] - go.transform.localRotation.eulerAngles.y + (120 * (closest - lastRotations[tankNum]));
+            go.transform.Rotate(new Vector3(0f, rotate, 0f), Space.World);
+
+            if (closest == 0)
+            {
+                Debug.Log(go.name);
+            }
+
+            tankNum++;
+        }
+    }
+
+    private void SetTank()
+    {
+
     }
 }

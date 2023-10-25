@@ -43,48 +43,4 @@ public class UITankSelection : MonoBehaviourPunCallbacks
         playerAvatar.SetText(avatars[(int)playerPropeties[playAv]]);
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerPropeties);
     }
-
-    public void OnClickLeftArrow()
-    {
-        if (playerPropeties.ContainsKey(playAv))
-        {
-            if ((int)playerPropeties[playAv] == 0)
-            {
-                playerPropeties[playAv] = avatars.Length - 1;
-
-            }
-            else
-            {
-                playerPropeties[playAv] = (int)playerPropeties[playAv] - 1;
-
-            }
-        }
-        else
-        {
-            playerPropeties[playAv] = 0;
-        }
-        PhotonNetwork.LocalPlayer.SetCustomProperties(playerPropeties);
-        playerAvatar.SetText(avatars[(int)playerPropeties[playAv]]);
-    }
-
-    public void OnClickRightArrow()
-    {
-        if (playerPropeties.ContainsKey(playAv))
-        {
-            if ((int)playerPropeties[playAv] == avatars.Length - 1)
-            {
-                playerPropeties[playAv] = 0;
-            }
-            else
-            {
-                playerPropeties[playAv] = (int)playerPropeties[playAv] + 1;
-            }
-        }
-        else
-        {
-            playerPropeties[playAv] = 0;
-        }
-        PhotonNetwork.LocalPlayer.SetCustomProperties(playerPropeties);
-        playerAvatar.SetText(avatars[(int)playerPropeties[playAv]]);
-    }
 }
