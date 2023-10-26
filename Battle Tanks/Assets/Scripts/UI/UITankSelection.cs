@@ -10,37 +10,43 @@ public class UITankSelection : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_Text userNameText;
     [SerializeField] private Player owner;
 
-    Hashtable playerPropeties = new Hashtable();
-    [SerializeField] TMP_Text playerAvatar;
     public string[] avatars;
-
-    TeamInfo teamInfo;
 
     private const string playAv = "playerAvatar";
 
-
-    public Player Owner
+    private void Awake()
     {
-        get { return owner; }
-        private set { owner = value; }
+        TankCarosel.OnTankSelected += HandleTankSelected;
     }
 
+    private void OnDestroy()
+    {
+        TankCarosel.OnTankSelected -= HandleTankSelected;
+    }
     public void Initialize(Player player)
     {
-        playerAvatar = GameObject.Find("UITankSelect").transform.GetChild(0).gameObject.GetComponent<TMP_Text>();
-        teamInfo = GetComponent<TeamInfo>();
-        Owner = player;
-        playerPropeties = PhotonNetwork.LocalPlayer.CustomProperties;
-        
-        SetupPlayerSelection();
-
+        userNameText.text = PhotonNetwork.LocalPlayer.NickName;
+        SetupPlayerSelection(0);
     }
 
-    private void SetupPlayerSelection()
+    private void SetupPlayerSelection(int tank)
     {
-        userNameText.SetText(owner.NickName);
-        playerPropeties[playAv] = 0;
-        playerAvatar.SetText(avatars[(int)playerPropeties[playAv]]);
-        PhotonNetwork.LocalPlayer.SetCustomProperties(playerPropeties);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(new Hashtable() { { playAv, tank } });
+    }
+
+    private void HandleTankSelected(string tank)
+    {
+        if (tank == "Light Tank")
+        {
+            SetupPlayerSelection(1);
+        }
+        else if (tank == "Heavy Tank")
+        {
+            SetupPlayerSelection(0);
+        }
+        else if (tank == "Normal Tank")
+        {
+            SetupPlayerSelection(2);
+        }
     }
 }

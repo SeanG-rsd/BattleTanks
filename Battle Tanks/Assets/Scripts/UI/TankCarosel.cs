@@ -1,9 +1,12 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using Photon.Pun.UtilityScripts;
+using Photon.Realtime;
+using Photon.Pun;
 
 public class TankCarosel : MonoBehaviour
 {
@@ -23,11 +26,21 @@ public class TankCarosel : MonoBehaviour
     bool rotate = false;
     bool snapToClosest = false;
 
-    Hashtable playerPropeties = new Hashtable();
     [SerializeField] TMP_Text playerAvatar;
-    public string[] avatars;
 
     private const string playAv = "playerAvatar";
+
+    private Dictionary<string, string> avatarNames = new Dictionary<string, string>();
+
+    public static Action<string> OnTankSelected = delegate { };
+
+    [SerializeField] private Material[] clearMats;
+    [SerializeField] private Material[] solidMats;
+
+    [SerializeField] private GameObject[] solidObjects;
+    [SerializeField] private GameObject fogObject;
+
+
 
     // Update is called once per frame
 
@@ -37,6 +50,20 @@ public class TankCarosel : MonoBehaviour
         //Debug.Log(pos);
         //bounds = new Rect(Screen.width + clickBoundary.transform.parent.position.x, Screen.height + clickBoundary.transform.position.y , clickBoundary.rect.width, clickBoundary.rect.height);
         bounds = new Rect(pos.x, pos.y, 400, 400);
+
+        avatarNames.Add(options[0].name, "Light Tank");
+        avatarNames.Add(options[1].name, "Heavy Tank");
+        avatarNames.Add(options[2].name, "Normal Tank");
+    }
+
+    private void Awake()
+    {
+        PhotonTeamController.OnSwitchTeam += HandleTeamChange;
+    }
+
+    private void OnDestroy()
+    {
+        PhotonTeamController.OnSwitchTeam -= HandleTeamChange;
     }
     void Update()
     {
@@ -109,15 +136,37 @@ public class TankCarosel : MonoBehaviour
 
             if (closest == 0)
             {
-                Debug.Log(go.name);
+                SetTank(go.name);
             }
 
             tankNum++;
         }
     }
 
-    private void SetTank()
+    private void SetTank(string name)
     {
+        OnTankSelected?.Invoke(avatarNames[name]);
 
+        playerAvatar.text = avatarNames[name];
+    }
+
+    private void HandleTeamChange(Player player, PhotonTeam newTeam)
+    {
+        if (player == PhotonNetwork.LocalPlayer)
+        {
+            fogObject.GetComponent<MeshRenderer>().material = clearMats[newTeam.Code - 1];
+
+            foreach (GameObject go in solidObjects)
+            {
+                if (go.GetComponent<MeshRenderer>() != null)
+                {
+                    go.GetComponent<MeshRenderer>().material = solidMats[newTeam.Code - 1];
+                }
+                else
+                {
+                    go.GetComponent<SkinnedMeshRenderer>().material = solidMats[newTeam.Code - 1];
+                }
+            }
+        }
     }
 }

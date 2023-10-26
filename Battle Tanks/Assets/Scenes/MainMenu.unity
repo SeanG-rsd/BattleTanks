@@ -955,6 +955,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8e87bb877d3a2ec49b64bd355f13440d, type: 3}
   m_PrefabInstance: {fileID: 264463551}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &264463554 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3780367227201972312, guid: 8e87bb877d3a2ec49b64bd355f13440d, type: 3}
+  m_PrefabInstance: {fileID: 264463551}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &315138495
 GameObject:
   m_ObjectHideFlags: 0
@@ -2693,6 +2698,11 @@ Transform:
 --- !u!1 &655030445 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 411507001fe23e34cb2edf90d4791f31, type: 3}
+  m_PrefabInstance: {fileID: 655030443}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &655030446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7120020008364997493, guid: 411507001fe23e34cb2edf90d4791f31, type: 3}
   m_PrefabInstance: {fileID: 655030443}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &666169783
@@ -5928,7 +5938,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 126.83789, y: -199.99995}
+  m_AnchoredPosition: {x: 126.83789, y: -199.99951}
   m_SizeDelta: {x: 230, y: 367}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1590296372
@@ -6815,7 +6825,30 @@ MonoBehaviour:
   - {fileID: 264463553}
   clickBoundary: {fileID: 315138496}
   playerAvatar: {fileID: 5983950474017855762}
-  avatars: []
+  clearMats:
+  - {fileID: 2100000, guid: 54ef56b5578b9b849ac8843153b40d3d, type: 2}
+  - {fileID: 2100000, guid: 6ffac35138269c743b126c35307c89d5, type: 2}
+  - {fileID: 2100000, guid: c0b850180dfee2d44954c31f36d2f1ee, type: 2}
+  - {fileID: 2100000, guid: efef7b583e1df674ab534ac8ee0cc775, type: 2}
+  - {fileID: 2100000, guid: 498f728c7de02ba449b5aebb8cd387bb, type: 2}
+  - {fileID: 2100000, guid: 3f8ab38f495a10442ad1c614203d60ea, type: 2}
+  - {fileID: 2100000, guid: 1b72192a5649a784f815ba8e4df1aaf3, type: 2}
+  - {fileID: 2100000, guid: 122fb6b00385804429d97d2dfbc5c886, type: 2}
+  solidMats:
+  - {fileID: 2100000, guid: 5d655135a1656a74a892113f0c93901e, type: 2}
+  - {fileID: 2100000, guid: 7e62f3a5d2dc55647a59204b2d8da74d, type: 2}
+  - {fileID: 2100000, guid: b863c43037fa9a049bc61330953548ff, type: 2}
+  - {fileID: 2100000, guid: b180f03e96c88e44e9a7834ec4fac785, type: 2}
+  - {fileID: 2100000, guid: 682ee0604d8cc0e4886653ca2e7c29fa, type: 2}
+  - {fileID: 2100000, guid: f4d0235247dcbce4d9b4cdc51ce77cbe, type: 2}
+  - {fileID: 2100000, guid: bd6e4b74416dbf04485b5fd06a689458, type: 2}
+  - {fileID: 2100000, guid: 09cab536591747e4c822ef46da30ca9d, type: 2}
+  solidObjects:
+  - {fileID: 655030446}
+  - {fileID: 1951761607}
+  - {fileID: 264463554}
+  - {fileID: 1898267923}
+  fogObject: {fileID: 466448567}
 --- !u!1 &1923126587
 GameObject:
   m_ObjectHideFlags: 0
@@ -7441,6 +7474,11 @@ Transform:
 --- !u!1 &1951761606 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 408d479a379a82340a6e0417349ff2e6, type: 3}
+  m_PrefabInstance: {fileID: 1951761604}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1951761607 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3790023252267799169, guid: 408d479a379a82340a6e0417349ff2e6, type: 3}
   m_PrefabInstance: {fileID: 1951761604}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1960047623
@@ -8912,7 +8950,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   userNameText: {fileID: 9216550666791970092}
-  playerAvatar: {fileID: 5983950474017855762}
   avatars:
   - Heavy
   - Light
