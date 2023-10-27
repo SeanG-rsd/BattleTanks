@@ -23,7 +23,7 @@ public class MapGenTest : MonoBehaviour
     [SerializeField] private Transform wallContainer;
 
     private Vector2 gridSize;
-    [SerializeField] int originalWallScale;
+    [SerializeField] float originalWallScale;
 
     public GameMode selectedGameMode;
     public Vector2 selectedMapSize;
@@ -85,7 +85,7 @@ public class MapGenTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DestroyCurrentMap();
-            HandleMapGeneration(selectedMapSize, selectedGameMode);
+            HandleMapGeneration(possibleMapSizes[1], availableGameModes[0]);
             
         }
 
@@ -161,48 +161,68 @@ public class MapGenTest : MonoBehaviour
 
             for (int i = 0; i < 4; ++i)
             {
-                GameObject newWall = Instantiate(wallPrefab, wallContainer.position, Quaternion.identity);
+                for (int count = -(int)(gridSize.x / 2) + 1; count <= (gridSize.x / 2); ++count)
+                {
+                    GameObject newWall = Instantiate(wallPrefab, wallContainer.position, Quaternion.identity);
 
-                Vector3 newWallScale = new Vector3(originalWallScale * gridSize.x, newWall.transform.localScale.y, newWall.transform.localScale.z);
-                newWall.transform.localScale = newWallScale;
+                    //Vector3 newWallScale = new Vector3(originalWallScale * gridSize.x, newWall.transform.localScale.y, newWall.transform.localScale.z);
+                    //newWall.transform.localScale = newWallScale;
 
-                Vector3 newWallPos = Vector3.zero;
+                    Vector3 newWallPos = Vector3.zero;
+
+                    if (!other)
+                    {
+                        newWallPos = new Vector3((gridSize.x / 2) * originalWallScale, 0, -(originalWallScale / 2) + (originalWallScale * count));
+
+
+
+                        Vector3 newWallRotation = new Vector3(0, 90, 0);
+                        newWall.transform.Rotate(newWallRotation);
+
+                        if (!directionX)
+                        {
+                            newWallPos.x = -newWallPos.x;
+                        }
+
+                    }
+                    else
+                    {
+                        newWallPos = new Vector3(-(originalWallScale / 2) + (originalWallScale * count), 0, (gridSize.x / 2) * originalWallScale);
+                        if (!directionZ)
+                        {
+                            newWallPos.z = -newWallPos.z;
+                        }
+
+                    }
+
+                    if (newWallPos.x == 0)
+                    {
+                        
+                    }
+                    else if (newWallPos.z == 0 && !directionZ)
+                    {
+                        
+                    }
+
+                    newWallPos.y = 1.5f;
+
+                    newWall.transform.localPosition = newWallPos;
+
+                    newWall.transform.SetParent(wallContainer);
+                }
 
                 if (!other)
                 {
-                    newWallPos = new Vector3(originalWallScale * gridSize.x / 2, 0, 0);
-
-                    other = !other;
+                    directionX = !directionX;
                 }
                 else
                 {
-                    newWallPos = new Vector3(0, 0, originalWallScale * gridSize.x / 2);
-
-                    other = !other;
-                }
-
-                if (newWallPos.x != 0)
-                {
-                    Vector3 newWallRotation = new Vector3(0, 90, 0);
-                    newWall.transform.Rotate(newWallRotation);
-
-                    if (!directionX)
-                    {
-                        newWallPos.x = -newWallPos.x;
-                        directionX = !directionX;
-                    }
-                }
-                else if (newWallPos.z != 0 && !directionZ)
-                {
-                    newWallPos.z = -newWallPos.z;
-
                     directionZ = !directionZ;
                 }
-                newWallPos.y = 1.5f;
 
-                newWall.transform.localPosition = newWallPos;
+                other = !other;
 
-                newWall.transform.SetParent(wallContainer);
+                
             }
         }
     }
@@ -724,6 +744,20 @@ public class MapGenTest : MonoBehaviour
         }
     }
 
+    private bool IsTouchingBorder(WallInfo wallInfo)
+    {
+        if (wallInfo.orientation == WallType.WallOrientation.Horizontal && (wallInfo.position.y == gridSize.y - 1 || wallInfo.position.y == -1))
+        {
+            return true;
+        }
+        else if (wallInfo.orientation == WallType.WallOrientation.Vertical && (wallInfo.position.x == gridSize.x - 1 || wallInfo.position.x == -1))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     private void DoPhysicalMap()
     {
         for (int i = 0; i < cellContainer.transform.childCount; i++)
@@ -733,7 +767,7 @@ public class MapGenTest : MonoBehaviour
                 WallInfo check = new WallInfo() { orientation = cellContainer.transform.GetChild(i).GetChild(ii).gameObject.GetComponent<MapWall>().type, position = cellContainer.transform.GetChild(i).GetChild(ii).gameObject.GetComponent<MapWall>().position };
                 check.isTouchingBorder = GetWallBool(check);
 
-                if (!walls.Contains(check))
+                if (!walls.Contains(check) || IsTouchingBorder(check))
                 {
                     Destroy(cellContainer.transform.GetChild(i).GetChild(ii).gameObject);
                 }
