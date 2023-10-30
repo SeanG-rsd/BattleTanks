@@ -16,8 +16,14 @@ public class TankHealth : MonoBehaviour
     public TMP_Text healthbarText;
     public GameObject healthbar;
 
-    [SerializeField] private RectTransform healthBarContainer;
+    [SerializeField] private GameObject infoBar;
+
+    [SerializeField] private RectTransform heartBarContainer;
     [SerializeField] private GameObject heartPrefab;
+
+    [SerializeField] private RectTransform healthPointContainer;
+    [SerializeField] private GameObject healthPointPrefab;
+    private int maxHealthPoints = 10;
 
     [SerializeField] private int maxHearts;
     [SerializeField] private int currentHearts;
@@ -56,18 +62,16 @@ public class TankHealth : MonoBehaviour
         if (view.IsMine)
         {
             gmDealsWithHearts = thisTank.selectedGameMode.HasHearts;
-            healthbar.SetActive(true);
-            healthBarContainer.parent.gameObject.SetActive(true);
-            
-            currentHealth = maxHealth;
-            currentHearts = maxHearts;
-            playerPropeties["currentHealth"] = currentHealth;
-            PhotonNetwork.SetPlayerCustomProperties(playerPropeties);
-            healthbarText.text = currentHealth.ToString();
+
+            infoBar.SetActive(true);
+            heartBarContainer.gameObject.SetActive(true);
+
+            ResetHealth();
+            SetHealthBar();
 
             if (!gmDealsWithHearts)
             {
-                healthBarContainer.parent.gameObject.SetActive(false);
+                heartBarContainer.gameObject.SetActive(false);
             }
             else
             {
@@ -110,13 +114,48 @@ public class TankHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         playerPropeties["currentHealth"] = currentHealth;
+        PhotonNetwork.SetPlayerCustomProperties(playerPropeties);
+    }
+
+    private void SetHealthBar()
+    {
+        for (int i = 0; i < healthPointContainer.transform.childCount; i++)
+        {
+            Destroy(healthPointContainer.GetChild(i).gameObject);
+        }
+
+        for (int i = 0; i < calculateHealthPoints(); ++i)
+        {
+            GameObject healthPoint = Instantiate(healthPointPrefab, healthPointContainer.position, Quaternion.identity);
+
+            healthPoint.transform.SetParent(healthPointContainer);
+
+            healthPoint.transform.localScale = Vector3.one;
+        }
+    }
+
+    public int calculateHealthPoints()
+    {
+        float percent = (float)currentHealth / (float)maxHealth;
+        Debug.Log(percent);
+        int output = (int)(percent * maxHealthPoints);
+        Debug.Log(output);
+
+        if (output == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return output;
+        }
     }
 
     private void RemoveHeart()
     {
         if (currentHearts > 0)
         {
-            Destroy(healthBarContainer.GetChild(0).gameObject);
+            Destroy(heartBarContainer.GetChild(0).gameObject);
             currentHearts--;
         }
 
@@ -128,16 +167,16 @@ public class TankHealth : MonoBehaviour
 
     private void ResetHeartBar()
     {
-        for (int i = 0; i < healthBarContainer.transform.childCount; i++)
+        for (int i = 0; i < heartBarContainer.transform.childCount; i++)
         {
-            Destroy(healthBarContainer.GetChild(i).gameObject);
+            Destroy(heartBarContainer.GetChild(i).gameObject);
         }
 
         for (int i = 0; i < maxHearts; ++i)
         {
-            GameObject heart = Instantiate(heartPrefab, healthBarContainer.position, Quaternion.identity);
+            GameObject heart = Instantiate(heartPrefab, heartBarContainer.position, Quaternion.identity);
 
-            heart.transform.SetParent(healthBarContainer);
+            heart.transform.SetParent(heartBarContainer);
 
             heart.transform.localScale = Vector3.one;
         }
@@ -156,6 +195,7 @@ public class TankHealth : MonoBehaviour
     {
         playerPropeties["currentHealth"] = Mathf.Clamp(currentHealth + value, 0, maxHealth);
         PhotonNetwork.SetPlayerCustomProperties(playerPropeties);
+        SetHealthBar();
     }
 
     private bool Alive()
@@ -172,5 +212,6 @@ public class TankHealth : MonoBehaviour
     {
         hasRespawned = true;
         ResetHealth();
+        SetHealthBar();
     }
 }

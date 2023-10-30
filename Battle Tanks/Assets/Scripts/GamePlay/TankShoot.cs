@@ -5,6 +5,7 @@ using Photon.Pun;
 using TMPro;
 using Photon.Pun.UtilityScripts;
 using System;
+using UnityEngine.UI;
 
 public class TankShoot : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class TankShoot : MonoBehaviour
     float reloading;
 
     public int maxAmmo = 15;
-    int currentAmmo;
+    [SerializeField] private float currentAmmo;
     public TMP_Text ammoDisplayText;
     public TMP_Text maxAmmoDisplayText;
     public GameObject ammoDisplay;
@@ -40,6 +41,9 @@ public class TankShoot : MonoBehaviour
 
     [SerializeField] GameObject[] bulletPrefabs;
 
+    [SerializeField] private RectTransform ammoMask;
+    private float originalSize;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -53,6 +57,8 @@ public class TankShoot : MonoBehaviour
             ammoDisplayText.text = currentAmmo.ToString();
             ammoDisplay.SetActive(true);
         }
+
+        originalSize = ammoMask.rect.width;
         
     }
 
@@ -60,12 +66,14 @@ public class TankShoot : MonoBehaviour
     {
         TapToShoot.TapShoot += HandleShoot;
         TapToShoot.TapToReload += HandleReload;
+        TapToShoot.StopReload += HandleStopReload;
     }
 
     private void OnDestroy()
     {
         TapToShoot.TapShoot -= HandleShoot;
         TapToShoot.TapToReload -= HandleReload;
+        TapToShoot.StopReload -= HandleStopReload;
     }
 
     private void HandleShoot()
@@ -76,7 +84,11 @@ public class TankShoot : MonoBehaviour
     private void HandleReload()
     {
         reload = true;
-        reloading = reloadTime;
+    }
+
+    private void HandleStopReload()
+    {
+        reload = false;
     }
 
     // Update is called once per frame
@@ -88,11 +100,12 @@ public class TankShoot : MonoBehaviour
             if (shoot)
             {
                 shoot = false;
-                if (currentAmmo > 0 && ableToShoot && !reload)
+                if ((int)currentAmmo > 0 && ableToShoot && !reload)
                 {
                     Debug.Log("shot");
                     Shoot();
-                    currentAmmo--;
+                    currentAmmo -= 1;
+                    SetAmmoBar();
                     ableToShoot = false;
                     shooting = shootDelay;
                     ammoDisplayText.text = currentAmmo.ToString();
@@ -105,22 +118,12 @@ public class TankShoot : MonoBehaviour
                 }
             }
 
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                reload = true;
-                reloading = reloadTime;
-            }
-
             if (reload)
             {
-                reloading -= Time.deltaTime;
-
-                if (reloading < 0)
-                {
-                    reload = false;
-                    currentAmmo = maxAmmo;
-                    ammoDisplayText.text = currentAmmo.ToString();
-                }
+                Debug.Log("reloading");
+                currentAmmo += (Time.deltaTime / reloadTime);
+                Mathf.Clamp(currentAmmo, 0, maxAmmo);
+                SetAmmoBar();
             }
 
             if (!ableToShoot)
@@ -133,6 +136,12 @@ public class TankShoot : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void SetAmmoBar()
+    {
+        float value = currentAmmo / maxAmmo;
+        ammoMask.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalSize * value);
     }
 
     void Shoot()
