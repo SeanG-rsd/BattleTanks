@@ -26,9 +26,6 @@ public class TankShoot : MonoBehaviour
 
     public int maxAmmo = 15;
     [SerializeField] private float currentAmmo;
-    public TMP_Text ammoDisplayText;
-    public TMP_Text maxAmmoDisplayText;
-    public GameObject ammoDisplay;
 
     public int bulletDamage;
 
@@ -53,9 +50,6 @@ public class TankShoot : MonoBehaviour
         if (view.IsMine)
         {
             currentAmmo = maxAmmo;
-            maxAmmoDisplayText.text = maxAmmo.ToString();
-            ammoDisplayText.text = currentAmmo.ToString();
-            ammoDisplay.SetActive(true);
         }
 
         originalSize = ammoMask.rect.width;
@@ -108,7 +102,6 @@ public class TankShoot : MonoBehaviour
                     SetAmmoBar();
                     ableToShoot = false;
                     shooting = shootDelay;
-                    ammoDisplayText.text = currentAmmo.ToString();
 
                     barrelIndex++;
                     if (barrelIndex > shootPoints.Length - 1)

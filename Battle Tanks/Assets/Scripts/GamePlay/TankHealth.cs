@@ -13,9 +13,6 @@ public class TankHealth : MonoBehaviour
     public int maxHealth;
     public int currentHealth;
 
-    public TMP_Text healthbarText;
-    public GameObject healthbar;
-
     [SerializeField] private GameObject infoBar;
 
     [SerializeField] private RectTransform heartBarContainer;
@@ -88,7 +85,6 @@ public class TankHealth : MonoBehaviour
             if (playerPropeties.ContainsKey("currentHealth"))
             {
                 currentHealth = (int)playerPropeties["currentHealth"];
-                healthbarText.text = currentHealth.ToString();
             }
 
             if (!Alive() && hasRespawned)

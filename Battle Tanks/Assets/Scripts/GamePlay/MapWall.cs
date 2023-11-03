@@ -28,6 +28,15 @@ public class MapWall : MonoBehaviour
         visualWall.SetActive(true);
     }
 
+    public void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Debug.Log("collision");
+            collision.gameObject.GetComponent<Bullet>().Destroy();
+        }
+    }
+
     [PunRPC]
     public void DestroyObject()
     {

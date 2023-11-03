@@ -15,7 +15,7 @@ D:/Documents/GitHub/BattleTanks/Battle Tanks
 -logFile
 Logs/AssetImportWorker2.log
 -srvPort
-55273
+58573
 Successfully changed project path to: D:/Documents/GitHub/BattleTanks/Battle Tanks
 D:/Documents/GitHub/BattleTanks/Battle Tanks
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,12 +49,12 @@ D:/Documents/GitHub/BattleTanks/Battle Tanks
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [7648] Host "[IP] 192.168.1.51 [Port] 0 [Flags] 2 [Guid] 2675455854 [EditorId] 2675455854 [Version] 1048832 [Id] WindowsEditor(7,SARUMAN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [13096] Host "[IP] 192.168.1.51 [Port] 0 [Flags] 2 [Guid] 918790988 [EditorId] 918790988 [Version] 1048832 [Id] WindowsEditor(7,SARUMAN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [7648] Host "[IP] 192.168.1.51 [Port] 0 [Flags] 2 [Guid] 2675455854 [EditorId] 2675455854 [Version] 1048832 [Id] WindowsEditor(7,SARUMAN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [13096] Host "[IP] 192.168.1.51 [Port] 0 [Flags] 2 [Guid] 918790988 [EditorId] 918790988 [Version] 1048832 [Id] WindowsEditor(7,SARUMAN) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
 [Physics::Module] Initialized MultithreadedJobDispatcher with 11 workers.
-Refreshing native plugins compatible for Editor in 10.72 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 11.78 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.11f1 (d00248457e15)
 [Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/Resources/UnitySubsystems
@@ -70,7 +70,7 @@ Initialize mono
 Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56312
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56916
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
@@ -78,47 +78,47 @@ Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.11f1/
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
 Register platform support module: C:/Program Files/Unity/Hub/Editor/2022.3.11f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.019096 seconds.
-- Loaded All Assemblies, in  0.352 seconds
+Registered in 0.024014 seconds.
+- Loaded All Assemblies, in  0.415 seconds
 Native extension for WindowsStandalone target not found
 [usbmuxd] Start listen thread
 [usbmuxd] Listen thread started
 Native extension for iOS target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 297 ms
+Android Extension - Scanning For ADB Devices 268 ms
 Native extension for OSXStandalone target not found
 Native extension for WebGL target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.674 seconds
+- Finished resetting the current domain, in  0.611 seconds
 Domain Reload Profiling: 1024ms
-	BeginReloadAssembly (102ms)
+	BeginReloadAssembly (117ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (31ms)
-	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (68ms)
-	LoadAllAssembliesAndSetupDomain (137ms)
-		LoadAssemblies (100ms)
+	RebuildCommonClasses (44ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (80ms)
+	LoadAllAssembliesAndSetupDomain (160ms)
+		LoadAssemblies (115ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (134ms)
-			TypeCache.Refresh (133ms)
-				TypeCache.ScanAssembly (121ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
+		AnalyzeDomain (157ms)
+			TypeCache.Refresh (155ms)
+				TypeCache.ScanAssembly (142ms)
+			ScanForSourceGeneratedMonoScriptInfo (1ms)
 			ResolveRequiredComponents (1ms)
-	FinalizeReload (675ms)
+	FinalizeReload (611ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (617ms)
+		SetupLoadedEditorAssemblies (549ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (448ms)
-			SetLoadedEditorAssemblies (5ms)
+			InitializePlatformSupportModulesInManaged (416ms)
+			SetLoadedEditorAssemblies (4ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (113ms)
-			ProcessInitializeOnLoadMethodAttributes (49ms)
+			ProcessInitializeOnLoadAttributes (88ms)
+			ProcessInitializeOnLoadMethodAttributes (39ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -126,8 +126,8 @@ Domain Reload Profiling: 1024ms
 ========================================================================
 Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.718 seconds
-Refreshing native plugins compatible for Editor in 3.14 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.934 seconds
+Refreshing native plugins compatible for Editor in 4.41 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
@@ -138,47 +138,47 @@ Package Manager log level set to [2]
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.974 seconds
-Domain Reload Profiling: 1690ms
-	BeginReloadAssembly (133ms)
+- Finished resetting the current domain, in  1.096 seconds
+Domain Reload Profiling: 2028ms
+	BeginReloadAssembly (135ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (21ms)
-	RebuildCommonClasses (30ms)
-	RebuildNativeTypeToScriptingClass (10ms)
-	initialDomainReloadingComplete (40ms)
-	LoadAllAssembliesAndSetupDomain (501ms)
-		LoadAssemblies (354ms)
+	RebuildCommonClasses (32ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (41ms)
+	LoadAllAssembliesAndSetupDomain (713ms)
+		LoadAssemblies (459ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (225ms)
-			TypeCache.Refresh (197ms)
-				TypeCache.ScanAssembly (176ms)
-			ScanForSourceGeneratedMonoScriptInfo (20ms)
-			ResolveRequiredComponents (7ms)
-	FinalizeReload (975ms)
+		AnalyzeDomain (333ms)
+			TypeCache.Refresh (285ms)
+				TypeCache.ScanAssembly (255ms)
+			ScanForSourceGeneratedMonoScriptInfo (28ms)
+			ResolveRequiredComponents (19ms)
+	FinalizeReload (1096ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (803ms)
+		SetupLoadedEditorAssemblies (893ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (40ms)
-			SetLoadedEditorAssemblies (5ms)
+			InitializePlatformSupportModulesInManaged (50ms)
+			SetLoadedEditorAssemblies (8ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (115ms)
-			ProcessInitializeOnLoadAttributes (613ms)
-			ProcessInitializeOnLoadMethodAttributes (18ms)
+			BeforeProcessingInitializeOnLoad (136ms)
+			ProcessInitializeOnLoadAttributes (668ms)
+			ProcessInitializeOnLoadMethodAttributes (21ms)
 			AfterProcessingInitializeOnLoad (10ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (6ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
-Refreshing native plugins compatible for Editor in 3.06 ms, found 3 plugins.
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
+Refreshing native plugins compatible for Editor in 3.53 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4098 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 70 unused Assets / (1.3 MB). Loaded Objects now: 4544.
-Memory consumption went from 167.1 MB to 165.9 MB.
-Total: 3.394600 ms (FindLiveObjects: 0.324700 ms CreateObjectMapping: 0.095900 ms MarkObjects: 2.578600 ms  DeleteObjects: 0.394000 ms)
+Unloading 4099 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 70 unused Assets / (1.3 MB). Loaded Objects now: 4546.
+Memory consumption went from 167.4 MB to 166.1 MB.
+Total: 3.639600 ms (FindLiveObjects: 0.319600 ms CreateObjectMapping: 0.097100 ms MarkObjects: 2.840000 ms  DeleteObjects: 0.381900 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
@@ -194,466 +194,10 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
-Received Import Request.
-  Time since last request: 45135.137389 seconds.
-  path: Assets/Resources/Heart.prefab
-  artifactKey: Guid(707d0a494c67c724b8e98d6853d0a540) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Heart.prefab using Guid(707d0a494c67c724b8e98d6853d0a540) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dcda2baf7fe2603854b0afcb5dfd6c5a') in 0.027243 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 2.841430 seconds.
-  path: Assets/Resources/Heart.prefab
-  artifactKey: Guid(707d0a494c67c724b8e98d6853d0a540) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Heart.prefab using Guid(707d0a494c67c724b8e98d6853d0a540) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e87138a81b5195193c7997beea0d0c34') in 0.001810 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 7
-========================================================================
-Received Import Request.
-  Time since last request: 8.806547 seconds.
-  path: Assets/Resources/HeavyTank Variant.prefab
-  artifactKey: Guid(fd0532a4cf51f724385359b17d3846f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTank Variant.prefab using Guid(fd0532a4cf51f724385359b17d3846f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da060e3bc43d9077a69b3d75cb3e19ca') in 0.170038 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 837
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/NormalTankPink Variant.prefab
-  artifactKey: Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankPink Variant.prefab using Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c07f6152829b9cb4e5d803a97494591b') in 0.076435 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/Tank.prefab
-  artifactKey: Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Tank.prefab using Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'db370cb05087c9a184f3c5e4060cdb75') in 0.065326 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 578
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Resources/LightTankPurple Variant.prefab
-  artifactKey: Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPurple Variant.prefab using Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c75d4d6e4efc72ee1de6c3e205127b3b') in 0.071427 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/Resources/NormalTankGreen Variant.prefab
-  artifactKey: Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankGreen Variant.prefab using Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3eb5d0cd1abb13c73890b305b665f61') in 0.071035 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Resources/HeavyTankPink Variant.prefab
-  artifactKey: Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPink Variant.prefab using Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f072e52ec860f5772aa96fc3ed12e40') in 0.070125 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/Resources/NormalTankYellow Variant.prefab
-  artifactKey: Guid(706c9891ebe761940a368bd8c120c0ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankYellow Variant.prefab using Guid(706c9891ebe761940a368bd8c120c0ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37b99808e28ea611dd51848d4cabd1da') in 0.076280 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/NormalTankOrange Variant.prefab
-  artifactKey: Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankOrange Variant.prefab using Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0867219c7a1c73c5be0225f15804048') in 0.068835 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 23.217293 seconds.
-  path: Assets/Resources/HeavyTankGreen Variant.prefab
-  artifactKey: Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankGreen Variant.prefab using Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7bab60277bf9b94e159512791ab8f16') in 0.078079 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/HeavyTankPurple Variant.prefab
-  artifactKey: Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPurple Variant.prefab using Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad451a50a1f2594c04812ade6ea7a9c2') in 0.068753 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/NormalTankLightBlue Variant.prefab
-  artifactKey: Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankLightBlue Variant.prefab using Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '81c0aee4c9d76c05afeaed105850a94c') in 0.065647 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Resources/NormalTankBlue Variant.prefab
-  artifactKey: Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankBlue Variant.prefab using Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84fd96e0bf5024a8ec0cdf99b4e2b663') in 0.078122 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/HeavyTankRed Variant.prefab
-  artifactKey: Guid(5ae80ada484c1b247be14d7e316512a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankRed Variant.prefab using Guid(5ae80ada484c1b247be14d7e316512a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4411694e5721237fe3b66eda8a1b039c') in 0.068224 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Resources/LightTankPink Variant.prefab
-  artifactKey: Guid(7b57c2acc784b9b4d84d72906e93243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPink Variant.prefab using Guid(7b57c2acc784b9b4d84d72906e93243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d1857fd95e525ee548367607ef2f422') in 0.067655 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/HeavyTankPink Variant.prefab
-  artifactKey: Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPink Variant.prefab using Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f41986f5222daa5ea4f6340f68d0b438') in 0.067804 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000031 seconds.
-  path: Assets/Resources/LightTankGreen Variant.prefab
-  artifactKey: Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankGreen Variant.prefab using Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1a5136ec50ca483d5e5e95c97626cf5') in 0.070590 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Resources/LightTankOrange Variant.prefab
-  artifactKey: Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankOrange Variant.prefab using Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6d54e410454284c4c2b6ef20df7f2fd') in 0.065811 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 24.054398 seconds.
-  path: Assets/Resources/HeavyTankGreen Variant.prefab
-  artifactKey: Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankGreen Variant.prefab using Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '65e7d1473c9a4abcf0db5147b73ee9c2') in 0.085690 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/Resources/HeavyTankPurple Variant.prefab
-  artifactKey: Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPurple Variant.prefab using Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '213bd6c797da4aa561d1aa69e121986e') in 0.068049 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Resources/NormalTankLightBlue Variant.prefab
-  artifactKey: Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankLightBlue Variant.prefab using Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba873067a7d0823a34c056ec0dc2e452') in 0.074637 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Resources/Tank.prefab
-  artifactKey: Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Tank.prefab using Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7ed499783203cf0676ee585ef7b3fba') in 0.058673 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 578
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/LightTankPurple Variant.prefab
-  artifactKey: Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPurple Variant.prefab using Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2f251ff951d3018e29b584a6591e9df') in 0.073784 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Resources/NormalTankGreen Variant.prefab
-  artifactKey: Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankGreen Variant.prefab using Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0faf0fc7cb36bb9b1d7710c249353218') in 0.069992 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Resources/HeavyTankPink Variant.prefab
-  artifactKey: Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPink Variant.prefab using Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e36c8ca82bed2fa17f3e4a7f7c83425d') in 0.071931 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/NormalTankYellow Variant.prefab
-  artifactKey: Guid(706c9891ebe761940a368bd8c120c0ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankYellow Variant.prefab using Guid(706c9891ebe761940a368bd8c120c0ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5839b11873d249e7211b4db1c7e205ec') in 0.068212 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Resources/NormalTankOrange Variant.prefab
-  artifactKey: Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankOrange Variant.prefab using Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0470d752926ff73da37e6be1a0c37429') in 0.063734 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 12.302808 seconds.
-  path: Assets/Resources/HeavyTankGreen Variant.prefab
-  artifactKey: Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankGreen Variant.prefab using Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4778152ef3611445f950bb7c075a818b') in 0.070389 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/Resources/HeavyTankPurple Variant.prefab
-  artifactKey: Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPurple Variant.prefab using Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '87095d979362a19937cae513b9ca4278') in 0.071744 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/NormalTankLightBlue Variant.prefab
-  artifactKey: Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankLightBlue Variant.prefab using Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd55fabe3a7320bba7eabc1f1678821d3') in 0.065359 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000032 seconds.
-  path: Assets/Resources/NormalTankBlue Variant.prefab
-  artifactKey: Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankBlue Variant.prefab using Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce9fa68cb89fed212477dde725cb83cc') in 0.064537 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Resources/LightTankPurple Variant.prefab
-  artifactKey: Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPurple Variant.prefab using Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b30965feb369c28c3e941ae7579caeed') in 0.068829 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Resources/NormalTankGreen Variant.prefab
-  artifactKey: Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankGreen Variant.prefab using Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7a832cd30571a6b4e2e6c5c8da1143f3') in 0.068510 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Resources/HeavyTankPink Variant.prefab
-  artifactKey: Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPink Variant.prefab using Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a13cc04726c6b81dff40c7e748c74e0f') in 0.072233 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000033 seconds.
-  path: Assets/Resources/LightTankGreen Variant.prefab
-  artifactKey: Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankGreen Variant.prefab using Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9acd634137c4584513701b45ad3e1007') in 0.076176 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Resources/LightTankOrange Variant.prefab
-  artifactKey: Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankOrange Variant.prefab using Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08f9d2e0546847829107c5284115393b') in 0.061634 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 7.418157 seconds.
-  path: Assets/Resources/HeavyTankGreen Variant.prefab
-  artifactKey: Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankGreen Variant.prefab using Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e9f156ff8fd1fd87cbdc2b251ef0ed1e') in 0.066421 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Resources/HeavyTankPurple Variant.prefab
-  artifactKey: Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPurple Variant.prefab using Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6c3473f49af5d346b9b5d37cb394bd7') in 0.069534 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.543938 seconds.
-  path: Assets/Resources/HeavyTankGreen Variant.prefab
-  artifactKey: Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankGreen Variant.prefab using Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd500b75a845e5e8abc667663e1bdccb5') in 0.072555 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/LightTankYellow Variant.prefab
-  artifactKey: Guid(78a3a290b504bdb478b3d2293f07a968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankYellow Variant.prefab using Guid(78a3a290b504bdb478b3d2293f07a968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62e2d8d5477392cffdfa8cc4f5538b04') in 0.072102 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Resources/NormalTankPink Variant.prefab
-  artifactKey: Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankPink Variant.prefab using Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e374e49ab384de3d9c73ae634afe205') in 0.067765 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/Resources/Tank.prefab
-  artifactKey: Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Tank.prefab using Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb50b036d8bf4bd793b11a6f7a900057') in 0.059772 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 578
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Resources/LightTankPurple Variant.prefab
-  artifactKey: Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPurple Variant.prefab using Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16c2e94eed0ebbacced5865faa84a089') in 0.064771 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/NormalTankGreen Variant.prefab
-  artifactKey: Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankGreen Variant.prefab using Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0787459142270acf8395d5a36a0ea697') in 0.071908 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Resources/HeavyTankPink Variant.prefab
-  artifactKey: Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPink Variant.prefab using Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c76d0fb37d9097c36d22a4d07c0f9076') in 0.066470 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Resources/NormalTankYellow Variant.prefab
-  artifactKey: Guid(706c9891ebe761940a368bd8c120c0ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankYellow Variant.prefab using Guid(706c9891ebe761940a368bd8c120c0ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '00c28cd91a1f8d341a304798d0a2935f') in 0.081563 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Resources/NormalTankOrange Variant.prefab
-  artifactKey: Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankOrange Variant.prefab using Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea36ace6c5b119aa3f946515973e1df3') in 0.064639 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 320.222425 seconds.
-  path: Assets/Resources/HeavyTankGreen Variant.prefab
-  artifactKey: Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankGreen Variant.prefab using Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5deb93f549432fe24cc3c1eb4d1ccc61') in 0.094468 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/HeavyTankPurple Variant.prefab
-  artifactKey: Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPurple Variant.prefab using Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c9a16175f6b09de01469fe73d5d95a3') in 0.073569 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Resources/HeavyTankYellow Variant.prefab
-  artifactKey: Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankYellow Variant.prefab using Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e844059e394cf6e51902c7799546feb8') in 0.088172 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Resources/LightTankBlue Variant.prefab
-  artifactKey: Guid(df29ca587e68070439a9f90f1e9bbbe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankBlue Variant.prefab using Guid(df29ca587e68070439a9f90f1e9bbbe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b8b8374b245eb2fe76092109ccc78150') in 0.073832 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/Tank.prefab
-  artifactKey: Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Tank.prefab using Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ecd61b0e073705eca264e13bc0be3a30') in 0.068110 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 578
-========================================================================
-Received Import Request.
-  Time since last request: 0.000016 seconds.
-  path: Assets/Resources/NormalTankPurple Variant.prefab
-  artifactKey: Guid(2943c0c2e29e125448840331e5f9caf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankPurple Variant.prefab using Guid(2943c0c2e29e125448840331e5f9caf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27cafb08f8cee5ea79a831e984094cb7') in 0.082287 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000033 seconds.
-  path: Assets/Resources/LightTankPurple Variant.prefab
-  artifactKey: Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPurple Variant.prefab using Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19b056195be88e0d882a52f74caa865c') in 0.086734 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/Resources/LightTankRed Variant.prefab
-  artifactKey: Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankRed Variant.prefab using Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '982a20031c5a943ffa7cfb3a64bc3b06') in 0.086376 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/LightTankPink Variant.prefab
-  artifactKey: Guid(7b57c2acc784b9b4d84d72906e93243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPink Variant.prefab using Guid(7b57c2acc784b9b4d84d72906e93243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b43f846b6bdc6709409090a888ce3d60') in 0.072746 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.617 seconds
-Refreshing native plugins compatible for Editor in 3.74 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.583 seconds
+Refreshing native plugins compatible for Editor in 3.63 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Native extension for iOS target not found
 Native extension for Android target not found
@@ -663,1085 +207,46 @@ Native extension for WebGL target not found
 [Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
 [Package Manager] Cannot connect to Unity Package Manager local server
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.371 seconds
-Domain Reload Profiling: 1985ms
-	BeginReloadAssembly (176ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (4ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (51ms)
-	RebuildCommonClasses (32ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (39ms)
-	LoadAllAssembliesAndSetupDomain (354ms)
-		LoadAssemblies (407ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (32ms)
-			TypeCache.Refresh (12ms)
-				TypeCache.ScanAssembly (2ms)
-			ScanForSourceGeneratedMonoScriptInfo (11ms)
-			ResolveRequiredComponents (8ms)
-	FinalizeReload (1372ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (903ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (56ms)
-			SetLoadedEditorAssemblies (5ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (127ms)
-			ProcessInitializeOnLoadAttributes (682ms)
-			ProcessInitializeOnLoadMethodAttributes (21ms)
-			AfterProcessingInitializeOnLoad (11ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (8ms)
-Refreshing native plugins compatible for Editor in 3.55 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4044 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 51 unused Assets / (1.3 MB). Loaded Objects now: 4561.
-Memory consumption went from 159.2 MB to 157.9 MB.
-Total: 3.492600 ms (FindLiveObjects: 0.405000 ms CreateObjectMapping: 0.111900 ms MarkObjects: 2.664000 ms  DeleteObjects: 0.310800 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 10.604274 seconds.
-  path: Assets/Resources/HeavyTankYellow Variant.prefab
-  artifactKey: Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankYellow Variant.prefab using Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2e52b2c59d46b20431a74770212a8fe') in 0.175193 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Resources/NormalTankPink Variant.prefab
-  artifactKey: Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankPink Variant.prefab using Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '208e958d38f82eba22a7f3b4688a2729') in 0.071279 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Resources/Tank.prefab
-  artifactKey: Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Tank.prefab using Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c29f684b50988e6d9c11e5db5552f86f') in 0.057245 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 578
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Resources/HeavyTankOrange Variant.prefab
-  artifactKey: Guid(c21d5d7784810d14298e84ec18d56761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankOrange Variant.prefab using Guid(c21d5d7784810d14298e84ec18d56761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a13f03d6c7002f9f817b169374117c1') in 0.070622 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/LightTankRed Variant.prefab
-  artifactKey: Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankRed Variant.prefab using Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7e7056c8f725bf2cdd089aa2f2a76d3') in 0.081404 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Resources/NormalTank Variant.prefab
-  artifactKey: Guid(6eb63ad41e5215f4991b3ce7edb54cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTank Variant.prefab using Guid(6eb63ad41e5215f4991b3ce7edb54cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e27d92986132a478d291df414863fa96') in 0.058693 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 835
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Resources/LightTank Variant.prefab
-  artifactKey: Guid(e1b4e73166571a746a234b3684443b5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTank Variant.prefab using Guid(e1b4e73166571a746a234b3684443b5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '173466e80346dff8461a1c0b65ec346b') in 0.063672 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 839
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Resources/LightTankLightBlue Variant.prefab
-  artifactKey: Guid(e19228ed4e661f147bfd428a015ed9f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankLightBlue Variant.prefab using Guid(e19228ed4e661f147bfd428a015ed9f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '11eeee076c10c923680cedd46c66b3a5') in 0.068302 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Resources/LightTankOrange Variant.prefab
-  artifactKey: Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankOrange Variant.prefab using Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e290d16662bbb5af0f24603d63af0b1') in 0.068902 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 69.795826 seconds.
-  path: Assets/Resources/HeavyTankGreen Variant.prefab
-  artifactKey: Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankGreen Variant.prefab using Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3164d44313b2b31399bd5eb8e4fa3309') in 0.075001 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Resources/HeavyTankPurple Variant.prefab
-  artifactKey: Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPurple Variant.prefab using Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ef0e4fd7f9aa25e0acc3fac228095db3') in 0.069750 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Resources/HeavyTankYellow Variant.prefab
-  artifactKey: Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankYellow Variant.prefab using Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '600b58df26973a0c7222e6375c6dc56d') in 0.070795 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Resources/NormalTankPink Variant.prefab
-  artifactKey: Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankPink Variant.prefab using Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2163a44ddd7695e04f6f23b7544972a6') in 0.065008 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Resources/NormalTankBlue Variant.prefab
-  artifactKey: Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankBlue Variant.prefab using Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42bb3aa8a45709dfa1c289d493156274') in 0.084328 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000031 seconds.
-  path: Assets/Resources/NormalTankPurple Variant.prefab
-  artifactKey: Guid(2943c0c2e29e125448840331e5f9caf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankPurple Variant.prefab using Guid(2943c0c2e29e125448840331e5f9caf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1570f483388041679d42bbe3e23c79cd') in 0.087035 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000037 seconds.
-  path: Assets/Resources/LightTankPurple Variant.prefab
-  artifactKey: Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPurple Variant.prefab using Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9a4769091c703ec4194d9e0d8280eb3a') in 0.095999 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/Resources/LightTankRed Variant.prefab
-  artifactKey: Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankRed Variant.prefab using Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e95c90bab485766b1be14e69900b8014') in 0.080844 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/LightTankPink Variant.prefab
-  artifactKey: Guid(7b57c2acc784b9b4d84d72906e93243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPink Variant.prefab using Guid(7b57c2acc784b9b4d84d72906e93243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25ffdfd37df23343c6cc5e0e2082f717') in 0.136804 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Resources/HeavyTankPink Variant.prefab
-  artifactKey: Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPink Variant.prefab using Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5aed7f11a10735c15123a968082c765e') in 0.092348 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000032 seconds.
-  path: Assets/Resources/LightTank Variant.prefab
-  artifactKey: Guid(e1b4e73166571a746a234b3684443b5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTank Variant.prefab using Guid(e1b4e73166571a746a234b3684443b5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6e8aafcb50974e2bc2141f783a72ea21') in 0.071854 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 839
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/LightTankGreen Variant.prefab
-  artifactKey: Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankGreen Variant.prefab using Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '627e18a6957a388e607a36bf537785b0') in 0.081881 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/NormalTankOrange Variant.prefab
-  artifactKey: Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankOrange Variant.prefab using Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2b5aec98b4325ec51a35502e9f37624') in 0.076382 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.668 seconds
-Refreshing native plugins compatible for Editor in 4.68 ms, found 3 plugins.
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Native extension for OSXStandalone target not found
-Native extension for WebGL target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.416 seconds
-Domain Reload Profiling: 2081ms
-	BeginReloadAssembly (246ms)
+- Finished resetting the current domain, in  1.363 seconds
+Domain Reload Profiling: 1942ms
+	BeginReloadAssembly (170ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (114ms)
-	RebuildCommonClasses (36ms)
+		CreateAndSetChildDomain (44ms)
+	RebuildCommonClasses (33ms)
 	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (34ms)
-	LoadAllAssembliesAndSetupDomain (337ms)
-		LoadAssemblies (392ms)
+	initialDomainReloadingComplete (35ms)
+	LoadAllAssembliesAndSetupDomain (329ms)
+		LoadAssemblies (400ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (36ms)
-			TypeCache.Refresh (15ms)
-				TypeCache.ScanAssembly (3ms)
-			ScanForSourceGeneratedMonoScriptInfo (11ms)
-			ResolveRequiredComponents (9ms)
-	FinalizeReload (1417ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1004ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (47ms)
-			SetLoadedEditorAssemblies (6ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (137ms)
-			ProcessInitializeOnLoadAttributes (780ms)
-			ProcessInitializeOnLoadMethodAttributes (24ms)
-			AfterProcessingInitializeOnLoad (10ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (8ms)
-Refreshing native plugins compatible for Editor in 3.92 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4044 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 51 unused Assets / (1.3 MB). Loaded Objects now: 4566.
-Memory consumption went from 161.4 MB to 160.1 MB.
-Total: 4.181200 ms (FindLiveObjects: 0.467300 ms CreateObjectMapping: 0.109400 ms MarkObjects: 3.102200 ms  DeleteObjects: 0.500800 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 6.686727 seconds.
-  path: Assets/Resources/LightTankYellow Variant.prefab
-  artifactKey: Guid(78a3a290b504bdb478b3d2293f07a968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankYellow Variant.prefab using Guid(78a3a290b504bdb478b3d2293f07a968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd138de8d16d586d73d3ba9ac5edb1b8d') in 0.182105 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000033 seconds.
-  path: Assets/Resources/LightTankBlue Variant.prefab
-  artifactKey: Guid(df29ca587e68070439a9f90f1e9bbbe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankBlue Variant.prefab using Guid(df29ca587e68070439a9f90f1e9bbbe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f5710dfb57a8644cfe30683a93ebb01') in 0.073324 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Resources/HeavyTankGreen Variant.prefab
-  artifactKey: Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankGreen Variant.prefab using Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9098b3df6f14f1b77add6a6dd5860fb0') in 0.080350 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/LightTankPurple Variant.prefab
-  artifactKey: Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPurple Variant.prefab using Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aca9a957172e640b0ed6cbff032c3570') in 0.066225 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Resources/NormalTankGreen Variant.prefab
-  artifactKey: Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankGreen Variant.prefab using Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f44794ba4d6fabeb1353056343d49948') in 0.071842 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Resources/HeavyTankPink Variant.prefab
-  artifactKey: Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPink Variant.prefab using Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b0922ce97c970b8e5cba793e6bd93ce') in 0.066164 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Resources/NormalTankYellow Variant.prefab
-  artifactKey: Guid(706c9891ebe761940a368bd8c120c0ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankYellow Variant.prefab using Guid(706c9891ebe761940a368bd8c120c0ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '77116eac9833cd08b874ef392508feed') in 0.066037 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Resources/NormalTankOrange Variant.prefab
-  artifactKey: Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankOrange Variant.prefab using Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb7fe850e980af3f719bc77b93365c30') in 0.069105 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 7.879094 seconds.
-  path: Assets/Resources/HeavyTankLightBlue Variant.prefab
-  artifactKey: Guid(dcdd1189522d22a40be3a252e91d30f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankLightBlue Variant.prefab using Guid(dcdd1189522d22a40be3a252e91d30f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57cd431e8c6ed8d6de41592ee26cbba2') in 0.078321 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/HeavyTankYellow Variant.prefab
-  artifactKey: Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankYellow Variant.prefab using Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a64e95d0af418812da0886442e3541a3') in 0.079628 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/LightTankBlue Variant.prefab
-  artifactKey: Guid(df29ca587e68070439a9f90f1e9bbbe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankBlue Variant.prefab using Guid(df29ca587e68070439a9f90f1e9bbbe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '439633ff8af038e49f8be405a87a5ef2') in 0.069382 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/NormalTankPurple Variant.prefab
-  artifactKey: Guid(2943c0c2e29e125448840331e5f9caf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankPurple Variant.prefab using Guid(2943c0c2e29e125448840331e5f9caf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7d0f40f64482d9abe4711ed4dba08bc') in 0.074623 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Resources/LightTankRed Variant.prefab
-  artifactKey: Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankRed Variant.prefab using Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '31510546bb4faaf80f1b72526362a581') in 0.066269 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/NormalTank Variant.prefab
-  artifactKey: Guid(6eb63ad41e5215f4991b3ce7edb54cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTank Variant.prefab using Guid(6eb63ad41e5215f4991b3ce7edb54cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8d67bc69c34463092aa6a0b3fee1c828') in 0.063539 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 835
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/Resources/NormalTankRed Variant.prefab
-  artifactKey: Guid(59ed7737b9af6a34fb7a93f30bf6b73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankRed Variant.prefab using Guid(59ed7737b9af6a34fb7a93f30bf6b73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '047d01b95c4097f2c2e432475a247853') in 0.067267 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/LightTankGreen Variant.prefab
-  artifactKey: Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankGreen Variant.prefab using Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3638e66ee5ec8e542c350abb9ed041b2') in 0.072587 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 7.696604 seconds.
-  path: Assets/Resources/HeavyTankLightBlue Variant.prefab
-  artifactKey: Guid(dcdd1189522d22a40be3a252e91d30f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankLightBlue Variant.prefab using Guid(dcdd1189522d22a40be3a252e91d30f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '443c69239fb31136df55d97d30d3e341') in 0.063935 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/Resources/HeavyTankPurple Variant.prefab
-  artifactKey: Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPurple Variant.prefab using Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e2684331d9485e253d8b792b4e08f9e') in 0.073373 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/NormalTankLightBlue Variant.prefab
-  artifactKey: Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankLightBlue Variant.prefab using Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ad9bac1c7bd3db24fd33d76a64009d7e') in 0.065426 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/NormalTankBlue Variant.prefab
-  artifactKey: Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankBlue Variant.prefab using Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'badd3230068fc68cfc5beae2ca4d400f') in 0.071264 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/LightTankPurple Variant.prefab
-  artifactKey: Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPurple Variant.prefab using Guid(90f249ac07d70e94d96bf7cb40744821) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09741a6be5d715598b3f6f62d181dd1d') in 0.066755 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Resources/NormalTankGreen Variant.prefab
-  artifactKey: Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankGreen Variant.prefab using Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5839dc9e4fe00ed029736695333c4336') in 0.083801 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/HeavyTankPink Variant.prefab
-  artifactKey: Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPink Variant.prefab using Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7541b3416eff9db8e57302104523ff1b') in 0.073092 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Resources/LightTankGreen Variant.prefab
-  artifactKey: Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankGreen Variant.prefab using Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c955b5ba2c74ec7ccf4064087a248775') in 0.074588 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000039 seconds.
-  path: Assets/Resources/LightTankOrange Variant.prefab
-  artifactKey: Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankOrange Variant.prefab using Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ba4af7f70c8eedf56a492117c50905a') in 0.064675 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 5.330237 seconds.
-  path: Assets/Resources/HeavyTankLightBlue Variant.prefab
-  artifactKey: Guid(dcdd1189522d22a40be3a252e91d30f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankLightBlue Variant.prefab using Guid(dcdd1189522d22a40be3a252e91d30f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7844f4249f67f234de07f8584859eea1') in 0.080496 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000015 seconds.
-  path: Assets/Resources/HeavyTankYellow Variant.prefab
-  artifactKey: Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankYellow Variant.prefab using Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fdf1ed7ecf29065120813ce875babf2c') in 0.070744 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Resources/NormalTankPink Variant.prefab
-  artifactKey: Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankPink Variant.prefab using Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '62706867d237aba64c4bb78705b3facc') in 0.061537 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Resources/NormalTankBlue Variant.prefab
-  artifactKey: Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankBlue Variant.prefab using Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8f832edd2724ffb4d415c6c67ce9e770') in 0.069232 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Resources/HeavyTankRed Variant.prefab
-  artifactKey: Guid(5ae80ada484c1b247be14d7e316512a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankRed Variant.prefab using Guid(5ae80ada484c1b247be14d7e316512a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37fe57e3e17b4c90a1303f7460d9e0d2') in 0.072157 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/LightTankPink Variant.prefab
-  artifactKey: Guid(7b57c2acc784b9b4d84d72906e93243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPink Variant.prefab using Guid(7b57c2acc784b9b4d84d72906e93243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2382d58eaa63d8f9902720b58a71d95b') in 0.068101 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Resources/NormalTankRed Variant.prefab
-  artifactKey: Guid(59ed7737b9af6a34fb7a93f30bf6b73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankRed Variant.prefab using Guid(59ed7737b9af6a34fb7a93f30bf6b73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '236aca060eca85526665598cd4085bd1') in 0.064864 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000038 seconds.
-  path: Assets/Resources/LightTankGreen Variant.prefab
-  artifactKey: Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankGreen Variant.prefab using Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6368c53f49984d759d5446bc0da93375') in 0.072070 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/LightTankOrange Variant.prefab
-  artifactKey: Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankOrange Variant.prefab using Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b40fa259d7196418514d0aa9dacc1f4a') in 0.065600 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 7.058906 seconds.
-  path: Assets/Resources/HeavyTankBlue Variant.prefab
-  artifactKey: Guid(2474c6ba138b2d042a69904adf7ac9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankBlue Variant.prefab using Guid(2474c6ba138b2d042a69904adf7ac9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60c0af020fff1d1cb7c4fb4e79f20e4c') in 0.067310 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 14.268152 seconds.
-  path: Assets/Resources/HeavyTankLightBlue Variant.prefab
-  artifactKey: Guid(dcdd1189522d22a40be3a252e91d30f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankLightBlue Variant.prefab using Guid(dcdd1189522d22a40be3a252e91d30f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e58d1d3a83da530c99a01e7702315983') in 0.073477 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/HeavyTankPurple Variant.prefab
-  artifactKey: Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPurple Variant.prefab using Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c18e9a8e126ac37262418928c45d542') in 0.077012 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000036 seconds.
-  path: Assets/Resources/NormalTankLightBlue Variant.prefab
-  artifactKey: Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankLightBlue Variant.prefab using Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88592a112a3d67239de6b167ce399a8d') in 0.066617 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/Resources/NormalTankBlue Variant.prefab
-  artifactKey: Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankBlue Variant.prefab using Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '97dc7d3ca7de252ff58a28d1ff7ab120') in 0.076473 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Resources/HeavyTankRed Variant.prefab
-  artifactKey: Guid(5ae80ada484c1b247be14d7e316512a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankRed Variant.prefab using Guid(5ae80ada484c1b247be14d7e316512a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8745d27cc69114b6dc800d7b2f008b0') in 0.070891 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/Resources/NormalTankGreen Variant.prefab
-  artifactKey: Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankGreen Variant.prefab using Guid(7f863be675929db4b867aef0165ff1fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '16d5e72dd5d4b4b5f73997cbf46acf80') in 0.074953 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/NormalTankRed Variant.prefab
-  artifactKey: Guid(59ed7737b9af6a34fb7a93f30bf6b73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankRed Variant.prefab using Guid(59ed7737b9af6a34fb7a93f30bf6b73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ff512317cd1ed720062a2659a969b16') in 0.070614 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1091
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Resources/LightTankGreen Variant.prefab
-  artifactKey: Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankGreen Variant.prefab using Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d45651e21a43109e0877ecacc51abd3') in 0.066212 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/LightTankOrange Variant.prefab
-  artifactKey: Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankOrange Variant.prefab using Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a156040551e8abae5370dc5d5ebe819b') in 0.067178 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1099
-========================================================================
-Received Import Request.
-  Time since last request: 2.346557 seconds.
-  path: Assets/Resources/HeavyTankBlue Variant.prefab
-  artifactKey: Guid(2474c6ba138b2d042a69904adf7ac9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankBlue Variant.prefab using Guid(2474c6ba138b2d042a69904adf7ac9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c1e01a45afe4956c1f9d0a0092c62cf2') in 0.062597 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1095
-========================================================================
-Received Import Request.
-  Time since last request: 0.581918 seconds.
-  path: Assets/Resources/HeavyTankBlue Variant.prefab
-  artifactKey: Guid(2474c6ba138b2d042a69904adf7ac9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankBlue Variant.prefab using Guid(2474c6ba138b2d042a69904adf7ac9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6f4772675e2724c172330027e19cba96') in 0.071102 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/Resources/HeavyTankPurple Variant.prefab
-  artifactKey: Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPurple Variant.prefab using Guid(c67b4445c0e83384c8ea3e5cb0eea6c9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '414eac1d2a48eabc152070f8caa05367') in 0.073801 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/NormalTankPink Variant.prefab
-  artifactKey: Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankPink Variant.prefab using Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1df5deb846eee376bbe0c518894d8518') in 0.068601 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1097
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Resources/Tank.prefab
-  artifactKey: Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Tank.prefab using Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6b64dc718db598c41dcc2b0116ab02d') in 0.061938 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 584
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/Resources/HeavyTankOrange Variant.prefab
-  artifactKey: Guid(c21d5d7784810d14298e84ec18d56761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankOrange Variant.prefab using Guid(c21d5d7784810d14298e84ec18d56761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89374fa4f613335e93d7e87c69fc8a84') in 0.072419 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/LightTankRed Variant.prefab
-  artifactKey: Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankRed Variant.prefab using Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43682371678481bc799ea403389311fb') in 0.066447 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1105
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/NormalTank Variant.prefab
-  artifactKey: Guid(6eb63ad41e5215f4991b3ce7edb54cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTank Variant.prefab using Guid(6eb63ad41e5215f4991b3ce7edb54cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88fad9b40ef9c580e81204f6e68d1aed') in 0.066294 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 841
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Resources/LightTank Variant.prefab
-  artifactKey: Guid(e1b4e73166571a746a234b3684443b5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTank Variant.prefab using Guid(e1b4e73166571a746a234b3684443b5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2546850f33e0781d14157b0e8a5a870f') in 0.066993 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 845
-========================================================================
-Received Import Request.
-  Time since last request: 0.000032 seconds.
-  path: Assets/Resources/LightTankLightBlue Variant.prefab
-  artifactKey: Guid(e19228ed4e661f147bfd428a015ed9f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankLightBlue Variant.prefab using Guid(e19228ed4e661f147bfd428a015ed9f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3903a1da84b44b08085c3d6373eeceed') in 0.069236 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1105
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/LightTankOrange Variant.prefab
-  artifactKey: Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankOrange Variant.prefab using Guid(226de5fe69d156e4780b24af3a582613) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '825ddd84b6a0a20e441fb399e18d6a86') in 0.067054 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1105
-========================================================================
-Received Import Request.
-  Time since last request: 9.280927 seconds.
-  path: Assets/Resources/HeavyTankBlue Variant.prefab
-  artifactKey: Guid(2474c6ba138b2d042a69904adf7ac9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankBlue Variant.prefab using Guid(2474c6ba138b2d042a69904adf7ac9cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dec402c553277fab4f4dd6da4c883ac4') in 0.080194 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/HeavyTankYellow Variant.prefab
-  artifactKey: Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankYellow Variant.prefab using Guid(1f9d96984d9df16468bddd96c3c20443) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5dbcef5ad44d427ba6934baf3850342b') in 0.072539 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/LightTankBlue Variant.prefab
-  artifactKey: Guid(df29ca587e68070439a9f90f1e9bbbe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankBlue Variant.prefab using Guid(df29ca587e68070439a9f90f1e9bbbe5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '088b888cbddf1c5da0bebedef54430e0') in 0.071943 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1105
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/Resources/NormalTankPurple Variant.prefab
-  artifactKey: Guid(2943c0c2e29e125448840331e5f9caf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankPurple Variant.prefab using Guid(2943c0c2e29e125448840331e5f9caf0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '177d42d47ae5e806211a4baa965565cf') in 0.065830 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1097
-========================================================================
-Received Import Request.
-  Time since last request: 0.000014 seconds.
-  path: Assets/Resources/HeavyTankRed Variant.prefab
-  artifactKey: Guid(5ae80ada484c1b247be14d7e316512a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankRed Variant.prefab using Guid(5ae80ada484c1b247be14d7e316512a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '828ff597f89c253527eacab8bc913b80') in 0.070334 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Import Request.
-  Time since last request: 0.000020 seconds.
-  path: Assets/Resources/LightTankPink Variant.prefab
-  artifactKey: Guid(7b57c2acc784b9b4d84d72906e93243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankPink Variant.prefab using Guid(7b57c2acc784b9b4d84d72906e93243c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ed5e909b4aa221af58cb0943addd43a') in 0.068415 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1105
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Resources/NormalTankRed Variant.prefab
-  artifactKey: Guid(59ed7737b9af6a34fb7a93f30bf6b73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankRed Variant.prefab using Guid(59ed7737b9af6a34fb7a93f30bf6b73c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab15a0c650d798e4165117a46013a191') in 0.071045 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1097
-========================================================================
-Received Import Request.
-  Time since last request: 0.000032 seconds.
-  path: Assets/Resources/LightTankGreen Variant.prefab
-  artifactKey: Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankGreen Variant.prefab using Guid(e119abb6ff8347d4fafd121eb91d46a7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7da7c934dddadec85c83aa9d2eb2c275') in 0.070549 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1105
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Resources/HeavyTankLightBlue Variant.prefab
-  artifactKey: Guid(dcdd1189522d22a40be3a252e91d30f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankLightBlue Variant.prefab using Guid(dcdd1189522d22a40be3a252e91d30f3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ea080031e7393f7e52b4aaba36bf276') in 0.072829 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.581 seconds
-Refreshing native plugins compatible for Editor in 3.61 ms, found 3 plugins.
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Native extension for OSXStandalone target not found
-Native extension for WebGL target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.384 seconds
-Domain Reload Profiling: 1961ms
-	BeginReloadAssembly (173ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (47ms)
-	RebuildCommonClasses (36ms)
-	RebuildNativeTypeToScriptingClass (11ms)
-	initialDomainReloadingComplete (38ms)
-	LoadAllAssembliesAndSetupDomain (319ms)
-		LoadAssemblies (389ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (19ms)
+		AnalyzeDomain (18ms)
 			TypeCache.Refresh (8ms)
 				TypeCache.ScanAssembly (0ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
 			ResolveRequiredComponents (9ms)
-	FinalizeReload (1384ms)
+	FinalizeReload (1363ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (929ms)
+		SetupLoadedEditorAssemblies (912ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (51ms)
-			SetLoadedEditorAssemblies (5ms)
-			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (140ms)
-			ProcessInitializeOnLoadAttributes (689ms)
-			ProcessInitializeOnLoadMethodAttributes (28ms)
-			AfterProcessingInitializeOnLoad (15ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (8ms)
-Refreshing native plugins compatible for Editor in 3.43 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4044 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 51 unused Assets / (1.3 MB). Loaded Objects now: 4571.
-Memory consumption went from 163.4 MB to 162.2 MB.
-Total: 3.455300 ms (FindLiveObjects: 0.362400 ms CreateObjectMapping: 0.096700 ms MarkObjects: 2.662600 ms  DeleteObjects: 0.332700 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
-  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 50.416303 seconds.
-  path: Assets/Resources/HeavyTankGreen Variant.prefab
-  artifactKey: Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankGreen Variant.prefab using Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2708a19bb8e69da679e93ac302d94d5') in 0.193776 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/LightTankYellow Variant.prefab
-  artifactKey: Guid(78a3a290b504bdb478b3d2293f07a968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankYellow Variant.prefab using Guid(78a3a290b504bdb478b3d2293f07a968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '44a8aa5f9292f81e3806647a218faff2') in 0.068711 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1105
-========================================================================
-Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/Resources/NormalTankPink Variant.prefab
-  artifactKey: Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankPink Variant.prefab using Guid(6c7621352019fd849ac88dce198a9e07) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fac07db3b8afbc791fa5cfba8627eee2') in 0.068294 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1097
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Resources/Tank.prefab
-  artifactKey: Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/Tank.prefab using Guid(d1d2edf4b999f52449b19a4bc74d25c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '981becd06a03f3484306dc4b70dd2e74') in 0.063656 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 584
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Resources/HeavyTankOrange Variant.prefab
-  artifactKey: Guid(c21d5d7784810d14298e84ec18d56761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankOrange Variant.prefab using Guid(c21d5d7784810d14298e84ec18d56761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e3c448c2b4f15ef0e3cd53ea6fcfe7f') in 0.070388 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Import Request.
-  Time since last request: 0.000023 seconds.
-  path: Assets/Resources/LightTankRed Variant.prefab
-  artifactKey: Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankRed Variant.prefab using Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1f5f8edab0c65914741ebe1d4ecef6d') in 0.068163 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1105
-========================================================================
-Received Import Request.
-  Time since last request: 0.000026 seconds.
-  path: Assets/Resources/HeavyTankPink Variant.prefab
-  artifactKey: Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPink Variant.prefab using Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '492abe64017127b2378afc31b8906cc8') in 0.066428 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Import Request.
-  Time since last request: 0.000019 seconds.
-  path: Assets/Resources/NormalTankYellow Variant.prefab
-  artifactKey: Guid(706c9891ebe761940a368bd8c120c0ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankYellow Variant.prefab using Guid(706c9891ebe761940a368bd8c120c0ac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b5f1f891254516622edc82f7195ddaf4') in 0.077249 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1097
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/NormalTankOrange Variant.prefab
-  artifactKey: Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankOrange Variant.prefab using Guid(7122763ffae510c4aaec8f2fe6e002aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '007d8440b46b86de565727a7b5a80d50') in 0.067395 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1097
-========================================================================
-Received Import Request.
-  Time since last request: 6.800199 seconds.
-  path: Assets/Resources/HeavyTankGreen Variant.prefab
-  artifactKey: Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankGreen Variant.prefab using Guid(12d8e4bf02377bb4fa4c978b42ef96ca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60fde057ef9df1d1300cb799429c8de8') in 0.072295 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Import Request.
-  Time since last request: 0.000018 seconds.
-  path: Assets/Resources/LightTankYellow Variant.prefab
-  artifactKey: Guid(78a3a290b504bdb478b3d2293f07a968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankYellow Variant.prefab using Guid(78a3a290b504bdb478b3d2293f07a968) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3764a49179eddc9ebbf1492eedb787d7') in 0.076074 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1105
-========================================================================
-Received Import Request.
-  Time since last request: 0.097184 seconds.
-  path: Assets/Resources/HeavyTankPink Variant.prefab
-  artifactKey: Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/HeavyTankPink Variant.prefab using Guid(5b964594878661d43b2d9bbbc8062b38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd119675b4a69f6758dbdb816f1f3731f') in 0.081825 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1101
-========================================================================
-Received Import Request.
-  Time since last request: 0.000028 seconds.
-  path: Assets/Resources/NormalTankLightBlue Variant.prefab
-  artifactKey: Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankLightBlue Variant.prefab using Guid(d3053e06c68cb1443a1fbf33b1aa6f43) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccde5641b6e0641ef29ec3ae53a805d8') in 0.070128 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1097
-========================================================================
-Received Import Request.
-  Time since last request: 0.000022 seconds.
-  path: Assets/Resources/NormalTankBlue Variant.prefab
-  artifactKey: Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTankBlue Variant.prefab using Guid(146eddb8dd74d204f999b3cccafa7f8a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c65b599a3996ea9b8202f91f85fe1c4') in 0.070061 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1097
-========================================================================
-Received Import Request.
-  Time since last request: 0.000027 seconds.
-  path: Assets/Resources/LightTankRed Variant.prefab
-  artifactKey: Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankRed Variant.prefab using Guid(45bfb682cc6e75447887f4392e1101bb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '412204894ea6d58a2042cca2c4ac2d49') in 0.066462 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1105
-========================================================================
-Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/Resources/NormalTank Variant.prefab
-  artifactKey: Guid(6eb63ad41e5215f4991b3ce7edb54cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/NormalTank Variant.prefab using Guid(6eb63ad41e5215f4991b3ce7edb54cc9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dcbf1d64a8132450d42590f28f85db6e') in 0.063176 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 841
-========================================================================
-Received Import Request.
-  Time since last request: 0.000029 seconds.
-  path: Assets/Resources/LightTank Variant.prefab
-  artifactKey: Guid(e1b4e73166571a746a234b3684443b5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTank Variant.prefab using Guid(e1b4e73166571a746a234b3684443b5f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9e5782c587702c01f67fce385f4c93b') in 0.065340 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 845
-========================================================================
-Received Import Request.
-  Time since last request: 0.000021 seconds.
-  path: Assets/Resources/LightTankLightBlue Variant.prefab
-  artifactKey: Guid(e19228ed4e661f147bfd428a015ed9f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Resources/LightTankLightBlue Variant.prefab using Guid(e19228ed4e661f147bfd428a015ed9f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19f6d5571c44a8c8c04e79d13e674fd1') in 0.070386 seconds
-Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 1105
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-- Loaded All Assemblies, in  0.577 seconds
-Refreshing native plugins compatible for Editor in 4.24 ms, found 3 plugins.
-Native extension for WindowsStandalone target not found
-Native extension for iOS target not found
-Native extension for Android target not found
-Native extension for OSXStandalone target not found
-Native extension for WebGL target not found
-[Package Manager] Server::EnsureServerProcessIsRunning -- launch failed, reason: Unity was launched with the -noUpm command-line argument
-[Package Manager] UpmClient::Send -- Unable to send message (not connected to UPM process).
-[Package Manager] Cannot connect to Unity Package Manager local server
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.339 seconds
-Domain Reload Profiling: 1913ms
-	BeginReloadAssembly (169ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (48ms)
-	RebuildCommonClasses (33ms)
-	RebuildNativeTypeToScriptingClass (12ms)
-	initialDomainReloadingComplete (35ms)
-	LoadAllAssembliesAndSetupDomain (324ms)
-		LoadAssemblies (390ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (18ms)
-			TypeCache.Refresh (7ms)
-				TypeCache.ScanAssembly (0ms)
-			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (9ms)
-	FinalizeReload (1340ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (882ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (51ms)
+			InitializePlatformSupportModulesInManaged (54ms)
 			SetLoadedEditorAssemblies (6ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (140ms)
-			ProcessInitializeOnLoadAttributes (648ms)
+			BeforeProcessingInitializeOnLoad (139ms)
+			ProcessInitializeOnLoadAttributes (675ms)
 			ProcessInitializeOnLoadMethodAttributes (24ms)
-			AfterProcessingInitializeOnLoad (12ms)
+			AfterProcessingInitializeOnLoad (14ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (8ms)
-Refreshing native plugins compatible for Editor in 3.57 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 4.31 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 4044 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 51 unused Assets / (1.3 MB). Loaded Objects now: 4576.
-Memory consumption went from 165.9 MB to 164.6 MB.
-Total: 3.605900 ms (FindLiveObjects: 0.423100 ms CreateObjectMapping: 0.326400 ms MarkObjects: 2.543200 ms  DeleteObjects: 0.312400 ms)
+Unloading 4046 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 52 unused Assets / (1.3 MB). Loaded Objects now: 4551.
+Memory consumption went from 156.8 MB to 155.5 MB.
+Total: 3.641400 ms (FindLiveObjects: 0.430300 ms CreateObjectMapping: 0.113600 ms MarkObjects: 2.711500 ms  DeleteObjects: 0.385300 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 AssetImportParameters requested are different than current active one (requested -> active):
