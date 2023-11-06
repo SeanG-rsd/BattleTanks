@@ -13,6 +13,11 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
     public static Action<string, string> OnRoomInvite = delegate { };
     public static Action<ChatClient> OnChatConnected = delegate { };
     public static Action<PhotonStatus> OnStatusUpdated = delegate { };
+    public static Action<string> OnFriendRequest = delegate { };
+    public static Action<string> OnFriendRequestAccepted = delegate { };
+
+    private static string friendRequest = "FRIENDINVITE!~0()";
+    private static string friendAccept = "FRIENDACCEPT!~0()";
 
     // Start is called before the first frame update
     private void Awake()
@@ -93,15 +98,40 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
     {
         if (!string.IsNullOrEmpty(message.ToString()))
         {
-            Debug.Log("recieved message");
-            // Channel Name format [Sender : Recipient]
-            string[] splitNames = channelName.Split(':');
-            string senderName = splitNames[0];
-            //Debug.Log(splitNames[0]);
-            if (!sender.Equals(senderName, StringComparison.OrdinalIgnoreCase))
+            if (!message.Equals(friendAccept) && !message.Equals(friendRequest))
             {
-                Debug.Log($"{sender}: {message}");
-                OnRoomInvite?.Invoke(sender, message.ToString());
+                Debug.Log("recieved message");
+                // Channel Name format [Sender : Recipient]
+                string[] splitNames = channelName.Split(':');
+                string senderName = splitNames[0];
+                //Debug.Log(splitNames[0]);
+                if (!sender.Equals(senderName, StringComparison.OrdinalIgnoreCase))
+                {
+                    Debug.Log($"{sender}: {message}");
+                    OnRoomInvite?.Invoke(sender, message.ToString());
+                }
+            }
+            else if (message.Equals(friendRequest))
+            {
+                Debug.Log("recieved friend invite");
+                string[] splitNames = channelName.Split(':');
+                string senderName = splitNames[0];
+
+                if (!sender.Equals (senderName, StringComparison.OrdinalIgnoreCase))
+                {
+                    OnFriendRequest?.Invoke(sender);
+                }
+            }
+            else if (message.Equals(friendAccept))
+            {
+                Debug.Log("recieve friend accept");
+                string[] splitNames = channelName.Split(':');
+                string senderName = splitNames[0];
+
+                if (!sender.Equals(senderName, StringComparison.OrdinalIgnoreCase))
+                {
+                    OnFriendRequestAccepted?.Invoke(sender);
+                }
             }
         }
 

@@ -38,6 +38,8 @@ public class TankHealth : MonoBehaviour
     public static Action<Tank> OnDeath = delegate { };
     public static Action<Tank> OnOutOfHearts = delegate { };
 
+    [SerializeField] private GameObject flamePrefab;
+
 
     private void Awake()
     {
@@ -89,6 +91,8 @@ public class TankHealth : MonoBehaviour
 
             if (!Alive() && hasRespawned)
             {
+                Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
+                PhotonNetwork.Instantiate(flamePrefab.name, pos, Quaternion.Euler(-90,0,0));
                 OnDeath?.Invoke(gameObject.GetComponent<Tank>());
                 
                 hasRespawned = false;
