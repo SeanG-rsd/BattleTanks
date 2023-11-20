@@ -20,11 +20,13 @@ public class TankScoreboard : MonoBehaviourPunCallbacks
     [Header("-----Solo-----")]
     [SerializeField] private Transform soloScoreBoard;
     [SerializeField] private GameObject soloScoreGameObject;
+    [SerializeField] private Sprite[] soloRankPrefabs;
 
     private List<KeyValuePair<Player, int>> scoresForSolo;
     [Header("-----Team-----")]
     [SerializeField] private TMP_Text opposingTeamScoreText;
     [SerializeField] private Image opposingTeamImage;
+    [SerializeField] private Sprite[] teamImages;
 
     [SerializeField] private TMP_Text yourTeamScoreText;
     [SerializeField] private Image yourTeamImage;
@@ -68,7 +70,23 @@ public class TankScoreboard : MonoBehaviourPunCallbacks
         }
     }
 
-    private void TurnOffUI()
+    public void TurnOnScoreboard()
+    {
+        UpdateSoloScoreLine();
+        UpdateIndividualStats();
+        scoreBoard.SetActive(true);
+
+        if (winCheck.selectedGameMode.HasTeams)
+        {
+            UpdateScoreLine();
+        }
+        else
+        {
+            UpdateSoloUI();
+        }
+    }
+
+    public void TurnOffUI()
     {
         scoreBoard.SetActive(false);
     }
@@ -156,13 +174,11 @@ public class TankScoreboard : MonoBehaviourPunCallbacks
 
             score.transform.localScale = Vector3.one;
 
-            score.GetComponent<RectTransform>().sizeDelta = new Vector2(score.GetComponent<RectTransform>().sizeDelta.x, (soloScoreBoard.GetComponent<RectTransform>().sizeDelta.y / index));
+            //score.GetComponent<RectTransform>().sizeDelta = new Vector2(score.GetComponent<RectTransform>().sizeDelta.x, (soloScoreBoard.GetComponent<RectTransform>().sizeDelta.y / index));
 
             SoloScore soloScore = score.GetComponent<SoloScore>();
-
-            soloScore.score.text = scoresForSolo[i].Value.ToString();
-            soloScore.position.text = $"{index - i}.";
-            soloScore.image.color = teamInfo.teamColors[scoresForSolo[i].Key.GetPhotonTeam().Code - 1];
+            soloScore.SetImage(i, teamInfo.teamColors[scoresForSolo[i].Key.GetPhotonTeam().Code - 1]);
+            soloScore.SetScore(scoresForSolo[i].Value);
         }
     }
 
@@ -176,7 +192,7 @@ public class TankScoreboard : MonoBehaviourPunCallbacks
             if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
             {
                 Debug.Log($"{PhotonNetwork.PlayerList[i].NickName} is not on the same team");
-                opposingTeamImage.color = teamInfo.teamColors[PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1];
+                opposingTeamImage.sprite = teamImages[PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1];
                 if (PhotonNetwork.PlayerList[i].CustomProperties.ContainsKey("teamRoundScore"))
                 {
                     opposingTeamScoreText.text = PhotonNetwork.PlayerList[i].CustomProperties["teamRoundScore"].ToString();
@@ -189,7 +205,7 @@ public class TankScoreboard : MonoBehaviourPunCallbacks
             }
         }
 
-        yourTeamImage.color = teamInfo.teamColors[PhotonNetwork.LocalPlayer.GetPhotonTeam().Code - 1];
+        yourTeamImage.sprite = teamImages[PhotonNetwork.LocalPlayer.GetPhotonTeam().Code - 1];
         if (PhotonNetwork.LocalPlayer.CustomProperties.ContainsKey("teamRoundScore"))
         {
             yourTeamScoreText.text = PhotonNetwork.LocalPlayer.CustomProperties["teamRoundScore"].ToString();
@@ -245,29 +261,29 @@ public class TankScoreboard : MonoBehaviourPunCallbacks
 
         if (player.CustomProperties.ContainsKey("KILLS"))
         {
-            stat.kills.text = $"{player.CustomProperties["KILLS"]} K";
+            stat.kills.text = $"{player.CustomProperties["KILLS"]}";
         }
         else
         {
-            stat.kills.text = $"0 K";
+            stat.kills.text = $"0";
         }
 
         if (player.CustomProperties.ContainsKey("DEATHS"))
         {
-            stat.deaths.text = $"{player.CustomProperties["DEATHS"]} D";
+            stat.deaths.text = $"{player.CustomProperties["DEATHS"]}";
         }
         else
         {
-            stat.deaths.text = $"0 D";
+            stat.deaths.text = $"0";
         }
 
         if (player.CustomProperties.ContainsKey("ASSISTS"))
         {
-            stat.assists.text = $"{player.CustomProperties["ASSISTS"]} A";
+            stat.assists.text = $"{player.CustomProperties["ASSISTS"]}";
         }
         else
         {
-            stat.assists.text = $"0 A";
+            stat.assists.text = $"0";
         }
 
         stat._name.text = player.NickName;

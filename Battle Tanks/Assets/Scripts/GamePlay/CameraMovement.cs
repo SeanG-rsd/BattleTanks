@@ -31,12 +31,16 @@ public class CameraMovement : MonoBehaviour
 
     private List<MapWall> hiddenObjects;
 
+    private float checkTime;
+    [SerializeField] private float checkInterval;
+
     // Start is called before the first frame update
     void Start()
     {
         hiddenObjects = new List<MapWall>();
-        //Cursor.lockState = CursorLockMode.Locked;
-        //Cursor.visible = false;
+
+
+        checkTime = checkInterval;
     }
 
     // Update is called once per frame
@@ -49,7 +53,15 @@ public class CameraMovement : MonoBehaviour
         tankTop.transform.Rotate(0, h * Time.deltaTime, 0);
         player.transform.Rotate(0, h * Time.deltaTime, 0);
 
-
+        if (checkTime > 0)
+        {
+            checkTime -= Time.deltaTime;
+        }
+        else
+        {
+            checkTime = checkInterval;
+            CheckForStay();
+        }
     }
 
     void CheckCollisions()
@@ -65,7 +77,7 @@ public class CameraMovement : MonoBehaviour
         {        
             if (hit.transform.gameObject.tag == "Player")
             {
-                Debug.Log("hit player");
+                //Debug.Log("hit player");
                 foreach (MapWall go in hiddenObjects)
                 {
                     go.See();
@@ -74,9 +86,39 @@ public class CameraMovement : MonoBehaviour
             }
             else if (hit.transform.gameObject.GetComponent<MapWall>() != null)
             {
-                Debug.Log("hit wall");
+                //Debug.Log("hit wall");
                 hiddenObjects.Add(hit.transform.gameObject.GetComponent<MapWall>());
                 hit.transform.gameObject.GetComponent<MapWall>().Hide();
+            }
+        }
+    }
+
+    void CheckForStay()
+    {
+        RaycastHit hit;
+
+        Ray ray = new Ray(transform.position, transform.forward);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.transform.gameObject.GetComponent<MapWall>() != null)
+            {
+                //Debug.Log("hit wall");
+                if (hiddenObjects.Contains(hit.transform.gameObject.GetComponent<MapWall>()))
+                {
+                    foreach (MapWall go in hiddenObjects)
+                    {
+                        if (go != hit.transform.gameObject.GetComponent<MapWall>())
+                        {
+                            go.See();
+                        }
+                    }
+                }
+                else
+                {
+                    hiddenObjects.Add(hit.transform.gameObject.GetComponent<MapWall>());
+                    hit.transform.gameObject.GetComponent<MapWall>().Hide();
+                }
             }
         }
     }

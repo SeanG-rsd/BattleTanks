@@ -100,6 +100,7 @@ public class UIGameModeScore : MonoBehaviourPunCallbacks
         }
 
         yourTeamImage.color = teamInfo.teamColors[PhotonNetwork.LocalPlayer.GetPhotonTeam().Code - 1];
+        
         yourTeamText.text = PhotonNetwork.LocalPlayer.CustomProperties["zoneScore"].ToString();
         yourScore = (int)PhotonNetwork.LocalPlayer.CustomProperties["zoneScore"];
 

@@ -6,8 +6,25 @@ using UnityEngine.UI;
 
 public class SoloScore : MonoBehaviour
 {
-    public TMP_Text position;
-    public TMP_Text score;
+    [SerializeField] private TMP_Text scoreText;
+    private int score;
 
-    public Image image;
+    private int position;
+    [SerializeField] private Image image;
+    [SerializeField] private Sprite[] rankSprites;
+
+    [SerializeField] private Image backGroundImage;
+
+    public void SetScore(int s)
+    {
+        score = s;
+        scoreText.text = score.ToString();
+    }
+
+    public void SetImage(int position, Color color)
+    {
+        this.position = position;
+        image.sprite = rankSprites[position];
+        backGroundImage.color = color;
+    }
 }

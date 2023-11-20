@@ -259,9 +259,8 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
             SoloScore soloScore = score.GetComponent<SoloScore>();
 
-            soloScore.score.text = scoresForSolo[i].Value.ToString();
-            soloScore.position.text = $"{index - i}.";
-            soloScore.image.color = teamInfo.teamColors[scoresForSolo[i].Key.GetPhotonTeam().Code - 1];
+            soloScore.SetImage(i, teamInfo.teamColors[scoresForSolo[i].Key.GetPhotonTeam().Code - 1]);
+            soloScore.SetScore(scoresForSolo[i].Value);
         }
     }
 

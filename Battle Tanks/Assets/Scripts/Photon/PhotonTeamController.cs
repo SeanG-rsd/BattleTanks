@@ -45,6 +45,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
 
     private void HandleSwitchTeam(PhotonTeam newTeam)
     {
+        //Debug.Log(newTeam.ToString());
         if (PhotonNetwork.LocalPlayer.GetPhotonTeam() == null)
         {
             priorTeam = PhotonNetwork.LocalPlayer.GetPhotonTeam();
@@ -159,7 +160,7 @@ public class PhotonTeamController : MonoBehaviourPunCallbacks
             if (PhotonTeamsManager.Instance.TryGetTeamByCode(teamCode, out newTeam))
             {
                 OnSwitchTeam?.Invoke(targetPlayer, newTeam);
-                Debug.Log(newTeam.ToString());
+                Debug.Log($"{PhotonNetwork.LocalPlayer.NickName} is now on {newTeam}");
             }
         }
     }

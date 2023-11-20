@@ -48,8 +48,11 @@ public class WinCheck : MonoBehaviourPunCallbacks
 
     private void HandleRoundStart()
     {
-        zoneReady = true;
-        gameModeScore.SetScoreBar();
+        if (selectedGameMode.HasTeams)
+        {
+            zoneReady = true;
+            gameModeScore.SetScoreBar();
+        }
     }
 
     private void HandleStartGame(GameMode gm)

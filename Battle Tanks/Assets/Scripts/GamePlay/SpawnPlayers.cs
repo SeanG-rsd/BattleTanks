@@ -69,6 +69,14 @@ public class SpawnPlayers : MonoBehaviour
 
     private void HandleSpawnPlayers()
     {
+        PhotonTeam[] teams = PhotonTeamsManager.Instance.GetAvailableTeams();
+        foreach(PhotonTeam team in teams)
+        {
+            Debug.Log(team.ToString());
+        }
+        Debug.Log(PhotonNetwork.InRoom);
+        //Debug.Log($"{PhotonNetwork.LocalPlayer.NickName} is on team {PhotonNetwork.LocalPlayer.GetPhotonTeam()}");
+
         allTankPrefabs = new List<List<GameObject>>
         {
             bluePlayerPrefabs,

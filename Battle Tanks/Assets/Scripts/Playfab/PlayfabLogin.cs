@@ -68,18 +68,20 @@ public class PlayfabLogin : MonoBehaviour
     }
     public void RegisterButton()
     {
-        if (passwordInput.text.Length < 6)
+        if (passwordInputUsername.text.Length < 6)
         {
             messageText.text = "Your password is too short!";
             return;
         }
+        if (!FinishRegistering())
+        { return;  }
 
         var request = new RegisterPlayFabUserRequest { Email = emailInputUsername.text, Password = passwordInputUsername.text, RequireBothUsernameAndEmail = false };
 
         PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);   
     }
 
-    public void CreateUsername()
+    public void CreateUsername() // changes screen when the user presses "Register"
     {
         LoginScreen.SetActive(!LoginScreen.activeSelf);
         UserNameScreen.SetActive(!UserNameScreen.activeSelf);
@@ -95,24 +97,16 @@ public class PlayfabLogin : MonoBehaviour
         UserNameScreen.SetActive(false);
     }
 
-    public void FinishRegistering()
+    public bool FinishRegistering()
     {
         if (usernameInput.text.Length >= 3 && usernameInput.text.Length <= 24)
         {
-            SetUsername(usernameInput.text);
-
-            if (wantsToRemember)
-            {
-                PlayerPrefs.SetString("EMAIL", emailInputUsername.text);
-                PlayerPrefs.SetString("PASSWORD", passwordInputUsername.text);
-                PlayerPrefs.SetInt("REMEMBERME", 1);
-            }
-
-            UpdateDisplayName(username);
+            return true;
         }
         else
         {
             messageText.text = "Enter a valid username between 3 and 24 characters";
+            return false;
         }
     }
 
@@ -120,8 +114,17 @@ public class PlayfabLogin : MonoBehaviour
     {
         registered = true;
         messageText.text = "Registered!";
-        FinishRegistering();
-        
+
+        SetUsername(usernameInput.text);
+
+        if (wantsToRemember)
+        {
+            PlayerPrefs.SetString("EMAIL", emailInputUsername.text);
+            PlayerPrefs.SetString("PASSWORD", passwordInputUsername.text);
+            PlayerPrefs.SetInt("REMEMBERME", 1);
+        }
+
+        UpdateDisplayName(username);
     }
 
     void OnError(PlayFabError error)

@@ -20,6 +20,7 @@ public class Bullet : MonoBehaviour
     private bool noDie = true;
 
     [SerializeField] private GameObject explosionPrefab;
+    private GameObject parent;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,26 +40,28 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void SpawnExplosion()
+    public void SpawnExplosion(bool follow)
     {
-        PhotonNetwork.Instantiate(explosionPrefab.name, transform.position, Quaternion.identity);
+        GameObject explosion = PhotonNetwork.Instantiate(explosionPrefab.name, transform.position, Quaternion.identity);
+        explosion.GetComponent<Explosion>().Follow(parent, follow);
     }
 
-    public void Shoot(float speed, float size, Transform origin, int dam)
+    public void Shoot(float speed, float size, Transform origin, int dam, GameObject gm)
     {
         rb = GetComponent<Rigidbody>();
         transform.localScale = size * transform.localScale;
         rb.AddForce(origin.forward * speed);
         damage = dam;
+        parent = gm;
 
-        SpawnExplosion();
+        SpawnExplosion(true);
     }
 
     public void Destroy()
     {
-        if (!noDie)
+        if (!noDie && GetComponent<PhotonView>().IsMine)
         {
-            SpawnExplosion();
+            SpawnExplosion(false);
             GetComponent<PhotonView>().RPC("OnDestroy", RpcTarget.AllBuffered);
         }
     }

@@ -142,7 +142,7 @@ public class TankShoot : MonoBehaviour
 
         GameObject bullet = PhotonNetwork.Instantiate(bulletPrefabs[tank.teamIndex - 1].name, shootPoints[barrelIndex].transform.position, Quaternion.identity);
 
-        bullet.GetComponent<Bullet>().Shoot(bulletSpeed, bulletSize, shootPoints[barrelIndex].transform, bulletDamage);
+        bullet.GetComponent<Bullet>().Shoot(bulletSpeed, bulletSize, shootPoints[barrelIndex].transform, bulletDamage, shootPoints[barrelIndex]);
         
     }
 }
