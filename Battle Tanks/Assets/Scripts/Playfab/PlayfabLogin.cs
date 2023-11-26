@@ -35,6 +35,8 @@ public class PlayfabLogin : MonoBehaviour
 
     private bool registered = false;
 
+    [SerializeField] private Message message;
+
     private void Start()
     {
         if (string.IsNullOrEmpty(PlayFabSettings.TitleId))
@@ -70,7 +72,7 @@ public class PlayfabLogin : MonoBehaviour
     {
         if (passwordInputUsername.text.Length < 6)
         {
-            messageText.text = "Your password is too short!";
+            message.TurnOn(3, "Your password is too short!");
             return;
         }
         if (!FinishRegistering())
@@ -105,7 +107,7 @@ public class PlayfabLogin : MonoBehaviour
         }
         else
         {
-            messageText.text = "Enter a valid username between 3 and 24 characters";
+            message.TurnOn(3, "Enter a valid username between 3 and 24 characters");
             return false;
         }
     }
@@ -113,7 +115,7 @@ public class PlayfabLogin : MonoBehaviour
     void OnRegisterSuccess(RegisterPlayFabUserResult result)
     {
         registered = true;
-        messageText.text = "Registered!";
+        message.TurnOn(3, "Registered!");
 
         SetUsername(usernameInput.text);
 
@@ -144,7 +146,7 @@ public class PlayfabLogin : MonoBehaviour
 
     void OnLoginSuccess(LoginResult result)
     {
-        messageText.text = "Logged In!";
+        message.TurnOn(3, "Logged In!");
         RememberMe();
 
         var request = new GetAccountInfoRequest { Email = emailInput.text };
@@ -160,7 +162,7 @@ public class PlayfabLogin : MonoBehaviour
 
     void OnPasswordReset(SendAccountRecoveryEmailResult result)
     {
-        messageText.text = "Password reset mail sent!";
+        message.TurnOn(3, "Password reset mail sent!");
     }
 
     public void SetUsername(string name)

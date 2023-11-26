@@ -238,8 +238,8 @@ public class MapGeneator : MonoBehaviourPunCallbacks
     private void SetGameModeObjects(Vector3 newCellPos, int row, int column)
     {
         Vector3 towerPos = newCellPos;
-        towerPos.x -= originalWallScale / 2 + 0.5f;
-        towerPos.z += originalWallScale / 2 + 0.5f;
+        towerPos.x -= originalWallScale / 2;
+        towerPos.z += originalWallScale / 2;
         towerPos.y = 1.6657f;
 
         Vector3 flagPos = newCellPos;
