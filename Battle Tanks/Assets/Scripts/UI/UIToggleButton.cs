@@ -6,9 +6,24 @@ public class UIToggleButton : MonoBehaviour
 {
 
     [SerializeField] private GameObject toggleObject;
+    [SerializeField] private UITab tab;
+
+    [SerializeField] private UITab otherTab;
     // Start is called before the first frame update
     public void ToggleObject()
     {
-        toggleObject.SetActive(!toggleObject.activeSelf);
+        if (tab.isOpen)
+        {
+            tab.CloseTab();
+        }
+        else
+        {
+            tab.OpenTab();
+        }
+
+        if (otherTab.isOpen)
+        {
+            otherTab.CloseTab();
+        }
     }
 }
