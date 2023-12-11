@@ -9,11 +9,16 @@ using UnityEngine;
 public class MapGenTest : MonoBehaviour
 {
 
-    struct WallInfo
+    public struct WallInfo
     {
         public Vector2 position;
         public WallType.WallOrientation orientation;
         public bool isTouchingBorder;
+
+        public readonly string ToString()
+        {
+            return position + " : " + orientation;
+        }
     }
 
     [SerializeField] private GameObject cellPrefab;
@@ -48,6 +53,7 @@ public class MapGenTest : MonoBehaviour
     public int numberOfPlayers;
 
     public static Action OnTestMapGen = delegate { };
+    public static Action<List<WallInfo>> OnMiniMapWalls = delegate { };
 
     private List<WallInfo> walls;
 
@@ -85,7 +91,7 @@ public class MapGenTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DestroyCurrentMap();
-            HandleMapGeneration(possibleMapSizes[1], availableGameModes[0]);
+            HandleMapGeneration(possibleMapSizes[0], availableGameModes[0]);
             
         }
 
@@ -148,6 +154,7 @@ public class MapGenTest : MonoBehaviour
 
         DeleteWalls();
         GuaranteePlayability();
+        OnMiniMapWalls?.Invoke(walls);
         DoPhysicalMap();
     }
 
@@ -388,6 +395,7 @@ public class MapGenTest : MonoBehaviour
         }
 
         SetDictionary();
+        //OnMiniMapWalls.Invoke(cells);
     }
 
     private void HandleGameMode()
