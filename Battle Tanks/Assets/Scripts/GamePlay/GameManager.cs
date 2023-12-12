@@ -18,9 +18,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     public static Action OnStartGame = delegate { };
 
     [SerializeField] private GameMode[] possibleGameModes;
-    private GameMode selectedGameMode;
+    [SerializeField] private GameMode selectedGameMode;
 
-    private Vector2 mapSize;
+    [SerializeField] private Vector2 mapSize;
 
     Player player;
 

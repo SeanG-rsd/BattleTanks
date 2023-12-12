@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class MapGeneator : MonoBehaviourPunCallbacks
 {
-    struct WallInfo
+    public struct WallInfo
     {
         public Vector2 position;
         public WallType.WallOrientation orientation;
@@ -54,6 +54,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
 
     public static Action OnMapGenerated = delegate { };
     public static Action<List<GameObject>> OnSoloTowersGen = delegate { };
+    public static Action<List<WallInfo>> OnMiniMapWalls = delegate { };
 
     private List<WallInfo> walls;
 
@@ -96,7 +97,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
         DeleteWalls();
         GuaranteePlayability();
         DoPhysicalMap();
-
+        OnMiniMapWalls?.Invoke(walls);
         HandleGameMode();
 
         Hashtable mapGenerated = new Hashtable() { { "mapGeneration", 0 } };
@@ -243,8 +244,8 @@ public class MapGeneator : MonoBehaviourPunCallbacks
         towerPos.y = 1.6657f;
 
         Vector3 flagPos = newCellPos;
-        flagPos.x -= originalWallScale / 2 + 0.5f;
-        flagPos.z += originalWallScale / 2 + 0.5f;
+        flagPos.x -= originalWallScale / 2;
+        flagPos.z += originalWallScale / 2;
         flagPos.y = 0.875f;
 
         if (row == 1 && column == blueSpawnIndex)
@@ -713,6 +714,12 @@ public class MapGeneator : MonoBehaviourPunCallbacks
         }
     }
 
+    [SerializeField] private GameObject[] towerIconPrefabs;
+    [SerializeField] private GameObject[] flagIconPrefabs;
+    [SerializeField] private GameObject zoneIconPrefab;
+
+    public static Action<GameObject, Vector2, int, GameObject, bool> OnMiniMapIcon = delegate { };
+
     [PunRPC]
     
     void GameModeObjectOff(int gameModeIndex)     
@@ -728,6 +735,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
                 if (PhotonNetwork.IsMasterClient)
                 {
                     spawnTowers[i].transform.localPosition = towerPositions[i];
+                    OnMiniMapIcon?.Invoke(towerIconPrefabs[i], new Vector2(towerPositions[i].x, towerPositions[i].z), 1, spawnTowers[i], false);
                 }
             }
 
@@ -738,10 +746,12 @@ public class MapGeneator : MonoBehaviourPunCallbacks
                 if (PhotonNetwork.IsMasterClient)
                 {
                     teamFlags[i].transform.localPosition = flagPositions[i];
+                    OnMiniMapIcon?.Invoke(flagIconPrefabs[i], new Vector2(flagPositions[i].x, flagPositions[i].z), 1, teamFlags[i], false);
                 }
             }
 
             controlZoneObject.SetActive(selectedGameMode.HasZones);
+            OnMiniMapIcon?.Invoke(zoneIconPrefab, new Vector2(controlZoneObject.transform.position.x, controlZoneObject.transform.position.z), (int)controlZoneObject.transform.localScale.x / 3, controlZoneObject, true);
             //Debug.Log($"{selectedGameMode.Name} has zones: {selectedGameMode.HasZones}");
 
             if (!selectedGameMode.HasTeams && PhotonNetwork.IsMasterClient)

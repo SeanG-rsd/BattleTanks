@@ -11,6 +11,8 @@ public class TankRespawnPoint : MonoBehaviour
     public int teamIndex;
 
     [SerializeField] private GameObject respawnCam;
+
+    private Vector2 gridPosition;
     private void Awake()
     {
         Tank.OnRespawn += HandleRespawnTank;
@@ -27,6 +29,12 @@ public class TankRespawnPoint : MonoBehaviour
         Tank.OnBeginGame -= HandleStartGame;
         Tank.OnStarted -= HandleGameStarted;
         Tank.OnNewRound -= HandleRespawnTank;
+    }
+
+    public void SetPosition(int x, int y)
+    {
+        gridPosition.x = x;
+        gridPosition.y = y;
     }
 
     private void HandleRespawnTank(Tank tank)

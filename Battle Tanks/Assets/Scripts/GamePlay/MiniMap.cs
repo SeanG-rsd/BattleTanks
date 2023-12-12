@@ -12,24 +12,49 @@ public class MiniMap : MonoBehaviour
 
     [SerializeField] private Transform miniMapContainer;
 
+    [SerializeField] private float updateInterval;
+    private float timeTilNextUpdate;
+
+    [SerializeField] private TeamInfo teamInfo;
+
+    private Dictionary<GameObject, GameObject> objectsToUpdate;
+
     private Vector2 gridSize;
+
+    private int teamIndex;
+
+    [SerializeField] private GameObject tankIconPrefab;
 
     private void Start()
     {
-        Initialize(new Vector2(10, 10));
+        Initialize(new Vector2(10, 10), 1);
         edgeScale = 10 * originalWallScale;
+        objectsToUpdate = new Dictionary<GameObject, GameObject>();
         HandleWalls();
-        MapGenTest.OnMiniMapWalls += HandleCells;
+        MapGeneator.OnMiniMapWalls += HandleCells;
+        MapGeneator.OnMiniMapIcon += HandleGameModeObjects;
     }
 
     private void OnDestroy()
     {
-        MapGenTest.OnMiniMapWalls -= HandleCells;
+        MapGeneator.OnMiniMapWalls -= HandleCells;
+        MapGeneator.OnMiniMapIcon -= HandleGameModeObjects;
     }
 
-    private void Initialize(Vector2 gridS)
+    private void Initialize(Vector2 gridS, int teamIndex)
     {
         gridSize = gridS;
+        this.teamIndex = teamIndex;
+
+        Tank[] allTanks = FindObjectsOfType<Tank>();
+        foreach (Tank tank in allTanks)
+        {
+            if (tank.teamIndex == teamIndex)
+            {
+                GameObject tankIcon = Instantiate(tankIconPrefab, miniMapContainer.position, Quaternion.identity);
+                objectsToUpdate.Add(tank.gameObject, tankIcon);
+            }
+        }
     }
     private void HandleWalls()
     {
@@ -94,12 +119,12 @@ public class MiniMap : MonoBehaviour
         }
     }
 
-    private void HandleCells(List<MapGenTest.WallInfo> allWalls)
+    private void HandleCells(List<MapGeneator.WallInfo> allWalls)
     {
         Debug.Log("handle cells");
-        List<MapGenTest.WallInfo> cells = allWalls;
+        List<MapGeneator.WallInfo> cells = allWalls;
 
-        foreach (MapGenTest.WallInfo wallInfo in cells)
+        foreach (MapGeneator.WallInfo wallInfo in cells)
         {
             Debug.Log(wallInfo.ToString());
             if (IsWithinBounds(wallInfo.position))
@@ -119,6 +144,28 @@ public class MiniMap : MonoBehaviour
                 newWall.transform.localPosition = newWallPos;
             }
         }
+    }
+
+    private void HandleGameModeObjects(GameObject iconPrefab, Vector2 position, int scale, GameObject objectToFollow, bool isZone)
+    {
+        int column = (int)((position.x - 1.5) / 3) + 6;
+        int row = (int)((position.y - 1.5) / 3) + 6;
+        Debug.Log(row + " " + column);
+        GameObject icon = Instantiate(iconPrefab, miniMapContainer.position, Quaternion.identity);
+
+        icon.transform.SetParent(miniMapContainer);
+        if (!isZone)
+        {
+            Vector3 iconPosition = new Vector3(originalWallScale * (column) - 40, originalWallScale * (row - 1) + 32, 0);
+            icon.transform.localPosition = iconPosition;
+        }
+        else
+        {
+            Vector3 iconPosition = new Vector3(originalWallScale * (column - 2), originalWallScale * (row - 2), 0);
+            icon.transform.localPosition = iconPosition;
+        }
+        icon.transform.localScale = new Vector3(scale, scale, scale);
+        objectsToUpdate.Add(objectToFollow, icon);
     }
 
     private bool IsWithinBounds(Vector2 pos)

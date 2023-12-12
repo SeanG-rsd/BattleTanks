@@ -54,6 +54,7 @@ public class MapGenTest : MonoBehaviour
 
     public static Action OnTestMapGen = delegate { };
     public static Action<List<WallInfo>> OnMiniMapWalls = delegate { };
+    public static Action<GameObject, int, int, GameObject> OnMiniMapIcon = delegate { };
 
     private List<WallInfo> walls;
 
@@ -67,6 +68,8 @@ public class MapGenTest : MonoBehaviour
 
     [SerializeField] private int blueFlagIndex;
     [SerializeField] private int redFlagIndex;
+
+    [SerializeField] private GameObject[] iconsForMiniMap; // 0 is the flag, 1 is the homeBase, 2 is the zone
 
     private enum Direction
     {
@@ -91,7 +94,7 @@ public class MapGenTest : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DestroyCurrentMap();
-            HandleMapGeneration(possibleMapSizes[0], availableGameModes[0]);
+            HandleMapGeneration(possibleMapSizes[0], availableGameModes[2]);
             
         }
 
