@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,9 +11,9 @@ public class MiniMap : MonoBehaviour
     private float edgeScale;
     [SerializeField] private float originalWallScale;
 
-    [SerializeField] private Transform miniMapContainer;
+    [SerializeField] public Transform miniMapContainer;
 
-    [SerializeField] private float updateInterval;
+    [SerializeField] private float updateInterval = 0.5f;
     private float timeTilNextUpdate;
 
     [SerializeField] private TeamInfo teamInfo;
@@ -23,7 +24,9 @@ public class MiniMap : MonoBehaviour
 
     private int teamIndex;
 
-    [SerializeField] private GameObject tankIconPrefab;
+    private bool spawnedTankIcons = false;
+
+    [SerializeField] private GameObject[] tankIconPrefab;
 
     private void Start()
     {
@@ -41,19 +44,70 @@ public class MiniMap : MonoBehaviour
         MapGeneator.OnMiniMapIcon -= HandleGameModeObjects;
     }
 
+    private void Update()
+    {
+        if (PhotonNetwork.LocalPlayer.IsMasterClient)
+        {
+            while (FindObjectsOfType<Tank>().Length == PhotonNetwork.CurrentRoom.PlayerCount && !spawnedTankIcons)
+            {
+                HandleTanks();
+                spawnedTankIcons = true;
+            }
+
+            if (timeTilNextUpdate >= 0)
+            {
+                timeTilNextUpdate -= Time.deltaTime;
+                if (timeTilNextUpdate <= 0)
+                {
+                    Debug.Log("updateObjects");
+                    timeTilNextUpdate = updateInterval;
+                    UpdateObjects();
+                }
+            }
+        }
+    }
+
+    private void UpdateObjects()
+    {
+        MapCell[] mapCells = FindObjectsOfType<MapCell>();
+        foreach (GameObject obj in objectsToUpdate.Keys)
+        {
+            MapCell closest = null;
+            foreach (MapCell cell in mapCells)
+            {
+                if (closest == null)
+                {
+                    closest = cell;
+                }
+                else if (Vector3.Distance(cell.center.transform.position, obj.transform.position) < Vector3.Distance(closest.center.transform.position, obj.transform.position))
+                {
+                    closest = cell;
+                }
+            }
+            UpdateIcon(objectsToUpdate[obj], closest.position);
+        }
+    }
+
+    private void UpdateIcon(GameObject icon, Vector2 position)
+    {
+        icon.transform.position = new Vector3(position.x * originalWallScale + 40, (9 - position.y) * originalWallScale + 32, 0);
+    }
+
     private void Initialize(Vector2 gridS, int teamIndex)
     {
         gridSize = gridS;
         this.teamIndex = teamIndex;
+    }
 
+    private void HandleTanks()
+    {
         Tank[] allTanks = FindObjectsOfType<Tank>();
         foreach (Tank tank in allTanks)
         {
-            if (tank.teamIndex == teamIndex)
-            {
-                GameObject tankIcon = Instantiate(tankIconPrefab, miniMapContainer.position, Quaternion.identity);
-                objectsToUpdate.Add(tank.gameObject, tankIcon);
-            }
+            GameObject tankIcon = PhotonNetwork.Instantiate(tankIconPrefab[tank.teamIndex - 1].name, miniMapContainer.position, Quaternion.identity);
+            Debug.Log("handleTanks");
+            objectsToUpdate.Add(tank.gameObject, tankIcon);
+            //tankIcon.transform.SetParent(miniMapContainer);
         }
     }
     private void HandleWalls()
@@ -68,7 +122,7 @@ public class MiniMap : MonoBehaviour
             {
                 for (int count = 0; count < gridSize.x; ++count)
                 {
-                    GameObject newWall = Instantiate(wallPrefab, miniMapContainer.position, Quaternion.identity);
+                    GameObject newWall = PhotonNetwork.Instantiate(wallPrefab.name, miniMapContainer.position, Quaternion.identity);
 
                     //Vector3 newWallScale = new Vector3(originalWallScale * gridSize.x, newWall.transform.localScale.y, newWall.transform.localScale.z);
                     //newWall.transform.localScale = newWallScale;
@@ -100,7 +154,7 @@ public class MiniMap : MonoBehaviour
 
                     }
                     newWall.transform.localScale = new Vector3(newWall.transform.localScale.x * miniMapContainer.localScale.x, newWall.transform.localScale.x * miniMapContainer.localScale.x, newWall.transform.localScale.x * miniMapContainer.localScale.x);
-                    newWall.transform.SetParent(miniMapContainer);
+                    //newWall.transform.SetParent(miniMapContainer);
 
                     newWall.transform.localPosition = newWallPos;
                 }
@@ -129,7 +183,7 @@ public class MiniMap : MonoBehaviour
             Debug.Log(wallInfo.ToString());
             if (IsWithinBounds(wallInfo.position))
             {
-                GameObject newWall = Instantiate(wallPrefab, miniMapContainer.position, Quaternion.identity);
+                GameObject newWall = PhotonNetwork.Instantiate(wallPrefab.name, miniMapContainer.position, Quaternion.identity);
                 Vector3 newWallPos = new Vector3(originalWallScale * (wallInfo.position.x + 1), originalWallScale * (9 - wallInfo.position.y), 0);
 
                 if (wallInfo.orientation == WallType.WallOrientation.Horizontal)
@@ -139,7 +193,7 @@ public class MiniMap : MonoBehaviour
                     newWall.transform.Rotate(newWallRotation);
                 }
                 newWall.transform.localScale = new Vector3(newWall.transform.localScale.x * miniMapContainer.localScale.x, newWall.transform.localScale.x * miniMapContainer.localScale.x, newWall.transform.localScale.x * miniMapContainer.localScale.x);
-                newWall.transform.SetParent(miniMapContainer);
+                //newWall.transform.SetParent(miniMapContainer);
                
                 newWall.transform.localPosition = newWallPos;
             }
@@ -151,9 +205,9 @@ public class MiniMap : MonoBehaviour
         int column = (int)((position.x - 1.5) / 3) + 6;
         int row = (int)((position.y - 1.5) / 3) + 6;
         Debug.Log(row + " " + column);
-        GameObject icon = Instantiate(iconPrefab, miniMapContainer.position, Quaternion.identity);
+        GameObject icon = PhotonNetwork.Instantiate(iconPrefab.name, miniMapContainer.position, Quaternion.identity);
 
-        icon.transform.SetParent(miniMapContainer);
+        //icon.transform.SetParent(miniMapContainer);
         if (!isZone)
         {
             Vector3 iconPosition = new Vector3(originalWallScale * (column) - 40, originalWallScale * (row - 1) + 32, 0);

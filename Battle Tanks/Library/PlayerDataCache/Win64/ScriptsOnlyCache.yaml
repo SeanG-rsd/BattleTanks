@@ -3,7 +3,10 @@ ScriptsOnlyBuild:
     Assembly-CSharp:
     - Bullet
     - CameraMovement
+    - Explosion
+    - Icon
     - IndividualStatLine
+    - MapCell
     - MapWall
     - SoloScore
     - StayOnLeave
@@ -24,15 +27,20 @@ ScriptsOnlyBuild:
     - CameraMovement
     - ClickButton
     - ControlZone
+    - Explosion
     - Flag
     - FlagHolder
     - FlagSafeZone
     - GameManager
     - GameMode
+    - Icon
     - IndividualStatLine
     - LeaveGame
+    - MapCell
     - MapGeneator
     - MapWall
+    - Message
+    - MiniMap
     - PhotonChatController
     - PhotonChatFriendController
     - PhotonConnector
@@ -68,6 +76,7 @@ ScriptsOnlyBuild:
     - UIPlayerSelection
     - UIRoomItem
     - UIRoundController
+    - UITab
     - UITankSelection
     - UITeam
     - UIToggleButton
@@ -89,6 +98,9 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PhotonTransformViewEditor
+    - Photon.Pun.PhotonViewInspector
     PhotonUnityNetworking.Utilities.dll:
     - Photon.Pun.UtilityScripts.PhotonTeamsManager
     PhotonUnityNetworking.dll:
@@ -153,6 +165,8 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
+    UnityEditor.UI.dll:
+    - UnityEditor.UI.ImageEditor
     UnityEngine.UI:
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
@@ -270,10 +284,13 @@ ScriptsOnlyBuild:
   methodsToPreserve:
   - assembly: Assembly-CSharp
     fullTypeName: PlayfabLogin
+    methodName: RegisterButton
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayfabLogin
     methodName: LoginButton
   - assembly: Assembly-CSharp
     fullTypeName: PlayfabLogin
-    methodName: RegisterButton
+    methodName: CreateUsername
   - assembly: Assembly-CSharp
     fullTypeName: PlayfabLogin
     methodName: FinishRegistering
@@ -284,14 +301,17 @@ ScriptsOnlyBuild:
     fullTypeName: PlayfabLogin
     methodName: ResetPasswordButton
   - assembly: Assembly-CSharp
-    fullTypeName: UIRoomItem
-    methodName: OnClickItem
+    fullTypeName: PlayfabLogin
+    methodName: RememberMe
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIRoomItem
+    methodName: OnClickItem
   - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: InviteFriend
@@ -302,6 +322,180 @@ ScriptsOnlyBuild:
     fullTypeName: UITeam
     methodName: SwitchToTeam
   - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: RemoveFriend
   - assembly: Assembly-CSharp
@@ -309,19 +503,13 @@ ScriptsOnlyBuild:
     methodName: InviteFriend
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
-    methodName: DeclineInvite
+    methodName: AcceptInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
-    methodName: AcceptInvite
+    methodName: DeclineInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIRoomItem
     methodName: OnClickItem
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: InviteFriend
@@ -380,8 +568,149 @@ ScriptsOnlyBuild:
     fullTypeName: UIRoundController
     methodName: OnClickRoundCount
   - assembly: Assembly-CSharp
-    fullTypeName: TapToShoot
-    methodName: Reload
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TapToShoot
     methodName: Shoot
@@ -427,107 +756,115 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 16704}
     - Class: 114
-      Script: {instanceID: 16706}
+      Script: {instanceID: 16708}
     - Class: 114
       Script: {instanceID: 16710}
     - Class: 114
       Script: {instanceID: 16712}
     - Class: 114
-      Script: {instanceID: 16714}
+      Script: {instanceID: 16768}
     - Class: 114
-      Script: {instanceID: 16770}
+      Script: {instanceID: 16822}
     - Class: 114
-      Script: {instanceID: 16824}
+      Script: {instanceID: 17138}
     - Class: 114
-      Script: {instanceID: 17134}
+      Script: {instanceID: 17632}
     - Class: 114
-      Script: {instanceID: 17622}
+      Script: {instanceID: 17690}
     - Class: 114
-      Script: {instanceID: 17680}
+      Script: {instanceID: 17794}
     - Class: 114
-      Script: {instanceID: 17782}
+      Script: {instanceID: 18094}
     - Class: 114
-      Script: {instanceID: 18080}
+      Script: {instanceID: 18338}
     - Class: 114
-      Script: {instanceID: 18320}
+      Script: {instanceID: 18416}
     - Class: 114
-      Script: {instanceID: 18570}
+      Script: {instanceID: 18594}
     - Class: 114
-      Script: {instanceID: 18714}
+      Script: {instanceID: 18740}
     - Class: 114
-      Script: {instanceID: 19112}
+      Script: {instanceID: 19144}
     - Class: 114
-      Script: {instanceID: 19248}
+      Script: {instanceID: 19280}
     - Class: 114
-      Script: {instanceID: 19386}
+      Script: {instanceID: 19420}
     - Class: 114
-      Script: {instanceID: 19476}
+      Script: {instanceID: 19510}
     - Class: 114
-      Script: {instanceID: 19672}
+      Script: {instanceID: 19712}
     - Class: 114
-      Script: {instanceID: 19770}
+      Script: {instanceID: 19810}
     - Class: 114
-      Script: {instanceID: 19962}
+      Script: {instanceID: 20008}
     - Class: 114
-      Script: {instanceID: 20210}
+      Script: {instanceID: 20258}
     - Class: 114
-      Script: {instanceID: 20640}
+      Script: {instanceID: 20694}
     - Class: 114
-      Script: {instanceID: 20800}
+      Script: {instanceID: 20854}
     - Class: 114
-      Script: {instanceID: 20808}
+      Script: {instanceID: 20862}
     - Class: 114
-      Script: {instanceID: 20910}
+      Script: {instanceID: 20964}
     - Class: 114
-      Script: {instanceID: 20944}
+      Script: {instanceID: 20998}
     - Class: 114
-      Script: {instanceID: 20946}
+      Script: {instanceID: 21000}
     - Class: 114
-      Script: {instanceID: 21050}
+      Script: {instanceID: 21110}
     - Class: 114
-      Script: {instanceID: 21122}
+      Script: {instanceID: 21182}
     - Class: 114
-      Script: {instanceID: 21198}
+      Script: {instanceID: 21260}
     - Class: 114
-      Script: {instanceID: 21340}
+      Script: {instanceID: 21266}
     - Class: 114
-      Script: {instanceID: 21628}
+      Script: {instanceID: 21406}
     - Class: 114
-      Script: {instanceID: 22082}
+      Script: {instanceID: 21694}
     - Class: 114
-      Script: {instanceID: 22180}
+      Script: {instanceID: 21970}
     - Class: 114
-      Script: {instanceID: 22348}
+      Script: {instanceID: 22152}
     - Class: 114
-      Script: {instanceID: 22484}
+      Script: {instanceID: 22252}
     - Class: 114
-      Script: {instanceID: 22956}
+      Script: {instanceID: 22422}
     - Class: 114
-      Script: {instanceID: 22970}
+      Script: {instanceID: 22560}
     - Class: 114
-      Script: {instanceID: 23018}
+      Script: {instanceID: 23038}
     - Class: 114
-      Script: {instanceID: 23296}
+      Script: {instanceID: 23052}
     - Class: 114
-      Script: {instanceID: 23512}
+      Script: {instanceID: 23102}
     - Class: 114
-      Script: {instanceID: 23808}
+      Script: {instanceID: 23382}
     - Class: 114
-      Script: {instanceID: 24176}
+      Script: {instanceID: 23600}
+    - Class: 114
+      Script: {instanceID: 23898}
+    - Class: 114
+      Script: {instanceID: 24046}
     - Class: 114
       Script: {instanceID: 24272}
     - Class: 114
-      Script: {instanceID: 24330}
+      Script: {instanceID: 24370}
     - Class: 114
-      Script: {instanceID: 24344}
+      Script: {instanceID: 24430}
     - Class: 114
-      Script: {instanceID: 24664}
+      Script: {instanceID: 24444}
     - Class: 114
-      Script: {instanceID: 24706}
+      Script: {instanceID: 24766}
     - Class: 114
-      Script: {instanceID: 24772}
+      Script: {instanceID: 24808}
     - Class: 114
-      Script: {instanceID: 24792}
+      Script: {instanceID: 24874}
+    - Class: 114
+      Script: {instanceID: 24896}
+    - Class: 114
+      Script: {instanceID: 65596}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -537,6 +874,10 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 198
+      Script: {instanceID: 0}
+    - Class: 199
       Script: {instanceID: 0}
     - Class: 212
       Script: {instanceID: 0}
@@ -604,127 +945,135 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 16712}
     - Class: 114
-      Script: {instanceID: 16714}
+      Script: {instanceID: 16768}
     - Class: 114
-      Script: {instanceID: 16770}
+      Script: {instanceID: 16820}
     - Class: 114
-      Script: {instanceID: 16822}
+      Script: {instanceID: 17032}
     - Class: 114
-      Script: {instanceID: 17030}
+      Script: {instanceID: 17058}
     - Class: 114
-      Script: {instanceID: 17056}
+      Script: {instanceID: 17138}
     - Class: 114
-      Script: {instanceID: 17134}
+      Script: {instanceID: 17438}
     - Class: 114
-      Script: {instanceID: 17430}
+      Script: {instanceID: 17520}
     - Class: 114
-      Script: {instanceID: 17510}
+      Script: {instanceID: 17632}
     - Class: 114
-      Script: {instanceID: 17622}
+      Script: {instanceID: 17690}
     - Class: 114
-      Script: {instanceID: 17680}
+      Script: {instanceID: 17794}
     - Class: 114
-      Script: {instanceID: 17782}
+      Script: {instanceID: 18094}
     - Class: 114
-      Script: {instanceID: 18080}
+      Script: {instanceID: 18338}
     - Class: 114
-      Script: {instanceID: 18320}
+      Script: {instanceID: 18392}
     - Class: 114
-      Script: {instanceID: 18370}
+      Script: {instanceID: 18484}
     - Class: 114
-      Script: {instanceID: 18460}
+      Script: {instanceID: 18504}
     - Class: 114
-      Script: {instanceID: 18480}
+      Script: {instanceID: 18594}
     - Class: 114
-      Script: {instanceID: 18570}
+      Script: {instanceID: 18740}
     - Class: 114
-      Script: {instanceID: 18714}
+      Script: {instanceID: 19144}
     - Class: 114
-      Script: {instanceID: 19112}
+      Script: {instanceID: 19280}
     - Class: 114
-      Script: {instanceID: 19248}
+      Script: {instanceID: 19420}
     - Class: 114
-      Script: {instanceID: 19386}
+      Script: {instanceID: 19504}
     - Class: 114
-      Script: {instanceID: 19470}
+      Script: {instanceID: 19510}
     - Class: 114
-      Script: {instanceID: 19476}
+      Script: {instanceID: 19646}
     - Class: 114
-      Script: {instanceID: 19606}
+      Script: {instanceID: 19652}
     - Class: 114
-      Script: {instanceID: 19612}
+      Script: {instanceID: 19712}
     - Class: 114
-      Script: {instanceID: 19672}
+      Script: {instanceID: 19724}
     - Class: 114
-      Script: {instanceID: 19684}
+      Script: {instanceID: 19874}
     - Class: 114
-      Script: {instanceID: 19830}
+      Script: {instanceID: 20044}
     - Class: 114
-      Script: {instanceID: 19998}
+      Script: {instanceID: 20356}
     - Class: 114
-      Script: {instanceID: 20308}
+      Script: {instanceID: 20694}
     - Class: 114
-      Script: {instanceID: 20640}
+      Script: {instanceID: 20818}
     - Class: 114
-      Script: {instanceID: 20764}
+      Script: {instanceID: 20862}
     - Class: 114
-      Script: {instanceID: 20808}
+      Script: {instanceID: 20874}
     - Class: 114
-      Script: {instanceID: 20820}
+      Script: {instanceID: 20964}
     - Class: 114
-      Script: {instanceID: 20910}
+      Script: {instanceID: 21092}
     - Class: 114
-      Script: {instanceID: 21034}
+      Script: {instanceID: 21110}
     - Class: 114
-      Script: {instanceID: 21050}
+      Script: {instanceID: 21168}
     - Class: 114
-      Script: {instanceID: 21108}
+      Script: {instanceID: 21182}
     - Class: 114
-      Script: {instanceID: 21122}
+      Script: {instanceID: 21188}
     - Class: 114
-      Script: {instanceID: 21128}
+      Script: {instanceID: 21260}
     - Class: 114
-      Script: {instanceID: 21198}
+      Script: {instanceID: 21266}
     - Class: 114
-      Script: {instanceID: 21620}
+      Script: {instanceID: 21686}
     - Class: 114
-      Script: {instanceID: 21624}
+      Script: {instanceID: 21690}
     - Class: 114
-      Script: {instanceID: 21676}
+      Script: {instanceID: 21742}
     - Class: 114
-      Script: {instanceID: 22082}
+      Script: {instanceID: 21970}
     - Class: 114
-      Script: {instanceID: 22180}
+      Script: {instanceID: 22152}
     - Class: 114
-      Script: {instanceID: 22348}
+      Script: {instanceID: 22252}
     - Class: 114
-      Script: {instanceID: 22484}
+      Script: {instanceID: 22422}
     - Class: 114
-      Script: {instanceID: 22494}
+      Script: {instanceID: 22560}
     - Class: 114
-      Script: {instanceID: 22970}
+      Script: {instanceID: 22570}
     - Class: 114
-      Script: {instanceID: 23018}
+      Script: {instanceID: 23052}
     - Class: 114
-      Script: {instanceID: 23208}
+      Script: {instanceID: 23102}
     - Class: 114
-      Script: {instanceID: 23296}
+      Script: {instanceID: 23294}
     - Class: 114
-      Script: {instanceID: 23808}
+      Script: {instanceID: 23382}
     - Class: 114
-      Script: {instanceID: 23842}
+      Script: {instanceID: 23898}
     - Class: 114
-      Script: {instanceID: 24272}
+      Script: {instanceID: 23934}
     - Class: 114
-      Script: {instanceID: 24344}
+      Script: {instanceID: 24046}
     - Class: 114
-      Script: {instanceID: 24424}
+      Script: {instanceID: 24320}
     - Class: 114
-      Script: {instanceID: 24664}
+      Script: {instanceID: 24370}
     - Class: 114
-      Script: {instanceID: 24706}
+      Script: {instanceID: 24444}
     - Class: 114
-      Script: {instanceID: 24802}
+      Script: {instanceID: 24524}
+    - Class: 114
+      Script: {instanceID: 24766}
+    - Class: 114
+      Script: {instanceID: 24808}
+    - Class: 114
+      Script: {instanceID: 24906}
+    - Class: 114
+      Script: {instanceID: 65596}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -778,6 +1127,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
+    - Class: 72
+      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 84
@@ -791,100 +1142,108 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 16704}
     - Class: 114
-      Script: {instanceID: 16706}
+      Script: {instanceID: 16708}
     - Class: 114
       Script: {instanceID: 16710}
     - Class: 114
       Script: {instanceID: 16712}
     - Class: 114
-      Script: {instanceID: 16714}
+      Script: {instanceID: 16728}
     - Class: 114
-      Script: {instanceID: 16730}
+      Script: {instanceID: 17058}
     - Class: 114
-      Script: {instanceID: 17056}
+      Script: {instanceID: 17438}
     - Class: 114
-      Script: {instanceID: 17430}
+      Script: {instanceID: 17690}
     - Class: 114
-      Script: {instanceID: 17680}
+      Script: {instanceID: 17794}
     - Class: 114
-      Script: {instanceID: 17846}
+      Script: {instanceID: 17858}
     - Class: 114
-      Script: {instanceID: 18080}
+      Script: {instanceID: 18094}
     - Class: 114
-      Script: {instanceID: 18250}
+      Script: {instanceID: 18268}
     - Class: 114
-      Script: {instanceID: 18320}
+      Script: {instanceID: 18338}
     - Class: 114
-      Script: {instanceID: 18460}
+      Script: {instanceID: 18484}
     - Class: 114
-      Script: {instanceID: 18480}
+      Script: {instanceID: 18504}
     - Class: 114
-      Script: {instanceID: 18606}
+      Script: {instanceID: 18630}
     - Class: 114
-      Script: {instanceID: 18822}
+      Script: {instanceID: 18848}
     - Class: 114
-      Script: {instanceID: 18980}
+      Script: {instanceID: 18948}
     - Class: 114
-      Script: {instanceID: 18992}
+      Script: {instanceID: 19010}
     - Class: 114
-      Script: {instanceID: 19364}
+      Script: {instanceID: 19022}
     - Class: 114
-      Script: {instanceID: 19658}
+      Script: {instanceID: 19398}
     - Class: 114
-      Script: {instanceID: 19672}
+      Script: {instanceID: 19698}
     - Class: 114
-      Script: {instanceID: 19684}
+      Script: {instanceID: 19712}
     - Class: 114
-      Script: {instanceID: 19808}
+      Script: {instanceID: 19724}
     - Class: 114
-      Script: {instanceID: 19982}
+      Script: {instanceID: 19850}
     - Class: 114
-      Script: {instanceID: 20764}
+      Script: {instanceID: 20028}
     - Class: 114
-      Script: {instanceID: 20820}
+      Script: {instanceID: 20818}
     - Class: 114
-      Script: {instanceID: 20946}
+      Script: {instanceID: 20862}
     - Class: 114
-      Script: {instanceID: 20956}
+      Script: {instanceID: 20874}
     - Class: 114
-      Script: {instanceID: 21198}
+      Script: {instanceID: 21000}
     - Class: 114
-      Script: {instanceID: 21314}
+      Script: {instanceID: 21010}
     - Class: 114
-      Script: {instanceID: 21420}
+      Script: {instanceID: 21260}
     - Class: 114
-      Script: {instanceID: 22082}
+      Script: {instanceID: 21380}
     - Class: 114
-      Script: {instanceID: 22180}
+      Script: {instanceID: 21486}
     - Class: 114
-      Script: {instanceID: 22484}
+      Script: {instanceID: 21970}
     - Class: 114
-      Script: {instanceID: 22498}
+      Script: {instanceID: 22152}
     - Class: 114
-      Script: {instanceID: 23018}
+      Script: {instanceID: 22252}
     - Class: 114
-      Script: {instanceID: 23064}
+      Script: {instanceID: 22560}
     - Class: 114
-      Script: {instanceID: 23766}
+      Script: {instanceID: 22574}
     - Class: 114
-      Script: {instanceID: 23846}
+      Script: {instanceID: 23102}
     - Class: 114
-      Script: {instanceID: 23868}
+      Script: {instanceID: 23150}
     - Class: 114
-      Script: {instanceID: 23894}
+      Script: {instanceID: 23856}
     - Class: 114
-      Script: {instanceID: 24036}
+      Script: {instanceID: 23938}
     - Class: 114
-      Script: {instanceID: 24268}
+      Script: {instanceID: 23960}
     - Class: 114
-      Script: {instanceID: 24706}
+      Script: {instanceID: 23986}
     - Class: 114
-      Script: {instanceID: 24772}
+      Script: {instanceID: 24130}
+    - Class: 114
+      Script: {instanceID: 24366}
+    - Class: 114
+      Script: {instanceID: 24808}
+    - Class: 114
+      Script: {instanceID: 24874}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
     - Class: 136
+      Script: {instanceID: 0}
+    - Class: 137
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -899,12 +1258,6 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
-  - hash:
-      serializedVersion: 2
-      Hash: 6a356b04c25c0bb008c1b24bf8b0f996
-    assemblyName: UnityEngine.UI
-    namespaceName: UnityEngine.UI
-    className: CanvasScaler
   - hash:
       serializedVersion: 2
       Hash: 16c8cbd24a32f9d6625615e0e9098073
@@ -971,6 +1324,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: ControlZone
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LeanTween
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1123,6 +1482,12 @@ ScriptsOnlyBuild:
     className: RoomListCell
   - hash:
       serializedVersion: 2
+      Hash: 9b7bedc6e2800e4c3a1e3aa631d64a0a
+    assemblyName: Assembly-CSharp
+    namespaceName: DentedPixel.LTExamples
+    className: TestingUnitTests
+  - hash:
+      serializedVersion: 2
       Hash: 9dd68e99b5496128458129bad5913861
     assemblyName: Assembly-CSharp
     namespaceName: 
@@ -1207,7 +1572,13 @@ ScriptsOnlyBuild:
     className: CurrentRoomIsOpenToggle
   - hash:
       serializedVersion: 2
-      Hash: 449c4b940692b5e6afc2718544c254a7
+      Hash: 62bbc4ac6155325c03f256c2723adf20
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GeneralUISpace
+  - hash:
+      serializedVersion: 2
+      Hash: f083859101f5951233f091b9afbfdc74
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: MapGenTest
@@ -1235,6 +1606,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PhotonRoomController
+  - hash:
+      serializedVersion: 2
+      Hash: 4a64238d06a1063bbfaf093ef79a6a2e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestingSequencer
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1309,10 +1686,22 @@ ScriptsOnlyBuild:
     className: UnityMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 9e6ce5f6ba6663fd1ee2c68d770fa5b3
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GeneralSimpleUI
+  - hash:
+      serializedVersion: 2
       Hash: 4d2684abd00455f43403f8a55609cfa2
     assemblyName: PhotonUnityNetworking
     namespaceName: Photon.Pun
     className: PhotonRigidbody2DView
+  - hash:
+      serializedVersion: 2
+      Hash: 596b9812d2c2b35b4e988773e1dafbc0
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PathSplineEndless
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1321,7 +1710,7 @@ ScriptsOnlyBuild:
     className: OnEscapeQuit
   - hash:
       serializedVersion: 2
-      Hash: e45a6eb9d00c83e8c4754e0324041fa7
+      Hash: a1135b7326813df8e776079e808b198d
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: UIDisplayInvites
@@ -1351,10 +1740,22 @@ ScriptsOnlyBuild:
     className: GraphicRaycaster
   - hash:
       serializedVersion: 2
+      Hash: 2fd85fa8da7dfb0a806e06eeb835bb66
+    assemblyName: Assembly-CSharp
+    namespaceName: DentedPixel.LTExamples
+    className: PathBezier
+  - hash:
+      serializedVersion: 2
       Hash: 7ed091d2a4ff0fe58d1fab8bdfb53745
     assemblyName: PhotonUnityNetworking.Demos
     namespaceName: Photon.Pun.Demo.PunBasics
     className: LoaderAnime
+  - hash:
+      serializedVersion: 2
+      Hash: 4a64238d06a1063bbfaf093ef79a6a2e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestingOptionalCancel
   - hash:
       serializedVersion: 2
       Hash: 34fa63a30926bcf55d7323dae76be890
@@ -1373,6 +1774,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
     className: TMP_SpriteAnimator
+  - hash:
+      serializedVersion: 2
+      Hash: ecb0795eb54b8178349dc3948e8d9a20
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MiniMap
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1441,7 +1848,7 @@ ScriptsOnlyBuild:
     className: ChannelSelector
   - hash:
       serializedVersion: 2
-      Hash: 07ff91919a6ede5ded0e90b5e247aba2
+      Hash: ecd5a0148a74392717896e7dc30cef71
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: TankCarosel
@@ -1465,13 +1872,19 @@ ScriptsOnlyBuild:
     className: PlayerDetailsController
   - hash:
       serializedVersion: 2
+      Hash: 74e37079b1e904b033eb53d932b3f59d
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Testing243
+  - hash:
+      serializedVersion: 2
       Hash: a4d905db69ca7f45f45458ae380fb66f
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: ToggleGroup
   - hash:
       serializedVersion: 2
-      Hash: c9d08e7aa121ecdda9ef3ffc2f00720c
+      Hash: b71a1870b9450c88a76ab1e030dab375
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: TankScoreboard
@@ -1549,6 +1962,18 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
+      Hash: 2fd85fa8da7dfb0a806e06eeb835bb66
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PathSplines
+  - hash:
+      serializedVersion: 2
+      Hash: 05935f7c2efa153eeaa181a6e5436a1e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: UITab
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.InputSystem
     namespaceName: UnityEngine.InputSystem.Editor
@@ -1567,7 +1992,7 @@ ScriptsOnlyBuild:
     className: UIAddFriend
   - hash:
       serializedVersion: 2
-      Hash: 9597b633d7e0a9882e105feef187d9a0
+      Hash: 1be05204e9277e3f79fa80a26b99a46a
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: UIToggleButton
@@ -1589,6 +2014,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSelectMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GeneralEventsListeners
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1657,6 +2088,12 @@ ScriptsOnlyBuild:
     className: SetRoomCustomPropertyUIForm
   - hash:
       serializedVersion: 2
+      Hash: a4b6a15207ddeee6c47ecf7a67be24a6
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestingIssue2
+  - hash:
+      serializedVersion: 2
       Hash: 66634441d098c8cf19d917efecd98d88
     assemblyName: Assembly-CSharp
     namespaceName: 
@@ -1673,6 +2110,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Flow
     namespaceName: Unity.VisualScripting
     className: ScriptGraphAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 70be32825e6a3149afefc5f189eaab94
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Testing240
   - hash:
       serializedVersion: 2
       Hash: ad669a07fcf00fd8880842ab87b6adba
@@ -1709,6 +2152,18 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Utilities
     namespaceName: Photon.Pun.UtilityScripts
     className: GraphicToggleIsOnTransition
+  - hash:
+      serializedVersion: 2
+      Hash: f1a6bb3416b25a74967f4074f76c87f1
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestingZLegacy
+  - hash:
+      serializedVersion: 2
+      Hash: b724c75ea0b77a6121df8937ba30a906
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestingDescr
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1789,10 +2244,22 @@ ScriptsOnlyBuild:
     className: LeaveGame
   - hash:
       serializedVersion: 2
+      Hash: 26bf6bdcafcd1e92e9a49e0b3daabf17
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PerformanceTests
+  - hash:
+      serializedVersion: 2
       Hash: f868a8a66b6a52c78b4a1fb823ebf99b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PhotonChatFriendController
+  - hash:
+      serializedVersion: 2
+      Hash: f1a6bb3416b25a74967f4074f76c87f1
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestingZLegacyExt
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1835,6 +2302,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Utilities
     namespaceName: Photon.Pun.UtilityScripts
     className: StatesGui
+  - hash:
+      serializedVersion: 2
+      Hash: 8b91ed050bbf0cff5986a43c44e222a0
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Testing246
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -1919,6 +2392,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: DictionaryAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 196b9718a7271f237e73b3f3574d9283
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PathBezier2d
   - hash:
       serializedVersion: 2
       Hash: 38c7fc97a35ffe3ea650b058b7248169
@@ -2015,6 +2494,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnPointerClickMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: d7a12c44e403ad6b0826d2e535f89d0d
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GeneralEasingTypes
+  - hash:
+      serializedVersion: 2
+      Hash: 69b2d446d8b59de73865cf03b5c6744e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GeneralSequencer
   - hash:
       serializedVersion: 2
       Hash: 756aaa590a87695718f5d65d508f1931
@@ -2149,7 +2640,7 @@ ScriptsOnlyBuild:
     className: AnimationPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: bb2a270d644e5bce6841ea275a52642a
+      Hash: d508bdf99eec620786cf8f7a74da1681
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: MapWall
@@ -2209,10 +2700,28 @@ ScriptsOnlyBuild:
     className: Line
   - hash:
       serializedVersion: 2
+      Hash: 0b53c073afe6ee03e0f22b6fe2cbe3fe
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestingRotate
+  - hash:
+      serializedVersion: 2
+      Hash: aa3541cb9dc2157cf6ef4813c8b134fe
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LogoCinematic
+  - hash:
+      serializedVersion: 2
       Hash: fa7c62595553866a25a1f687b1914fd2
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: Toggle
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GeneralCameraShake
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -2245,7 +2754,7 @@ ScriptsOnlyBuild:
     className: Slider
   - hash:
       serializedVersion: 2
-      Hash: 2ec9f6d5babdc040c2f2f7137350a319
+      Hash: e7293e4b1d94804b5d1a3f30d1997e3c
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: TankHealth
@@ -2269,6 +2778,12 @@ ScriptsOnlyBuild:
     className: UnityOnTriggerExitMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestingIssue
+  - hash:
+      serializedVersion: 2
       Hash: bcd0aa30e639c9230560ff50ef3cec29
     assemblyName: PhotonUnityNetworking.Demos
     namespaceName: Photon.Pun.Demo.Cockpit
@@ -2279,6 +2794,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
     className: TMP_FontAsset
+  - hash:
+      serializedVersion: 2
+      Hash: c5c6b272327169006ab15bb6bb8b9ded
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: MapCell
   - hash:
       serializedVersion: 2
       Hash: 4862508a82e551bebf075a72a1084e27
@@ -2317,7 +2838,7 @@ ScriptsOnlyBuild:
     className: CountOfPlayersInRoomProperty
   - hash:
       serializedVersion: 2
-      Hash: e6a3b73c97fc169c4b4587862db96101
+      Hash: 3503cae2993d6e4ed83cf59619c5a811
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: TapToShoot
@@ -2383,7 +2904,7 @@ ScriptsOnlyBuild:
     className: PunPlayerScores
   - hash:
       serializedVersion: 2
-      Hash: f189865582bcaf5490ccb1ee4badaf7d
+      Hash: 2d3de13fcf69c73bfdecf9272fddc22c
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayfabLogin
@@ -2395,7 +2916,7 @@ ScriptsOnlyBuild:
     className: PlayerControl
   - hash:
       serializedVersion: 2
-      Hash: cf5821d9186bbd2c9fc354e0d2649e06
+      Hash: 8c0af7edc5106d653a20f4cacddd5b35
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: GameManager
@@ -2461,6 +2982,12 @@ ScriptsOnlyBuild:
     className: InfosPanelPlaceholder
   - hash:
       serializedVersion: 2
+      Hash: 6a356b04c25c0bb008c1b24bf8b0f996
+    assemblyName: UnityEngine.UI
+    namespaceName: UnityEngine.UI
+    className: CanvasScaler
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -2485,6 +3012,12 @@ ScriptsOnlyBuild:
     className: RoomListView
   - hash:
       serializedVersion: 2
+      Hash: e409df85dfdc138f6e0354abb775a4de
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: FollowingTests
+  - hash:
+      serializedVersion: 2
       Hash: f234ed6bb80241c480c1908fbe29dbbc
     assemblyName: Assembly-CSharp
     namespaceName: 
@@ -2495,6 +3028,12 @@ ScriptsOnlyBuild:
     assemblyName: PhotonUnityNetworking.Demos
     namespaceName: Photon.Pun.Demo.Cockpit
     className: PunCockpit
+  - hash:
+      serializedVersion: 2
+      Hash: 2fd85fa8da7dfb0a806e06eeb835bb66
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ExampleSpline
   - hash:
       serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
@@ -2509,10 +3048,16 @@ ScriptsOnlyBuild:
     className: SupportLogger
   - hash:
       serializedVersion: 2
-      Hash: b5c8bb62dd90e767122e17e3ae35f175
+      Hash: e604492d6c7b8852d169e25c070e3279
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: TankShoot
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestingMaxTweens
   - hash:
       serializedVersion: 2
       Hash: 5f2bc05abaaf6b2aed65275773a018d6
@@ -2593,6 +3138,12 @@ ScriptsOnlyBuild:
     className: TouchSimulation
   - hash:
       serializedVersion: 2
+      Hash: b08d9c6cf5f34ddc7d57018a86b0180e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GeneralAdvancedTechniques
+  - hash:
+      serializedVersion: 2
       Hash: 76189544fcf61e781ed0054843b326c7
     assemblyName: Unity.InputSystem
     namespaceName: UnityEngine.InputSystem.Editor
@@ -2609,6 +3160,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro
     namespaceName: TMPro
     className: TextContainer
+  - hash:
+      serializedVersion: 2
+      Hash: f8482f99e196c9c388b75e70b5ac80d4
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GeneralBasics2d
   - hash:
       serializedVersion: 2
       Hash: c7b9385de9fd55499d563ac8783bbda2
@@ -2677,7 +3234,7 @@ ScriptsOnlyBuild:
     className: UIGameModeScore
   - hash:
       serializedVersion: 2
-      Hash: 9de78753ac0f51ef6aa4728c067e8d19
+      Hash: 8d1e230064e239b984b191c5e09315c4
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: SoloScore
@@ -2701,10 +3258,22 @@ ScriptsOnlyBuild:
     className: PlayableTrack
   - hash:
       serializedVersion: 2
+      Hash: a249057c543925d9e3b9c384086e55e1
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestingSceneSwitching
+  - hash:
+      serializedVersion: 2
       Hash: 41ac98c9880a6f3758ca69dbaa1e7777
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 815ba7fa1403c8935aa2c4fa011658bc
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PathSplineTrack
   - hash:
       serializedVersion: 2
       Hash: 71ecca19a5250b7a2b3b766068cac1d1
@@ -2791,7 +3360,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerDownMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 82800bb4e123b58454a517721ae6d8c3
+      Hash: 1a484b8851673234f41a3735cf3c5508
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Bullet
@@ -2893,6 +3462,12 @@ ScriptsOnlyBuild:
     className: CullArea
   - hash:
       serializedVersion: 2
+      Hash: 196b9718a7271f237e73b3f3574d9283
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PathSpline2d
+  - hash:
+      serializedVersion: 2
       Hash: 9f58673d3d54ba8849217a9b69b9c946
     assemblyName: PhotonUnityNetworking.Demos
     namespaceName: Photon.Pun.Demo.Asteroids
@@ -2959,6 +3534,12 @@ ScriptsOnlyBuild:
     className: InputSystemUIInputModule
   - hash:
       serializedVersion: 2
+      Hash: 3172e430470a2c9589d4b31a94eb3ac9
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PathSplinePerformance
+  - hash:
+      serializedVersion: 2
       Hash: 80789df0e1940f5416d1f2e5d39bb34b
     assemblyName: Unity.Postprocessing.Runtime
     namespaceName: UnityEngine.Rendering.PostProcessing
@@ -2983,10 +3564,16 @@ ScriptsOnlyBuild:
     className: UIDisplayFriends
   - hash:
       serializedVersion: 2
-      Hash: 98eef0c23eed037cd0d2edd476a2201c
+      Hash: e3cb0981de01751daf3caa92772def2f
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: UITankSelection
+  - hash:
+      serializedVersion: 2
+      Hash: 47dbfc9d687aa83bd40ec580c9a16e6a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Explosion
   - hash:
       serializedVersion: 2
       Hash: a5bb0cfc753b42afdcdf7d9d98266cba
@@ -3017,6 +3604,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: UIRoundController
+  - hash:
+      serializedVersion: 2
+      Hash: b649cfd74d67df7d04ab5918683092a0
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Testing248
   - hash:
       serializedVersion: 2
       Hash: 98be06998c5fc6364f0bb20207f88247
@@ -3061,7 +3654,7 @@ ScriptsOnlyBuild:
     className: ColorGrading
   - hash:
       serializedVersion: 2
-      Hash: 4b6e15f50032fc7e9988dd8531231290
+      Hash: 52ecbe7fed3ccef8f3a6d9ec23fa95a5
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: MapGeneator
@@ -3085,6 +3678,12 @@ ScriptsOnlyBuild:
     className: WorldGenerator
   - hash:
       serializedVersion: 2
+      Hash: ee5281391245d008c1deb093366c9572
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Message
+  - hash:
+      serializedVersion: 2
       Hash: f6831ac80ec81c5d5b370c0ed0fee997
     assemblyName: Unity.VisualScripting.State
     namespaceName: Unity.VisualScripting
@@ -3101,6 +3700,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: UIDisplayTeam
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TestingColorTweening
   - hash:
       serializedVersion: 2
       Hash: 4f2e673c02bc079622ce2cdb42228085
@@ -3181,13 +3786,19 @@ ScriptsOnlyBuild:
     className: SignalEmitter
   - hash:
       serializedVersion: 2
+      Hash: 3fe01adc95c9ee6f1481b594dfee8c6e
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GeneralBasic
+  - hash:
+      serializedVersion: 2
       Hash: e5bb651a220b8d33d98eec4737960b6a
     assemblyName: Unity.InputSystem
     namespaceName: UnityEngine.InputSystem
     className: PlayerInputManager
   - hash:
       serializedVersion: 2
-      Hash: a18a6afcb2c77d1ee4765e2ad5d383d4
+      Hash: 3acc7c58603430f48e72afd2f78927cf
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: CameraMovement
@@ -3241,6 +3852,12 @@ ScriptsOnlyBuild:
     className: PhotonTeamsManager
   - hash:
       serializedVersion: 2
+      Hash: df91e15da0310f70f7884f1b861ecf99
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Following
+  - hash:
+      serializedVersion: 2
       Hash: 751e5bae2a317288c2ab58d66687092b
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -3269,6 +3886,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 751e5bae2a317288c2ab58d66687092b
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Icon
   platform: 19
   scenePathNames:
   - Assets/Scenes/Login.unity

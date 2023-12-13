@@ -7,7 +7,7 @@ public class FlagHolder : MonoBehaviour
 {
     [SerializeField] private int teamIndex;
 
-    [SerializeField] private Flag thisFlag;
+    [SerializeField] public Flag thisFlag;
 
     public void OnTriggerEnter(Collider collision)
     {

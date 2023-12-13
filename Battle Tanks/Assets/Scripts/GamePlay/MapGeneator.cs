@@ -206,6 +206,8 @@ public class MapGeneator : MonoBehaviourPunCallbacks
             {
 
                 GameObject newCell = PhotonNetwork.Instantiate(cellPrefab.name, cellContainer.position, Quaternion.identity);
+                MapCell mapCell = newCell.GetComponent<MapCell>();
+                mapCell.position = new Vector2(x - 1, z - 1);
                 List<WallInfo> cellInfo = new List<WallInfo>();
 
                 Vector3 newCellPos = Vector3.zero;
@@ -221,9 +223,9 @@ public class MapGeneator : MonoBehaviourPunCallbacks
 
                 newCell.transform.SetParent(cellContainer);
 
-                for (int i = 0; i < newCell.transform.childCount; i++)
+                for (int i = 0; i < mapCell.walls.Count; i++)
                 {
-                    newCell.transform.GetChild(i).gameObject.GetComponent<MapWall>().position = new Vector2(x - 1, z - 1);
+                    mapCell.walls[i].GetComponent<MapWall>().position = new Vector2(x - 1, z - 1);
                     WallInfo newWall = new WallInfo() { position = new Vector2(x - 1, z - 1), orientation = wallOrientationsForCell[i] };
                     newWall.isTouchingBorder = GetWallBool(newWall);
                     Debug.Log($"Added {newWall.position} with {newWall.orientation} and {newWall.isTouchingBorder}");
@@ -691,15 +693,15 @@ public class MapGeneator : MonoBehaviourPunCallbacks
     {
         for (int i = 0; i < cellContainer.transform.childCount; i++)
         {
-            for (int ii = 0; ii < cellContainer.transform.GetChild(i).childCount; ii++)
+            for (int ii = 0; ii < cellContainer.transform.GetChild(i).GetComponent<MapCell>().walls.Count; ii++)
             {
-                WallInfo check = new WallInfo() { orientation = cellContainer.transform.GetChild(i).GetChild(ii).gameObject.GetComponent<MapWall>().type, position = cellContainer.transform.GetChild(i).GetChild(ii).gameObject.GetComponent<MapWall>().position };
+                WallInfo check = new WallInfo() { orientation = cellContainer.transform.GetChild(i).GetComponent<MapCell>().walls[ii].GetComponent<MapWall>().type, position = cellContainer.transform.GetChild(i).GetComponent<MapCell>().walls[ii].gameObject.GetComponent<MapWall>().position };
                 check.isTouchingBorder = GetWallBool(check);
 
                 if (!walls.Contains(check) || IsTouchingBorder(check))
                 {
-                    
-                    cellContainer.transform.GetChild(i).GetChild(ii).gameObject.GetComponent<MapWall>().Destroy();
+
+                    cellContainer.transform.GetChild(i).GetComponent<MapCell>().walls[ii].gameObject.GetComponent<MapWall>().Destroy();
                 }
             }
         }
@@ -743,16 +745,18 @@ public class MapGeneator : MonoBehaviourPunCallbacks
             {
                 teamFlags[i].SetActive(selectedGameMode.HasFlag);
                 safeZoneObjects[i].SetActive(selectedGameMode.HasFlag);
-                if (PhotonNetwork.IsMasterClient)
+                if (PhotonNetwork.IsMasterClient && selectedGameMode.HasFlag)
                 {
                     teamFlags[i].transform.localPosition = flagPositions[i];
-                    OnMiniMapIcon?.Invoke(flagIconPrefabs[i], new Vector2(flagPositions[i].x, flagPositions[i].z), 1, teamFlags[i], false);
+                    OnMiniMapIcon?.Invoke(flagIconPrefabs[i], new Vector2(flagPositions[i].x, flagPositions[i].z), 1, teamFlags[i].GetComponent<FlagHolder>().thisFlag.gameObject, false);
                 }
             }
 
             controlZoneObject.SetActive(selectedGameMode.HasZones);
-            OnMiniMapIcon?.Invoke(zoneIconPrefab, new Vector2(controlZoneObject.transform.position.x, controlZoneObject.transform.position.z), (int)controlZoneObject.transform.localScale.x / 3, controlZoneObject, true);
-            //Debug.Log($"{selectedGameMode.Name} has zones: {selectedGameMode.HasZones}");
+            if (selectedGameMode.HasZones)
+            {
+                OnMiniMapIcon?.Invoke(zoneIconPrefab, new Vector2(controlZoneObject.transform.position.x, controlZoneObject.transform.position.z), (int)controlZoneObject.transform.localScale.x / 3, controlZoneObject, true);
+            }
 
             if (!selectedGameMode.HasTeams && PhotonNetwork.IsMasterClient)
             {
@@ -774,6 +778,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
                         {
                             //Debug.Log(newTeam.ToString());
                             GameObject newTower = PhotonNetwork.Instantiate(soloSpawnTowerPrefabs[newTeam.Code - 1].name, soloSpawnTowerPositions[soloTowerOrder[i]], Quaternion.identity);
+                            OnMiniMapIcon?.Invoke(towerIconPrefabs[newTeam.Code - 1], new Vector2(towerPositions[soloTowerOrder[i]].x, towerPositions[soloTowerOrder[i]].z), 1, spawnTowers[newTeam.Code - 1], false);
 
                             soloTowers.Add(newTower);
                         }
