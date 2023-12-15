@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2376866083163323928}
   - component: {fileID: 7007574939075279105}
   - component: {fileID: 5473130475181086703}
-  m_Layer: 5
+  m_Layer: 17
   m_Name: FlagIconRed
-  m_TagString: Untagged
+  m_TagString: MINI_MAP_SAFE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 5473130475181086703}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -112,6 +113,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f922cf2fffbd5f4bb95a1debce5a053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 1
+  teamIndex: 0
+  isTank: 0
+  SAFE_TAG: MINI_MAP_SAFE
+  image: {fileID: 422482679713199890}
+  playerName: 
 --- !u!114 &5473130475181086703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,5 +133,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  m_SynchronizeScale: 1
   m_UseLocal: 1

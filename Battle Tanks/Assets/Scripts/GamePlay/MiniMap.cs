@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Net.Security;
 using UnityEngine;
 
 public class MiniMap : MonoBehaviour
@@ -28,24 +29,37 @@ public class MiniMap : MonoBehaviour
 
     [SerializeField] private GameObject[] tankIconPrefab;
 
+    private GameObject localTankToFollow;
+
     private void Start()
     {
-        Initialize(new Vector2(10, 10), 1);
-        edgeScale = 10 * originalWallScale;
-        objectsToUpdate = new Dictionary<GameObject, GameObject>();
-        HandleWalls();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Initialize(new Vector2(10, 10), 1);
+            edgeScale = 10 * originalWallScale;
+            objectsToUpdate = new Dictionary<GameObject, GameObject>();
+            HandleWalls();
+        }
         MapGeneator.OnMiniMapWalls += HandleCells;
         MapGeneator.OnMiniMapIcon += HandleGameModeObjects;
+        Icon.OnTankIconMade += HandleTankIconMade;
     }
 
     private void OnDestroy()
     {
         MapGeneator.OnMiniMapWalls -= HandleCells;
         MapGeneator.OnMiniMapIcon -= HandleGameModeObjects;
+        Icon.OnTankIconMade -= HandleTankIconMade;
     }
 
     private void Update()
     {
+        if (localTankToFollow != null)
+        {
+            Debug.Log(localTankToFollow.transform.localPosition);
+            miniMapContainer.localPosition = new Vector2(-localTankToFollow.transform.localPosition.x * miniMapContainer.transform.localScale.x, -localTankToFollow.transform.localPosition.y * miniMapContainer.transform.localScale.y);
+        }
+
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
         {
             while (FindObjectsOfType<Tank>().Length == PhotonNetwork.CurrentRoom.PlayerCount && !spawnedTankIcons)
@@ -59,12 +73,22 @@ public class MiniMap : MonoBehaviour
                 timeTilNextUpdate -= Time.deltaTime;
                 if (timeTilNextUpdate <= 0)
                 {
-                    Debug.Log("updateObjects");
+                    //Debug.Log("updateObjects");
                     timeTilNextUpdate = updateInterval;
                     UpdateObjects();
                 }
             }
         }
+
+        if (FindObjectsOfType<Tank>().Length == PhotonNetwork.CurrentRoom.PlayerCount && !spawnedTankIcons)
+        {
+            spawnedTankIcons = true;
+        }
+    }
+
+    private void HandleTankIconMade(GameObject obj)
+    {
+        localTankToFollow = obj;
     }
 
     private void UpdateObjects()
@@ -72,25 +96,47 @@ public class MiniMap : MonoBehaviour
         MapCell[] mapCells = FindObjectsOfType<MapCell>();
         foreach (GameObject obj in objectsToUpdate.Keys)
         {
-            MapCell closest = null;
-            foreach (MapCell cell in mapCells)
+            if (obj != null)
             {
-                if (closest == null)
+                MapCell closest = null;
+                foreach (MapCell cell in mapCells)
                 {
-                    closest = cell;
+                    if (closest == null)
+                    {
+                        closest = cell;
+                    }
+                    else if (Vector3.Distance(cell.center.transform.position, obj.transform.position) < Vector3.Distance(closest.center.transform.position, obj.transform.position))
+                    {
+                        closest = cell;
+                    }
                 }
-                else if (Vector3.Distance(cell.center.transform.position, obj.transform.position) < Vector3.Distance(closest.center.transform.position, obj.transform.position))
-                {
-                    closest = cell;
-                }
+                UpdateIcon(objectsToUpdate[obj], closest.position);
             }
-            UpdateIcon(objectsToUpdate[obj], closest.position);
+            else
+            {
+                objectsToUpdate[obj].GetComponent<Icon>().Destroy();
+                objectsToUpdate.Remove(obj);
+            }
         }
+    }
+
+    private Tank GetLocalTank()
+    {
+        Tank[] allTanks = FindObjectsOfType<Tank>();
+        foreach (Tank tank in allTanks)
+        {
+            if (tank.gameObject.GetComponent<PhotonView>().IsMine)
+            {
+                return tank;
+            }
+        }
+
+        return null;
     }
 
     private void UpdateIcon(GameObject icon, Vector2 position)
     {
-        icon.transform.position = new Vector3(position.x * originalWallScale + 40, (9 - position.y) * originalWallScale + 32, 0);
+        icon.transform.localPosition = new Vector3(position.x * originalWallScale + 40, (9 - position.y) * originalWallScale + 32, 0);
     }
 
     private void Initialize(Vector2 gridS, int teamIndex)
@@ -104,8 +150,9 @@ public class MiniMap : MonoBehaviour
         Tank[] allTanks = FindObjectsOfType<Tank>();
         foreach (Tank tank in allTanks)
         {
+            tankIconPrefab[tank.teamIndex - 1].GetComponent<Icon>().Test(tank.gameObject.GetComponent<PhotonView>().Owner.NickName);
             GameObject tankIcon = PhotonNetwork.Instantiate(tankIconPrefab[tank.teamIndex - 1].name, miniMapContainer.position, Quaternion.identity);
-            Debug.Log("handleTanks");
+            //Debug.Log("handleTanks");
             objectsToUpdate.Add(tank.gameObject, tankIcon);
             //tankIcon.transform.SetParent(miniMapContainer);
         }
@@ -175,7 +222,7 @@ public class MiniMap : MonoBehaviour
 
     private void HandleCells(List<MapGeneator.WallInfo> allWalls)
     {
-        Debug.Log("handle cells");
+        //Debug.Log("handle cells");
         List<MapGeneator.WallInfo> cells = allWalls;
 
         foreach (MapGeneator.WallInfo wallInfo in cells)

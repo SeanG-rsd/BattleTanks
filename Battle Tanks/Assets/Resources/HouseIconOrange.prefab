@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -9123836387080224473}
   m_Layer: 5
   m_Name: HouseIconOrange
-  m_TagString: Untagged
+  m_TagString: MiniMapOrange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +96,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: -9123836387080224473}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -112,6 +113,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f922cf2fffbd5f4bb95a1debce5a053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scale: 1
+  teamIndex: 0
+  SAFE_TAG: MINI_MAP_SAFE
+  image: {fileID: 8079096073586394830}
 --- !u!114 &-9123836387080224473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,5 +131,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
+  m_SynchronizeScale: 1
   m_UseLocal: 1
