@@ -31,6 +31,12 @@ public class MiniMap : MonoBehaviour
 
     private GameObject localTankToFollow;
 
+    private List<GameObject> indicators;
+    [SerializeField] private GameObject indicatorPrefab;
+    [SerializeField] private Transform indicatorContainer;
+
+    private float indicatorVisibilityRange;
+
     private void Start()
     {
         if (PhotonNetwork.IsMasterClient)
@@ -40,9 +46,12 @@ public class MiniMap : MonoBehaviour
             objectsToUpdate = new Dictionary<GameObject, GameObject>();
             HandleWalls();
         }
+        indicatorVisibilityRange = miniMapContainer.gameObject.GetComponent<RectTransform>().rect.width / 2;
         MapGeneator.OnMiniMapWalls += HandleCells;
         MapGeneator.OnMiniMapIcon += HandleGameModeObjects;
         Icon.OnTankIconMade += HandleTankIconMade;
+        Icon.OnMakeLocalIndicator += HandleIndicatorMade;
+        
     }
 
     private void OnDestroy()
@@ -50,6 +59,7 @@ public class MiniMap : MonoBehaviour
         MapGeneator.OnMiniMapWalls -= HandleCells;
         MapGeneator.OnMiniMapIcon -= HandleGameModeObjects;
         Icon.OnTankIconMade -= HandleTankIconMade;
+        Icon.OnMakeLocalIndicator -= HandleIndicatorMade;
     }
 
     private void Update()
@@ -58,6 +68,7 @@ public class MiniMap : MonoBehaviour
         {
             Debug.Log(localTankToFollow.transform.localPosition);
             miniMapContainer.localPosition = new Vector2(-localTankToFollow.transform.localPosition.x * miniMapContainer.transform.localScale.x, -localTankToFollow.transform.localPosition.y * miniMapContainer.transform.localScale.y);
+            //UpdateIndicators();
         }
 
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
@@ -91,6 +102,31 @@ public class MiniMap : MonoBehaviour
         localTankToFollow = obj;
     }
 
+    private void HandleIndicatorMade(Sprite s, Color c, GameObject icon)
+    {
+        GameObject indicator = Instantiate(indicatorPrefab, indicatorContainer);
+        indicator.GetComponent<MiniMapIndicator>().SetIcon(s, c, icon);
+
+        indicators.Add(indicator);
+    }
+
+    private void UpdateIndicators()
+    {
+        foreach (GameObject indicator in indicators)
+        {
+            GameObject icon = indicator.GetComponent<MiniMapIndicator>().icon;
+            if (Vector3.Distance(icon.transform.localPosition, localTankToFollow.transform.localPosition) < indicatorVisibilityRange)
+            {
+                indicator.SetActive(false);
+            }
+            else
+            {
+                indicator.SetActive(true);
+                
+            }
+        }
+    }
+
     private void UpdateObjects()
     {
         MapCell[] mapCells = FindObjectsOfType<MapCell>();
@@ -120,20 +156,6 @@ public class MiniMap : MonoBehaviour
         }
     }
 
-    private Tank GetLocalTank()
-    {
-        Tank[] allTanks = FindObjectsOfType<Tank>();
-        foreach (Tank tank in allTanks)
-        {
-            if (tank.gameObject.GetComponent<PhotonView>().IsMine)
-            {
-                return tank;
-            }
-        }
-
-        return null;
-    }
-
     private void UpdateIcon(GameObject icon, Vector2 position)
     {
         icon.transform.localPosition = new Vector3(position.x * originalWallScale + 40, (9 - position.y) * originalWallScale + 32, 0);
@@ -150,8 +172,7 @@ public class MiniMap : MonoBehaviour
         Tank[] allTanks = FindObjectsOfType<Tank>();
         foreach (Tank tank in allTanks)
         {
-            tankIconPrefab[tank.teamIndex - 1].GetComponent<Icon>().Test(tank.gameObject.GetComponent<PhotonView>().Owner.NickName);
-            GameObject tankIcon = PhotonNetwork.Instantiate(tankIconPrefab[tank.teamIndex - 1].name, miniMapContainer.position, Quaternion.identity);
+            GameObject tankIcon = PhotonNetwork.Instantiate(tankIconPrefab[tank.teamIndex - 1].name, miniMapContainer.position, Quaternion.identity, 0, new object[] { tank.GetComponent<PhotonView>().Owner, tankIconPrefab[tank.teamIndex - 1].transform.localScale.x}); // who is the owner of the tank its following, is it an indicator on the map
             //Debug.Log("handleTanks");
             objectsToUpdate.Add(tank.gameObject, tankIcon);
             //tankIcon.transform.SetParent(miniMapContainer);
@@ -169,7 +190,7 @@ public class MiniMap : MonoBehaviour
             {
                 for (int count = 0; count < gridSize.x; ++count)
                 {
-                    GameObject newWall = PhotonNetwork.Instantiate(wallPrefab.name, miniMapContainer.position, Quaternion.identity);
+                    GameObject newWall = PhotonNetwork.Instantiate(wallPrefab.name, miniMapContainer.position, Quaternion.identity, 0, new object[] { PhotonNetwork.LocalPlayer, wallPrefab.transform.localScale.x * miniMapContainer.localScale.x });
 
                     //Vector3 newWallScale = new Vector3(originalWallScale * gridSize.x, newWall.transform.localScale.y, newWall.transform.localScale.z);
                     //newWall.transform.localScale = newWallScale;
@@ -230,7 +251,7 @@ public class MiniMap : MonoBehaviour
             Debug.Log(wallInfo.ToString());
             if (IsWithinBounds(wallInfo.position))
             {
-                GameObject newWall = PhotonNetwork.Instantiate(wallPrefab.name, miniMapContainer.position, Quaternion.identity);
+                GameObject newWall = PhotonNetwork.Instantiate(wallPrefab.name, miniMapContainer.position, Quaternion.identity, 0, new object[] { PhotonNetwork.LocalPlayer, wallPrefab.transform.localScale.x * miniMapContainer.localScale.x });
                 Vector3 newWallPos = new Vector3(originalWallScale * (wallInfo.position.x + 1), originalWallScale * (9 - wallInfo.position.y), 0);
 
                 if (wallInfo.orientation == WallType.WallOrientation.Horizontal)
@@ -252,7 +273,7 @@ public class MiniMap : MonoBehaviour
         int column = (int)((position.x - 1.5) / 3) + 6;
         int row = (int)((position.y - 1.5) / 3) + 6;
         Debug.Log(row + " " + column);
-        GameObject icon = PhotonNetwork.Instantiate(iconPrefab.name, miniMapContainer.position, Quaternion.identity);
+        GameObject icon = PhotonNetwork.Instantiate(iconPrefab.name, miniMapContainer.position, Quaternion.identity, 0, new object[] { PhotonNetwork.LocalPlayer, scale});
 
         //icon.transform.SetParent(miniMapContainer);
         if (!isZone)

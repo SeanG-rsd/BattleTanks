@@ -9,6 +9,7 @@ ScriptsOnlyBuild:
     - MapCell
     - MapWall
     - SoloScore
+    - SoundTimer
     - StayOnLeave
     - Tank
     - TankHealth
@@ -53,6 +54,7 @@ ScriptsOnlyBuild:
     - RoundManager
     - SceneController
     - SoloScore
+    - SoundTimer
     - SpawnPlayers
     - StayOnLeave
     - Tank
@@ -98,6 +100,10 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PhotonTransformViewClassicEditor
+    - Photon.Pun.PhotonViewInspector
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.Utilities.dll:
     - Photon.Pun.UtilityScripts.PhotonTeamsManager
     PhotonUnityNetworking.dll:
@@ -106,8 +112,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.PhotonView
     - Photon.Pun.ServerSettings
     PlayFab:
-    - PlayFabSharedSettings
-    PlayFab.dll:
     - PlayFabSharedSettings
     PlayFabEditorExtensions.dll:
     - PlayFab.PfEditor.PlayFabEditorPrefsSO
@@ -299,191 +303,191 @@ ScriptsOnlyBuild:
     fullTypeName: PlayfabLogin
     methodName: RememberMe
   - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: UIRoomItem
     methodName: OnClickItem
   - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIFriend
-    methodName: RemoveFriend
-  - assembly: Assembly-CSharp
     fullTypeName: UITeam
     methodName: SwitchToTeam
   - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
+    fullTypeName: UIFriend
+    methodName: InviteFriend
   - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
+    fullTypeName: UIFriend
+    methodName: RemoveFriend
   - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
   - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIInvite
     methodName: DeclineInvite
@@ -496,24 +500,24 @@ ScriptsOnlyBuild:
   - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: InviteFriend
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: AcceptInvite
-  - assembly: Assembly-CSharp
-    fullTypeName: UIInvite
-    methodName: DeclineInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIRoomItem
     methodName: OnClickItem
   - assembly: Assembly-CSharp
+    fullTypeName: UITeam
+    methodName: SwitchToTeam
+  - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: InviteFriend
   - assembly: Assembly-CSharp
     fullTypeName: UIFriend
     methodName: RemoveFriend
   - assembly: Assembly-CSharp
-    fullTypeName: UITeam
-    methodName: SwitchToTeam
+    fullTypeName: UIInvite
+    methodName: AcceptInvite
+  - assembly: Assembly-CSharp
+    fullTypeName: UIInvite
+    methodName: DeclineInvite
   - assembly: Assembly-CSharp
     fullTypeName: UIDisplayRoom
     methodName: LeaveRoom
@@ -567,70 +571,7 @@ ScriptsOnlyBuild:
     methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
-  - assembly: Assembly-CSharp
-    fullTypeName: TankScoreboard
-    methodName: TurnOffUI
+    methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOffUI
@@ -639,70 +580,133 @@ ScriptsOnlyBuild:
     methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
-    methodName: TurnOnScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOnScoreboard
+  - assembly: Assembly-CSharp
+    fullTypeName: TankScoreboard
+    methodName: TurnOffUI
   - assembly: Assembly-CSharp
     fullTypeName: TankScoreboard
     methodName: TurnOnScoreboard
@@ -740,6 +744,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 84
       Script: {instanceID: 0}
     - Class: 89
@@ -749,117 +757,119 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 16704}
+    - Class: 114
       Script: {instanceID: 16708}
+    - Class: 114
+      Script: {instanceID: 16710}
     - Class: 114
       Script: {instanceID: 16712}
     - Class: 114
-      Script: {instanceID: 16714}
+      Script: {instanceID: 16768}
     - Class: 114
-      Script: {instanceID: 16716}
+      Script: {instanceID: 16822}
     - Class: 114
-      Script: {instanceID: 16772}
+      Script: {instanceID: 17138}
     - Class: 114
-      Script: {instanceID: 16826}
+      Script: {instanceID: 17632}
     - Class: 114
-      Script: {instanceID: 17142}
+      Script: {instanceID: 17690}
     - Class: 114
-      Script: {instanceID: 17636}
+      Script: {instanceID: 17794}
     - Class: 114
-      Script: {instanceID: 17694}
+      Script: {instanceID: 18094}
     - Class: 114
-      Script: {instanceID: 17798}
+      Script: {instanceID: 18338}
     - Class: 114
-      Script: {instanceID: 18098}
+      Script: {instanceID: 18370}
     - Class: 114
-      Script: {instanceID: 18342}
+      Script: {instanceID: 18418}
     - Class: 114
-      Script: {instanceID: 18374}
+      Script: {instanceID: 18596}
     - Class: 114
-      Script: {instanceID: 18422}
+      Script: {instanceID: 18742}
     - Class: 114
-      Script: {instanceID: 18600}
+      Script: {instanceID: 19146}
     - Class: 114
-      Script: {instanceID: 18746}
+      Script: {instanceID: 19282}
     - Class: 114
-      Script: {instanceID: 19150}
+      Script: {instanceID: 19422}
     - Class: 114
-      Script: {instanceID: 19286}
+      Script: {instanceID: 19512}
     - Class: 114
-      Script: {instanceID: 19426}
+      Script: {instanceID: 19714}
     - Class: 114
-      Script: {instanceID: 19516}
+      Script: {instanceID: 19812}
     - Class: 114
-      Script: {instanceID: 19718}
+      Script: {instanceID: 20010}
     - Class: 114
-      Script: {instanceID: 19816}
+      Script: {instanceID: 20260}
     - Class: 114
-      Script: {instanceID: 20014}
+      Script: {instanceID: 20696}
     - Class: 114
-      Script: {instanceID: 20264}
+      Script: {instanceID: 20856}
     - Class: 114
-      Script: {instanceID: 20700}
+      Script: {instanceID: 20864}
     - Class: 114
-      Script: {instanceID: 20860}
+      Script: {instanceID: 20966}
     - Class: 114
-      Script: {instanceID: 20868}
+      Script: {instanceID: 21000}
     - Class: 114
-      Script: {instanceID: 20970}
+      Script: {instanceID: 21002}
     - Class: 114
-      Script: {instanceID: 21004}
+      Script: {instanceID: 21112}
     - Class: 114
-      Script: {instanceID: 21006}
+      Script: {instanceID: 21184}
     - Class: 114
-      Script: {instanceID: 21116}
+      Script: {instanceID: 21262}
     - Class: 114
-      Script: {instanceID: 21188}
+      Script: {instanceID: 21268}
     - Class: 114
-      Script: {instanceID: 21266}
+      Script: {instanceID: 21408}
     - Class: 114
-      Script: {instanceID: 21272}
+      Script: {instanceID: 21696}
     - Class: 114
-      Script: {instanceID: 21412}
+      Script: {instanceID: 21972}
     - Class: 114
-      Script: {instanceID: 21700}
+      Script: {instanceID: 22154}
     - Class: 114
-      Script: {instanceID: 21976}
+      Script: {instanceID: 22254}
     - Class: 114
-      Script: {instanceID: 22158}
+      Script: {instanceID: 22424}
     - Class: 114
-      Script: {instanceID: 22258}
+      Script: {instanceID: 22562}
     - Class: 114
-      Script: {instanceID: 22428}
+      Script: {instanceID: 23040}
     - Class: 114
-      Script: {instanceID: 22566}
+      Script: {instanceID: 23054}
     - Class: 114
-      Script: {instanceID: 23044}
+      Script: {instanceID: 23104}
     - Class: 114
-      Script: {instanceID: 23058}
+      Script: {instanceID: 23384}
     - Class: 114
-      Script: {instanceID: 23108}
+      Script: {instanceID: 23602}
     - Class: 114
-      Script: {instanceID: 23388}
+      Script: {instanceID: 23900}
     - Class: 114
-      Script: {instanceID: 23606}
+      Script: {instanceID: 24048}
     - Class: 114
-      Script: {instanceID: 23904}
+      Script: {instanceID: 24274}
     - Class: 114
-      Script: {instanceID: 24052}
+      Script: {instanceID: 24372}
     - Class: 114
-      Script: {instanceID: 24278}
+      Script: {instanceID: 24432}
     - Class: 114
-      Script: {instanceID: 24376}
+      Script: {instanceID: 24446}
     - Class: 114
-      Script: {instanceID: 24436}
+      Script: {instanceID: 24768}
     - Class: 114
-      Script: {instanceID: 24450}
+      Script: {instanceID: 24810}
     - Class: 114
-      Script: {instanceID: 24772}
+      Script: {instanceID: 24876}
     - Class: 114
-      Script: {instanceID: 24814}
+      Script: {instanceID: 24898}
     - Class: 114
-      Script: {instanceID: 24880}
-    - Class: 114
-      Script: {instanceID: 24902}
+      Script: {instanceID: 29382}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -915,6 +925,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 84
       Script: {instanceID: 0}
     - Class: 89
@@ -930,145 +944,147 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 16704}
+    - Class: 114
+      Script: {instanceID: 16706}
+    - Class: 114
       Script: {instanceID: 16708}
     - Class: 114
       Script: {instanceID: 16710}
     - Class: 114
       Script: {instanceID: 16712}
     - Class: 114
-      Script: {instanceID: 16714}
+      Script: {instanceID: 16768}
     - Class: 114
-      Script: {instanceID: 16716}
+      Script: {instanceID: 16820}
     - Class: 114
-      Script: {instanceID: 16772}
+      Script: {instanceID: 17032}
     - Class: 114
-      Script: {instanceID: 16824}
+      Script: {instanceID: 17058}
     - Class: 114
-      Script: {instanceID: 17036}
+      Script: {instanceID: 17138}
     - Class: 114
-      Script: {instanceID: 17062}
+      Script: {instanceID: 17438}
     - Class: 114
-      Script: {instanceID: 17142}
+      Script: {instanceID: 17520}
     - Class: 114
-      Script: {instanceID: 17442}
+      Script: {instanceID: 17632}
     - Class: 114
-      Script: {instanceID: 17524}
+      Script: {instanceID: 17690}
     - Class: 114
-      Script: {instanceID: 17636}
+      Script: {instanceID: 17794}
     - Class: 114
-      Script: {instanceID: 17694}
+      Script: {instanceID: 18094}
     - Class: 114
-      Script: {instanceID: 17798}
+      Script: {instanceID: 18338}
     - Class: 114
-      Script: {instanceID: 18098}
+      Script: {instanceID: 18370}
     - Class: 114
-      Script: {instanceID: 18342}
+      Script: {instanceID: 18394}
     - Class: 114
-      Script: {instanceID: 18374}
+      Script: {instanceID: 18486}
     - Class: 114
-      Script: {instanceID: 18398}
+      Script: {instanceID: 18506}
     - Class: 114
-      Script: {instanceID: 18490}
+      Script: {instanceID: 18596}
     - Class: 114
-      Script: {instanceID: 18510}
+      Script: {instanceID: 18742}
     - Class: 114
-      Script: {instanceID: 18600}
+      Script: {instanceID: 19146}
     - Class: 114
-      Script: {instanceID: 18746}
+      Script: {instanceID: 19282}
     - Class: 114
-      Script: {instanceID: 19150}
+      Script: {instanceID: 19422}
     - Class: 114
-      Script: {instanceID: 19286}
+      Script: {instanceID: 19506}
     - Class: 114
-      Script: {instanceID: 19426}
+      Script: {instanceID: 19512}
     - Class: 114
-      Script: {instanceID: 19510}
+      Script: {instanceID: 19648}
     - Class: 114
-      Script: {instanceID: 19516}
+      Script: {instanceID: 19654}
     - Class: 114
-      Script: {instanceID: 19652}
+      Script: {instanceID: 19714}
     - Class: 114
-      Script: {instanceID: 19658}
+      Script: {instanceID: 19726}
     - Class: 114
-      Script: {instanceID: 19718}
+      Script: {instanceID: 19876}
     - Class: 114
-      Script: {instanceID: 19730}
+      Script: {instanceID: 20046}
     - Class: 114
-      Script: {instanceID: 19880}
+      Script: {instanceID: 20358}
     - Class: 114
-      Script: {instanceID: 20050}
+      Script: {instanceID: 20696}
     - Class: 114
-      Script: {instanceID: 20362}
+      Script: {instanceID: 20820}
     - Class: 114
-      Script: {instanceID: 20700}
+      Script: {instanceID: 20864}
     - Class: 114
-      Script: {instanceID: 20824}
+      Script: {instanceID: 20876}
     - Class: 114
-      Script: {instanceID: 20868}
+      Script: {instanceID: 20966}
     - Class: 114
-      Script: {instanceID: 20880}
+      Script: {instanceID: 21094}
     - Class: 114
-      Script: {instanceID: 20970}
+      Script: {instanceID: 21112}
     - Class: 114
-      Script: {instanceID: 21098}
+      Script: {instanceID: 21170}
     - Class: 114
-      Script: {instanceID: 21116}
+      Script: {instanceID: 21184}
     - Class: 114
-      Script: {instanceID: 21174}
+      Script: {instanceID: 21190}
     - Class: 114
-      Script: {instanceID: 21188}
+      Script: {instanceID: 21262}
     - Class: 114
-      Script: {instanceID: 21194}
+      Script: {instanceID: 21268}
     - Class: 114
-      Script: {instanceID: 21266}
-    - Class: 114
-      Script: {instanceID: 21272}
+      Script: {instanceID: 21688}
     - Class: 114
       Script: {instanceID: 21692}
     - Class: 114
-      Script: {instanceID: 21696}
+      Script: {instanceID: 21744}
     - Class: 114
-      Script: {instanceID: 21748}
+      Script: {instanceID: 21972}
     - Class: 114
-      Script: {instanceID: 21976}
+      Script: {instanceID: 22154}
     - Class: 114
-      Script: {instanceID: 22158}
+      Script: {instanceID: 22254}
     - Class: 114
-      Script: {instanceID: 22258}
+      Script: {instanceID: 22424}
     - Class: 114
-      Script: {instanceID: 22428}
+      Script: {instanceID: 22562}
     - Class: 114
-      Script: {instanceID: 22566}
+      Script: {instanceID: 22572}
     - Class: 114
-      Script: {instanceID: 22576}
+      Script: {instanceID: 23054}
     - Class: 114
-      Script: {instanceID: 23058}
+      Script: {instanceID: 23104}
     - Class: 114
-      Script: {instanceID: 23108}
+      Script: {instanceID: 23296}
     - Class: 114
-      Script: {instanceID: 23300}
+      Script: {instanceID: 23384}
     - Class: 114
-      Script: {instanceID: 23388}
+      Script: {instanceID: 23900}
     - Class: 114
-      Script: {instanceID: 23904}
+      Script: {instanceID: 23936}
     - Class: 114
-      Script: {instanceID: 23940}
+      Script: {instanceID: 24048}
     - Class: 114
-      Script: {instanceID: 24052}
+      Script: {instanceID: 24322}
     - Class: 114
-      Script: {instanceID: 24326}
+      Script: {instanceID: 24372}
     - Class: 114
-      Script: {instanceID: 24376}
+      Script: {instanceID: 24446}
     - Class: 114
-      Script: {instanceID: 24450}
+      Script: {instanceID: 24526}
     - Class: 114
-      Script: {instanceID: 24530}
+      Script: {instanceID: 24768}
     - Class: 114
-      Script: {instanceID: 24772}
+      Script: {instanceID: 24810}
     - Class: 114
-      Script: {instanceID: 24814}
+      Script: {instanceID: 24908}
     - Class: 114
-      Script: {instanceID: 24912}
+      Script: {instanceID: 29382}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1135,103 +1151,103 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
+      Script: {instanceID: 16704}
+    - Class: 114
       Script: {instanceID: 16708}
+    - Class: 114
+      Script: {instanceID: 16710}
     - Class: 114
       Script: {instanceID: 16712}
     - Class: 114
-      Script: {instanceID: 16714}
+      Script: {instanceID: 16728}
     - Class: 114
-      Script: {instanceID: 16716}
+      Script: {instanceID: 17058}
     - Class: 114
-      Script: {instanceID: 16732}
+      Script: {instanceID: 17438}
     - Class: 114
-      Script: {instanceID: 17062}
+      Script: {instanceID: 17690}
     - Class: 114
-      Script: {instanceID: 17442}
+      Script: {instanceID: 17794}
     - Class: 114
-      Script: {instanceID: 17694}
+      Script: {instanceID: 17858}
     - Class: 114
-      Script: {instanceID: 17798}
+      Script: {instanceID: 18094}
     - Class: 114
-      Script: {instanceID: 17862}
+      Script: {instanceID: 18268}
     - Class: 114
-      Script: {instanceID: 18098}
+      Script: {instanceID: 18338}
     - Class: 114
-      Script: {instanceID: 18272}
+      Script: {instanceID: 18486}
     - Class: 114
-      Script: {instanceID: 18342}
+      Script: {instanceID: 18506}
     - Class: 114
-      Script: {instanceID: 18490}
+      Script: {instanceID: 18632}
     - Class: 114
-      Script: {instanceID: 18510}
+      Script: {instanceID: 18850}
     - Class: 114
-      Script: {instanceID: 18636}
+      Script: {instanceID: 18950}
     - Class: 114
-      Script: {instanceID: 18854}
+      Script: {instanceID: 19012}
     - Class: 114
-      Script: {instanceID: 18954}
+      Script: {instanceID: 19024}
     - Class: 114
-      Script: {instanceID: 19016}
+      Script: {instanceID: 19400}
     - Class: 114
-      Script: {instanceID: 19028}
+      Script: {instanceID: 19700}
     - Class: 114
-      Script: {instanceID: 19404}
+      Script: {instanceID: 19714}
     - Class: 114
-      Script: {instanceID: 19704}
+      Script: {instanceID: 19726}
     - Class: 114
-      Script: {instanceID: 19718}
+      Script: {instanceID: 19852}
     - Class: 114
-      Script: {instanceID: 19730}
+      Script: {instanceID: 20030}
     - Class: 114
-      Script: {instanceID: 19856}
+      Script: {instanceID: 20820}
     - Class: 114
-      Script: {instanceID: 20034}
+      Script: {instanceID: 20864}
     - Class: 114
-      Script: {instanceID: 20824}
+      Script: {instanceID: 20876}
     - Class: 114
-      Script: {instanceID: 20868}
+      Script: {instanceID: 21002}
     - Class: 114
-      Script: {instanceID: 20880}
+      Script: {instanceID: 21012}
     - Class: 114
-      Script: {instanceID: 21006}
+      Script: {instanceID: 21262}
     - Class: 114
-      Script: {instanceID: 21016}
+      Script: {instanceID: 21382}
     - Class: 114
-      Script: {instanceID: 21266}
+      Script: {instanceID: 21488}
     - Class: 114
-      Script: {instanceID: 21386}
+      Script: {instanceID: 21972}
     - Class: 114
-      Script: {instanceID: 21492}
+      Script: {instanceID: 22154}
     - Class: 114
-      Script: {instanceID: 21976}
+      Script: {instanceID: 22254}
     - Class: 114
-      Script: {instanceID: 22158}
+      Script: {instanceID: 22562}
     - Class: 114
-      Script: {instanceID: 22258}
+      Script: {instanceID: 22576}
     - Class: 114
-      Script: {instanceID: 22566}
+      Script: {instanceID: 23104}
     - Class: 114
-      Script: {instanceID: 22580}
+      Script: {instanceID: 23152}
     - Class: 114
-      Script: {instanceID: 23108}
+      Script: {instanceID: 23858}
     - Class: 114
-      Script: {instanceID: 23156}
+      Script: {instanceID: 23940}
     - Class: 114
-      Script: {instanceID: 23862}
+      Script: {instanceID: 23962}
     - Class: 114
-      Script: {instanceID: 23944}
+      Script: {instanceID: 23988}
     - Class: 114
-      Script: {instanceID: 23966}
+      Script: {instanceID: 24132}
     - Class: 114
-      Script: {instanceID: 23992}
+      Script: {instanceID: 24368}
     - Class: 114
-      Script: {instanceID: 24136}
+      Script: {instanceID: 24810}
     - Class: 114
-      Script: {instanceID: 24372}
-    - Class: 114
-      Script: {instanceID: 24814}
-    - Class: 114
-      Script: {instanceID: 24880}
+      Script: {instanceID: 24876}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -1537,7 +1553,7 @@ ScriptsOnlyBuild:
     className: ScoreHelper
   - hash:
       serializedVersion: 2
-      Hash: 40d658a15d8e0a29719024c92211acd0
+      Hash: a14838e3a71255fd2866616240e18e6b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Tank
@@ -1747,7 +1763,7 @@ ScriptsOnlyBuild:
     className: LoaderAnime
   - hash:
       serializedVersion: 2
-      Hash: 459a8d61698d5e8d14741f7c6bf0b1ea
+      Hash: edd75fcf0850fe030ee45b0c7850888b
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Icon
@@ -3887,6 +3903,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 51b80e5c535bc81a9024314bf09c2a52
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: SoundTimer
   platform: 19
   scenePathNames:
   - Assets/Scenes/Login.unity

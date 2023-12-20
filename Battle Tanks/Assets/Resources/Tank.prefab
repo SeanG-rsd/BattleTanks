@@ -882,6 +882,7 @@ MonoBehaviour:
   respawnTimerText: {fileID: 794215651848533012}
   tankCanvas: {fileID: 3134476282527371099}
   selectedGameMode: {fileID: 0}
+  hitSoundPrefab: {fileID: 478788018186127668, guid: 184664ffa58e3c24599f08d055ef3369, type: 3}
 --- !u!114 &135423643658222084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1009,6 +1010,7 @@ GameObject:
   - component: {fileID: 8490421800090512792}
   - component: {fileID: 6456482504309557403}
   - component: {fileID: 6026106761678842269}
+  - component: {fileID: 6625890049747608390}
   m_Layer: 19
   m_Name: Camera
   m_TagString: Player
@@ -1182,6 +1184,14 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   priority: 0
+--- !u!81 &6625890049747608390
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2298396749765172084}
+  m_Enabled: 1
 --- !u!1 &2298396751311542821
 GameObject:
   m_ObjectHideFlags: 0

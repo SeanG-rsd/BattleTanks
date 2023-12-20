@@ -64,6 +64,8 @@ public class Tank : MonoBehaviourPunCallbacks
 
     LeaveGame leaveGame;
 
+    [SerializeField] private GameObject hitSoundPrefab;
+
     private void Awake()
     {
         mapGenerator = FindObjectOfType<MapGeneator>().gameObject;
@@ -342,6 +344,7 @@ public class Tank : MonoBehaviourPunCallbacks
                 nonHit = true;
                 nonHitTimer = nonHitTime;
                 tankHealth.ChangeHealth(-collision.gameObject.GetComponent<Bullet>().damage);
+                PhotonNetwork.Instantiate(hitSoundPrefab.name, transform.position, Quaternion.identity);
 
                 if (collision.gameObject.GetComponent<PhotonView>() != null)
                 {
