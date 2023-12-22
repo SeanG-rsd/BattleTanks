@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Net.Security;
+using UnityEditor;
 using UnityEngine;
 
 public class MiniMap : MonoBehaviour
@@ -36,6 +37,7 @@ public class MiniMap : MonoBehaviour
     [SerializeField] private Transform indicatorContainer;
 
     private float indicatorVisibilityRange;
+    private float miniMapContainerScale;
 
     private void Start()
     {
@@ -46,7 +48,9 @@ public class MiniMap : MonoBehaviour
             objectsToUpdate = new Dictionary<GameObject, GameObject>();
             HandleWalls();
         }
-        indicatorVisibilityRange = miniMapContainer.gameObject.GetComponent<RectTransform>().rect.width / 2;
+        indicatorVisibilityRange = miniMapContainer.parent.gameObject.GetComponent<RectTransform>().rect.width / 2;
+        miniMapContainerScale = miniMapContainer.localScale.x;
+        indicators = new List<GameObject>();
         MapGeneator.OnMiniMapWalls += HandleCells;
         MapGeneator.OnMiniMapIcon += HandleGameModeObjects;
         Icon.OnTankIconMade += HandleTankIconMade;
@@ -66,9 +70,9 @@ public class MiniMap : MonoBehaviour
     {
         if (localTankToFollow != null)
         {
-            Debug.Log(localTankToFollow.transform.localPosition);
+            //Debug.Log(localTankToFollow.transform.localPosition);
             miniMapContainer.localPosition = new Vector2(-localTankToFollow.transform.localPosition.x * miniMapContainer.transform.localScale.x, -localTankToFollow.transform.localPosition.y * miniMapContainer.transform.localScale.y);
-            //UpdateIndicators();
+            UpdateIndicators();
         }
 
         if (PhotonNetwork.LocalPlayer.IsMasterClient)
@@ -104,25 +108,58 @@ public class MiniMap : MonoBehaviour
 
     private void HandleIndicatorMade(Sprite s, Color c, GameObject icon)
     {
-        GameObject indicator = Instantiate(indicatorPrefab, indicatorContainer);
-        indicator.GetComponent<MiniMapIndicator>().SetIcon(s, c, icon);
+        GameObject indicator = Instantiate(indicatorPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+        if (indicator != null)
+        {
+            Debug.Log(icon.name);
+            indicator.GetComponent<MiniMapIndicator>().SetIcon(s, c, icon);
+            //indicator.transform.SetParent(indicatorContainer);
 
-        indicators.Add(indicator);
+            indicators.Add(indicator);
+        }
     }
 
     private void UpdateIndicators()
     {
+        Debug.Log(indicatorVisibilityRange);
         foreach (GameObject indicator in indicators)
         {
-            GameObject icon = indicator.GetComponent<MiniMapIndicator>().icon;
-            if (Vector3.Distance(icon.transform.localPosition, localTankToFollow.transform.localPosition) < indicatorVisibilityRange)
+            if (indicator != null)
             {
-                indicator.SetActive(false);
-            }
-            else
-            {
-                indicator.SetActive(true);
-                
+                GameObject icon = indicator.GetComponent<MiniMapIndicator>().icon;
+   
+                if (Vector3.Distance(icon.transform.localPosition, localTankToFollow.transform.localPosition) < indicatorVisibilityRange / miniMapContainerScale)
+                {
+                    indicator.SetActive(false);
+                }
+                else
+                {
+                    indicator.SetActive(true);
+
+                    float changeInX = (icon.transform.localPosition.x - localTankToFollow.transform.localPosition.x) / miniMapContainerScale;
+                    float changeInY = (icon.transform.localPosition.y - localTankToFollow.transform.localPosition.y) / miniMapContainerScale;
+                    Debug.Log($"x : {changeInX}, y : {changeInY}");
+
+                    if (changeInX == 0)
+                    {
+                        indicator.transform.localPosition = new Vector3(0, indicatorVisibilityRange * (changeInY > 0 ? 1 : -1), 0);
+                        Debug.Log("to the right");
+                    }
+                    else if (changeInY == 0)
+                    {
+                        indicator.transform.localPosition = new Vector3(indicatorVisibilityRange * (changeInX > 0 ? 1 : -1), 0, 0);
+                        Debug.Log("to the left");
+                    }
+                    else
+                    {
+                        float slope = changeInY / changeInX;
+                        float x = Mathf.Sqrt(indicatorVisibilityRange * indicatorVisibilityRange / (1 + (slope * slope)));
+                        float y = slope * x * (slope > 0 ? 1 : -1);
+                        Debug.Log($"x : {x}, y : {y}");
+
+                        indicator.transform.localPosition = new Vector3(x * (changeInX > 0 ? 1 : -1), y * (changeInY > 0 ? 1 : -1), 0);
+                    }
+                }
             }
         }
     }
@@ -280,6 +317,7 @@ public class MiniMap : MonoBehaviour
         {
             Vector3 iconPosition = new Vector3(originalWallScale * (column) - 40, originalWallScale * (row - 1) + 32, 0);
             icon.transform.localPosition = iconPosition;
+            objectsToUpdate.Add(objectToFollow, icon);
         }
         else
         {
@@ -287,7 +325,6 @@ public class MiniMap : MonoBehaviour
             icon.transform.localPosition = iconPosition;
         }
         icon.transform.localScale = new Vector3(scale, scale, scale);
-        objectsToUpdate.Add(objectToFollow, icon);
     }
 
     private bool IsWithinBounds(Vector2 pos)

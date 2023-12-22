@@ -39,6 +39,11 @@ public class Icon : MonoBehaviour
         MiniMap miniMap = FindObjectOfType<MiniMap>();
         transform.SetParent(miniMap.miniMapContainer);
 
+        if (PhotonNetwork.IsMasterClient)
+        {
+            transform.localScale = new Vector3(scale, scale, scale);
+        }
+
         localPlayerTag = "MiniMap" + PhotonNetwork.LocalPlayer.GetPhotonTeam().Name;
 
         SetActive();
@@ -58,15 +63,15 @@ public class Icon : MonoBehaviour
                 {
                     OnTankIconMade?.Invoke(gameObject);
                 }
-                else if (iconType == IconType.Tank)
+                else if (iconType == IconType.Tank || iconType == IconType.Tower)
                 {
-                   // OnMakeLocalIndicator?.Invoke(GetComponent<Image>().sprite, GetComponent<Image>().color, gameObject);
+                   OnMakeLocalIndicator?.Invoke(GetComponent<Image>().sprite, GetComponent<Image>().color, gameObject);
                 }
             }
         }
-        else
+        else if (iconType != IconType.Wall && (gameObject.tag == SAFE_TAG || localPlayerTag == gameObject.tag))
         {
-            //OnMakeLocalIndicator?.Invoke(GetComponent<Image>().sprite, GetComponent<Image>().color, gameObject);
+            OnMakeLocalIndicator?.Invoke(GetComponent<Image>().sprite, GetComponent<Image>().color, gameObject);
         }
     }
 

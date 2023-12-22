@@ -7,7 +7,12 @@ public class MiniMapIndicator : MonoBehaviour
 {
     [SerializeField] private Image iconVisual;
     public GameObject icon;
-    
+
+    private void Awake()
+    {
+        transform.SetParent(GameObject.Find("IndicatorContainer").transform);   
+    }
+
     public void SetIcon(Sprite s, Color c, GameObject icon)
     {
         iconVisual.sprite = s;
