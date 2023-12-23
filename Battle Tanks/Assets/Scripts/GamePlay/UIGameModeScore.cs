@@ -49,7 +49,7 @@ public class UIGameModeScore : MonoBehaviourPunCallbacks
 
     public void HandleSetup()
     {
-        Debug.Log("handle setup");
+        //Debug.Log("handle setup");
 
         selectedGameMode = winCheck.selectedGameMode;
 
@@ -74,7 +74,7 @@ public class UIGameModeScore : MonoBehaviourPunCallbacks
 
     public void SetScoreBar()
     {
-        Debug.LogWarning("set score bar");
+        //Debug.LogWarning("set score bar");
 
         int yourScore = 0;
         int opposingScore = 0;
@@ -83,13 +83,13 @@ public class UIGameModeScore : MonoBehaviourPunCallbacks
         {
             if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
             {
-                Debug.Log($"{PhotonNetwork.PlayerList[i].NickName} is not on the same team");
+                //Debug.Log($"{PhotonNetwork.PlayerList[i].NickName} is not on the same team");
                 opposingTeamImage.color = teamInfo.teamColors[PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1];
                 if (PhotonNetwork.PlayerList[i].CustomProperties.ContainsKey("zoneScore"))
                 {
                     opposingTeamText.text = PhotonNetwork.PlayerList[i].CustomProperties["zoneScore"].ToString();
                     opposingScore = (int)PhotonNetwork.PlayerList[i].CustomProperties["zoneScore"];
-                    Debug.Log($"opposing score is {opposingScore}");
+                    //Debug.Log($"opposing score is {opposingScore}");
                 }
                 else
                 {

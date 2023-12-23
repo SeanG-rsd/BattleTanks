@@ -65,14 +65,14 @@ public class UIFriend : MonoBehaviour
     {
         if (string.Compare(friendName, status.PlayerName) == 0)
         {
-            Debug.Log(status.Status);
+            //Debug.Log(status.Status);
             SetStatus(status.Status);
         }
     }
 
     private void HandleInRoom(bool inRoom)
     {
-        Debug.Log("alkdjf");
+        //Debug.Log("alkdjf");
         inviteButton.SetActive(inRoom && isOnline);
         gameObject.GetComponent<Image>().sprite = (inRoom && isOnline) ? inviteImage : regularImage;
         
@@ -87,7 +87,7 @@ public class UIFriend : MonoBehaviour
 
     private void SetStatus(int status)
     {
-        Debug.Log("Set Status");
+       // Debug.Log("Set Status");
         if (status ==ChatUserStatus.Online)
         {
             gameObject.GetComponent<Image>().sprite = inviteImage;
@@ -111,7 +111,7 @@ public class UIFriend : MonoBehaviour
 
     public void InviteFriend()
     {
-        Debug.Log($"Clicked to invite friend {friendName}");
+        //Debug.Log($"Clicked to invite friend {friendName}");
         OnInviteFriend?.Invoke(friendName);
     }
 }

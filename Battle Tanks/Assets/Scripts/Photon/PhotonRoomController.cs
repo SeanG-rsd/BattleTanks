@@ -203,7 +203,7 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
     public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
     {
 
-        Debug.Log("some room property changed");
+        //Debug.Log("some room property changed");
 
         if (propertiesThatChanged.ContainsKey("GAMEMODE") && propertiesThatChanged.ContainsKey("NUMBEROFROUNDS"))
         {

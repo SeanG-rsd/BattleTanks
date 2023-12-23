@@ -55,14 +55,14 @@ public class PlayfabFriendController : MonoBehaviour
 
     private void OnFailure(PlayFabError error)
     {
-        Debug.Log($"Playfab Friend Error occured: {error.GenerateErrorReport()}");
+        //Debug.Log($"Playfab Friend Error occured: {error.GenerateErrorReport()}");
     }
 
     private void OnFriendsListSuccess(GetFriendsListResult result)
     {
         friends = result.Friends;
         OnFriendListUpdated?.Invoke(result.Friends);
-        Debug.Log($"Friends List Success, {result.Friends.Count} Friends found.");
+        //Debug.Log($"Friends List Success, {result.Friends.Count} Friends found.");
         
     }
 

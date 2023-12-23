@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
 
-        Debug.Log("playerLeftRoom");
+        //Debug.Log("playerLeftRoom");
         Tank[] tanks = FindObjectsOfType<Tank>();
         Debug.Log(tanks.Length);
 
@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviourPunCallbacks
             if (tank.view.ViewID == (int)otherPlayer.CustomProperties["TankViewID"])
             {
                 PhotonNetwork.Destroy(tank.gameObject);
-                Debug.Log(otherPlayer.CustomProperties["TankViewID"]);
+                //Debug.Log(otherPlayer.CustomProperties["TankViewID"]);
             }
         }
     }

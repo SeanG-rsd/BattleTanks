@@ -74,13 +74,13 @@ public class TankMovement : MonoBehaviour
 
     private void HandleStart(Tank tank, Player player)
     {
-        Debug.Log("handle start");
+        //Debug.Log("handle start");
         if (view.IsMine)
         {
             canMove = false;
             PlayerCamera.SetActive(false);
         }
-        Debug.Log($"Can move is {canMove}");
+        //Debug.Log($"Can move is {canMove}");
     }
 
     private void HandleRoundStarted(Tank tank)

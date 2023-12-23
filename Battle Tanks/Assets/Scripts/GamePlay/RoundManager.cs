@@ -227,7 +227,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
 
     private void UpdateSoloUI()
     {
-        Debug.Log("solo ui");
+        //Debug.Log("solo ui");
 
         soloScoreLine.SetActive(true);
         teamScoreLine.SetActive(false);
@@ -248,7 +248,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
             Destroy(soloScoreBoard.GetChild(i).gameObject);
         }
 
-        Debug.Log($"index is {index}");
+        //Debug.Log($"index is {index}");
 
         for (int i = index - 1; i >= 0; --i)
         {
@@ -273,7 +273,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
         {
             if (PhotonNetwork.PlayerList[i].GetPhotonTeam() != PhotonNetwork.LocalPlayer.GetPhotonTeam())
             {
-                Debug.Log($"{PhotonNetwork.PlayerList[i].NickName} is not on the same team");
+               // Debug.Log($"{PhotonNetwork.PlayerList[i].NickName} is not on the same team");
                 opposingTeamImage.color = teamInfo.teamColors[PhotonNetwork.PlayerList[i].GetPhotonTeam().Code - 1];
                 if (PhotonNetwork.PlayerList[i].CustomProperties.ContainsKey("teamRoundScore"))
                 {
@@ -340,7 +340,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
         {
             if (PhotonNetwork.PlayerList[i].GetPhotonTeam() == team)
             {
-                Debug.Log($"{PhotonNetwork.PlayerList[i].NickName} has won a round");
+                //Debug.Log($"{PhotonNetwork.PlayerList[i].NickName} has won a round");
                 if (PhotonNetwork.PlayerList[i].CustomProperties.ContainsKey("teamRoundScore"))
                 {
                     PhotonNetwork.PlayerList[i].CustomProperties["teamRoundScore"] = (int)PhotonNetwork.PlayerList[i].CustomProperties["teamRoundScore"] + 1;   
@@ -349,7 +349,7 @@ public class RoundManager : MonoBehaviourPunCallbacks
                 {
                     PhotonNetwork.PlayerList[i].CustomProperties["teamRoundScore"] = 1;
                 }
-                Debug.Log($"{PhotonNetwork.PlayerList[i].NickName}'s score is now {PhotonNetwork.PlayerList[i].CustomProperties["teamRoundScore"]}");
+                //Debug.Log($"{PhotonNetwork.PlayerList[i].NickName}'s score is now {PhotonNetwork.PlayerList[i].CustomProperties["teamRoundScore"]}");
             }
         }
 

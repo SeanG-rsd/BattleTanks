@@ -180,7 +180,7 @@ public class PlayfabLogin : MonoBehaviour
 
     private void UpdateDisplayName(string displayName)
     {
-        Debug.Log($"Updating Playfab account display name to {displayName}");
+        //Debug.Log($"Updating Playfab account display name to {displayName}");
         SetUsername(displayName);
         var request = new UpdateUserTitleDisplayNameRequest { DisplayName = displayName };
         PlayFabClientAPI.UpdateUserTitleDisplayName(request, OnDisplayNameSuccess, OnFailure);
@@ -193,13 +193,13 @@ public class PlayfabLogin : MonoBehaviour
 
     private void OnGetUsernameResult(GetAccountInfoResult result)
     {
-        Debug.LogWarning($"worked: {result.AccountInfo.TitleInfo.DisplayName}");
+        //Debug.LogWarning($"worked: {result.AccountInfo.TitleInfo.DisplayName}");
         UpdateDisplayName(result.AccountInfo.TitleInfo.DisplayName);
     }
 
     private void OnDisplayNameSuccess(UpdateUserTitleDisplayNameResult result)
     {
-        Debug.Log($"You have updated the displayname of the playfab account!");
+        //Debug.Log($"You have updated the displayname of the playfab account!");
         SceneController.LoadScene("MainMenu");
     }
 

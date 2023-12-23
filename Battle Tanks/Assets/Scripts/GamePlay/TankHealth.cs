@@ -137,9 +137,9 @@ public class TankHealth : MonoBehaviour
     public int calculateHealthPoints()
     {
         float percent = (float)currentHealth / (float)maxHealth;
-        Debug.Log(percent);
+        //Debug.Log(percent);
         int output = (int)(percent * maxHealthPoints);
-        Debug.Log(output);
+        //Debug.Log(output);
 
         if (output == 0)
         {

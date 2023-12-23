@@ -39,7 +39,7 @@ public class TankRespawnPoint : MonoBehaviour
 
     private void HandleRespawnTank(Tank tank)
     {
-        Debug.Log("a tank has been respawned");
+        //Debug.Log("a tank has been respawned");
         if (tank.teamIndex == teamIndex)
         {
 
@@ -82,7 +82,7 @@ public class TankRespawnPoint : MonoBehaviour
 
     private void HandleGameStarted(Tank tank)
     {
-        Debug.Log("cam turned off");
+        //Debug.Log("cam turned off");
         if (tank.teamIndex == teamIndex)
         {
             respawnCam.SetActive(false);

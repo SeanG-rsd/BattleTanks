@@ -82,8 +82,8 @@ public class UIDisplayRoom : MonoBehaviour
         masterPanel.SetActive(false);
         waitForPanel.SetActive(false);
         hideObjects[0].SetActive(true);
-        roomGameModeText.SetText(PhotonNetwork.CurrentRoom.CustomProperties["GAMEMODE"].ToString());
-        roomRoundNumText.SetText(PhotonNetwork.CurrentRoom.CustomProperties["NUMBEROFROUNDS"].ToString());
+        roomGameModeText.SetText(gameMode.ModeName);
+        roomRoundNumText.SetText(PhotonNetwork.CurrentRoom.CustomProperties["NUMBEROFROUNDS"].ToString() + ((int)PhotonNetwork.CurrentRoom.CustomProperties["NUMBEROFROUNDS"] > 1 ? " Rounds" : " Round"));
         chooseGameButton.SetActive(false);
         if (PhotonNetwork.IsMasterClient)
         {

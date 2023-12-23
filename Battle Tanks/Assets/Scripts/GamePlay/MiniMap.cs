@@ -121,7 +121,7 @@ public class MiniMap : MonoBehaviour
 
     private void UpdateIndicators()
     {
-        Debug.Log(indicatorVisibilityRange);
+        //Debug.Log(indicatorVisibilityRange);
         foreach (GameObject indicator in indicators)
         {
             if (indicator != null)
@@ -138,24 +138,24 @@ public class MiniMap : MonoBehaviour
 
                     float changeInX = (icon.transform.localPosition.x - localTankToFollow.transform.localPosition.x) / miniMapContainerScale;
                     float changeInY = (icon.transform.localPosition.y - localTankToFollow.transform.localPosition.y) / miniMapContainerScale;
-                    Debug.Log($"x : {changeInX}, y : {changeInY}");
+                    //Debug.Log($"x : {changeInX}, y : {changeInY}");
 
                     if (changeInX == 0)
                     {
                         indicator.transform.localPosition = new Vector3(0, indicatorVisibilityRange * (changeInY > 0 ? 1 : -1), 0);
-                        Debug.Log("to the right");
+                        //Debug.Log("to the right");
                     }
                     else if (changeInY == 0)
                     {
                         indicator.transform.localPosition = new Vector3(indicatorVisibilityRange * (changeInX > 0 ? 1 : -1), 0, 0);
-                        Debug.Log("to the left");
+                        //Debug.Log("to the left");
                     }
                     else
                     {
                         float slope = changeInY / changeInX;
                         float x = Mathf.Sqrt(indicatorVisibilityRange * indicatorVisibilityRange / (1 + (slope * slope)));
                         float y = slope * x * (slope > 0 ? 1 : -1);
-                        Debug.Log($"x : {x}, y : {y}");
+                       // Debug.Log($"x : {x}, y : {y}");
 
                         indicator.transform.localPosition = new Vector3(x * (changeInX > 0 ? 1 : -1), y * (changeInY > 0 ? 1 : -1), 0);
                     }

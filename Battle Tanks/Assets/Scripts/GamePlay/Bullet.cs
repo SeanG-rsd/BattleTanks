@@ -16,7 +16,7 @@ public class Bullet : MonoBehaviour
 
     public Player parentPlayer;
 
-    private float noDieTime = 0.2f;
+    private float noDieTime = 0.1f;
     private bool noDie = true;
 
     [SerializeField] private GameObject explosionPrefab;

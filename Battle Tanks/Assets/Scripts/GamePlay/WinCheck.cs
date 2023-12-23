@@ -57,7 +57,7 @@ public class WinCheck : MonoBehaviourPunCallbacks
 
     private void HandleStartGame(GameMode gm)
     {
-        Debug.Log("handle start game");
+        //Debug.Log("handle start game");
 
         selectedGameMode = gm;
         teamScores.Clear();
@@ -67,7 +67,7 @@ public class WinCheck : MonoBehaviourPunCallbacks
             teamScores.Add(0);
         }
 
-        Debug.Log("on win check ready");
+        //Debug.Log("on win check ready");
         gameModeScore.HandleSetup();
     }
 
@@ -75,7 +75,7 @@ public class WinCheck : MonoBehaviourPunCallbacks
     {
         if (GetComponent<PhotonView>().IsMine)
         {
-            Debug.Log($"handle zone point for team {teamIndex} with name {PhotonNetwork.LocalPlayer.NickName}");
+            //Debug.Log($"handle zone point for team {teamIndex} with name {PhotonNetwork.LocalPlayer.NickName}");
 
             ExitGames.Client.Photon.Hashtable hashtable = new ExitGames.Client.Photon.Hashtable() { { "zonePoint", teamIndex } };
 
@@ -87,7 +87,7 @@ public class WinCheck : MonoBehaviourPunCallbacks
     {
         if (GetComponent<PhotonView>().IsMine)
         {
-            Debug.Log("handle flag point");
+            //Debug.Log("handle flag point");
             ExitGames.Client.Photon.Hashtable hashtable = new ExitGames.Client.Photon.Hashtable() { { "flagPoint", teamIndex } };
 
             PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
@@ -101,7 +101,7 @@ public class WinCheck : MonoBehaviourPunCallbacks
             tank.gameObject.GetComponent<TankMovement>().PlayerCamera.SetActive(false);
 
             ExitGames.Client.Photon.Hashtable hashtable = new ExitGames.Client.Photon.Hashtable() { { "aliveState", 0 } };
-            Debug.Log("set custom prop");
+            //Debug.Log("set custom prop");
 
             PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
         }
@@ -148,9 +148,9 @@ public class WinCheck : MonoBehaviourPunCallbacks
 
                 }
 
-                Debug.Log($"{playerFromEachTeam.Count} Teams were found");
+                //Debug.Log($"{playerFromEachTeam.Count} Teams were found");
 
-                Debug.Log("a tank has died");
+                //Debug.Log("a tank has died");
                 List<bool> teamStates = new List<bool>();
 
                 for (int i = 0; i < playerFromEachTeam.Count; ++i)
@@ -188,7 +188,7 @@ public class WinCheck : MonoBehaviourPunCallbacks
 
                 for (int i = 0; i < teamStates.Count; ++i)
                 {
-                    Debug.Log($"{playerFromEachTeam[i].NickName}'s Team is {teamStates[i]}");
+                    //Debug.Log($"{playerFromEachTeam[i].NickName}'s Team is {teamStates[i]}");
 
                     if (!hasOneAliveTeam && teamStates[i])
                     {
@@ -203,11 +203,11 @@ public class WinCheck : MonoBehaviourPunCallbacks
                     }
                 }
 
-                Debug.Log(index);
+                //Debug.Log(index);
 
                 if (index != 0 || noTeamsAlive)
                 {
-                    Debug.Log("someone has won the round");
+                   // Debug.Log("someone has won the round");
 
                     for (int i = 0; i < playerFromEachTeam.Count; ++i)
                     {
@@ -220,14 +220,14 @@ public class WinCheck : MonoBehaviourPunCallbacks
             }
             else
             {
-                Debug.Log($"{player.NickName} is still alive");
+                //Debug.Log($"{player.NickName} is still alive");
             }
         }
 
         if (changedProps.ContainsKey("flagPoint") && selectedGameMode.HasFlag)
         {
             //teamScores[teamIndex - 1]++;
-            Debug.Log("flag won round");
+            //Debug.Log("flag won round");
 
             for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
             {
@@ -242,7 +242,7 @@ public class WinCheck : MonoBehaviourPunCallbacks
 
         if (changedProps.ContainsKey("zonePoint") && selectedGameMode.HasZones)
         {
-            Debug.Log("zone point earned");
+            //Debug.Log("zone point earned");
 
             for (int i = 0; i < PhotonNetwork.PlayerList.Length; ++i)
             {
@@ -252,7 +252,7 @@ public class WinCheck : MonoBehaviourPunCallbacks
                 {
                     if (!PhotonNetwork.PlayerList[i].CustomProperties.ContainsKey("zoneScore"))
                     {
-                        Debug.Log("set score");
+                        //Debug.Log("set score");
                         PhotonNetwork.PlayerList[i].CustomProperties["zoneScore"] = 0;
                     }
 
@@ -266,7 +266,7 @@ public class WinCheck : MonoBehaviourPunCallbacks
 
         if (changedProps.ContainsKey("zoneScore") && selectedGameMode.HasZones)
         {
-            Debug.Log($" Team {player.GetPhotonTeam().Code} has a score of {player.CustomProperties["zoneScore"]}");
+            //Debug.Log($" Team {player.GetPhotonTeam().Code} has a score of {player.CustomProperties["zoneScore"]}");
             gameModeScore.SetScoreBar();
 
             
@@ -279,8 +279,8 @@ public class WinCheck : MonoBehaviourPunCallbacks
                     {
                         OnRoundWon?.Invoke(PhotonNetwork.PlayerList[i].GetPhotonTeam());
                         zoneReady = false;
-                        Debug.Log("zone round won");
-                        Debug.Log(player.CustomProperties["zoneScore"]);
+                        //Debug.Log("zone round won");
+                        //Debug.Log(player.CustomProperties["zoneScore"]);
                         break;
                     }
                     

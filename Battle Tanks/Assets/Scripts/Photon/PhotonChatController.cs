@@ -59,9 +59,9 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
 
     private void ConnectToPhotonChat()
     {
-        Debug.Log("Connecting to Photon Chat");
+        //Debug.Log("Connecting to Photon Chat");
         chatClient.AuthValues = new Photon.Chat.AuthenticationValues(nickName);
-        Debug.Log(PlayerPrefs.GetString("USERNAME"));
+        //Debug.Log(PlayerPrefs.GetString("USERNAME"));
         ChatAppSettings chatSettings = PhotonNetwork.PhotonServerSettings.AppSettings.GetChatSettings();
         chatClient.ConnectUsingSettings(chatSettings);
     }
@@ -73,13 +73,13 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
 
     public void OnDisconnected()
     {
-        Debug.Log("You have disconnected to the Photon Chat");
+        //Debug.Log("You have disconnected to the Photon Chat");
         chatClient.SetOnlineStatus(ChatUserStatus.Offline);
     }
 
     public void OnConnected()
     {
-        Debug.Log("You have connected to the Photon Chat");
+        //Debug.Log("You have connected to the Photon Chat");
         OnChatConnected?.Invoke(chatClient);
         chatClient.SetOnlineStatus(ChatUserStatus.Online);
     }
@@ -100,20 +100,20 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
         {
             if (!message.Equals(friendAccept) && !message.Equals(friendRequest))
             {
-                Debug.Log("recieved message");
+                //Debug.Log("recieved message");
                 // Channel Name format [Sender : Recipient]
                 string[] splitNames = channelName.Split(':');
                 string senderName = splitNames[0];
                 //Debug.Log(splitNames[0]);
                 if (!sender.Equals(senderName, StringComparison.OrdinalIgnoreCase))
                 {
-                    Debug.Log($"{sender}: {message}");
+                    //Debug.Log($"{sender}: {message}");
                     OnRoomInvite?.Invoke(sender, message.ToString());
                 }
             }
             else if (message.Equals(friendRequest))
             {
-                Debug.Log("recieved friend invite");
+                //Debug.Log("recieved friend invite");
                 string[] splitNames = channelName.Split(':');
                 string senderName = splitNames[0];
 
@@ -124,7 +124,7 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
             }
             else if (message.Equals(friendAccept))
             {
-                Debug.Log("recieve friend accept");
+                //Debug.Log("recieve friend accept");
                 string[] splitNames = channelName.Split(':');
                 string senderName = splitNames[0];
 
@@ -135,7 +135,7 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
             }
         }
 
-        Debug.LogError($"on private message from: {sender}");
+       // Debug.LogError($"on private message from: {sender}");
     }
 
     public void OnSubscribed(string[] channels, bool[] results)
@@ -150,10 +150,10 @@ public class PhotonChatController : MonoBehaviour, IChatClientListener
 
     public void OnStatusUpdate(string user, int status, bool gotMessage, object message)
     {
-        Debug.Log($"Photon Chat OnStatusUpdate: {user} changed to {status}: {message}");
+        //Debug.Log($"Photon Chat OnStatusUpdate: {user} changed to {status}: {message}");
         PhotonStatus newStatus = new PhotonStatus(user, status, (string)message);
-        Debug.Log($"Status Update for {user} and its not {status}.");
-        Debug.Log(ChatUserStatus.Online);
+        //Debug.Log($"Status Update for {user} and its not {status}.");
+        //Debug.Log(ChatUserStatus.Online);
         OnStatusUpdated?.Invoke(newStatus);
     }
 

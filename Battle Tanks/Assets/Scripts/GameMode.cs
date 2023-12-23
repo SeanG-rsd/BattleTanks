@@ -20,6 +20,12 @@ public class GameMode : ScriptableObject
         private set { name = value; }
     }
 
+    public string ModeName
+    {
+        get { return modeName; }
+        private set { modeName = value; }
+    }
+
     public int MaxPlayers
     {
         get { return maxPlayers; }

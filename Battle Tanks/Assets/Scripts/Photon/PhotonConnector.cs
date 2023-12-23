@@ -21,7 +21,7 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
     [SerializeField] private TMP_Text connectingToText;
     private void Start()
     {
-        Debug.Log("start");
+        //Debug.Log("start");
 
         if (PhotonNetwork.InRoom)
         {
@@ -44,7 +44,7 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
 
     private void ConnectToPhoton(string nickName)
     {
-        Debug.Log($"Connect to Photon as {nickName}");
+        //Debug.Log($"Connect to Photon as {nickName}");
         PhotonNetwork.AuthValues = new AuthenticationValues(nickName);
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.NickName = nickName;
@@ -59,7 +59,7 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
 
     public override void OnConnectedToMaster()
     {
-        Debug.Log($"You have connected to the Photon Master Server");
+        //Debug.Log($"You have connected to the Photon Master Server");
         if (!PhotonNetwork.InLobby && !PhotonNetwork.InRoom)
         {
             connectingToText.text = "Connecting To The Lobby";
@@ -79,7 +79,7 @@ public class PhotonConnector : MonoBehaviourPunCallbacks
     public override void OnLeftRoom()
     {
         PhotonNetwork.ConnectUsingSettings();
-        Debug.Log("connecting to master");
+       // Debug.Log("connecting to master");
         connectingToScreen.SetActive(true);
         connectingToText.text = "Connecting To Master Server";
     }

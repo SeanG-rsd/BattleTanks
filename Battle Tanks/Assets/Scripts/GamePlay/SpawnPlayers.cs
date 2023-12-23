@@ -52,7 +52,7 @@ public class SpawnPlayers : MonoBehaviour
 
     private void HandleSoloGen(List<GameObject> towers)
     {
-        Debug.Log("handle solo gen");
+        //Debug.Log("handle solo gen");
 
         for (int i = 0; i < spawnPoints.Count; ++i)
         {
@@ -74,7 +74,7 @@ public class SpawnPlayers : MonoBehaviour
         {
             Debug.Log(team.ToString());
         }
-        Debug.Log(PhotonNetwork.InRoom);
+        //Debug.Log(PhotonNetwork.InRoom);
         //Debug.Log($"{PhotonNetwork.LocalPlayer.NickName} is on team {PhotonNetwork.LocalPlayer.GetPhotonTeam()}");
 
         allTankPrefabs = new List<List<GameObject>>
@@ -129,7 +129,7 @@ public class SpawnPlayers : MonoBehaviour
 
     private void SetMiniMap(int team)
     {
-        Debug.Log("set mini map");
+        //Debug.Log("set mini map");
 
         miniMapCam.cullingMask = LayerMask.GetMask("UI", teamInfo.teamNames[team - 1], "See", "MiniMap", $"MiniMap{teamInfo.teamNames[team - 1]}");
     }

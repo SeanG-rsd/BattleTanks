@@ -184,7 +184,7 @@ public class Tank : MonoBehaviourPunCallbacks
 
     private Vector3 GoHome()
     {
-        Debug.Log("go home");
+        //Debug.Log("go home");
 
         Vector2 pos = myRespawn.GetPoint();
 
@@ -202,6 +202,7 @@ public class Tank : MonoBehaviourPunCallbacks
                 {
                     myFlag.GoHome();
                 }
+                myFlag = null;
             }
 
             OnRespawn?.Invoke(this);
@@ -270,6 +271,7 @@ public class Tank : MonoBehaviourPunCallbacks
     {
         if (view.IsMine)
         {
+            myFlag = null;
             Debug.Log("tank respawned");
             OnRespawn?.Invoke(this);
             OnAlive?.Invoke(this);
@@ -279,6 +281,7 @@ public class Tank : MonoBehaviourPunCallbacks
             tankCanvas.SetActive(false);
 
             OnStart?.Invoke(this);
+            OnStarted?.Invoke(this); 
         }
     }
 
@@ -313,7 +316,6 @@ public class Tank : MonoBehaviourPunCallbacks
         Debug.Log("set custom prop");
 
         PhotonNetwork.LocalPlayer.SetCustomProperties(hashtable);
-
         Respawn();
         tankCanvas.SetActive(false);
         respawnTimerObject.SetActive(false);

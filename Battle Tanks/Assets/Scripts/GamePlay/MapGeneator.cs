@@ -228,7 +228,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
                     mapCell.walls[i].GetComponent<MapWall>().position = new Vector2(x - 1, z - 1);
                     WallInfo newWall = new WallInfo() { position = new Vector2(x - 1, z - 1), orientation = wallOrientationsForCell[i] };
                     newWall.isTouchingBorder = GetWallBool(newWall);
-                    Debug.Log($"Added {newWall.position} with {newWall.orientation} and {newWall.isTouchingBorder}");
+                    //Debug.Log($"Added {newWall.position} with {newWall.orientation} and {newWall.isTouchingBorder}");
 
                     cellInfo.Add(newWall);
                 }
@@ -320,9 +320,9 @@ public class MapGeneator : MonoBehaviourPunCallbacks
 
     private void DeleteWalls()
     {
-        Debug.Log("deleteWalls");
+        //Debug.Log("deleteWalls");
         SetDictionary();
-        Debug.Log(cells.Count);
+        //Debug.Log(cells.Count);
 
         for (int i = 0; i < cells.Count; i++)
         {
@@ -658,7 +658,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
             RemoveBoxes(boxedPositions[UnityEngine.Random.Range(0, boxedPositions.Count)]);
         }
 
-        Debug.LogWarning("flood fill check complete");
+        //Debug.LogWarning("flood fill check complete");
 
     }
 
@@ -711,7 +711,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
     {
         if (propertiesThatChanged.ContainsKey("mapGeneration"))
         {
-            Debug.Log("map has been generated");
+            //Debug.Log("map has been generated");
             OnMapGenerated?.Invoke();
         }
     }
@@ -791,7 +791,7 @@ public class MapGeneator : MonoBehaviourPunCallbacks
         }
         else
         {
-            Debug.Log("no game mode in pun rpc");
+           // Debug.Log("no game mode in pun rpc");
         }
     }
 }
