@@ -9,9 +9,14 @@ public class PhotonGameSettingsController : MonoBehaviourPunCallbacks
 {
     private GameMode currentSelectedGameMode;
     [SerializeField] Button[] gameModes;
+    [SerializeField] private GameObject gameModeSelected;
 
     private int currentSelectedRoundNumber;
     [SerializeField] Button[] roundNumbers;
+    [SerializeField] private GameObject roundNumberSelected;
+
+    [SerializeField] private GameObject continueButton;
+    
 
     private void Awake()
     {
@@ -26,24 +31,26 @@ public class PhotonGameSettingsController : MonoBehaviourPunCallbacks
         UIRoundController.OnNumberOFRoundsChanged -= HandleRoundNumChanged;
     }
 
+    private void Update()
+    {
+        if (currentSelectedGameMode != null && currentSelectedRoundNumber != 0)
+        {
+            continueButton.SetActive(true);
+        }
+    }
+
     private void HandleGameModeChanged(GameMode gameMode, Button button)
     {
+        gameModeSelected.SetActive(true);
         currentSelectedGameMode = gameMode;
-        foreach (Button b in gameModes)
-        {
-            b.interactable = true;
-        }
-        button.interactable = false;
+        gameModeSelected.transform.position = button.transform.position;
     }
 
     private void HandleRoundNumChanged(int roundNumber, Button button)
     {
+        roundNumberSelected.SetActive(true);
         currentSelectedRoundNumber = roundNumber;
-        foreach (Button b in roundNumbers)
-        {
-            b.interactable = true;
-        }
-        button.interactable = false;
+        roundNumberSelected.transform.position = button.transform.position;
     }
 
     public void ChooseGameMode()

@@ -6,6 +6,11 @@ using ExitGames.Client.Photon;
 using System.Collections.Generic;
 using TMPro;
 using Photon.Chat;
+using PlayFab;
+using PlayFab.ClientModels;
+using PlayFab.AdminModels;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
+
 
 public class PhotonRoomController : MonoBehaviourPunCallbacks
 {
@@ -31,6 +36,8 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
+        PlayFabSettings.staticSettings.DeveloperSecretKey = "TJT6H4A79QW3IBPIKAFEP3SWMWMZOZT78K577I3SA9FXH1MIFF";
+
         UIInvite.OnRoomInviteAccept += HandleRoomInviteAccept;
         PhotonConnector.OnLobbyJoined += HandleLobbyJoined;
         UIDisplayRoom.OnLeaveRoom += HandleLeaveRoom;
@@ -105,6 +112,43 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
         {
             CreatePhotonRoom(createInput.text);
         }
+    }
+
+    [SerializeField] private GameObject areYouSureScreen;
+
+    public void OnClickDeleteAccount()
+    {
+        areYouSureScreen.SetActive(true);
+    }
+
+    public void OnClickNoDeleteAccount()
+    {
+        areYouSureScreen.SetActive(false);
+    }
+
+    public void OnClickYesDeleteAccount()
+    {
+        GetAccountInfoRequest request = new GetAccountInfoRequest();
+        PlayFabClientAPI.GetAccountInfo(request, OnGetPlayerInfo, OnDeleteFail);
+        //PlayFabClientAPI.ExecuteCloudScript(request, OnDeleteSuccess, OnDeleteFail);
+    }
+
+    private void OnGetPlayerInfo(GetAccountInfoResult result)
+    {
+        DeleteMasterPlayerAccountRequest request = new DeleteMasterPlayerAccountRequest() { PlayFabId = result.AccountInfo.PlayFabId, };
+        PlayFabAdminAPI.DeleteMasterPlayerAccount(request, OnDeleteSuccess, OnDeleteFail);
+
+    }
+
+    private void OnDeleteSuccess(DeleteMasterPlayerAccountResult result)
+    {
+        Debug.Log(result.ToString());
+        SceneController.LoadScene("Login");
+    }
+
+    private void OnDeleteFail(PlayFabError error)
+    {
+        Debug.Log("could not delete account");
     }
 
     public void StartGame()
