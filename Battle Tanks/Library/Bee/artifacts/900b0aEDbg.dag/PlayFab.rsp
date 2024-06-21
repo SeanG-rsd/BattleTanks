@@ -126,6 +126,8 @@
 -define:PUN_2_0_OR_NEWER
 -define:PUN_2_OR_NEWER
 -define:PUN_2_19_OR_NEWER
+-define:ENABLE_PLAYFABADMIN_API
+-define:ENABLE_PLAYFABSERVER_API
 -define:CSHARP_7_OR_LATER
 -define:CSHARP_7_3_OR_NEWER
 -r:"Assets/Photon/PhotonLibs/netstandard2.0/Photon3Unity3D.dll"
@@ -427,6 +429,7 @@
 "Assets/PlayFabSDK/Shared/Internal/ISerializer.cs"
 "Assets/PlayFabSDK/Shared/Internal/Log.cs"
 "Assets/PlayFabSDK/Shared/Internal/PlayFabErrors.cs"
+"Assets/PlayFabSDK/Shared/Internal/PlayFabHttp/GzipDownloadHandler.cs"
 "Assets/PlayFabSDK/Shared/Internal/PlayFabHttp/IPlayFabHttp.cs"
 "Assets/PlayFabSDK/Shared/Internal/PlayFabHttp/PlayFabHTTP.cs"
 "Assets/PlayFabSDK/Shared/Internal/PlayFabHttp/PlayFabUnityHttp.cs"

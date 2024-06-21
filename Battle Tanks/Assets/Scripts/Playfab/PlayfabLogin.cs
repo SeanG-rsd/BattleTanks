@@ -83,6 +83,12 @@ public class PlayfabLogin : MonoBehaviour
         PlayFabClientAPI.RegisterPlayFabUser(request, OnRegisterSuccess, OnError);   
     }
 
+    public void RegisterBack()
+    {
+        LoginScreenOn();
+            
+    }
+
     public void CreateUsername() // changes screen when the user presses "Register"
     {
         LoginScreen.SetActive(!LoginScreen.activeSelf);

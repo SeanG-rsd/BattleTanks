@@ -9,7 +9,6 @@ using Photon.Chat;
 using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.AdminModels;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 
 public class PhotonRoomController : MonoBehaviourPunCallbacks
@@ -29,10 +28,10 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
 
     public static Action<bool> OnRoomStatusChange = delegate { };
     public static Action<GameMode> OnJoinRoom = delegate { };
-    public static Action OnRoomLeft = delegate { };
+    public static System.Action OnRoomLeft = delegate { };
     public static Action<Player> OnOtherPlayerLeftRoom = delegate { };
     public static Action<GameMode, int> OnGameSettingsSelected = delegate { };
-    public static Action OnStartGame = delegate { };
+    public static System.Action OnStartGame = delegate { };
 
     private void Awake()
     {

@@ -776,9 +776,9 @@ public class MapGeneator : MonoBehaviourPunCallbacks
                         PhotonTeam newTeam;
                         if (PhotonTeamsManager.Instance.TryGetTeamByCode(teamCode, out newTeam))
                         {
-                            //Debug.Log(newTeam.ToString());
+                            //Debug.Log(spawnTowers[newTeam.Code - 1].name);
                             GameObject newTower = PhotonNetwork.Instantiate(soloSpawnTowerPrefabs[newTeam.Code - 1].name, soloSpawnTowerPositions[soloTowerOrder[i]], Quaternion.identity);
-                            OnMiniMapIcon?.Invoke(towerIconPrefabs[newTeam.Code - 1], new Vector2(towerPositions[soloTowerOrder[i]].x, towerPositions[soloTowerOrder[i]].z), 1, spawnTowers[newTeam.Code - 1], false);
+                            OnMiniMapIcon?.Invoke(towerIconPrefabs[newTeam.Code - 1], new Vector2(soloSpawnTowerPositions[soloTowerOrder[i]].x, soloSpawnTowerPositions[soloTowerOrder[i]].z), 1, newTower, false);
 
                             soloTowers.Add(newTower);
                         }

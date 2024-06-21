@@ -124,22 +124,20 @@ public class TankHealth : MonoBehaviour
             Destroy(healthPointContainer.GetChild(i).gameObject);
         }
 
-        for (int i = 0; i < calculateHealthPoints(); ++i)
+        for (int i = 0; i < CalculateHealthPoints(); ++i)
         {
             GameObject healthPoint = Instantiate(healthPointPrefab, healthPointContainer.position, Quaternion.identity);
-
             healthPoint.transform.SetParent(healthPointContainer);
 
             healthPoint.transform.localScale = Vector3.one;
         }
     }
 
-    public int calculateHealthPoints()
+    public int CalculateHealthPoints()
     {
-        float percent = (float)currentHealth / (float)maxHealth;
-        //Debug.Log(percent);
+        float percent = currentHealth / (float)maxHealth;
+
         int output = (int)(percent * maxHealthPoints);
-        //Debug.Log(output);
 
         if (output == 0)
         {
