@@ -9,6 +9,7 @@ using Photon.Chat;
 using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.AdminModels;
+using UnityEngine.SceneManagement;
 
 
 public class PhotonRoomController : MonoBehaviourPunCallbacks
@@ -123,6 +124,12 @@ public class PhotonRoomController : MonoBehaviourPunCallbacks
     public void OnClickNoDeleteAccount()
     {
         areYouSureScreen.SetActive(false);
+    }
+
+    public void OnClickBackToLogin()
+    {
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene("Login");
     }
 
     public void OnClickYesDeleteAccount()
